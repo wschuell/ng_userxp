@@ -1,0 +1,14 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'ng/style.css' %}" />
+
+<input type="button" value="New Experiment" onclick="self.location.href='new_experiment'" > 
+
+{% if latest_experiment_list %}
+    <ul>
+    {% for experiment in latest_experiment_list %}
+        <li><a href="/ng/{{experiment.xp_uuid }}/">{{ experiment.xp_uuid }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No xps are available.</p>
+{% endif %}

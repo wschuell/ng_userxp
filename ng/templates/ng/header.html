@@ -1,0 +1,17 @@
+{% load static %}
+
+{% if role == "hearer" %}
+			<div id="speaker_hearer_block_inner">
+			  	<h2 id="speaker_hearer_h2"><img src="{% static 'ng/img/' %}kreyon2hearerC.png"><div id="speaker_hearer_text">{{ experiment.interaction_counter|add:1 }}: You are the HEARER!</div></h2>
+			  	<!--<h2 id="speaker_hearer_h2"><img src="{% static 'ng/img/' %}kreyon2speakerC.png"><div id="speaker_hearer_text">You are the SPEAKER!</div></h2>-->
+			</div>
+
+{% elif role == "speaker" %}
+
+
+			<div id="speaker_hearer_block_inner">
+			  	<!--<h2 id="speaker_hearer_h2"><img src="{% static 'ng/img/' %}kreyon2hearerC.png"><div id="speaker_hearer_text">You are the HEARER!</div></h2>-->
+			  	<h2 id="speaker_hearer_h2"><img src="{% static 'ng/img/' %}kreyon2speakerC.png"><div id="speaker_hearer_text">Interaction #{{ experiment.interaction_counter|add:1 }}: You are the SPEAKER!</div></h2>
+			</div>
+
+{% endif %}

@@ -1,0 +1,13 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'ng/style.css' %}" />
+
+<h1>{{ experiment.xp_uuid }}</h1>
+<h2>{{ experiment.interaction_counter }}</h2>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'ng:continue' experiment.xp_uuid %}" method="post">
+{% csrf_token %}
+<input type="submit" value="Continue" />
+</form>

@@ -1,0 +1,400 @@
+body {
+    background-color: #ccc;
+    font-family: 'Indie Flower', cursive;
+    font-size: 18px;
+    width: 100%;
+    margin: 0px;
+    text-align: center;
+    /*margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    width: 80%;
+    margin: auto;
+    min-width: 500px;*/
+	/*background-image: url("img/speaker.png");*/
+}
+
+.speaker_heare_img_lp img,
+.meaning_chosen img,
+.meaning_chosen_check img{
+  width: 25px;
+}
+
+#maxsize{
+  max-width: 1024px;
+  position: absolute;
+  margin: auto;
+    top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+#app_viewport{
+	background-color: #ddd;
+	padding-bottom: 15px;
+}
+
+#speaker_hearer_block,
+header{
+  border-bottom: 1px solid darkgrey;
+  margin-bottom: 10px;
+}
+
+#img_people_talking_container,
+#language_progress{
+	float: left;
+  width: 100%;
+}
+
+.meaning_chosen_check{
+  float: right;
+}
+
+h2#speaker_hearer_h2{
+  margin: 0px;
+  display: inline-block;
+}
+
+#speaker_hearer_h2 img{
+  width: 20%;
+  margin: 0px;
+}
+
+#speaker_hearer_text{
+  padding-left: 15px;
+}
+
+#img_people_talking_container{
+	margin-bottom: 15px;
+}
+
+#img_people_talking{
+  width: 100%;
+  max-width: 270px;
+  box-sizing: border-box;
+}
+
+#language_progress{
+  padding: 15px;
+  text-align: left !important;
+  width: 215px;
+  height: 420px !important;
+  box-sizing: border-box;
+}
+
+#language_progress{
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+#language_progress,
+.meaning_img{
+	border: 1px solid #000;
+  background-color: #ddd;
+}
+
+.meaning_img{
+	border-radius: 15px;
+}
+
+.meaning_img{
+	float:left;
+	margin-right: 15px;
+	width: 6vw;
+  height: 6vw;
+  margin-top: 10px;
+
+}
+
+#word_speaker,
+#word_hearer,
+#meaning,
+#show{
+	margin-bottom: 5px;
+}
+
+div#word_speaker {
+    padding-left: 15px;
+}
+
+.question_text,
+#choose,
+#show,
+#button_next,
+#word_speaker,
+#word_hearer,
+#button_next_div,
+#speaker_hearer_block{
+	clear: both;
+}
+
+#show,
+#choose,
+#meaning,
+#word_speaker,
+#word_hearer,
+#speaker_hearer_block{
+	width: 100%;
+  display: inline-block;
+}
+
+#past_interactions{
+	margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+#speaker_hearer_block_inner{
+  width: 100%;
+}
+
+#speaker_hearer_block_inner,
+#show_inner,
+#choose,
+#show{
+	text-align: center;
+}
+
+#meaning_inner,
+#word_inner,
+#show_inner{
+	display: inherit;
+}
+
+.word_text{
+	border: 1px solid #000;
+	border-radius: 15px;
+	padding: 8px;
+	display: inline-block;
+	float: left;
+	text-align: center;
+  margin-right: 15px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  background-color: #ddd;
+}
+
+#button_next {
+  color: #000;
+  font-size: 20px;
+  background: #57c5e6;
+  padding: 8px 18px 8px 18px;
+  border: solid #000000 1px;
+  text-decoration: none;
+  font-family: 'Indie Flower', cursive;
+  font-size: 18px;
+  border-radius: 15px;
+}
+
+#button_next:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #2d6ed9;
+  border: 13px none #f8fcf7;
+  border-radius: 59px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2651d9;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #2651d9;
+}
+::-webkit-scrollbar-track {
+  background: #e6e6e6;
+  border: 0px none #f3fcf3;
+  border-radius: 45px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #cccccc;
+}
+::-webkit-scrollbar-track:active {
+  background: #c1c1c1;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* THREE COLUMN */
+
+#pagewrap {
+  padding: 5px;
+  margin: 0px auto;
+}
+header {
+  height: 100px;
+  padding: 0 15px;
+  border-bottom: 1px solid #ddd !important;
+  margin-bottom: 10px !important;
+}
+
+#content,
+#middle,
+#sidebar{
+  min-height: 420px;
+}
+
+section#content {
+  background-color: #ccc;
+}
+
+#content {
+  width: 18%;
+  min-width: 230px;
+  float: left;
+  /*padding: 5px 15px;*/
+}
+
+#middle {
+  width: 53%; /* Account for margins + border values */
+  float: left;
+  padding: 5px 15px;
+  margin: 0px 5px 5px 5px;
+}
+
+#sidebar {
+  width: 18%;
+  min-width: 230px;
+  padding: 5px 15px;
+  float: left;
+}
+footer {
+  clear: both;
+  padding: 0 15px;
+}
+
+#content {
+  background: #ddd;
+}
+
+#sidebar {
+  background: #ddd;
+}
+
+header, #content, #middle, #sidebar {
+  margin-bottom: 5px;
+  box-sizing: border-box;
+}
+
+#pagewrap, header, #content, #middle, #sidebar, footer {
+  border: solid 0px #ddd; /* Put 1p here to see div borders */
+}
+
+footer{
+  display: none;
+}
+
+
+.word_text{
+  width: 43%;
+}
+
+/************************************************************************************
+MEDIA QUERIES
+*************************************************************************************/
+/* for 980px or less */
+@media screen and (max-width: 1023px) {
+  
+  #pagewrap {
+    width: 94%;
+  }
+  #content {
+    /*width: 41%;
+    padding: 1% 4%;*/
+  }
+  #middle {
+    /*width: 41%;
+    padding: 1% 4%;*/
+    margin: 0px 0px 5px 5px;
+    float: left;
+    position: absolute;
+    margin-left: 235px;
+    width: auto;
+  }
+  
+  #sidebar {
+    clear: both;
+    padding: 1% 4%;
+    width: auto;
+    float: none;
+  }
+
+  header, footer {
+    padding: 1% 4%;
+  }
+
+  .meaning_img{
+    width: 7vw;
+    height: 7vw;
+  }
+
+  .word_text{
+    width: 38%;
+  }
+}
+
+/* for 480px or less */
+@media screen and (max-width: 600px) {
+
+  header {
+    height: auto;
+  }
+  h1 {
+    font-size: 2em;
+  }
+
+  #middle {
+    /*width: 41%;
+    padding: 1% 4%;*/
+    margin: 0px 0px 5px 5px;
+    float: left;
+    position: relative;
+    margin-left: 0px;
+    width: auto;
+  }
+  #language_progress{
+    width: 94%;
+  }
+  #content{
+    width: 100%;
+  }
+  .meaning_img{
+    width: 14vw;
+    height: 14vw;
+  }
+  .word_text{
+    width: 42%;
+  }
+}
+
+
+
+
+
+
+
+
+
+.meaning_img:hover{
+  border-color: red
+}
+
+.word_text:hover{
+  border-color: red
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Conceptizer</title>
+    <!--<link rel="stylesheet" href="style.css">-->
+    <script src="script.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="{% static 'ng/style.css' %}" />
+	<!--<link rel="stylesheet" type="text/css" href="style2.css"> -->
+	<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+	<!-- To change font go https://fonts.google.com/ and choose whatever you like! -->
+  </head>
+  <body>
+  	<div id="maxsize">
+	<div id="pagewrap">
+		<header>
+			<div id="speaker_hearer_block_inner">
+			  	<!--<h2 id="speaker_hearer_h2"><img src="{% static 'ng/img/' %}kreyon2hearerC.png"><div id="speaker_hearer_text">You are the HEARER!</div></h2>-->
+			  	<h2 id="speaker_hearer_h2"><img src="{% static 'ng/img/' %}kreyon2speakerC.png"><div id="speaker_hearer_text">{{ experiment.interaction_counter }}: You are the SPEAKER!</div></h2>
+			</div>
+		</header>
+
+		<section id="content">
+			<div id="language_progress">
+		  		<span id="past_interactions">Past interactions</span>
+		  		{% for past_int in experiment.pastinteraction_set.all reversed %}
+			  	<div "line_meaning">
+			  		<span class="speaker_heare_img_lp"><img src="{% static 'ng/img/' %}{{ past_int.role }}_pic.png"></span>
+			  		<span class="meaning_chosen"><img src="{% static 'ng/img/' %}kreyon_meaning{{ past_int.meaning }}_small.png"></span>
+			  		<span class="word_chosen">{{ past_int.word }}</span>
+			  		{% if past_int.bool_succ %}<span class="meaning_chosen_check"><img src="{% static 'ng/img/' %}check.png"></span>
+			  		{% else %}<span class="meaning_chosen_check"><img src="{% static 'ng/img/' %}cross.png"></span>{% endif %}
+			  	</div>
+			  	{% endfor %}
+
+		  </div>
+		</section>
+
+		<section id="middle">
+			<div id="choose">
+			  	<div id="choose_inner">
+					<!--<div id="word_hearer">
+					  	<div class="question_text">
+						  	You heard this word:
+						</div>
+						<div id="word_inner">
+							<div class="word_text" id="word5"> karabuk </div>
+						</div>
+					</div>-->
+					<div id="meaning">
+
+
+
+<h2>{{ experiment.interaction_counter }}</h2>
+
+						<div class="question_text">
+						  	{% if bool_succ %}<p><strong>This interaction was SUCCESSFUL</strong></p><span class="meaning_chosen_check"><img src="{% static 'ng/img/' %}check.png"></span>
+						  	{% else %}<p><strong>This interaction FAILED</strong></p><span class="meaning_chosen_check"><img src="{% static 'ng/img/' %}cross.png"></span>{% endif %}
+						</div>
+					  </div>
+					<div id="button_next_div">
+					  	<!--<button id="button_next">Next</button>-->
+
+						<form action="{% url 'ng:continue' experiment.xp_uuid %}" method="post">
+						{% csrf_token %}
+						<input id="button_next" type="submit" value="Next" />
+					  	</form>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="sidebar">
+			<p><img id="img_people_talking" src="{% static 'ng/img/' %}kreyon1speaker.png"></p>
+		</section>
+
+		<footer>
+			<h4>Footer</h4>
+			<p>Footer text</p>
+		</footer>
+	</div>
+	</div>
+  </body>
+</html>

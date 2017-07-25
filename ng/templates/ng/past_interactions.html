@@ -1,0 +1,14 @@
+{% load static %}
+			<div id="language_progress">
+		  		<span id="past_interactions">Past interactions</span>
+			  	
+		  		{% for past_int in experiment.pastinteraction_set.all reversed %}
+			  	<div "line_meaning">
+			  		<span class="speaker_heare_img_lp"><img src="{% static 'ng/img/' %}{{ past_int.role }}_pic.png"></span>
+			  		<span class="meaning_chosen"><img src="{% static 'ng/img/' %}kreyon_meaning{{ past_int.meaning }}_small.png"></span>
+			  		<span class="word_chosen">{{ past_int.word }}</span>
+			  		{% if past_int.bool_succ %}<span class="meaning_chosen_check"><img src="{% static 'ng/img/' %}check.png"></span>
+			  		{% else %}<span class="meaning_chosen_check"><img src="{% static 'ng/img/' %}cross.png"></span>{% endif %}
+			  	</div>
+			  	{% endfor %}
+		  </div>
