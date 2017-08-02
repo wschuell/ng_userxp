@@ -6,7 +6,7 @@
 			<div id="choose">
 			  	<div id="choose_inner">
 					<div id="word_speaker">
-					  	<div class="question_text">
+					  	<div class="question_text" id="hearer_word_question">
 						  	You heard this word:
 						</div>
 						<div id="word_inner">
@@ -14,7 +14,7 @@
 						</div>
 					</div>
 					<div id="meaning">
-						<div class="question_text">
+						<div class="question_text" id="hearer_meaning_question">
 						  	What do you think the speaker talked about?
 						</div>
 						<div id="meaning_inner">
@@ -28,13 +28,13 @@
 
 						{% csrf_token %}
 						<input type='hidden' id='hiddenField_hearer_form' value="{% url 'ng:results_hearer_base' experiment.xp_uuid %}" />
-						<input id="button_next" type="submit" value="Next" />
+						<input id="button_next" class="button_hearer button_action button" type="submit" value="Next" />
 						</form>
 					</div>
 				</div>
 			</div>
 
-			<script> 
+			<script>
 
 		    function get_action(form) {
 		    	if(!selected_m){
@@ -61,7 +61,7 @@
 						</div>
 					</div>-->
 					<div id="meaning">
-						<div class="question_text">
+						<div class="question_text" id="speaker_meaning_question">
 						  	What do you want to talk about? <!-- What do you think the speaker talked about? -->
 						</div>
 						<div id="meaning_inner">
@@ -71,7 +71,7 @@
 						</div>
 					  </div>
 					  <div id="word_speaker">
-						<div class="question_text">
+						<div class="question_text" id="speaker_word_question">
 					  		Using which word?
 					  	</div>
 					  	<div id="word_inner">
@@ -87,12 +87,12 @@
 
 						{% csrf_token %}
 						<input type='hidden' id='hiddenField_speaker_form' value="{% url 'ng:results_speaker_base' experiment.xp_uuid %}" />
-						<input id="button_next" type="submit" value="Next" />
+						<input id="button_next" class="button_speaker button_action button" type="submit" value="Next" />
 						</form>
 					</div>
 				</div>
 			</div>
-			<script> 
+			<script>
 
 		    function get_action(form) {
 		    	if(!selected_m || !selected_w){
@@ -128,8 +128,8 @@
 <h2>{{ experiment.interaction_counter }}</h2>
 
 						<div class="question_text">
-						  	{% if bool_succ %}<p><strong>This interaction was SUCCESSFUL</strong></p><span class="meaning_chosen_check"><img src="{% static 'ng/img/' %}check.png"></span>
-						  	{% else %}<p><strong>This interaction FAILED</strong></p><span class="meaning_chosen_check"><img src="{% static 'ng/img/' %}cross.png"></span>{% endif %}
+						  	{% if bool_succ %}<p><strong id='result_success'></strong></p><span class="meaning_chosen_check"><img src="{% static 'ng/img/' %}check.png"></span>
+						  	{% else %}<p><strong id='result_fail'></strong></p><span class="meaning_chosen_check"><img src="{% static 'ng/img/' %}cross.png"></span>{% endif %}
 						</div>
 					  </div>
 					<div id="button_next_div">
@@ -137,7 +137,7 @@
 
 						<form action="{% url 'ng:continue' experiment.xp_uuid %}" method="post">
 						{% csrf_token %}
-						<input id="button_next" type="submit" value="Next" />
+						<input id="button_next" class="button" type="submit" value="Next" />
 					  	</form>
 					</div>
 				</div>
@@ -163,7 +163,7 @@
 <h2>{{ experiment.interaction_counter }}</h2>
 
 						<div class="question_text">
-						  	{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+						  	<p><strong id="{{ textid }}"></strong></p>
 						</div>
 					  </div>
 					<div id="button_next_div">
@@ -171,7 +171,7 @@
 
 						<form action="{% url 'ng:continue' experiment.xp_uuid %}" method="post">
 						{% csrf_token %}
-						<input id="button_next" type="submit" value="Next" />
+						<input id="button_next" class="button" type="submit" value="Next" />
 					  	</form>
 					</div>
 				</div>

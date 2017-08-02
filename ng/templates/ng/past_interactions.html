@@ -1,7 +1,7 @@
 {% load static %}
 			<div id="language_progress">
-		  		<span id="past_interactions">Past interactions</span>
-			  	
+		  		<b><span id="past_interactions">Past interactions</span></b>
+
 		  		{% for past_int in experiment.pastinteraction_set.all reversed %}
 			  	<div "line_meaning">
 			  		<span class="speaker_heare_img_lp"><img src="{% static 'ng/img/' %}{{ past_int.role }}_pic.png"></span>

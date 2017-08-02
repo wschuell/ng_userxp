@@ -11,85 +11,102 @@
 	<!--<link rel="stylesheet" type="text/css" href="style2.css"> -->
 	<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
 	<!-- To change font go https://fonts.google.com/ and choose whatever you like! -->
+     <!--<script src="jquery-3.2.1.min.js"></script>-->
+     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+     <script src="{% static 'ng/js.cookie.js' %}"></script>
+     <script src="{% static 'ng/lang.js' %}"></script>
   </head>
   <body>
-  	<div id="maxsize">
-	<div id="pagewrap">
-		<header>
-			{% include "ng/header.html" %}
-		</header>
+    <div id="maxsize">
+    <div id="pagewrap">
+        <header>
+            {% include "ng/header.html" %}
+        </header>
 
-		<section id="content">
-			{% include "ng/past_interactions.html" %}
-		</section>
+        <section id="content">
+            {% include "ng/past_interactions.html" %}
+        </section>
 
-		<section id="middle">
-			{% include "ng/middle.html" %}
-		</section>
+        <section id="middle">
+            {% include "ng/middle.html" %}
+        </section>
 
-		<section id="sidebar">
-			{% include "ng/sidebar.html" %}
-		</section>
+        <section id="sidebar">
+            {% include "ng/sidebar.html" %}
+        </section>
 
-		<footer>
-			<h4>Footer</h4>
-			<p>Footer text</p>
-		</footer>
-	</div>
-	</div>
+        <footer>
+            <h4>Footer</h4>
+            <p>Footer text</p>
+        </footer>
+    </div>
+    </div>
 
     <script>
-    	var selected_w = null;
-    	var selected_m = null;
-    	var meanings = document.querySelectorAll('#meaning_inner .meaning_img');
-    	for (let i = 0; i < meanings.length; ++i) {
-  			meanings[i].addEventListener("click", function(){
-  			var m = meanings[i];
-    		if(selected_m != m) {
- 				m.style.borderColor = "green";
- 				m.style.borderRadius = "30px";
- 				if(selected_m){
-    				selected_m.style.borderColor = null;
-    				selected_m.style.borderRadius = null;
- 				};
- 				selected_m = m;
-    			
-    		}
-    		else
-    			{
-    				m.style.borderColor = null;
-    				m.style.borderRadius = null;
-    				selected_m = null;
-    			};
-			});
-		};
+
+        $("#button_next.button_action").prop('disabled', true);
+        var selected_w = null;
+        var selected_m = null;
+        var meanings = document.querySelectorAll('#meaning_inner .meaning_img');
+        for (let i = 0; i < meanings.length; ++i) {
+            meanings[i].addEventListener("click", function(){
+            var m = meanings[i];
+            if(selected_m != m) {
+                m.style.borderColor = "green";
+                m.style.borderRadius = "30px";
+                if(selected_m){
+                    selected_m.style.borderColor = null;
+                    selected_m.style.borderRadius = null;
+                };
+                selected_m = m;
+
+                if(selected_w){ $("#button_next.button_speaker").prop('disabled', false);};
+                $("#button_next.button_hearer").prop('disabled', false);
+
+            }
+            else
+                {
+                    m.style.borderColor = null;
+                    m.style.borderRadius = null;
+                    selected_m = null;
+                    $("#button_next.button_action").prop('disabled', true);
+                };
 
 
-    	var words = document.querySelectorAll('#word_inner .word_text_speaker');
-    	for (let i = 0; i < words.length; ++i) {
-  			words[i].addEventListener("click", function(){
-  			var w = words[i];
-    		if(selected_w != w) {
- 				w.style.borderColor = "green";
- 				w.style.borderRadius = "30px";
- 				if(selected_w){
-    				selected_w.style.borderColor = null;
-    				selected_w.style.borderRadius = null;
- 				};
- 				selected_w = w;
-    			
-    		}
-    		else
-    			{
-    				w.style.borderColor = null;
-    				w.style.borderRadius = null;
-    				selected_w = null;
-    			};
-			});
-		};
+            });
+        };
 
 
-    	
+        var words = document.querySelectorAll('#word_inner .word_text_speaker');
+        for (let i = 0; i < words.length; ++i) {
+            words[i].addEventListener("click", function(){
+            var w = words[i];
+            if(selected_w != w) {
+                w.style.borderColor = "green";
+                w.style.borderRadius = "30px";
+                if(selected_w){
+                    selected_w.style.borderColor = null;
+                    selected_w.style.borderRadius = null;
+                };
+                selected_w = w;
+                if(selected_m){ $("#button_next.button_speaker").prop('disabled', false);};
+
+            }
+            else
+                {
+                    w.style.borderColor = null;
+                    w.style.borderRadius = null;
+                    selected_w = null;
+                    $("#button_next.button_action").prop('disabled', true);
+                };
+            });
+        };
+
+
+
     </script>
+
+     <script src="{% static 'ng/change_lang.js' %}"></script>
+
   </body>
 </html>

@@ -122,6 +122,7 @@ div#word_speaker {
 #choose,
 #show,
 #button_next,
+.button,
 #word_speaker,
 #word_hearer,
 #button_next_div,
@@ -174,7 +175,7 @@ div#word_speaker {
   background-color: #ddd;
 }
 
-#button_next {
+.button {
   color: #000;
   font-size: 20px;
   background: #57c5e6;
@@ -186,7 +187,7 @@ div#word_speaker {
   border-radius: 15px;
 }
 
-#button_next:hover {
+.button:hover {
   background: #3cb0fd;
   background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
   background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
@@ -347,6 +348,8 @@ MEDIA QUERIES
   .word_text{
     width: 38%;
   }
+
+
 }
 
 /* for 480px or less */
@@ -381,15 +384,20 @@ MEDIA QUERIES
   .word_text{
     width: 42%;
   }
+
+
+
+
 }
 
 
 
-
-
-
-
-
+.word_text.word_text_hearer {
+    width: 100%;
+}
+.word_text {
+    width: 42%;
+}
 
 .meaning_img:hover{
   border-color: red
@@ -398,3 +406,8 @@ MEDIA QUERIES
 .word_text:hover{
   border-color: red
 }
+
+
+
+
+

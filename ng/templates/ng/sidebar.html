@@ -1,4 +1,19 @@
 {% load static %}
 		<section id="sidebar">
 			<p><img id="img_people_talking" src="{% static 'ng/img/' %}kreyon1speaker.png"></p>
+<button id="flag_it" class="button">Italiano</button> <button id="flag_en" class="button">English</button>
+
+<button id="homebutton" class="button"></button>
+
+
+<button id="logoutbutton" class="button"></button>
+
+<script type="text/javascript">
+    $("#homebutton").click(function(){
+   window.location.href="{% url 'ng:index' %}";
+    });
+    $("#logoutbutton").click(function(){
+   window.location.href="{% url 'ng:logout' %}";
+    });
+</script>
 		</section>

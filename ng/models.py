@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.contrib.auth.models import User
 
 import naminggamesal as ngal
 
@@ -44,6 +45,7 @@ class Experiment(models.Model):
     exit_value = models.FloatField(default=0)
     meanings = models.ManyToManyField(Meaning)
     words = models.ManyToManyField(Word)
+    users = models.ManyToManyField(User)
     def __str__(self):
         return str(self.xp_uuid) + ' ' + str(self.xp_config.xp_config)
 
@@ -55,6 +57,44 @@ class Experiment(models.Model):
             self.save()
         else:
             xp = db.get_experiment(xp_uuid=self.xp_uuid)
+        return xp
+
+    @classmethod
+    def get_new_xp(cls):
+        xp_cfg = {
+            "step": 1,
+            "pop_cfg": {
+            "voc_cfg": {
+                "voc_type": "2dictdict"
+            },
+            'agent_init_cfg':{
+                'agent_init_type':'oneuser_noninteractive',
+                },
+            "strat_cfg": {
+                "vu_cfg": {
+                "vu_type": "minimalsynonly"
+                },
+                "success_cfg": {
+                "success_type": "global"
+                },
+                "strat_type": "naive"
+            },
+            "nbagent": 7,
+            "env_cfg": {
+                "env_type": "simple_realwords",
+                "M": 5,
+                "W": 6
+            },
+            "interact_cfg": {
+                "interact_type": "speakerschoice"
+                }
+                }
+                }
+        xp_conf_obj = XpConfig(xp_config=json.dumps(xp_cfg))
+        xp_conf_obj.save()
+        xp = Experiment(xp_config=xp_conf_obj)
+        xp.get_xp()
+        xp.save()
         return xp
 
     def continue_xp(self,steps=1):
@@ -111,19 +151,16 @@ class Experiment(models.Model):
         xp = self.get_xp()
         ag = xp._poplist.get_last()._agentlist[0]
         m_list = sorted(ag._vocabulary.get_accessible_meanings())
-        print m_list
         self.meanings.clear()
         for m in m_list:
             obj_list = Meaning.objects.filter(meaning=str(m))
             #print str(obj_list)
             if len(obj_list) == 0:
                 m_obj = Meaning.objects.create(meaning=str(m))
-                print 'bla'
             else:
                 m_obj = obj_list[0]
 
             self.meanings.add(m_obj)
-            print m_obj
         self.save()
 
 class PastInteraction(models.Model):

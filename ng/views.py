@@ -17,10 +17,13 @@ import json
 
 from django.utils import timezone
 from django.views import generic
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-
-
-class IndexView(generic.ListView):
+#@login_required#(login_url='/accounts/login/')
+class IndexView(LoginRequiredMixin, generic.ListView):
+    login_url = '/ng/accounts/login/'
+    redirect_field_name = 'redirect_to'
     template_name = 'ng/index.html'
     context_object_name = 'latest_experiment_list'
     def get_queryset(self):
@@ -30,44 +33,12 @@ class IndexView(generic.ListView):
         """
         return Experiment.objects.all()
 
-def get_new_xp():
-    xp_cfg = {
-        "step": 1,
-        "pop_cfg": {
-        "voc_cfg": {
-            "voc_type": "2dictdict"
-        },
-        'agent_init_cfg':{
-            'agent_init_type':'oneuser_noninteractive',
-            },
-        "strat_cfg": {
-            "vu_cfg": {
-            "vu_type": "minimalsynonly"
-            },
-            "success_cfg": {
-            "success_type": "global"
-            },
-            "strat_type": "naive"
-        },
-        "nbagent": 7,
-        "env_cfg": {
-            "env_type": "simple_realwords",
-            "M": 5,
-            "W": 6
-        },
-        "interact_cfg": {
-            "interact_type": "speakerschoice"
-            }
-            }
-            }
-    xp_conf_obj = XpConfig(xp_config=json.dumps(xp_cfg))
-    xp_conf_obj.save()
-    xp = Experiment(xp_config=xp_conf_obj)
-    xp.get_xp()
-    xp.save()
-    return xp
+#@login_required#(login_url='/accounts/login/')
 
-class DetailView(generic.DetailView):
+
+class DetailView(LoginRequiredMixin, generic.DetailView):
+    login_url = '/ng/accounts/login/'
+    redirect_field_name = 'redirect_to'
     model = Experiment
     template_name = 'ng/detail.html'
     def get_queryset(self):
@@ -77,12 +48,15 @@ class DetailView(generic.DetailView):
         return Experiment.objects.filter()
 
 
-class ResultsView(generic.DetailView):
+class ResultsView(LoginRequiredMixin, generic.DetailView):
+    login_url = '/ng/accounts/login/'
+    redirect_field_name = 'redirect_to'
     model = Experiment
     template_name = 'ng/results.html'
 
 
 
+@login_required(login_url='/ng/accounts/login/')
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     try:
@@ -102,6 +76,7 @@ def vote(request, question_id):
         return HttpResponseRedirect(reverse('ng:results', args=(question.id,)))
 
 
+@login_required(login_url='/ng/accounts/login/')
 def testdet(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     return render(request, 'ng/detail.html', {
@@ -110,6 +85,7 @@ def testdet(request, xp_uuid):
         })
 
 
+@login_required(login_url='/ng/accounts/login/')
 def continue_xp(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     experiment.continue_xp(steps=1)
@@ -121,6 +97,7 @@ def continue_xp(request, xp_uuid):
             'error_message': "You didn't select a choice.",
         })
 
+@login_required(login_url='/ng/accounts/login/')
 def result_srtheo(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     experiment.update_results()
@@ -133,6 +110,7 @@ def result_srtheo(request, xp_uuid):
 
 
 
+@login_required(login_url='/ng/accounts/login/')
 def result_hearer(request, xp_uuid, meaning):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     currentgame_json = experiment.get_currentgame_json()
@@ -152,6 +130,7 @@ def result_hearer(request, xp_uuid, meaning):
             'context':"result"
         })
 
+@login_required(login_url='/ng/accounts/login/')
 def result_speaker(request, xp_uuid, meaning, word):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     currentgame_json = experiment.get_currentgame_json()
@@ -178,16 +157,17 @@ def result_speaker(request, xp_uuid, meaning, word):
 
 
 
-
+@login_required(login_url='/ng/accounts/login/')
 def new_experiment(request):
-    experiment = get_new_xp()
+    experiment = Experiment.get_new_xp()
     experiment.save()
     return render(request, 'ng/global.html', {
             'experiment': experiment,
-            'error_message': "This experiment has not started yet.",
+            'textid': "new_xp",
             'context':"new_xp"
         })
 
+@login_required(login_url='/ng/accounts/login/')
 def continue_userxp(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     try:
@@ -195,7 +175,7 @@ def continue_userxp(request, xp_uuid):
         experiment.save()
         return render(request, 'ng/global.html', {
                 'experiment': experiment,
-                'error_message': "You were not involved in this interaction.",
+                'textid': "not_involved",
             })
 
     except IOError as e:
