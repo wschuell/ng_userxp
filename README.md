@@ -24,13 +24,10 @@ python manage.py makemigrations ng && python manage.py migrate
 
 ### Create a user:
 
-python manage.py shell
-
-from django.contrib.auth.models import User
-
-user=User.objects.create_user('USERNAME', password='PASSWORD')
-
-user.save()
+python manage.py shell  
+from django.contrib.auth.models import User  
+user=User.objects.create_user('USERNAME', password='PASSWORD')  
+user.save()  
 
 
 ### Run server:
