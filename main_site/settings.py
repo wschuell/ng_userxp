@@ -24,15 +24,22 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 from secretkey import SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if os.path.isfile("debug.txt"):
+    with open("debug.txt",'r') as f:
+        DEBUG = json.loads(f.read())
+else:
+    DEBUG = True
+    with open("debug.txt",'w') as f:
+        f.write(json.dumps(DEBUG))
 
 #ALLOWED_HOSTS = ['192.168.43.57','127.0.0.1','10.15.0.1']
-
 if os.path.isfile("allowed_hosts.txt"):
     with open("allowed_hosts.txt",'r') as f:
         ALLOWED_HOSTS = json.loads(f.read())
 else:
-    ALLOWED_HOSTS = []
+    ALLOWED_HOSTS = ['127.0.0.1']
+    with open("allowed_hosts.txt",'w') as f:
+        f.write(json.dumps(ALLOWED_HOSTS))
 
 # Application definition
 
