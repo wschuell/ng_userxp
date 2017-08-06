@@ -155,6 +155,61 @@ def result_speaker(request, xp_uuid, meaning, word):
 
         })
 
+@login_required(login_url='/ng/accounts/login/')
+def result_inner(request, xp_uuid, bool_succ):
+    experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
+    return render(request, 'ng/results_toinclude.html', {
+            'experiment': experiment,
+            'bool_succ': bool_succ,
+        })
+
+
+@login_required(login_url='/ng/accounts/login/')
+def result_hearer_json(request, xp_uuid, meaning):
+    experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
+    currentgame_json = experiment.get_currentgame_json()
+    currentgame_json.update({'mh':int(meaning)})
+    ms = currentgame_json['ms']
+    w = currentgame_json['w']
+    experiment.save_currentgame_json(currentgame_json)
+    experiment.continue_xp()
+    bool_succ = experiment.get_last_bool_succ()
+    past_interaction = PastInteraction(meaning=ms,word=w,bool_succ=bool_succ,time_id=experiment.interaction_counter,role='hearer',experiment=experiment)
+    experiment.save()
+    past_interaction.save()
+    return render(request, 'ng/result.json', {
+            'experiment': experiment,
+            'bool_succ': bool_succ,
+            'role':"hearer",
+            'context':"result",
+            'ms':ms,
+        })
+
+@login_required(login_url='/ng/accounts/login/')
+def result_speaker_json(request, xp_uuid, meaning, word):
+    experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
+    currentgame_json = experiment.get_currentgame_json()
+    ms = int(meaning)
+    w = word
+    currentgame_json.update({'ms':ms,'w':w})
+    experiment.save_currentgame_json(currentgame_json)
+    experiment.continue_xp()
+    bool_succ = experiment.get_last_bool_succ()
+    past_interaction = PastInteraction(meaning=ms,word=w,bool_succ=bool_succ,time_id=experiment.interaction_counter,role='speaker',experiment=experiment)
+    experiment.save()
+    past_interaction.save()
+    #return render(request, 'ng/results_new.html', {
+    #        'experiment': experiment,
+    #        'bool_succ': bool_succ,
+    #    })
+    return render(request, 'ng/result.json', {
+            'experiment': experiment,
+            'bool_succ': bool_succ,
+            'role':"speaker",
+            'context':"result"
+
+        })
+
 
 
 @login_required(login_url='/ng/accounts/login/')
@@ -168,15 +223,38 @@ def new_experiment(request):
         })
 
 @login_required(login_url='/ng/accounts/login/')
+def test(request):
+    experiment = Experiment.get_new_xp()
+    experiment.save()
+    return render(request, 'ng/test.html', {
+            'experiment': experiment,
+        })
+
+@login_required(login_url='/ng/accounts/login/')
 def continue_userxp(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     try:
         experiment.continue_xp(steps=1)
-        experiment.save()
-        return render(request, 'ng/global.html', {
-                'experiment': experiment,
-                'textid': "not_involved",
-            })
+        nb_steps = 1
+        try:
+            while nb_steps<1000:
+                experiment.continue_xp(steps=1)        
+                nb_steps += 1
+            raise IOError('Not skipping more than 1000 steps at a time')
+        except IOError as e:
+            if str(e) == 'User intervention needed' or str(e) == 'Not skipping more than 1000 steps at a time':
+                experiment.last_role = 'skipped'
+                experiment.last_nb_skipped = nb_steps
+                experiment.last_ms = None
+                experiment.last_w = None
+                experiment.last_mh = None
+                experiment.last_bool_succ = False
+                experiment.save()
+                return render(request, 'ng/global.html', {
+                    'experiment': experiment,
+                    'textid': "not_involved",
+                    'nb_skipped': nb_steps
+                       })
 
     except IOError as e:
         if str(e) == 'User intervention needed':
@@ -203,4 +281,12 @@ def continue_userxp(request, xp_uuid):
                 raise
         else:
             raise
+
+
+@login_required(login_url='/ng/accounts/login/')
+def exp_resume(request, xp_uuid):
+    return render(request, 'ng/global.html', {
+            'experiment': experiment,
+            'context':"resume"
+            })
 

@@ -10,7 +10,7 @@
 						  	You heard this word:
 						</div>
 						<div id="word_inner">
-							<div class="word_text word_text_hearer"> {{ word }} </div>
+							<div class="word_text word_text_hearer selected_w"> {{ word }} </div>
 						</div>
 					</div>
 					<div id="meaning">
@@ -24,29 +24,17 @@
 						</div>
 					  </div>
 					<div id="button_next_div">
-					  	<form id="hearer_form" onsubmit="get_action(this);"  method=post>
+    					<button id="interactbutton" class="button_action button interact_hearer">Interact</button>
+					  	<!--<form id="hearer_form" onsubmit="get_action(this);"  method=post>
 
 						{% csrf_token %}
 						<input type='hidden' id='hiddenField_hearer_form' value="{% url 'ng:results_hearer_base' experiment.xp_uuid %}" />
 						<input id="button_next" class="button_hearer button_action button" type="submit" value="Next" />
-						</form>
+						</form>-->
+
 					</div>
 				</div>
 			</div>
-
-			<script>
-
-		    function get_action(form) {
-		    	if(!selected_m){
-		    		alert('Choose a meaning');
-		    		return false;
-		    	}
-		    	else{
-   	        		form.action = document.getElementById("hiddenField_hearer_form").value + selected_m.getAttribute("meaning_name") + "/results/";
-    	    			}
-    	    		}
-
-			</script>
 
 {% elif role == "speaker" and context == "question" %}
 
@@ -83,67 +71,22 @@
 					</div>
 					<div id="button_next_div">
 					  	<!--<button id="button_next">Next</button>-->
-					  	<form id="speaker_form" onsubmit="get_action(this);"  method=post>
+    					<button id="interactbutton" class="button_action button interact_speaker">Interact</button>
+					  	<!--<form id="speaker_form" onsubmit="get_action(this);"  method=post>
 
 						{% csrf_token %}
 						<input type='hidden' id='hiddenField_speaker_form' value="{% url 'ng:results_speaker_base' experiment.xp_uuid %}" />
 						<input id="button_next" class="button_speaker button_action button" type="submit" value="Next" />
-						</form>
+						</form>-->
+
 					</div>
 				</div>
 			</div>
-			<script>
-
-		    function get_action(form) {
-		    	if(!selected_m || !selected_w){
-		    		alert('Choose a meaning and a word');
-		    		return false;
-		    	}
-		    	else{
-   	        		form.action = document.getElementById("hiddenField_speaker_form").value + selected_m.getAttribute("meaning_name") + "-" + selected_w.getAttribute("word_name")+ "/results/";
-    	    			}
-    	    		}
-
-			</script>
-
 
 {% elif context == "result" %}
-
-
-
-			<div id="choose">
-			  	<div id="choose_inner">
-					<!--<div id="word_hearer">
-					  	<div class="question_text">
-						  	You heard this word:
-						</div>
-						<div id="word_inner">
-							<div class="word_text" id="word5"> karabuk </div>
-						</div>
-					</div>-->
-					<div id="meaning">
-
-
-
-<h2>{{ experiment.interaction_counter }}</h2>
-
-						<div class="question_text">
-						  	{% if bool_succ %}<p><strong id='result_success'></strong></p><span class="meaning_chosen_check"><img src="{% static 'ng/img/' %}check.png"></span>
-						  	{% else %}<p><strong id='result_fail'></strong></p><span class="meaning_chosen_check"><img src="{% static 'ng/img/' %}cross.png"></span>{% endif %}
-						</div>
-					  </div>
-					<div id="button_next_div">
-					  	<!--<button id="button_next">Next</button>-->
-
-						<form action="{% url 'ng:continue' experiment.xp_uuid %}" method="post">
-						{% csrf_token %}
-						<input id="button_next" class="button" type="submit" value="Next" />
-					  	</form>
-					</div>
-				</div>
+<div id="choose">
+{% include "ng/results_toinclude.html" %}
 			</div>
-
-
 {% else %}
 
 			<div id="choose">
@@ -163,7 +106,7 @@
 <h2>{{ experiment.interaction_counter }}</h2>
 
 						<div class="question_text">
-						  	<p><strong id="{{ textid }}"></strong></p>
+						  	<p><strong id="{{ textid }}" nb_skipped="{{ nb_skipped }}"></strong></p>
 						</div>
 					  </div>
 					<div id="button_next_div">
@@ -178,3 +121,6 @@
 			</div>
 
 {% endif %}
+
+
+    <!--<button id="testbutton" class="button_action button">Test</button>-->

@@ -187,7 +187,7 @@ div#word_speaker {
   border-radius: 15px;
 }
 
-.button:hover {
+.button:hover:not(:disabled) {
   background: #3cb0fd;
   background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
   background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
@@ -195,6 +195,8 @@ div#word_speaker {
   background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
   background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
   text-decoration: none;
+  cursor: pointer; 
+  cursor: hand;
 }
 
 /* SCROLLBAR */
@@ -392,22 +394,45 @@ MEDIA QUERIES
 
 
 
-.word_text.word_text_hearer {
+.meaning_img{
+    opacity: 0.5;
+  }
+.meaning_img.selected_m{
+    opacity: 1;
+    /*border-color: green;*/
+    border-radius: 30px;
+  }
+.word_text.word_text_hearer.selected_w {
     width: 100%;
 }
 .word_text {
     width: 42%;
+    opacity:0.7;
+}
+
+.word_text.selected_w {
+    width: 42%;
+    opacity:1;
+    background:#ececec;
+    /*border-color: green;*/
+    border-radius: 30px;
 }
 
 .meaning_img:hover{
-  border-color: red
+  /*border-color: red;*/
+  opacity:1;
+  cursor: pointer; 
+  cursor: hand;
 }
 
-.word_text:hover{
-  border-color: red
+.word_text.word_text_speaker:hover{
+  /*border-color: red;*/
+  opacity:1;
+  background:#ececec;
+  cursor: pointer; 
+  cursor: hand;
 }
 
-
-
-
-
+.button_action:disabled{
+  opacity: 0.5;
+}

@@ -37,15 +37,22 @@ class XpConfig(models.Model):
 
 
 class Experiment(models.Model):
-    xp_config = models.ForeignKey(XpConfig, on_delete=models.CASCADE)
+    xp_config = models.ForeignKey(XpConfig, on_delete=models.PROTECT)
     xp_uuid = models.CharField(max_length=200,default='')
     user_agent_uuid = models.CharField(max_length=200,default='')
     interaction_counter = models.IntegerField(default=0)
     max_interaction = models.IntegerField(default=10)
     exit_value = models.FloatField(default=0)
-    meanings = models.ManyToManyField(Meaning)
-    words = models.ManyToManyField(Word)
+    meanings = models.ManyToManyField(Meaning,related_name='meanings')
+    words = models.ManyToManyField(Word,related_name='words')
     users = models.ManyToManyField(User)
+    last_ms = models.ForeignKey(Meaning, on_delete=models.PROTECT,related_name='last_ms',null=True)#,blank=True)
+    last_mh = models.ForeignKey(Meaning, on_delete=models.PROTECT,related_name='last_mh',null=True)#,blank=True)
+    last_w = models.ForeignKey(Word, on_delete=models.PROTECT,related_name='last_w',null=True)#,blank=True)
+    last_role = models.CharField(max_length=200,default='')
+    last_bool_succ = models.BooleanField(default=False)
+    last_nb_skipped = models.IntegerField(default=0)
+
     def __str__(self):
         return str(self.xp_uuid) + ' ' + str(self.xp_config.xp_config)
 
