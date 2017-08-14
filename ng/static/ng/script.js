@@ -11,7 +11,7 @@ $( document ).ready(function() {
                 $(".selected_m").removeClass("selected_m");
                 $(this).addClass("selected_m");
 
-                if($(".selected_w")){ $("#interactbutton.interact_speaker").prop('disabled',false);};
+                if($(".selected_w").length > 0){ $("#interactbutton.interact_speaker").prop('disabled',false);};
                 $("#interactbutton.interact_hearer").prop('disabled',false);
             }
             else
@@ -25,7 +25,7 @@ $( document ).ready(function() {
             if(! $(this).hasClass('selected_w')) {
                 $(".selected_w").removeClass("selected_w");
                 $(this).addClass('selected_w');
-                if($("selected_m")){ $("#interactbutton").prop('disabled',false);};
+                if($("selected_m").length > 0){ $("#interactbutton").prop('disabled',false);};
             }
             else
                 {
