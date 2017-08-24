@@ -25,7 +25,7 @@ $( document ).ready(function() {
             if(! $(this).hasClass('selected_w')) {
                 $(".selected_w").removeClass("selected_w");
                 $(this).addClass('selected_w');
-                if($("selected_m").length > 0){ $("#interactbutton").prop('disabled',false);};
+                if($(".selected_m").length > 0){ $("#interactbutton").prop('disabled',false);};
             }
             else
                 {

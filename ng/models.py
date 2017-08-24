@@ -59,7 +59,7 @@ class Experiment(models.Model):
     def get_xp(self):
         db = ngal.ngdb.NamingGamesDB()
         if self.xp_uuid == '':
-            xp = db.get_experiment(**json.loads(self.xp_config.xp_config))
+            xp = db.get_experiment(force_new=True,**json.loads(self.xp_config.xp_config))
             self.xp_uuid = xp.uuid
             self.save()
         else:
