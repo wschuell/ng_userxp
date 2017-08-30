@@ -37,7 +37,7 @@ if os.path.isfile("allowed_hosts.txt"):
     with open("allowed_hosts.txt",'r') as f:
         ALLOWED_HOSTS = json.loads(f.read())
 else:
-    ALLOWED_HOSTS = ['127.0.0.1']
+    ALLOWED_HOSTS = ['0.0.0.0']
     with open("allowed_hosts.txt",'w') as f:
         f.write(json.dumps(ALLOWED_HOSTS))
 
