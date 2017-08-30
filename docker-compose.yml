@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+  nginx:
+    image: nginx:latest
+    container_name: ngnix-ng
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - static-data:/static
+    depends_on:
+      - web
+    environment:
+      - VIRTUAL_HOST=naming-game.bordeaux.inria.fr
+  web:
+    build: .
+    container_name: ng
+    # echo "from django.contrib.auth.models import User; User.objects.filter(email='admin@example.com').delete(); User.objects.create_superuser('admin', 'admin@example.com', 'password')" | python manage.py shell &&
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - static-data:/static
+    ports:
+      - "8000:8000"
+
+volumes:
+  static-data:
+    driver: local
