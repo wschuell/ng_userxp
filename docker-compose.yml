@@ -16,8 +16,8 @@ services:
   web:
     build: .
     container_name: ng
-    # echo "from django.contrib.auth.models import User; User.objects.filter(email='admin@example.com').delete(); User.objects.create_superuser('admin', 'admin@example.com', 'password')" | python manage.py shell &&
-    command: python manage.py runserver 0.0.0.0:8000
+    command: bash -c "echo \"from django.contrib.auth.models import User; User.objects.filter(email='admin@example.com').delete(); user = User.objects.create_superuser('admin', 'admin@example.com', 'password'); user.save(); exit();\" | python manage.py shell && python manage.py runserver 0.0.0.0:8000" 
+    #command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - static-data:/static
     ports:
