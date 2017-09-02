@@ -57,7 +57,7 @@ class Experiment(models.Model):
         return str(self.xp_uuid) + ' ' + str(self.xp_config.xp_config)
 
     def get_xp(self):
-        db = ngal.ngdb.NamingGamesDB()
+        db = ngal.ngdb.NamingGamesDB(db_type='psycopg2')
         if self.xp_uuid == '':
             xp = db.get_experiment(force_new=True,**json.loads(self.xp_config.xp_config))
             self.xp_uuid = xp.uuid
@@ -153,7 +153,7 @@ class Experiment(models.Model):
                 w_obj = obj_list[0]
             self.words.add(w_obj)
         self.save()
-    
+
     def update_meanings(self):
         xp = self.get_xp()
         ag = xp._poplist.get_last()._agentlist[0]
