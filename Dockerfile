@@ -10,9 +10,6 @@ RUN pip install -r requirements-prod.txt
 RUN pip install git+https://github.com/flowersteam/naminggamesal.git@develop
 ADD . /code/
 
-RUN python manage.py makemigrations ng && python manage.py migrate
-RUN python manage.py collectstatic
-
 
 USER postgres
 RUN createdb ng_userxp
@@ -20,3 +17,8 @@ RUN psql -c "CREATE USER ng_userxp_user WITH PASSWORD 'pass';"
 
 RUN createdb naminggames
 RUN psql -c "CREATE USER naminggames WITH PASSWORD 'naminggames';"
+
+USER root
+ENV DJANGO_MODULE_SETTINGS "main_site.production_settings"
+RUN python manage.py makemigrations ng && python manage.py migrate
+RUN python manage.py collectstatic

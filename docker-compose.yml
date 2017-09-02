@@ -16,7 +16,7 @@ services:
   web:
     build: .
     container_name: ng
-    command: bash -c "echo \"from django.contrib.auth.models import User; User.objects.filter(email='admin@example.com').delete(); user = User.objects.create_superuser('admin', 'admin@example.com', 'password'); user.save(); exit();\" | python manage.py shell && bash gunicorn_script.sh"
+    command: bash -c "service postgresql restart && echo \"from django.contrib.auth.models import User; User.objects.filter(email='admin@example.com').delete(); user = User.objects.create_superuser('admin', 'admin@example.com', 'password'); user.save(); exit();\" | python manage.py shell && bash gunicorn_script.sh"
     #command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - static-data:/static

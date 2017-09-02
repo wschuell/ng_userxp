@@ -27,13 +27,7 @@ from secretkey import SECRET_KEY
 DEBUG = False
 
 #ALLOWED_HOSTS = ['192.168.43.57','127.0.0.1','10.15.0.1']
-if os.path.isfile("allowed_hosts.txt"):
-    with open("allowed_hosts.txt",'r') as f:
-        ALLOWED_HOSTS = json.loads(f.read())
-else:
-    ALLOWED_HOSTS = ['0.0.0.0']
-    with open("allowed_hosts.txt",'w') as f:
-        f.write(json.dumps(ALLOWED_HOSTS))
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -91,7 +85,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'ng_userxp',
-        'USER': 'ng_userxp_user2',
+        'USER': 'ng_userxp_user',
         'PASSWORD': 'pass',
         'HOST': 'localhost',
         'PORT': '',

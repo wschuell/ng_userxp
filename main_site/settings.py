@@ -96,7 +96,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'ng_userxp',
-        'USER': 'ng_userxp_user2',
+        'USER': 'ng_userxp_user',
         'PASSWORD': 'pass',
         'HOST': 'localhost',
         'PORT': '',
@@ -142,3 +142,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/static/'
