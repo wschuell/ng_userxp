@@ -61,7 +61,7 @@ class Experiment(models.Model):
             db = ngal.ngdb.NamingGamesDB(db_type='psycopg2')
             if self.xp_uuid == '':
                 self.xp = db.get_experiment(force_new=True,**json.loads(self.xp_config.xp_config))
-                self.xp_uuid = xp.uuid
+                self.xp_uuid = self.xp.uuid
                 self.save()
             else:
                 self.xp = db.get_experiment(xp_uuid=self.xp_uuid)
