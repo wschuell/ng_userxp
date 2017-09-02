@@ -24,13 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 from secretkey import SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if os.path.isfile("debug.txt"):
-    with open("debug.txt",'r') as f:
-        DEBUG = json.loads(f.read())
-else:
-    DEBUG = True
-    with open("debug.txt",'w') as f:
-        f.write(json.dumps(DEBUG))
+DEBUG = False
 
 #ALLOWED_HOSTS = ['192.168.43.57','127.0.0.1','10.15.0.1']
 if os.path.isfile("allowed_hosts.txt"):
@@ -51,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'gunicorn',
 ]
 
 MIDDLEWARE = [
