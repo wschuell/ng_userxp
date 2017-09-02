@@ -238,7 +238,7 @@ def continue_userxp(request, xp_uuid):
         nb_steps = 1
         try:
             while nb_steps<1000:
-                experiment.continue_xp(steps=1)        
+                experiment.continue_xp(steps=1)
                 nb_steps += 1
             raise IOError('Not skipping more than 1000 steps at a time')
         except IOError as e:
@@ -285,6 +285,7 @@ def continue_userxp(request, xp_uuid):
 
 @login_required(login_url='/ng/accounts/login/')
 def exp_resume(request, xp_uuid):
+    experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     return render(request, 'ng/global.html', {
             'experiment': experiment,
             'context':"resume"
