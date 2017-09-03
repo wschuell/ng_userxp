@@ -1,4 +1,19 @@
 #!/bin/bash
+ORIG_DIR=$(find /etc/postgresql/*/main)
+NEWDIR=/postgresql-data
+test -d $NEWDIR || mkdir -p $NEWDIR
+chown -R postgres.postgres $NEWDIR
+chmod 700 $NEWDIR
+
+#ORIG_CONF=$(find /etc/postgresql/*/main/postgresql.conf)
+#OLD_CONF=$ORIG_CONF.old
+#mv $ORIG_CONF $OLD_CONF
+#cat $OLD_CONF | sed -e "s|data_directory = |data_directory = '$NEWDIR'     #|" > $ORIG_CONF
+#initdb -D $NEWDIR
+
+#service postgresql initdb -E 'UTF8' --pgdata=$NEWDIR
+#export PGDATA=$NEWDIR
+apt-get install --yes --force-yes postgresql postgresql-contrib libpq-dev
 service postgresql start
 
 su - postgres << 'EOF'
