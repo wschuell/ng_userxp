@@ -25,8 +25,13 @@
 
 </div>
 <div id="speaker_hearer_block_inner">
+				{% if context == "skipped" %}
+			  	<h2><span id="header_inter"></span> #{{ experiment.interaction_counter }} </h2>
+				{% elif context == "new_xp" %}
+			  	<h2><span id="new_experiment"></span>  </h2>
+			  	{% else %}
 			  	<h2><span id="header_inter"></span> #{{ experiment.interaction_counter|add:1 }} </h2>
-
+			  	{% endif %}
 			</div>
 
 <div id="main_switch" class="header_button_zone">

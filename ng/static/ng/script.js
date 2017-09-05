@@ -6,8 +6,8 @@ $( document ).ready(function() {
     $(document).ajaxStop(function () { $("html").removeClass("wait"); });
 
         //$("#word_speaker").hide();
-        $('body').on('click', "#button_next",function(event){
-            $("#button_next").prop('disabled',true);
+        $('body').on('click', "#button_next, #button_start",function(event){
+            $("#button_next, #button_start").prop('disabled',true);
             $("html").addClass("wait");
             window.location.href = url_continue ;});
 //select meanings and words
@@ -102,18 +102,35 @@ success: function(result){
 //buttons
 
     $("#homebutton").click(function(){
-   window.location.href=url_index;
+   $("html").addClass("wait");
+   window.location.href=url_home;
     });
 
 
-//uuid
-function uuid()
-{
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        var r = Math.random()*16|0, v = c === 'x' ? r : (r&0x3|0x8);
-        return v.toString(16);
+    $("#logoutbutton").click(function(){
+   $("html").addClass("wait");
+   window.location.href=url_logout;
     });
-}
+
+    $("#new_xp_button").click(function(){
+        $(this).prop('disable',true);
+        $("html").addClass("wait");
+   window.location.href='new_experiment';
+    });
 
 
+
+
+
+
+//username
+
+
+var user_str = Cookies.get('NamingGameUser');
+
+$("#username").html(user_str);
+
+    $(document).ajaxStop(function () { $("#username").html(user_str); });
 });
+
+

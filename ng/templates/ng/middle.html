@@ -103,7 +103,6 @@
 
 
 
-<h2>{{ experiment.interaction_counter }}</h2>
 
 						<div class="question_text">
 						  	<p><strong id="{{ textid }}" nb_skipped="{{ nb_skipped }}"></strong></p>
@@ -111,8 +110,11 @@
 					  </div>
 					<div id="button_next_div">
 					  	<!--<button id="button_next">Next</button>-->
-
+					  	{% if context == "new_xp" %}	
+						<button id="button_start" class="button button_action"></button>
+						{% else %}
 						<button id="button_next" class="button button_action"></button>
+						{% endif %}
 						{% csrf_token %}
 
 					</div>

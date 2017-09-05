@@ -24,16 +24,21 @@ dict_obj = {
             "header_inter":"Interazione",
             "homebutton":"Home",
             "new_xp_button":"Nuovo esperimento",
+            "new_experiment":"Nuovo esperimento",
             "logoutbutton":"Sconnettarsi",
-    		}
-    	,
-	"en" :
-    		{
-    		"some_id_of_a_string_div": "I am a string" ,
-    		"title": "English title",
-    		"button_next": "Next",
-    		"hearer_header_text": "You are the HEARER!",
-    		"speaker_header_text": "You are the SPEAKER!",
+            "best_scores":"Migliori Giochi",
+            "hometitle":"HOMETITLE",
+            "hometext":"Hometext",
+            "button_start":"Comincia",
+            }
+        ,
+    "en" :
+            {
+            "some_id_of_a_string_div": "I am a string" ,
+            "title": "English title",
+            "button_next": "Next",
+            "hearer_header_text": "You are the HEARER!",
+            "speaker_header_text": "You are the SPEAKER!",
             "past_interactions": "Past Interactions",
             "result_success": "This interaction was SUCCESSFUL",
             "result_fail": "This interaction FAILED",
@@ -48,7 +53,12 @@ dict_obj = {
             "header_inter":"Interaction",
             "homebutton":"Home",
             "new_xp_button":"New experiment",
+            "new_experiment":"New experiment",
             "logoutbutton":"Logout",
+            "best_scores":"Best Scores",
+            "button_start":"Start",
+            "hometitle":"HOMETITLE",
+            "hometext":"Hometext",
     		}
 
     }

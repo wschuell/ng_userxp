@@ -11,19 +11,54 @@ from django.template import loader
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 
+
+from django.contrib.auth.models import User
+
 from .models import Experiment,XpConfig,PastInteraction
 # ...
 import json
+import uuid
 
 from django.utils import timezone
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.decorators.csrf import csrf_protect
+from django.contrib.auth import authenticate, login
+
+def create_user(request,username=''):
+    user = User.objects.create_user(username=username,password=username)
+    user.save()
+
+def login_user(request,username=''):
+    user = authenticate(request, username=username, password=username)
+    if user is not None:
+        login(request, user)
+
+def login_view(request):
+    username = 'oug'
+    return render(request, 'ng/login.html', {
+            'username': username,
+        })
+
+@csrf_protect
+@login_required(login_url='/login')
+def home(request):
+    return render(request, 'ng/home.html', {
+            
+        })
+
+
+
+def create_and_login(request,username):
+    if not User.objects.filter(username=username).exists():
+        create_user(request,username)
+    login_user(request,username)
+    return render(request,'ng/index.html',{})
 
 #@login_required#(login_url='/accounts/login/')
 class IndexView(LoginRequiredMixin, generic.ListView):
-    login_url = '/ng/accounts/login/'
+    login_url = '/ng/login/'
     redirect_field_name = 'redirect_to'
     template_name = 'ng/index.html'
     context_object_name = 'latest_experiment_list'
@@ -38,7 +73,7 @@ class IndexView(LoginRequiredMixin, generic.ListView):
 
 
 class DetailView(LoginRequiredMixin, generic.DetailView):
-    login_url = '/ng/accounts/login/'
+    login_url = '/ng/login/'
     redirect_field_name = 'redirect_to'
     model = Experiment
     template_name = 'ng/detail.html'
@@ -58,7 +93,7 @@ class ResultsView(LoginRequiredMixin, generic.DetailView):
 
 
 @csrf_protect
-@login_required(login_url='/ng/accounts/login/')
+@login_required(login_url='/ng/login/')
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     try:
@@ -78,7 +113,7 @@ def vote(request, question_id):
         return HttpResponseRedirect(reverse('ng:results', args=(question.id,)))
 
 
-@login_required(login_url='/ng/accounts/login/')
+@login_required(login_url='/ng/login/')
 def testdet(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     return render(request, 'ng/detail.html', {
@@ -87,7 +122,7 @@ def testdet(request, xp_uuid):
         })
 
 @csrf_protect
-@login_required(login_url='/ng/accounts/login/')
+@login_required(login_url='/ng/login/')
 def continue_xp(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     experiment.continue_xp(steps=1)
@@ -100,7 +135,7 @@ def continue_xp(request, xp_uuid):
         })
 
 @csrf_protect
-@login_required(login_url='/ng/accounts/login/')
+@login_required(login_url='/ng/login/')
 def result_srtheo(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     experiment.update_results()
@@ -114,7 +149,7 @@ def result_srtheo(request, xp_uuid):
 
 
 @csrf_protect
-@login_required(login_url='/ng/accounts/login/')
+@login_required(login_url='/ng/login/')
 def result_hearer(request, xp_uuid, meaning):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     currentgame_json = experiment.get_currentgame_json()
@@ -135,7 +170,7 @@ def result_hearer(request, xp_uuid, meaning):
         })
 
 @csrf_protect
-@login_required(login_url='/ng/accounts/login/')
+@login_required(login_url='/ng/login/')
 def result_speaker(request, xp_uuid, meaning, word):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     currentgame_json = experiment.get_currentgame_json()
@@ -160,8 +195,14 @@ def result_speaker(request, xp_uuid, meaning, word):
 
         })
 
+
 @csrf_protect
-@login_required(login_url='/ng/accounts/login/')
+@login_required(login_url='/ng/login/')
+def none(request):
+    return None
+
+@csrf_protect
+@login_required(login_url='/ng/login/')
 def result_inner(request, xp_uuid, bool_succ):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     past_int = experiment.pastinteraction_set.last()
@@ -171,12 +212,13 @@ def result_inner(request, xp_uuid, bool_succ):
             'ms':past_int.meaning,
             'word':past_int.word,
             'mh':past_int.meaning_h,
-            'role':past_int.role
+            'role':past_int.role,
+            'username':request.user.username
         })
 
 
 @csrf_protect
-@login_required(login_url='/ng/accounts/login/')
+@login_required(login_url='/ng/login/')
 def result_hearer_json(request, xp_uuid, meaning):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     currentgame_json = experiment.get_currentgame_json()
@@ -198,7 +240,7 @@ def result_hearer_json(request, xp_uuid, meaning):
         })
 
 @csrf_protect
-@login_required(login_url='/ng/accounts/login/')
+@login_required(login_url='/ng/login/')
 def result_speaker_json(request, xp_uuid, meaning, word):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     currentgame_json = experiment.get_currentgame_json()
@@ -227,7 +269,7 @@ def result_speaker_json(request, xp_uuid, meaning, word):
 
 
 @csrf_protect
-@login_required(login_url='/ng/accounts/login/')
+@login_required(login_url='/ng/login/')
 def new_experiment(request):
     experiment = Experiment.get_new_xp()
     experiment.save()
@@ -238,7 +280,7 @@ def new_experiment(request):
         })
 
 @csrf_protect
-@login_required(login_url='/ng/accounts/login/')
+@login_required(login_url='/ng/login/')
 def test(request):
     experiment = Experiment.get_new_xp()
     experiment.save()
@@ -247,9 +289,11 @@ def test(request):
         })
 
 @csrf_protect
-@login_required(login_url='/ng/accounts/login/')
+@login_required(login_url='/ng/login/')
 def continue_userxp(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
+    if 0 < experiment.max_interaction <= experiment.interaction_counter:
+        return score(request, xp_uuid=xp_uuid)
     try:
         experiment.continue_xp(steps=1)
         nb_steps = 1
@@ -270,7 +314,8 @@ def continue_userxp(request, xp_uuid):
                 return render(request, 'ng/global.html', {
                     'experiment': experiment,
                     'textid': "not_involved",
-                    'nb_skipped': nb_steps
+                    'nb_skipped': nb_steps,
+                    'context': 'skipped'
                        })
 
     except IOError as e:
@@ -301,7 +346,7 @@ def continue_userxp(request, xp_uuid):
 
 
 @csrf_protect
-@login_required(login_url='/ng/accounts/login/')
+@login_required(login_url='/ng/login/')
 def exp_resume(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     return render(request, 'ng/global.html', {
@@ -309,3 +354,16 @@ def exp_resume(request, xp_uuid):
             'context':"resume"
             })
 
+
+
+@csrf_protect
+@login_required(login_url='/ng/login/')
+def score(request, xp_uuid):
+
+    #Test if score exists
+    #if not, compute and store object
+    #get value
+    return render(request, 'ng/score.html', {
+            'experiment': experiment,
+            'score':score
+            })

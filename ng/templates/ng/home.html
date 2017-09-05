@@ -13,12 +13,9 @@
      <!--<script src="jquery-3.2.1.min.js"></script>-->
      <!--<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>-->
      <script type="text/javascript">
-         var url_continue = "{% url 'ng:continue' experiment.xp_uuid %}";
+         var url_new_experiment = "{% url 'ng:new_experiment' %}";
          var url_home = "{% url 'ng:home' %}";
          var url_logout = "{% url 'ng:logout' %}";
-         var url_results_inner_base = "{% url 'ng:results_inner_base' experiment.xp_uuid %}";
-         var url_results_hearer_base = "{% url 'ng:results_hearer_base' experiment.xp_uuid %}";
-         var url_results_speaker_base = "{% url 'ng:results_speaker_base' experiment.xp_uuid %}";
      </script>
      <script src="{% static 'ng/jquery-3.2.1.min.js' %}"></script>
      <script src="{% static 'ng/js.cookie.js' %}"></script>
@@ -29,19 +26,19 @@
     <div id="maxsize">
     <div id="pagewrap">
         <header>
-            {% include "ng/header.html" %}
+            {% include "ng/header_home.html" %}
         </header>
 
         <section id="content">
-            {% include "ng/past_interactions.html" %}
+            {% include "ng/best_scores.html" %}
         </section>
 
         <section id="middle">
-            {% include "ng/middle.html" %}
+            {% include "ng/middle_home.html" %}
         </section>
 
         <section id="sidebar">
-            {% include "ng/sidebar.html" %}
+            {% include "ng/sidebar_home.html" %}
         </section>
 
         <footer>

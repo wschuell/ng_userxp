@@ -41,11 +41,11 @@ class Experiment(models.Model):
     xp_uuid = models.CharField(max_length=200,default='')
     user_agent_uuid = models.CharField(max_length=200,default='')
     interaction_counter = models.IntegerField(default=0)
-    max_interaction = models.IntegerField(default=10)
+    max_interaction = models.IntegerField(default=150)
     exit_value = models.FloatField(default=0)
     meanings = models.ManyToManyField(Meaning,related_name='meanings')
     words = models.ManyToManyField(Word,related_name='words')
-    users = models.ManyToManyField(User)
+    user = models.ForeignKey(User, on_delete=models.PROTECT)
     last_ms = models.ForeignKey(Meaning, on_delete=models.PROTECT,related_name='last_ms',null=True)#,blank=True)
     last_mh = models.ForeignKey(Meaning, on_delete=models.PROTECT,related_name='last_mh',null=True)#,blank=True)
     last_w = models.ForeignKey(Word, on_delete=models.PROTECT,related_name='last_w',null=True)#,blank=True)
@@ -191,3 +191,8 @@ class PastInteraction(models.Model):
     def __str__(self):
         return str(self.meaning) + ' ' +str(self.word) + ' ' +str(self.role) + ' ' + str(self.bool_succ)
 
+
+class Score(models.Model):
+    experiment = models.ForeignKey(Experiment,null=True)#, on_delete=models.CASCADE, default=Experiment.objects.all()[0])
+    score = models.IntegerField()
+    user = models.ForeignKey(User, on_delete=models.PROTECT)
