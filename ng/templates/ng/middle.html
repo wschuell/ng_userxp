@@ -5,7 +5,7 @@
 
 			<div id="choose">
 			  	<div id="choose_inner">
-					<div id="word_speaker">
+					<div id="word_hearer">
 					  	<div class="question_text" id="hearer_word_question">
 						  	You heard this word:
 						</div>
@@ -58,7 +58,7 @@
 							{% endfor %}
 						</div>
 					  </div>
-					  <div id="word_speaker">
+					  <div id="word_speaker" style="display: none;">
 						<div class="question_text" id="speaker_word_question">
 					  		Using which word?
 					  	</div>
@@ -112,10 +112,9 @@
 					<div id="button_next_div">
 					  	<!--<button id="button_next">Next</button>-->
 
-						<form action="{% url 'ng:continue' experiment.xp_uuid %}" method="post">
+						<button id="button_next" class="button button_action"></button>
 						{% csrf_token %}
-						<input id="button_next" class="button" type="submit" value="Next" />
-					  	</form>
+
 					</div>
 				</div>
 			</div>

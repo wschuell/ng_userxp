@@ -1,0 +1,41 @@
+{% load static %}
+
+			  	<div id="choose_inner">
+					<!--<div id="word_hearer">
+					  	<div class="question_text">
+						  	You heard this word:
+						</div>
+						<div id="word_inner">
+							<div class="word_text" id="word5"> karabuk </div>
+						</div>
+					</div>-->
+					<div id="meaning">
+
+
+
+						<div id="result_inner">
+
+						  	<img class="meaning_result roleimg_result" src="{% static 'ng/img/' %}speaker_pic_{{ role }}.png">
+						  	<img  class="meaning_img meaning_result" src="{% static 'ng/img/' %}kreyon_meaning{{ ms }}.png" meaning_name="{{ ms }}">
+							<p class="word_text selected_w word_result"> {{ word }} </p>
+
+						  	<img  class="meaning_img meaning_result" src="{% static 'ng/img/' %}kreyon_meaning{{ mh }}.png" meaning_name="{{ mh }}">
+						  	<img  class="meaning_result roleimg_result" src="{% static 'ng/img/' %}hearer_pic_{{ role }}.png">
+						</div>
+
+
+
+						  	{% if bool_succ and bool_succ != "False" %}<img src="{% static 'ng/img/' %}check_big.png" class="meaning_chosen_check_big"><p><strong id='result_success'></strong></p><span class=text_result_inner></span>
+						  	{% else %}<img src="{% static 'ng/img/' %}cross_big.png" class="meaning_chosen_check_big"><p><strong id='result_fail'></strong></p><span class=text_result_inner>
+						  	</span>
+						  	{% endif %}
+					  </div>
+					<div id="button_next_div">
+					  	<!--<button id="button_next">Next</button>-->
+
+
+						<button id="button_next" class="button button_action"></button>
+												{% csrf_token %}
+					</div>
+				</div>
+

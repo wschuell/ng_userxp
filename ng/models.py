@@ -141,6 +141,10 @@ class Experiment(models.Model):
         xp = self.get_xp()
         return xp._poplist.get_last()._lastgameinfo[3]
 
+    def get_last_mh(self):
+        xp = self.get_xp()
+        return xp._poplist.get_last()._lastgameinfo[2]
+
     def update_words(self):
         xp = self.get_xp()
         ag = xp._poplist.get_last()._agentlist[0]
@@ -177,6 +181,7 @@ class PastInteraction(models.Model):
     #bool_succ = models.IntegerField()
     #role = models.ForeignKey(Role, on_delete=models.CASCADE)
     meaning = models.IntegerField()
+    meaning_h = models.IntegerField()
     word = models.CharField(max_length=20)
     bool_succ = models.IntegerField()
     time_id = models.IntegerField()

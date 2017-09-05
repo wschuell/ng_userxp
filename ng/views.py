@@ -19,6 +19,7 @@ from django.utils import timezone
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.decorators.csrf import csrf_protect
 
 #@login_required#(login_url='/accounts/login/')
 class IndexView(LoginRequiredMixin, generic.ListView):
@@ -56,6 +57,7 @@ class ResultsView(LoginRequiredMixin, generic.DetailView):
 
 
 
+@csrf_protect
 @login_required(login_url='/ng/accounts/login/')
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
@@ -84,7 +86,7 @@ def testdet(request, xp_uuid):
             'error_message': "You didn't select a choice.",
         })
 
-
+@csrf_protect
 @login_required(login_url='/ng/accounts/login/')
 def continue_xp(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
@@ -97,6 +99,7 @@ def continue_xp(request, xp_uuid):
             'error_message': "You didn't select a choice.",
         })
 
+@csrf_protect
 @login_required(login_url='/ng/accounts/login/')
 def result_srtheo(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
@@ -110,6 +113,7 @@ def result_srtheo(request, xp_uuid):
 
 
 
+@csrf_protect
 @login_required(login_url='/ng/accounts/login/')
 def result_hearer(request, xp_uuid, meaning):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
@@ -130,6 +134,7 @@ def result_hearer(request, xp_uuid, meaning):
             'context':"result"
         })
 
+@csrf_protect
 @login_required(login_url='/ng/accounts/login/')
 def result_speaker(request, xp_uuid, meaning, word):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
@@ -155,15 +160,22 @@ def result_speaker(request, xp_uuid, meaning, word):
 
         })
 
+@csrf_protect
 @login_required(login_url='/ng/accounts/login/')
 def result_inner(request, xp_uuid, bool_succ):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
-    return render(request, 'ng/results_toinclude.html', {
+    past_int = experiment.pastinteraction_set.last()
+    return render(request, 'ng/results_toinclude_new.html', {
             'experiment': experiment,
-            'bool_succ': bool_succ,
+            'bool_succ': past_int.bool_succ,
+            'ms':past_int.meaning,
+            'word':past_int.word,
+            'mh':past_int.meaning_h,
+            'role':past_int.role
         })
 
 
+@csrf_protect
 @login_required(login_url='/ng/accounts/login/')
 def result_hearer_json(request, xp_uuid, meaning):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
@@ -174,7 +186,7 @@ def result_hearer_json(request, xp_uuid, meaning):
     experiment.save_currentgame_json(currentgame_json)
     experiment.continue_xp()
     bool_succ = experiment.get_last_bool_succ()
-    past_interaction = PastInteraction(meaning=ms,word=w,bool_succ=bool_succ,time_id=experiment.interaction_counter,role='hearer',experiment=experiment)
+    past_interaction = PastInteraction(meaning=ms,word=w,meaning_h=int(meaning),bool_succ=bool_succ,time_id=experiment.interaction_counter,role='hearer',experiment=experiment)
     experiment.save()
     past_interaction.save()
     return render(request, 'ng/result.json', {
@@ -185,6 +197,7 @@ def result_hearer_json(request, xp_uuid, meaning):
             'ms':ms,
         })
 
+@csrf_protect
 @login_required(login_url='/ng/accounts/login/')
 def result_speaker_json(request, xp_uuid, meaning, word):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
@@ -195,7 +208,8 @@ def result_speaker_json(request, xp_uuid, meaning, word):
     experiment.save_currentgame_json(currentgame_json)
     experiment.continue_xp()
     bool_succ = experiment.get_last_bool_succ()
-    past_interaction = PastInteraction(meaning=ms,word=w,bool_succ=bool_succ,time_id=experiment.interaction_counter,role='speaker',experiment=experiment)
+    mh = int(experiment.get_last_mh())
+    past_interaction = PastInteraction(meaning=ms,word=w,meaning_h=mh,bool_succ=bool_succ,time_id=experiment.interaction_counter,role='speaker',experiment=experiment)
     experiment.save()
     past_interaction.save()
     #return render(request, 'ng/results_new.html', {
@@ -212,6 +226,7 @@ def result_speaker_json(request, xp_uuid, meaning, word):
 
 
 
+@csrf_protect
 @login_required(login_url='/ng/accounts/login/')
 def new_experiment(request):
     experiment = Experiment.get_new_xp()
@@ -222,6 +237,7 @@ def new_experiment(request):
             'context':"new_xp"
         })
 
+@csrf_protect
 @login_required(login_url='/ng/accounts/login/')
 def test(request):
     experiment = Experiment.get_new_xp()
@@ -230,6 +246,7 @@ def test(request):
             'experiment': experiment,
         })
 
+@csrf_protect
 @login_required(login_url='/ng/accounts/login/')
 def continue_userxp(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
@@ -283,6 +300,7 @@ def continue_userxp(request, xp_uuid):
             raise
 
 
+@csrf_protect
 @login_required(login_url='/ng/accounts/login/')
 def exp_resume(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)

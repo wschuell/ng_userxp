@@ -22,7 +22,7 @@ dict_obj = {
             "not_involved_pre": "Non eri parte de ",
             "not_involved_post": " interazioni",
             "header_inter":"Interazione",
-            "homebutton":"Ritornare alla pagina principale",
+            "homebutton":"Home",
             "new_xp_button":"Nuovo esperimento",
             "logoutbutton":"Sconnettarsi",
     		}
@@ -46,7 +46,7 @@ dict_obj = {
             "not_involved_pre": "You were not involved in ",
             "not_involved_post": " interactions",
             "header_inter":"Interaction",
-            "homebutton":"Back to main page",
+            "homebutton":"Home",
             "new_xp_button":"New experiment",
             "logoutbutton":"Logout",
     		}

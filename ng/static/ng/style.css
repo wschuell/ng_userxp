@@ -158,6 +158,8 @@ div#word_speaker {
 
 #meaning_inner,
 #word_inner,
+#word_inner_speaker,
+#word_inner_hearer,
 #show_inner{
 	display: inherit;
 }
@@ -195,7 +197,7 @@ div#word_speaker {
   background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
   background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
   text-decoration: none;
-  cursor: pointer; 
+  cursor: pointer;
   cursor: hand;
 }
 
@@ -313,7 +315,7 @@ MEDIA QUERIES
 *************************************************************************************/
 /* for 980px or less */
 @media screen and (max-width: 1023px) {
-  
+
   #pagewrap {
     width: 94%;
   }
@@ -330,7 +332,7 @@ MEDIA QUERIES
     margin-left: 235px;
     width: auto;
   }
-  
+
   #sidebar {
     clear: both;
     padding: 1% 4%;
@@ -421,7 +423,7 @@ MEDIA QUERIES
 .meaning_img:hover{
   /*border-color: red;*/
   opacity:1;
-  cursor: pointer; 
+  cursor: pointer;
   cursor: hand;
 }
 
@@ -429,10 +431,67 @@ MEDIA QUERIES
   /*border-color: red;*/
   opacity:1;
   background:#ececec;
-  cursor: pointer; 
+  cursor: pointer;
   cursor: hand;
 }
 
 .button_action:disabled{
   opacity: 0.5;
+}
+
+html.wait, html.wait * { cursor: wait !important; }
+
+.word_text.word_result{
+  width:25%;
+  vertical-align:text-bottom;
+}
+
+.meaning_result{
+  width:12.5%;
+  height:12.5%;
+}
+
+#result_inner{
+  width:100%;
+}
+
+#result_inner,.text_result_inner{
+  display:inherit;
+}
+
+.meaning_result,.word_result{
+  margin-right: 0px;
+  float:none;
+}
+
+.roleimg_result{
+  height:12.5%;
+}
+
+#lang_switch{
+  float:left;
+}
+#main_switch{
+  float:right;
+}
+#header_inner{
+  display:inline-flex;
+  width:100%;
+}
+
+.header_button_zone{
+  width:20%;
+}
+
+.header_button{
+  width:100%;
+}
+
+.meaning_chosen_check_big{
+  width:15%;
+  margin-top: 20px;
+}
+
+.lang_button{
+  display:none;
 }
