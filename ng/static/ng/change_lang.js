@@ -34,7 +34,7 @@ var lang = {"en": {"header_home": "THE NAMING GAME", "skipped_text": "Others are
         $('#home_you').html(current_lang.home_you);
         $('#window_title').html(current_lang.window_title);
         $('#img_interaction_text').html(current_lang.img_interaction_text);
-        $('#interactbutton').html(current_lang.interactionbutton);
+        $('#interactbutton').html(current_lang.interactonbutton);
         //$(document).prop('title', current_lang.title);
         //$('#title').html(lang.it[0].some_id_of_a_string_div);
         //$('text#button_next').val(lang.it[0].button_next);
