@@ -31,7 +31,9 @@ dict_obj = {
             "hometext":"Mettite d'accordo su un vocabulario facendo interazioni con individuali da una cera populazione.",
             "button_start":"Comincia",
             "score_header":"Fine dell esperimento",
-            "score_text":"Quello e la valore dello tuo score. Prova a fare meglio!"
+            "score_text":"Quello e la valore dello tuo score. Prova a fare meglio!",
+            "window_title":'Crealang',
+            "header_home":"CREALANG",
             }
         ,
     "en" :
@@ -60,9 +62,11 @@ dict_obj = {
             "best_scores":"Best Scores",
             "button_start":"Start",
             "hometitle":"Build a language!",
+            "header_home":"CREALANG",
             "hometext":"Set up a vocabulary by interacting with individuals from a given population.",
             "score_header":"End of the experiment",
-            "score_text":"This is the score that you obtained. Try to do better!"
+            "score_text":"This is the score that you obtained. Try to do better!",
+            "window_title":'Crealang',
     		}
 
     }
