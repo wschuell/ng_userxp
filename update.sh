@@ -3,6 +3,5 @@
 git pull
 python manage.py makemigrations ng
 python manage.py migrate
-python manage.py collectstatic
-python manage.py cleanpyc
+python manage.py collectstatic --noinput
 touch main_site/wsgi.py
