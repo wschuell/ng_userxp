@@ -42,7 +42,7 @@ header{
 }
 
 #img_people_talking_container,
-#language_progress{
+#language_progress,#best_scores_div{
 	float: left;
   width: 100%;
 }
@@ -75,7 +75,7 @@ h2#speaker_hearer_h2{
   box-sizing: border-box;
 }
 
-#language_progress{
+#language_progress,#best_scores_div{
   padding: 15px;
   text-align: left !important;
   width: 215px;
@@ -83,12 +83,12 @@ h2#speaker_hearer_h2{
   box-sizing: border-box;
 }
 
-#language_progress{
+#language_progress,#best_scores_div{
 	overflow-y: scroll;
 	overflow-x: hidden;
 }
 
-#language_progress,
+#language_progress,#best_scores_div,
 .meaning_img{
 	border: 1px solid #000;
   background-color: #ddd;
@@ -276,7 +276,7 @@ section#content {
 #sidebar {
   width: 18%;
   min-width: 230px;
-  padding: 5px 15px;
+  /*padding: 5px 15px;*/
   float: left;
 }
 footer {
@@ -310,6 +310,9 @@ footer{
   width: 43%;
 }
 
+.score_right{
+  float:right;
+}
 /************************************************************************************
 MEDIA QUERIES
 *************************************************************************************/
@@ -375,7 +378,7 @@ MEDIA QUERIES
     margin-left: 0px;
     width: auto;
   }
-  #language_progress{
+  #language_progress,#best_scores_div{
     width: 94%;
   }
   #content{

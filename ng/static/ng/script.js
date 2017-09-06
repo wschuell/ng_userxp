@@ -115,7 +115,7 @@ success: function(result){
     $("#new_xp_button").click(function(){
         $(this).prop('disable',true);
         $("html").addClass("wait");
-   window.location.href='new_experiment';
+   window.location.href='/new_experiment';
     });
 
 

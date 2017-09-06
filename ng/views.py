@@ -14,7 +14,7 @@ from django.urls import reverse
 
 from django.contrib.auth.models import User
 
-from .models import Experiment,XpConfig,PastInteraction
+from .models import Experiment,XpConfig,PastInteraction,Score
 # ...
 import json
 import uuid
@@ -116,6 +116,8 @@ def vote(request, question_id):
 @login_required(login_url='/ng/login/')
 def testdet(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
+    if request.user != experiment.user:
+        raise ValueError("wrong user")
     return render(request, 'ng/detail.html', {
             'experiment': experiment,
             'error_message': "You didn't select a choice.",
@@ -125,6 +127,8 @@ def testdet(request, xp_uuid):
 @login_required(login_url='/ng/login/')
 def continue_xp(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
+    if request.user != experiment.user:
+        raise ValueError("wrong user")
     experiment.continue_xp(steps=1)
     #raise IOError(experiment)
     #experiment.update_results()
@@ -138,6 +142,8 @@ def continue_xp(request, xp_uuid):
 @login_required(login_url='/ng/login/')
 def result_srtheo(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
+    if request.user != experiment.user:
+        raise ValueError("wrong user")
     experiment.update_results()
     experiment.save()
     return render(request, 'ng/results.html', {
@@ -152,6 +158,8 @@ def result_srtheo(request, xp_uuid):
 @login_required(login_url='/ng/login/')
 def result_hearer(request, xp_uuid, meaning):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
+    if request.user != experiment.user:
+        raise ValueError("wrong user")
     currentgame_json = experiment.get_currentgame_json()
     currentgame_json.update({'mh':int(meaning)})
     ms = currentgame_json['ms']
@@ -173,6 +181,8 @@ def result_hearer(request, xp_uuid, meaning):
 @login_required(login_url='/ng/login/')
 def result_speaker(request, xp_uuid, meaning, word):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
+    if request.user != experiment.user:
+        raise ValueError("wrong user")
     currentgame_json = experiment.get_currentgame_json()
     ms = int(meaning)
     w = word
@@ -205,6 +215,8 @@ def none(request):
 @login_required(login_url='/ng/login/')
 def result_inner(request, xp_uuid, bool_succ):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
+    if request.user != experiment.user:
+        raise ValueError("wrong user")
     past_int = experiment.pastinteraction_set.last()
     return render(request, 'ng/results_toinclude_new.html', {
             'experiment': experiment,
@@ -221,6 +233,8 @@ def result_inner(request, xp_uuid, bool_succ):
 @login_required(login_url='/ng/login/')
 def result_hearer_json(request, xp_uuid, meaning):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
+    if request.user != experiment.user:
+        raise ValueError("wrong user")
     currentgame_json = experiment.get_currentgame_json()
     currentgame_json.update({'mh':int(meaning)})
     ms = currentgame_json['ms']
@@ -243,6 +257,8 @@ def result_hearer_json(request, xp_uuid, meaning):
 @login_required(login_url='/ng/login/')
 def result_speaker_json(request, xp_uuid, meaning, word):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
+    if request.user != experiment.user:
+        raise ValueError("wrong user")
     currentgame_json = experiment.get_currentgame_json()
     ms = int(meaning)
     w = word
@@ -271,7 +287,7 @@ def result_speaker_json(request, xp_uuid, meaning, word):
 @csrf_protect
 @login_required(login_url='/ng/login/')
 def new_experiment(request):
-    experiment = Experiment.get_new_xp()
+    experiment = Experiment.get_new_xp(user=request.user)
     experiment.save()
     return render(request, 'ng/global.html', {
             'experiment': experiment,
@@ -292,6 +308,8 @@ def test(request):
 @login_required(login_url='/ng/login/')
 def continue_userxp(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
+    if request.user != experiment.user:
+        raise ValueError("wrong user")
     if 0 < experiment.max_interaction <= experiment.interaction_counter:
         return score(request, xp_uuid=xp_uuid)
     try:
@@ -349,6 +367,8 @@ def continue_userxp(request, xp_uuid):
 @login_required(login_url='/ng/login/')
 def exp_resume(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
+    if request.user != experiment.user:
+        raise ValueError("wrong user")
     return render(request, 'ng/global.html', {
             'experiment': experiment,
             'context':"resume"
@@ -359,11 +379,27 @@ def exp_resume(request, xp_uuid):
 @csrf_protect
 @login_required(login_url='/ng/login/')
 def score(request, xp_uuid):
+    experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
+    if request.user != experiment.user:
+        raise ValueError("wrong user")
+    request.user.last_name = "test"
+    request.user.save()
+    try:
+        score = Score.objects.get(experiment=experiment)
+        score_val = score.score
+    except:
+        experiment.get_xp()
+        srtheo = experiment.xp.graph(method="srtheo")._Y[0][-1]
+        score_val = int(srtheo * experiment.meanings.count() * 100)#.all().count()?
+        score = Score(experiment=experiment,score=score_val,user=request.user)
+        score.save()
 
     #Test if score exists
     #if not, compute and store object
     #get value
-    return render(request, 'ng/score.html', {
+    return render(request, 'ng/global.html', {
             'experiment': experiment,
-            'score':score
+            'score':score_val,
+            'context':"score",
+            'user':request.user,
             })

@@ -29,6 +29,8 @@
 			  	<h2><span id="header_inter"></span> #{{ experiment.interaction_counter }} </h2>
 				{% elif context == "new_xp" %}
 			  	<h2><span id="new_experiment"></span>  </h2>
+				{% elif context == "score" %}
+			  	<h2><span id="score_header"></span>  </h2>
 			  	{% else %}
 			  	<h2><span id="header_inter"></span> #{{ experiment.interaction_counter|add:1 }} </h2>
 			  	{% endif %}

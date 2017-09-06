@@ -87,7 +87,36 @@
 <div id="choose">
 {% include "ng/results_toinclude.html" %}
 			</div>
-{% else %}
+{% elif context == "score" %}
+
+			<div id="choose">
+			  	<div id="choose_inner">
+					<!--<div id="word_hearer">
+					  	<div class="question_text">
+						  	You heard this word:
+						</div>
+						<div id="word_inner">
+							<div class="word_text" id="word5"> karabuk </div>
+						</div>
+					</div>-->
+					<div id="meaning">
+
+
+					<h2>{{ score }}</h2>
+
+						<div class="question_text">
+						  	<p><strong id="score_text"></strong></p>
+						</div>
+					  </div>
+					<div id="button_next_div">
+					  	<!--<button id="button_next">Next</button>-->
+						<button id="new_xp_button" class="button button_action"></button>
+						{% csrf_token %}
+
+					</div>
+				</div>
+			</div>
+	{% else %}
 
 			<div id="choose">
 			  	<div id="choose_inner">

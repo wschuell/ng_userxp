@@ -41,7 +41,11 @@
         </section>
 
         <section id="sidebar">
+                {% if context == "score" %}
+            {% include "ng/best_scores.html" %}
+            {% else %}
             {% include "ng/sidebar.html" %}
+            {% endif %}
         </section>
 
         <footer>

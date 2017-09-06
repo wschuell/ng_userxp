@@ -41,7 +41,7 @@ class Experiment(models.Model):
     xp_uuid = models.CharField(max_length=200,default='')
     user_agent_uuid = models.CharField(max_length=200,default='')
     interaction_counter = models.IntegerField(default=0)
-    max_interaction = models.IntegerField(default=150)
+    max_interaction = models.IntegerField(default=100)
     exit_value = models.FloatField(default=0)
     meanings = models.ManyToManyField(Meaning,related_name='meanings')
     words = models.ManyToManyField(Word,related_name='words')
@@ -68,7 +68,7 @@ class Experiment(models.Model):
         return self.xp
 
     @classmethod
-    def get_new_xp(cls):
+    def get_new_xp(cls,user):
         xp_cfg = {
             "step": 1,
             "pop_cfg": {
@@ -100,7 +100,7 @@ class Experiment(models.Model):
                 }
         xp_conf_obj = XpConfig(xp_config=json.dumps(xp_cfg))
         xp_conf_obj.save()
-        xp = Experiment(xp_config=xp_conf_obj)
+        xp = Experiment(xp_config=xp_conf_obj,user=user)
         xp.get_xp()
         xp.save()
         return xp
@@ -196,3 +196,7 @@ class Score(models.Model):
     experiment = models.ForeignKey(Experiment,null=True)#, on_delete=models.CASCADE, default=Experiment.objects.all()[0])
     score = models.IntegerField()
     user = models.ForeignKey(User, on_delete=models.PROTECT)
+
+class CookieId(models.Model):
+    value = models.CharField(max_length=50)
+    users = models.ManyToManyField(User,related_name='users')
