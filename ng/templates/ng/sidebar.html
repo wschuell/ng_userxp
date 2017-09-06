@@ -2,11 +2,11 @@
 		<section id="sidebar">
 
 			{% if role == "hearer"%}
-			<p><img id="img_people_talking" class="img_people" src="{% static 'ng/img/' %}hearer_rep.png"></p>
+			<img id="img_people_talking" class="img_people" src="{% static 'ng/img/' %}hearer_rep2.png"><p id="hearer_header_text"></p>
 			{% elif role == "speaker"%}
-			<p><img id="img_people_talking" class="img_people" src="{% static 'ng/img/' %}speaker_rep.png"></p>
+			<img id="img_people_talking" class="img_people" src="{% static 'ng/img/' %}speaker_rep2.png"><p id="speaker_header_text"></p>
 			{% elif context == "skipped"%}
-			<p><img id="img_people_talking" class="img_people" src="{% static 'ng/img/' %}skipped_rep.png"></p>
+			<img id="img_people_talking" class="img_people" src="{% static 'ng/img/' %}skipped_rep2.png"><p id="skipped_text"></p>
 			{% else %}
 			<img id="img_home_others" src="{% static 'ng/img/' %}others.png"><p id="home_others"></p>
 			<hr>

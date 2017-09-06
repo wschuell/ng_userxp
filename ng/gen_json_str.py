@@ -37,6 +37,8 @@ dict_obj = {
             "home_others":'Gli altri con chi interagisci',
             "home_you":'Sei tu!',
             "img_interaction_text":"Esempio di interazione: Il speaker sceglie un oggetto, poi una parola che per lui ci e associata, e il hearer interpreta la parola come un oggetto. Se i due sono i stessi, la communicazione e un successo.",
+            "skipped_text":"Non eri parte de questa interazione",
+            "interactbutton":"Interagisci",
             }
         ,
     "en" :
@@ -73,7 +75,9 @@ dict_obj = {
             "home_others":'The others, you are interacting with them',
             "home_you":'This is you!',
             "img_interaction_text":"Example of an interaction: The speaker chooses an object or meaning, then a word he thinks is associated to it, and finally the hearer interpretes the word as a meaning. If the two meanings are the same, the communication was successful.",
-    		}
+    		"skipped_text":"Others are interacting, without you",
+            "interactbutton":"Interact",
+            }
 
     }
 
