@@ -25,7 +25,7 @@ if (typeof Cookies.get('NamingGameUser') === 'undefined'){
 
     };
 
-      $.ajax({
+$.ajax({
                                     url: url_send_user_info+user_str,
                                     success: function(result2){
         
