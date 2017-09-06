@@ -15,6 +15,6 @@ GROUP=root
 test -d $LOGDIR || mkdir -p $LOGDIR
 exec gunicorn -w $NUM_WORKERS \
   --user=$USER --group=$GROUP --log-level=$LOGLEVEL \
-  -b 0.0.0.0:8000 \
+  -b 0.0.0.0:8000 --reload \
   main_site.wsgi:application
 # --log-file=$LOGFILE 2>>$LOGFILE
