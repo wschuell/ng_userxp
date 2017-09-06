@@ -498,3 +498,23 @@ html.wait, html.wait * { cursor: wait !important; }
 .lang_button{
   display:none;
 }
+
+#img_home_others,#img_people_talking{
+  width:70%;
+}
+
+#img_home_you{
+  width:42%;
+}
+
+#img_home_others{
+  margin-top: 40px;
+}
+
+#sidebar.img_people{
+  vertical-align: middle;
+}
+
+.img_interaction{
+  width:90%;
+}

@@ -28,12 +28,15 @@ dict_obj = {
             "logoutbutton":"Sconnettarsi",
             "best_scores":"Migliori Giochi",
             "hometitle":"Costruisci un linguagio!",
-            "hometext":"Mettite d'accordo su un vocabulario facendo interazioni con individuali da una cera populazione.",
+            "hometext":"Mettite d'accordo su un vocabulario facendo interazioni con individuali da una certa populazione.",
             "button_start":"Comincia",
             "score_header":"Fine dell esperimento",
             "score_text":"Quello e la valore dello tuo score. Prova a fare meglio!",
-            "window_title":'Crealang',
-            "header_home":"CREALANG",
+            "window_title":'Il Naming Game',
+            "header_home":"IL NAMING GAME",
+            "home_others":'Gli altri',
+            "home_you":'Tu',
+            "img_interaction_text":"Esempio di interazione",
             }
         ,
     "en" :
@@ -62,11 +65,14 @@ dict_obj = {
             "best_scores":"Best Scores",
             "button_start":"Start",
             "hometitle":"Build a language!",
-            "header_home":"CREALANG",
+            "header_home":"THE NAMING GAME",
             "hometext":"Set up a vocabulary by interacting with individuals from a given population.",
             "score_header":"End of the experiment",
             "score_text":"This is the score that you obtained. Try to do better!",
-            "window_title":'Crealang',
+            "window_title":'The Naming Game',
+            "home_others":'The others',
+            "home_you":'You',
+            "img_interaction_text":"Example of an interaction",
     		}
 
     }

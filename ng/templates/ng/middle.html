@@ -136,6 +136,14 @@
 						<div class="question_text">
 						  	<p><strong id="{{ textid }}" nb_skipped="{{ nb_skipped }}"></strong></p>
 						</div>
+
+						{% if context == "new_xp" %}
+						<div class="question_text">
+						  	
+						  	<img src="{% static 'ng/img/' %}interaction_example_text.png"  class="img_interaction"><span id="img_interaction_text"></span>
+						</div>
+						{% endif %}
+
 					  </div>
 					<div id="button_next_div">
 					  	<!--<button id="button_next">Next</button>-->
