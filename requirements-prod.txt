@@ -1,3 +1,4 @@
 Django
 matplotlib
 gunicorn
+django-smart-autoregister
