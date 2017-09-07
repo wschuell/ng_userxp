@@ -507,7 +507,7 @@ html.wait, html.wait * { cursor: wait !important; }
   width:42%;
 }
 
-#img_home_others{
+#img_home_others,.img_people{
   margin-top: 40px;
 }
 
@@ -518,3 +518,8 @@ html.wait, html.wait * { cursor: wait !important; }
 .img_interaction{
   width:90%;
 }
+
+#skipped_text{
+  margin: 20px;
+}
+
