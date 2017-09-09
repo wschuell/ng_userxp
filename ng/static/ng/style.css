@@ -531,3 +531,18 @@ html.wait, html.wait * { cursor: wait !important; }
 .not_displayed{
   display:none;
 }
+
+.button_text_choose_xp {
+    vertical-align: -webkit-baseline-middle;
+}
+.button_choose_xp{
+  margin-right: 25px;
+}
+.button_choose_xp{
+  vertical-align: text-bottom;
+  float:left;
+}
+.choice_button_div{
+  width:80%;
+  height:60px;
+}

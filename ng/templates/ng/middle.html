@@ -116,7 +116,40 @@
 					</div>
 				</div>
 			</div>
+	{% elif context == "choose_xp" %}
+
+			<div id="choose">
+			  	<div id="choose_inner">
+					<!--<div id="word_hearer">
+					  	<div class="question_text">
+						  	You heard this word:
+						</div>
+						<div id="word_inner">
+							<div class="word_text" id="word5"> karabuk </div>
+						</div>
+					</div>-->
+					<div id="meaning">
+
+
+
+
+						<div class="question_text">
+						  	<p><strong id="text_choice"></strong></p>
+						</div>
+
+
+					  </div>
+					<div id="button_next_div">
+					  	<!--<button id="button_next">Next</button>-->
+					  	<div class="choice_button_div"><button id="button_basic" class="button button_action button_choose_xp"></button><span id="text_button_basic" class="button_text_choose_xp"></span></div>
+						<div class="choice_button_div"><button id="button_normal" class="button button_action button_choose_xp"></button><span id="text_button_normal" class="button_text_choose_xp"></span></div>
+						
+					</div>
+				</div>
+			</div>
+
 	{% else %}
+
 
 			<div id="choose">
 			  	<div id="choose_inner">
@@ -157,6 +190,7 @@
 					</div>
 				</div>
 			</div>
+
 
 {% endif %}
 

@@ -69,7 +69,8 @@ class Experiment(models.Model):
         return self.xp
 
     @classmethod
-    def get_new_xp(cls,user):
+    def get_new_xp(cls,user,xp_cfg_name="normal"):
+        
         xp_cfg = {
             "step": 1,
             "pop_cfg": {
@@ -99,9 +100,21 @@ class Experiment(models.Model):
                 }
                 }
                 }
+        
+        if xp_cfg_name == "basic":
+            xp_cfg["pop_cfg"]["nbagent"] = 3
+            xp_cfg["pop_cfg"]["env_cfg"]["M"] = 2
+            xp_cfg["pop_cfg"]["env_cfg"]["W"] = 6
+            max_inter = 20
+        elif xp_cfg_name == "normal":
+            xp_cfg["pop_cfg"]["nbagent"] = 5
+            xp_cfg["pop_cfg"]["env_cfg"]["M"] = 5
+            xp_cfg["pop_cfg"]["env_cfg"]["W"] = 6
+            max_inter = 50
+
         xp_conf_obj = XpConfig(xp_config=json.dumps(xp_cfg))
         xp_conf_obj.save()
-        xp = Experiment(xp_config=xp_conf_obj,user=user)
+        xp = Experiment(xp_config=xp_conf_obj,user=user,max_interaction=max_inter)
         xp.get_xp()
         xp.save()
         return xp

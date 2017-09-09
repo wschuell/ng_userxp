@@ -13,12 +13,14 @@
      <!--<script src="jquery-3.2.1.min.js"></script>-->
      <!--<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>-->
      <script type="text/javascript">
-         var url_continue = "{% url 'ng:continue' experiment.xp_uuid %}";
-         var url_home = "{% url 'ng:home' %}";
          var url_logout = "{% url 'ng:logout' %}";
+         var url_home = "{% url 'ng:home' %}";
+         {% if experiment %}
+         var url_continue = "{% url 'ng:continue' experiment.xp_uuid %}";
          var url_results_inner_base = "{% url 'ng:results_inner_base' experiment.xp_uuid %}";
          var url_results_hearer_base = "{% url 'ng:results_hearer_base' experiment.xp_uuid %}";
          var url_results_speaker_base = "{% url 'ng:results_speaker_base' experiment.xp_uuid %}";
+         {% endif %}
      </script>
      <script src="{% static 'ng/jquery-3.2.1.min.js' %}"></script>
      <script src="{% static 'ng/js.cookie.js' %}"></script>

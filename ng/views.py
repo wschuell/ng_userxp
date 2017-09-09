@@ -327,8 +327,15 @@ def result_speaker_json(request, xp_uuid, meaning, word):
 
 @csrf_protect
 @login_required(login_url='/ng/login/')
-def new_experiment(request):
-    experiment = Experiment.get_new_xp(user=request.user)
+def choose_experiment(request,xp_cfg_name='normal'):
+    return render(request, 'ng/global.html', {
+            'context':"choose_xp"
+        })
+
+@csrf_protect
+@login_required(login_url='/ng/login/')
+def new_experiment(request,xp_cfg_name='normal'):
+    experiment = Experiment.get_new_xp(user=request.user,xp_cfg_name=xp_cfg_name)
     experiment.save()
     return render(request, 'ng/global.html', {
             'experiment': experiment,

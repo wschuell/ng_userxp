@@ -9,6 +9,8 @@ app_name = 'ng'
 urlpatterns = [
     #url(r'^index/$', views.IndexView.as_view(), name='index'),
     url(r'^new_experiment/$', views.new_experiment, name='new_experiment'),
+    url(r'^choose_experiment/$', views.choose_experiment, name='choose_experiment'),
+    url(r'^new_experiment/(?P<xp_cfg_name>[0-9a-z]+)$', views.new_experiment, name='new_experiment_cfg'),
     #url(r'^(?P<xp_uuid>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/$', views.DetailView.as_view(), name='detail'),
     url(r'^(?P<xp_uuid>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/$', views.exp_resume, name='exp_resume'),
     url(r'^(?P<xp_uuid>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/results_srtheo/$', views.result_srtheo, name='results_srtheo'),#ResultsView.as_view(), name='results'),

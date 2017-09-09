@@ -41,6 +41,11 @@ dict_obj = {
             "img_interaction_text":"<b>Esempio di interazione:</b> Lo Speaker sceglie un oggetto, poi una parola che, secondo lui, può essere associata all'oggetto. Infine l'Hearer interpreta la parola, scegliendo un oggetto che, secondo lui, può esservi associata. Se l'oggetto è lo stesso scelto dallo Speaker, la comunicazione è avvenuta con success.",
             "skipped_text":"Non eri coinvolto in questa interazione",
             "interactbutton":"Interagisci",
+            "text_choice":"Scegli un tipo di esperimento:",
+            "button_basic":"Basico",
+            "button_normal":"Normale",
+            "text_button_basic":"Tutoriale, semplice. Dovrebbe bisognare 1-2min",
+            "text_button_normal":"Normale. Dovrebbe bisognare 5-7 min",
             }
         ,
 
@@ -80,6 +85,11 @@ dict_obj = {
             "img_interaction_text":"<b>Example of an interaction:</b> The speaker chooses an object or meaning, then a word he thinks is associated to it. Finally, the hearer interpretes the word as a meaning. If the two meanings are the same, the communication was successful.<br><br> When you are involved in an interaction, you are sometimes the speaker, sometimes the hearer.",
             "skipped_text":"Others were interacting, without you",
             "interactbutton":"Interact",
+            "text_choice":"Choose a type of experiment:",
+            "button_basic":"Basic",
+            "button_normal":"Normal",
+            "text_button_basic":"Tutorial, easy. It should take 1-2min",
+            "text_button_normal":"Normal. It should take 5-7 min",
             }
 
     }
