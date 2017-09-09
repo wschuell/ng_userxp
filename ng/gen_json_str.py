@@ -77,7 +77,7 @@ dict_obj = {
             "window_title":'The Naming Game',
             "home_others":'The others!<br>(You are interacting with them)',
             "home_you":'This is you!',
-            "img_interaction_text":"<b>Example of an interaction:</b> The speaker chooses an object or meaning, then a word he thinks is associated to it. Finally, the hearer interpretes the word as a meaning. If the two meanings are the same, the communication was successful.",
+            "img_interaction_text":"<b>Example of an interaction:</b> The speaker chooses an object or meaning, then a word he thinks is associated to it. Finally, the hearer interpretes the word as a meaning. If the two meanings are the same, the communication was successful.<br><br> When you are involved in an interaction, you are sometimes the speaker, sometimes the hearer.",
             "skipped_text":"Others were interacting, without you",
             "interactbutton":"Interact",
             }

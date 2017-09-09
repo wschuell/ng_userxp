@@ -2,9 +2,9 @@
 			<div id="language_progress">
 		  		<b><span id="past_interactions">Past interactions</span></b>
 <hr>
-		  		{% for past_int in experiment.pastinteraction_set.all reversed %}
+		  		{% for past_int in experiment.pastinteraction_set.all|dictsortreversed:"time_id" %} 
 			  	<div "line_meaning">
-			  		<span class="speaker_heare_img_lp"><img src="{% static 'ng/img/' %}speaker_pic_{{ past_int.role }}.png"></span>
+			  		<span class="numpastint">{{ past_int.time_id }}.  </span><span class="speaker_heare_img_lp"><img src="{% static 'ng/img/' %}speaker_pic_{{ past_int.role }}.png"></span>
 			  		<span class="meaning_chosen"><img src="{% static 'ng/img/' %}kreyon_meaning{{ past_int.meaning }}_small.png"></span>
 			  		<span class="word_chosen">{{ past_int.word }}</span>
 			  		{% if past_int.bool_succ %}<span class="meaning_chosen_check"><img src="{% static 'ng/img/' %}check.png"></span>

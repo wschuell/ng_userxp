@@ -25,9 +25,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import authenticate, login
+from .forms import NameForm
 
-def create_user(request,username=''):
-    user = User.objects.create_user(username=username,password=username)
+def create_user(request,username='',name='',cookie_id=''):
+    user = User.objects.create_user(username=str(username),first_name=str(name),email=str(cookie_id),password=str(username))
     user.save()
 
 def login_user(request,username=''):
@@ -49,12 +50,35 @@ def home(request):
         })
 
 
-
-def create_and_login(request,username):
+def create_and_login(request,username=None,name='',cookie_id=None):
+    if username is None:
+        username = name+str(cookie_id)
     if not User.objects.filter(username=username).exists():
-        create_user(request,username)
+        create_user(request,username,name=name,cookie_id=cookie_id)
     login_user(request,username)
     return render(request,'ng/index.html',{})
+
+
+def get_name(request):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = NameForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            name = form.cleaned_data['your_name']
+            cookie_id = form.cleaned_data['name_cookie_id']
+            create_and_login(request=request,name=name,cookie_id=cookie_id)
+            return HttpResponseRedirect('/')
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = NameForm()
+
+    return render(request, 'ng/login_name.html', {'form': form})
 
 #@login_required#(login_url='/accounts/login/')
 class IndexView(LoginRequiredMixin, generic.ListView):
@@ -235,7 +259,16 @@ def result_hearer_json(request, xp_uuid, meaning):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     if request.user != experiment.user:
         raise ValueError("wrong user")
-    currentgame_json = experiment.get_currentgame_json()
+    try:
+        currentgame_json = experiment.get_currentgame_json()
+    except:
+        return render(request, 'ng/result.json', {
+            'experiment': experiment,
+            'bool_succ': experiment.last_bool_succ,
+            'role':"hearer",
+            'context':"result",
+            'ms':experiment.last_ms,
+        })
     currentgame_json.update({'mh':int(meaning)})
     ms = currentgame_json['ms']
     w = currentgame_json['w']
@@ -258,8 +291,16 @@ def result_hearer_json(request, xp_uuid, meaning):
 def result_speaker_json(request, xp_uuid, meaning, word):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     if request.user != experiment.user:
-        raise ValueError("wrong user")
-    currentgame_json = experiment.get_currentgame_json()
+        raise ValueError("wrong user")    
+    try:
+        currentgame_json = experiment.get_currentgame_json()
+    except:
+        return render(request, 'ng/result.json', {
+            'experiment': experiment,
+            'bool_succ': experiment.last_bool_succ,
+            'role':"speaker",
+            'context':"result",
+        })
     ms = int(meaning)
     w = word
     currentgame_json.update({'ms':ms,'w':w})

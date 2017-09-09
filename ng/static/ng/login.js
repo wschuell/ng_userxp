@@ -38,6 +38,7 @@ var user_str = Cookies.get('NamingGameUser');
 $("#username").html(user_str);
 
     $(document).ajaxStop(function () { $("#username").html(user_str); });
+    
 });
 
 

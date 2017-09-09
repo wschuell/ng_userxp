@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
 
+
 import naminggamesal as ngal
 
 # Create your models here.
@@ -41,7 +42,7 @@ class Experiment(models.Model):
     xp_uuid = models.CharField(max_length=200,default='')
     user_agent_uuid = models.CharField(max_length=200,default='')
     interaction_counter = models.IntegerField(default=0)
-    max_interaction = models.IntegerField(default=100)
+    max_interaction = models.IntegerField(default=50)
     exit_value = models.FloatField(default=0)
     meanings = models.ManyToManyField(Meaning,related_name='meanings')
     words = models.ManyToManyField(Word,related_name='words')
@@ -87,7 +88,7 @@ class Experiment(models.Model):
                 },
                 "strat_type": "naive"
             },
-            "nbagent": 7,
+            "nbagent": 5,
             "env_cfg": {
                 "env_type": "simple_realwords",
                 "M": 5,
