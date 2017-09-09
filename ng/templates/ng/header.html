@@ -27,6 +27,8 @@
 <div id="speaker_hearer_block_inner">
 				{% if context == "skipped" %}
 			  	<h2><span id="header_inter"></span> #{{ experiment.interaction_counter }} / {{ experiment.max_interaction }}</h2>
+				{% elif context == "choose_xp" %}
+			  	<h2><span id="new_experiment"></span>  </h2>
 				{% elif context == "new_xp" %}
 			  	<h2><span id="new_experiment"></span>  </h2>
 				{% elif context == "score" %}

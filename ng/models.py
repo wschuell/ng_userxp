@@ -105,7 +105,7 @@ class Experiment(models.Model):
             xp_cfg["pop_cfg"]["nbagent"] = 3
             xp_cfg["pop_cfg"]["env_cfg"]["M"] = 2
             xp_cfg["pop_cfg"]["env_cfg"]["W"] = 6
-            max_inter = 20
+            max_inter = 10
         elif xp_cfg_name == "normal":
             xp_cfg["pop_cfg"]["nbagent"] = 5
             xp_cfg["pop_cfg"]["env_cfg"]["M"] = 5
