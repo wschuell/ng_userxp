@@ -1,10 +1,6 @@
-language: python
-python:
-  - "2.7"
-  - "3.4"
-  - "3.6"
 services:
   - docker
 script:
   - docker-compose up -d
-  - docker run -it ng /bin/bash -c 'python manage.py test'
+  - docker exec -it ng /bin/bash -c 'python manage.py test'
+  - docker exec -it nguserxp_web /bin/bash -c 'python manage.py test'
