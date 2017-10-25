@@ -10,5 +10,6 @@ install:
   - pip install django
   - pip install numpy matplotlib scipy django-dbbackup psycopg2
   - pip install -r requirements-prod.txt
+  - pip install git+https://github.com/flowersteam/naminggamesal.git@develop
   - bash init_db.sh
 script: python manage.py test 
