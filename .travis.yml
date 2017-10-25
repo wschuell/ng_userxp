@@ -4,14 +4,6 @@ python:
   - "3.4"
   - "3.6"
 services:
-  - postgresql
-before_install:
- - sudo apt-get update -qq
- - sudo apt-get install -qq apt-utils build-essential python-dev liblzo2-dev liblzma-dev libsqlite3-dev python-tk tmux libatlas-dev libatlas-base-dev liblapack-dev gfortran
-install:
-  - pip install django
-  - pip install numpy matplotlib scipy django-dbbackup psycopg2
-  - pip install -r requirements-prod.txt
-  - pip install git+https://github.com/flowersteam/naminggamesal.git@develop
-  - bash init_db_test.sh
-script: python manage.py test --settings=main_site.production_settings && python manage.py test --settings=main_site.settings
+  - docker
+script:
+  - docker-compose run python manage.py test
