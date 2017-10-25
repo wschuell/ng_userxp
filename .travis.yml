@@ -4,3 +4,4 @@ script:
   - docker-compose up -d
   - docker exec -it ng /bin/bash -c 'python manage.py test'
   - docker exec -it nguserxp_web /bin/bash -c 'python manage.py test'
+
