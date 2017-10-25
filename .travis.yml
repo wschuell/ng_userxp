@@ -6,4 +6,4 @@ python:
 services:
   - docker
 script:
-  - docker-compose run sh -c 'python manage.py test'
+  - docker-compose exec sh -c 'python manage.py test'
