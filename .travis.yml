@@ -7,8 +7,8 @@ before_install:
  - sudo apt-get update -qq
  - sudo apt-get install -qq apt-utils build-essential python-dev liblzo2-dev liblzma-dev libsqlite3-dev python-tk tmux libatlas-dev libatlas-base-dev liblapack-dev gfortran
 install:
-  - sudo pip install django
-  - sudo pip install numpy matplotlib scipy django-dbbackup psycopg2
-  - sudo pip install -r requirements-prod.txt
+  - pip install django
+  - pip install numpy matplotlib scipy django-dbbackup psycopg2
+  - pip install -r requirements-prod.txt
   - bash init_db.sh
 script: python manage.py test 
