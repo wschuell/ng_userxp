@@ -5,11 +5,11 @@ python:
   - "3.6"
 before_install:
  - sudo apt-get update -qq
- - sudo apt-get install -qq apt-utils build-essential python-dev liblzo2-dev liblzma-dev libsqlite3-dev python-tk tmux libatlas-dev libatlas-base-dev liblapack-dev gfortran
+ - sudo apt-get install -qq apt-utils build-essential python-dev liblzo2-dev liblzma-dev libsqlite3-dev python-tk tmux libatlas-dev libatlas-base-dev liblapack-dev gfortran postgresql postgresql-contrib libpq-dev
 install:
   - pip install django
   - pip install numpy matplotlib scipy django-dbbackup psycopg2
   - pip install -r requirements-prod.txt
   - pip install git+https://github.com/flowersteam/naminggamesal.git@develop
-  - bash init_db.sh
+  #- bash init_db.sh
 script: python manage.py test 
