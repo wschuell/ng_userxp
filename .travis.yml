@@ -6,4 +6,5 @@ python:
 services:
   - docker
 script:
-  - docker-compose exec /bin/bash -c 'python manage.py test'
+  - docker-compose up -d
+  - docker run -it nguserxp_web ng/bin/bash -c 'python manage.py test'
