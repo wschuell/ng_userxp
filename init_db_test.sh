@@ -1,9 +1,9 @@
 #!/bin/bash
 
 #apt-get install --yes --force-yes postgresql postgresql-contrib libpq-dev
-service postgresql start
 
 su - postgres << 'EOF'
+service postgresql start
 createdb ng_userxp
 psql -c "CREATE USER ng_userxp_user WITH PASSWORD 'pass';"
 createdb naminggames
