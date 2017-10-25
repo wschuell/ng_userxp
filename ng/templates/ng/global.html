@@ -35,7 +35,11 @@
         </header>
 
         <section id="content">
+                {% if context == "choose_xp" %}
+            {% include "ng/best_scores.html" %}
+            {% else %}
             {% include "ng/past_interactions.html" %}
+            {% endif %}
         </section>
 
         <section id="middle">
@@ -44,8 +48,6 @@
 
         <section id="sidebar">
                 {% if context == "score" %}
-            {% include "ng/best_scores.html" %}
-                {% elif context == "choose_xp" %}
             {% include "ng/best_scores.html" %}
             {% else %}
             {% include "ng/sidebar.html" %}
