@@ -101,6 +101,10 @@ DATABASES = {
         'PASSWORD': 'pass',
         'HOST': 'localhost',
         'PORT': '',
+        'TEST':{
+            'NAME':'test_ng_userxp',
+            'ENGINE': 'django.db.backends.sqlite3',
+            },
     }
 
 }

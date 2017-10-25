@@ -10,4 +10,5 @@ install:
   - sudo pip install django
   - sudo pip install numpy matplotlib scipy django-dbbackup psycopg2
   - sudo pip install -r requirements-prod.txt
+  - bash init_db.sh
 script: python manage.py test 

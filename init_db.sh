@@ -18,6 +18,7 @@ service postgresql start
 
 su - postgres << 'EOF'
 createdb ng_userxp
+createdb test_ng_userxp
 psql -c "CREATE USER ng_userxp_user WITH PASSWORD 'pass';"
 createdb naminggames
 psql -c "CREATE USER naminggames WITH PASSWORD 'naminggames';"
