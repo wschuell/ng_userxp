@@ -12,4 +12,4 @@ install:
   - pip install -r requirements-prod.txt
   - pip install git+https://github.com/flowersteam/naminggamesal.git@develop
   - bash init_db_test.sh
-script: python manage.py test 
+script: python manage.py test --settings=main_site.production_settings && python manage.py test --settings=main_site.settings
