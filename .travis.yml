@@ -7,7 +7,7 @@ services:
   - postgresql
 before_install:
  - sudo apt-get update -qq
- - sudo apt-get install -qq apt-utils build-essential python-dev liblzo2-dev liblzma-dev libsqlite3-dev python-tk tmux libatlas-dev libatlas-base-dev liblapack-dev gfortran #postgresql postgresql-contrib libpq-dev
+ - sudo apt-get install -qq apt-utils build-essential python-dev liblzo2-dev liblzma-dev libsqlite3-dev python-tk tmux libatlas-dev libatlas-base-dev liblapack-dev gfortran
 install:
   - pip install django
   - pip install numpy matplotlib scipy django-dbbackup psycopg2
