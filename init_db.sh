@@ -21,6 +21,7 @@ createdb ng_userxp
 psql -c "CREATE USER ng_userxp_user WITH PASSWORD 'pass';"
 createdb naminggames
 psql -c "CREATE USER naminggames WITH PASSWORD 'naminggames';"
+psql -c "ALTER USER ng_userxp_user CREATEDB;"
 EOF
 
 DJANGO_MODULE_SETTINGS="main_site.production_settings"
