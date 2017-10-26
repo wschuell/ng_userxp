@@ -99,7 +99,7 @@ dict_obj = {
 
 json_str = "\nvar lang = "+json.dumps(dict_obj)+";\n"
 
-print json_str
+print(json_str)
 
 with open('static/ng/lang.js','w') as f:
     f.write(json_str)
