@@ -11,4 +11,4 @@ after_success:
   #- docker exec -it ng /bin/bash -c "codecov -t $CODECOV_TOKEN"
   - sudo ls -al /proc/$(docker inspect --format {{.State.Pid}} ng)/root/code && sudo cp /proc/$(docker inspect --format {{.State.Pid}} ng)/root/code/.coverage ./ && sudo cat .coverage
   - sudo mkdir /code && sudo chmod 777 /code && cp -R  /proc/$(docker inspect --format {{.State.Pid}} ng)/root/code/* /code/ && cp -R  /proc/$(docker inspect --format {{.State.Pid}} ng)/root/code/.* /code/ 
-  - cd /code && codecov
+  - cd /code && ls -al && codecov
