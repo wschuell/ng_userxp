@@ -8,5 +8,6 @@ script:
   - docker-compose up -d
   - sleep 15 && docker exec -it ng /bin/bash -c "coverage run --source='.' manage.py test"
 after_success:
-  - sudo ls -al /proc/$(docker inspect --format {{.State.Pid}} ng)/root/code && sudo -c "cd /proc/$(docker inspect --format {{.State.Pid}} ng)/root/code && codecov" 
-  - sudo chmod a+rx -R /proc/$(docker inspect --format {{.State.Pid}} ng)/root/code && cd /proc/$(docker inspect --format {{.State.Pid}} ng)/root/code && codecov
+  - docker exec -it ng /bin/bash -c "codecov -t $CODECOV_TOKEN"
+  #- sudo ls -al /proc/$(docker inspect --format {{.State.Pid}} ng)/root/code && sudo -c "cd /proc/$(docker inspect --format {{.State.Pid}} ng)/root/code && codecov" 
+  #- sudo chmod a+rx -R /proc/$(docker inspect --format {{.State.Pid}} ng)/root/code && cd /proc/$(docker inspect --format {{.State.Pid}} ng)/root/code && codecov
