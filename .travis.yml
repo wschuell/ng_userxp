@@ -7,7 +7,7 @@ install:
   - pwd
 script:
   - docker-compose up -d
-  - sleep 15 && docker exec -it ng /bin/bash -c "coverage run --source='.' manage.py test"
+  - sleep 15 && docker exec -it ng /bin/bash -c "coverage run manage.py test"
 after_success:
   - sudo cp /proc/$(docker inspect --format {{.State.Pid}} ng)/root/code/.coverage ./
   - sed -i -e "s|/code|/home/travis/build/wschuell/ng_userxp|g" -i .coverage
