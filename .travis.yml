@@ -14,7 +14,7 @@ after_success:
   #- sudo mkdir /code && sudo cp -R  /proc/$(docker inspect --format {{.State.Pid}} ng)/root/code/* /code/ && sudo cp -R  /proc/$(docker inspect --format {{.State.Pid}} ng)/root/code/.* /code/  && sudo chmod 777 -R /code
   - sudo ln -s /proc/$(docker inspect --format {{.State.Pid}} ng)/root/code /code && sudo chmod 777 -R /code
   #- cd /code && ls -al && codecov
-  - export PWD=$(pwd) && mv .coverage .coverage_old && sed -i -e "s|/code|$PWD|g" .coverage_old > .coverage
+  - export PWD=$(pwd) && mv .coverage .coverage_old && sed -e "s|/code|$PWD|g" -i .coverage_old > .coverage
   - ls -al && cat .coverage
   - codecov
 
