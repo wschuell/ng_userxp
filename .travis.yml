@@ -9,12 +9,7 @@ script:
   - docker-compose up -d
   - sleep 15 && docker exec -it ng /bin/bash -c "coverage run --source='.' manage.py test"
 after_success:
-  #- docker exec -it ng /bin/bash -c "codecov -t $CODECOV_TOKEN"
-  - sudo ls -al /proc/$(docker inspect --format {{.State.Pid}} ng)/root/code && sudo cp /proc/$(docker inspect --format {{.State.Pid}} ng)/root/code/.coverage ./ && sudo cat .coverage && sudo chmod 777 -R /proc/$(docker inspect --format {{.State.Pid}} ng)/root/code
-  #- sudo mkdir /code && sudo cp -R  /proc/$(docker inspect --format {{.State.Pid}} ng)/root/code/* /code/ && sudo cp -R  /proc/$(docker inspect --format {{.State.Pid}} ng)/root/code/.* /code/  && sudo chmod 777 -R /code
-  - sudo ln -s /proc/$(docker inspect --format {{.State.Pid}} ng)/root/code /code && sudo chmod 777 -R /code
-  #- cd /code && ls -al && codecov
+  - sudo cp /proc/$(docker inspect --format {{.State.Pid}} ng)/root/code/.coverage ./
   - sed -i -e "s|/code|/home/travis/build/wschuell/ng_userxp|g" -i .coverage
-  - ls -al && cat .coverage
   - codecov
 
