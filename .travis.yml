@@ -4,12 +4,12 @@ services:
   - docker
 install:
   - pip install codecov
-  - pwd
 script:
   - docker-compose up -d
-  - sleep 15 && docker exec -it ng /bin/bash -c "coverage run manage.py test"
+  - sleep 15 && docker exec -it ng /bin/bash -c "pytest --cov=./"
+  - docker exec -it ng /bin/bash -c "coverage run -a manage.py test --settings=main_site.production_settings"
+  - docker exec -it ng /bin/bash -c "coverage run -a manage.py test --settings=main_site.settings"
 after_success:
   - sudo cp /proc/$(docker inspect --format {{.State.Pid}} ng)/root/code/.coverage ./
-  - sed -i -e "s|/code|/home/travis/build/wschuell/ng_userxp|g" -i .coverage
+  - sed -i -e "s|/code|/home/travis/build/wschuell/ng_userxp|g" .coverage
   - codecov
-

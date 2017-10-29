@@ -2,3 +2,6 @@ Django
 matplotlib
 gunicorn
 django-smart-autoregister
+pytest
+pytest-cov
+codecov
