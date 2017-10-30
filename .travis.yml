@@ -6,7 +6,7 @@ install:
   - pip install codecov
 script:
   - docker-compose up -d
-  - sleep 15 && docker exec -it ng /bin/bash -c "pytest --cov=./"
+  - sleep 15 && docker exec -it ng /bin/bash -c "python -m pytest --cov=./"
   - docker exec -it ng /bin/bash -c "coverage run -a manage.py test --settings=main_site.production_settings"
   - docker exec -it ng /bin/bash -c "coverage run -a manage.py test --settings=main_site.settings"
 after_success:
