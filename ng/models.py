@@ -57,15 +57,15 @@ class Experiment(models.Model):
     def __str__(self):
         return str(self.xp_uuid) + ' ' + str(self.xp_config.xp_config)
 
+    def init_xp(self):
+        self.xp = db.get_experiment(force_new=True,**json.loads(self.xp_config.xp_config))
+        self.xp_uuid = self.xp.uuid
+        self.save()
+
     def get_xp(self):
         if not hasattr(self,'xp'):
             db = ngal.ngdb.NamingGamesDB(db_type='psycopg2')
-            if self.xp_uuid == '':
-                self.xp = db.get_experiment(force_new=True,**json.loads(self.xp_config.xp_config))
-                self.xp_uuid = self.xp.uuid
-                self.save()
-            else:
-                self.xp = db.get_experiment(xp_uuid=self.xp_uuid)
+            self.xp = db.get_experiment(xp_uuid=self.xp_uuid)
         return self.xp
 
     @classmethod
@@ -111,12 +111,21 @@ class Experiment(models.Model):
             xp_cfg["pop_cfg"]["env_cfg"]["M"] = 5
             xp_cfg["pop_cfg"]["env_cfg"]["W"] = 6
             max_inter = 50
+        elif xp_cfg_name == "multiuser":
+            xp_cfg["pop_cfg"]["nbagent"] = 1
+            xp_cfg["pop_cfg"]["env_cfg"]["M"] = 5
+            xp_cfg["pop_cfg"]["env_cfg"]["W"] = 6
+            max_inter = 50
+                
 
         xp_conf_obj = XpConfig(xp_config=json.dumps(xp_cfg))
         xp_conf_obj.save()
         xp = Experiment(xp_config=xp_conf_obj,user=user,max_interaction=max_inter)
-        xp.get_xp()
-        xp.save()
+        xp.init_xp()
+        if xp_cfg_name == 'multiuser':
+            for i in range(4):
+                ag = Agent()
+                ag.add_to_xp(xp)
         return xp
 
     def continue_xp(self,steps=1):
