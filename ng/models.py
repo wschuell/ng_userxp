@@ -58,6 +58,7 @@ class Experiment(models.Model):
         return str(self.xp_uuid) + ' ' + str(self.xp_config.xp_config)
 
     def init_xp(self):
+        db = ngal.ngdb.NamingGamesDB(db_type='psycopg2')
         self.xp = db.get_experiment(force_new=True,**json.loads(self.xp_config.xp_config))
         self.xp_uuid = self.xp.uuid
         self.save()
