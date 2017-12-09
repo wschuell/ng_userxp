@@ -36,7 +36,6 @@ class XpConfig(models.Model):
     def __str__(self):
         return self.xp_config
 
-
 class Experiment(models.Model):
     xp_config = models.ForeignKey(XpConfig, on_delete=models.PROTECT)
     xp_uuid = models.CharField(max_length=200,default='')
@@ -71,7 +70,6 @@ class Experiment(models.Model):
 
     @classmethod
     def get_new_xp(cls,user,xp_cfg_name="normal"):
-        
         xp_cfg = {
             "step": 1,
             "pop_cfg": {
@@ -197,6 +195,13 @@ class Experiment(models.Model):
                 m_obj = obj_list[0]
 
             self.meanings.add(m_obj)
+        self.save()
+
+
+class Agent(models.Model):
+    xp = models.ForeignKey(Experiment, on_delete=models.CASCADE, blank=True, null=True)
+    def add_to_xp(self, xp):
+        self.xp = xp
         self.save()
 
 class PastInteraction(models.Model):
