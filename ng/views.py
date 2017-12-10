@@ -309,6 +309,7 @@ def result_speaker_json(request, xp_uuid, meaning, word):
     bool_succ = experiment.get_last_bool_succ()
     mh = int(experiment.get_last_mh())
     past_interaction = PastInteraction(meaning=ms,word=w,meaning_h=mh,bool_succ=bool_succ,time_id=experiment.interaction_counter,role='speaker',experiment=experiment)
+    experiment.exchangeAgent(1, 2)
     experiment.save()
     past_interaction.save()
     #return render(request, 'ng/results_new.html', {

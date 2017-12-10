@@ -11,6 +11,7 @@ import naminggamesal as ngal
 
 import json
 import pickle
+import random
 
 xp_cfg = {
     "step": 1,
@@ -198,11 +199,38 @@ class Experiment(models.Model):
             self.meanings.add(m_obj)
         self.save()
 
+    def exchange_agent(self, nb_to_give, nb_to_take):
+        player_agents = Agent.objects.filter(xp=self)
+        pool_agents = Agent.objects.filter(xp=None)
+
+        if len(pool_agents) < nb_to_take:
+            for x in range(nb_to_take - len(pool_agents)):
+                ag = Agent()
+                ag.add_to_xp(None)
+            pool_agents = Agent.objects.filter(xp=None)
+
+        agents_to_give = player_agents.shuffle()[:nb_to_give]
+        agents_to_take = player_agents.shuffle()[:nb_to_take]
+
+        for agent in agents_to_give:
+            self.get_xp().rm_agent(agent.ngagent_id)
+            agent.add_to_xp(None)
+
+        for agent in agents_to_take:
+            self.get_xp().add_agent(agent.get_ng_agent())
+            agent.add_to_xp(self)
+
 class Agent(models.Model):
     xp = models.ForeignKey(Experiment, on_delete=models.CASCADE, blank=True, null=True)
     ngagent = models.BinaryField(blank=True, null=True)
+    ngagent_id = models.CharField(max_length=200,default='')
+
     def get_ng_agent(self):
-        return pickle.loads(self.ngagent)
+        if not hasattr(self,'ngagent'):
+            db = ngal.ngdb.NamingGamesDB(db_type='psycopg2')
+            self.ngagent = pickle.dumps(db.get_agent(xp_uuid=self.xp_uuid))
+        return self.ngagent
+
     def add_to_xp(self, xp):
         if self.ngagent:
             xp.get_xp().add_agent(self.get_ng_agent())
@@ -214,6 +242,7 @@ class Agent(models.Model):
     def save_to_ngal(self):
         nga = ngal.ngagent.Agent(xp_cfg['pop_cfg']['voc_cfg'], xp_cfg['pop_cfg']['strat_cfg'])
         self.ngagent = pickle.dumps(nga)
+        self.ngagent_id = nga._id
         self.save()
 
 class PastInteraction(models.Model):
