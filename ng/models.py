@@ -212,9 +212,9 @@ class Experiment(models.Model):
             pool_agents = Agent.objects.filter(xp=None)
 
 #        agents_to_give = player_agents.shuffle()[:nb_to_give]
-        agents_to_give = player_agents.order_by('?')[:nb_to_give]
+        agents_to_give = list(player_agents.order_by('?')[:nb_to_give])
 #        agents_to_take = pool_agents.shuffle()[:nb_to_take]
-        agents_to_take = pool_agents.order_by('?')[:nb_to_take]
+        agents_to_take = list(pool_agents.order_by('?')[:nb_to_take])
 
         for agent in agents_to_give:
             #self.get_xp().rm_agent(agent.ngagent_id)
@@ -248,7 +248,10 @@ class Agent(models.Model):
                 ngag = xp_old.get_xp().get_agent(self.ngagent_id)
                 self.ngagent = pickle.dumps(ngag)
                 xp_old.get_xp().rm_agent(ngag)
+                xp_old.save()
         self.xp = xp
+        if xp is not None:
+            self.xp.save()
         self.save()
 
     def save_to_ngal(self):
