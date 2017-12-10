@@ -204,7 +204,11 @@ class Agent(models.Model):
     def get_ng_agent(self):
         return pickle.loads(self.ngagent)
     def add_to_xp(self, xp):
-        # xp.get_xp()._poplist.get_last().add_agent(self.get_ng_agent())
+        if self.ngagent:
+            xp.get_xp().add_agent(self.get_ng_agent())
+        else:
+            self.save_to_ngal()
+            xp.get_xp().add_agent(self.get_ng_agent()) 
         self.xp = xp
         self.save()
     def save_to_ngal(self):
