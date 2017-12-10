@@ -57,7 +57,7 @@ dict_obj = {
         "hearer_meaning_question":"What do you think the speaker was talking about?",
         "speaker_word_question":"Using which word?",
         "speaker_meaning_question":"What do you want to talk about?",
-        "new_xp": "You are about to begin a new experiment.",
+        "new_xp": "You are about to create a new language.",
         "not_involved": "One interaction happened without you being a part of it.",
         "not_involved_pre": "",
         "not_involved_post": " interactions happened without you being a part of it.",
@@ -76,7 +76,7 @@ dict_obj = {
         "window_title":'The Naming Game',
         "home_others":'The others!<br>(You are interacting with them)',
         "home_you":'This is you!',
-        "img_interaction_text":"<b>Example of an interaction:</b> The speaker chooses an object or meaning, then a word he thinks is associated to it. Finally, the hearer interpretes the word as a meaning. If the two meanings are the same, the communication was successful.<br><br> In an interaction, you are sometimes the speaker, sometimes the hearer, and sometimes you are not involved.",
+        "img_interaction_text":"A language is not extraordinarly useful if you have nobody to talk with, so you need to agree with other people on what each word means. This is done through a series of interactions with other people.<br><br>In each interaction, there are two people. One—the <b>speaker</b>—says a word. The other—the <b>hearer</b>—shows what the word means to him. If the meaning of the word for the hearer is the same as the speaker, the interaction is successful, and the association between the word and the meaning is reinforced in both the speaker and the hearer.<br><br>You will sometimes be the hearer, sometimes the speaker, and many interactions will happen between other people, without you.",
         "skipped_text":"Others were interacting, without you",
         "interactbutton":"Interact",
         "text_choice":"Choose a type of experiment:",
@@ -87,7 +87,7 @@ dict_obj = {
     }
 }
 
-        
+
 
 
 json_str = "\nvar lang = "+json.dumps(dict_obj)+";\n"
@@ -112,4 +112,3 @@ s2 = split_str.join(splitted)
 
 with open('static/ng/change_lang.js','w') as f:
     f.write(s2)
-
