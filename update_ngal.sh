@@ -1,0 +1,1 @@
+pip install git+https://github.com/flowersteam/naminggamesal.git@develop -U
