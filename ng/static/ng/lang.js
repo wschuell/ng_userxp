@@ -3,6 +3,7 @@ var lang = {
     "best_scores": "Best Scores",
     "button_basic": "Basic",
     "button_next": "Next",
+    "button_multi": "Multi",
     "button_normal": "Normal",
     "button_start": "Start",
     "header_home": "THE NAMING GAME",
@@ -43,6 +44,7 @@ var lang = {
   "it": {
     "best_scores": "Hall of Fame",
     "button_basic": "Basico",
+    "button_multi": "Multi",
     "button_next": "Continua",
     "button_normal": "Normale",
     "button_start": "Comincia",

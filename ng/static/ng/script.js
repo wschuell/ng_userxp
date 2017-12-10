@@ -117,6 +117,11 @@ $( document ).ready(function() {
     $("html").addClass("wait");
     window.location.href='/new_experiment/normal';
   });
+  $("#button_multi").click(function(){
+    $(this).prop('disable',true);
+    $("html").addClass("wait");
+    window.location.href='/new_experiment/multiuser';
+  });
 
   //username
   var user_str = Cookies.get('NamingGameUser');
