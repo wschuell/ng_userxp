@@ -10,7 +10,37 @@ import naminggamesal as ngal
 # Create your models here.
 
 import json
+import pickle
 
+xp_cfg = {
+    "step": 1,
+    "pop_cfg": {
+        "voc_cfg": {
+            "voc_type": "2dictdict"
+        },
+        'agent_init_cfg':{
+            'agent_init_type':'oneuser_noninteractive',
+        },
+        "strat_cfg": {
+            "vu_cfg": {
+                "vu_type": "minimalsynonly"
+            },
+            "success_cfg": {
+                "success_type": "global"
+            },
+            "strat_type": "naive"
+        },
+        "nbagent": 5,
+        "env_cfg": {
+            "env_type": "simple_realwords",
+            "M": 5,
+            "W": 6
+        },
+        "interact_cfg": {
+            "interact_type": "speakerschoice"
+        }
+    }
+}
 
 class Word(models.Model):
     word = models.CharField(max_length=200)
@@ -70,36 +100,6 @@ class Experiment(models.Model):
 
     @classmethod
     def get_new_xp(cls,user,xp_cfg_name="normal"):
-        xp_cfg = {
-            "step": 1,
-            "pop_cfg": {
-            "voc_cfg": {
-                "voc_type": "2dictdict"
-            },
-            'agent_init_cfg':{
-                'agent_init_type':'oneuser_noninteractive',
-                },
-            "strat_cfg": {
-                "vu_cfg": {
-                "vu_type": "minimalsynonly"
-                },
-                "success_cfg": {
-                "success_type": "global"
-                },
-                "strat_type": "naive"
-            },
-            "nbagent": 5,
-            "env_cfg": {
-                "env_type": "simple_realwords",
-                "M": 5,
-                "W": 6
-            },
-            "interact_cfg": {
-                "interact_type": "speakerschoice"
-                }
-                }
-                }
-        
         if xp_cfg_name == "basic":
             xp_cfg["pop_cfg"]["nbagent"] = 3
             xp_cfg["pop_cfg"]["env_cfg"]["M"] = 2
@@ -125,6 +125,7 @@ class Experiment(models.Model):
             for i in range(4):
                 ag = Agent()
                 ag.add_to_xp(xp)
+                ag.save_to_ngal()
         return xp
 
     def continue_xp(self,steps=1):
@@ -197,11 +198,22 @@ class Experiment(models.Model):
             self.meanings.add(m_obj)
         self.save()
 
-
 class Agent(models.Model):
     xp = models.ForeignKey(Experiment, on_delete=models.CASCADE, blank=True, null=True)
+    ngagent = models.BinaryField(blank=True, null=True)
+    def get_ng_agent(self):
+        return pickle.loads(self.ngagent)
     def add_to_xp(self, xp):
+        if self.ngagent:
+            xp.get_xp().add_agent(self.get_ng_agent())
+        else:
+            self.save_to_ngal()
+            xp.get_xp().add_agent(self.get_ng_agent()) 
         self.xp = xp
+        self.save()
+    def save_to_ngal(self):
+        nga = ngal.ngagent.Agent(xp_cfg['pop_cfg']['voc_cfg'], xp_cfg['pop_cfg']['strat_cfg'])
+        self.ngagent = pickle.dumps(nga)
         self.save()
 
 class PastInteraction(models.Model):
