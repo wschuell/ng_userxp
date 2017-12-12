@@ -1,11 +1,4 @@
 #!/bin/bash
-if [ ! -x init_db_done ]
-then
-
-
-
-
-
 
 NEWDIR=/postgresql-data
 test -d $NEWDIR || mkdir -p $NEWDIR
@@ -31,14 +24,3 @@ createdb naminggames
 psql -c "CREATE USER naminggames WITH PASSWORD 'naminggames';"
 psql -c "ALTER USER ng_userxp_user CREATEDB;"
 EOF
-
-DJANGO_MODULE_SETTINGS="main_site.production_settings"
-export DJANGO_MODULE_SETTINGS
-python manage.py makemigrations ng
-python manage.py migrate
-python manage.py collectstatic --noinput
-
-touch init_db_done
-
-
-fi

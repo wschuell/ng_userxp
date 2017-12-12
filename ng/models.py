@@ -126,9 +126,8 @@ class Experiment(models.Model):
         xp.init_xp()
         if xp_cfg_name == 'multiuser':
             for i in range(4):
-                ag = Agent()
+                ag = Agent.create()
                 ag.add_to_xp(xp)
-                ag.save_to_ngal()
         return xp
 
     def continue_xp(self,steps=1):
@@ -207,7 +206,7 @@ class Experiment(models.Model):
 
         if len(pool_agents) < nb_to_take:
             for x in range(nb_to_take - len(pool_agents)):
-                ag = Agent()
+                ag = Agent.create()
                 ag.add_to_xp(None)
             pool_agents = Agent.objects.filter(xp=None)
 
@@ -224,9 +223,16 @@ class Experiment(models.Model):
             #self.get_xp().add_agent(agent.get_ng_agent())
             agent.add_to_xp(self)
 
+    def add_word_to_user(self,w):
+        xp_obj = self.get_xp()
+        pop_obj = xp_obj._poplist.get_last()
+        ag_obj = pop_obj._agentlist[0]
+        ag_obj.discover_words([w])
+        xp_obj._poplist.save()
+
 class Agent(models.Model):
     xp = models.ForeignKey(Experiment, on_delete=models.CASCADE, blank=True, null=True)
-    ngagent = models.BinaryField(blank=True, null=True)
+    ngagent = models.BinaryField()
     ngagent_id = models.CharField(max_length=200,default='')
 
     def get_ng_agent(self):
@@ -237,11 +243,7 @@ class Agent(models.Model):
 
     def add_to_xp(self, xp):
         if xp is not None:
-            if self.ngagent is not None:
-                xp.get_xp().add_agent(self.get_ng_agent())
-            else:
-                self.save_to_ngal()
-                xp.get_xp().add_agent(self.get_ng_agent()) 
+            xp.get_xp().add_agent(self.get_ng_agent())
         else:
             xp_old = self.xp
             if xp_old is not None:
@@ -254,11 +256,14 @@ class Agent(models.Model):
             self.xp.save()
         self.save()
 
-    def save_to_ngal(self):
+    @classmethod
+    def create(cls):
         nga = ngal.ngagent.Agent(xp_cfg['pop_cfg']['voc_cfg'], xp_cfg['pop_cfg']['strat_cfg'])
-        self.ngagent = pickle.dumps(nga)
-        self.ngagent_id = nga._id
-        self.save()
+        nga.discover_meanings(range(5))
+        nga.discover_words(['balabu'])
+        ngagent = pickle.dumps(nga)
+        ngagent_id = nga._id
+        return cls(ngagent=ngagent,ngagent_id=ngagent_id)
 
 class PastInteraction(models.Model):
     #meaning = models.ForeignKey(Meaning, on_delete=models.CASCADE)

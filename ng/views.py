@@ -273,6 +273,7 @@ def result_hearer_json(request, xp_uuid, meaning):
     ms = currentgame_json['ms']
     w = currentgame_json['w']
     experiment.save_currentgame_json(currentgame_json)
+    experiment.add_word_to_user(w)
     experiment.continue_xp()
     bool_succ = experiment.get_last_bool_succ()
     past_interaction = PastInteraction(meaning=ms,word=w,meaning_h=int(meaning),bool_succ=bool_succ,time_id=experiment.interaction_counter,role='hearer',experiment=experiment)

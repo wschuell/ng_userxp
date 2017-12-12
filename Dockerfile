@@ -8,6 +8,6 @@ ADD requirements-prod.txt /
 RUN pip install -r requirements-prod.txt
 #ADD . /code/
 ENV PGDATA /postgresql-data
-#RUN bash init_db.sh
+RUN bash init_db.sh
 RUN mkdir /code
 WORKDIR /code
