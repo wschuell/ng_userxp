@@ -62,8 +62,8 @@ class Meaning(models.Model):
         return self.meaning
 
 class XpConfig(models.Model):
-    xp_config = models.CharField(max_length=2000)
-    usage = models.IntegerField(default=0)
+    xp_config = models.CharField(max_length=2000,unique=True)
+    xp_cfg_name = models.CharField(max_length=200,null=True,blank=True)
     def __str__(self):
         return self.xp_config
 
@@ -83,6 +83,7 @@ class Experiment(models.Model):
     last_role = models.CharField(max_length=200,default='')
     last_bool_succ = models.BooleanField(default=False)
     last_nb_skipped = models.IntegerField(default=0)
+    size = models.IntegerField(default=1)
 
     def __str__(self):
         return str(self.xp_uuid) + ' ' + str(self.xp_config.xp_config)
@@ -91,9 +92,22 @@ class Experiment(models.Model):
         db = ngal.ngdb.NamingGamesDB(db_type='psycopg2')
         self.xp = db.get_experiment(force_new=True,**json.loads(self.xp_config.xp_config))
         self.xp_uuid = self.xp.uuid
-        self.xp.continue_exp_until(0)
-        self.xp.commit_to_db()
+        self.xp.init_poplist()
+        #self.xp.continue_exp_until(0)
+        #self.xp.commit_to_db()
         self.save()
+
+    def save(self,*args,**kwargs):
+        self.update_size()
+        return models.Model.save(self,*args,**kwargs)
+
+    def update_size(self):
+        ag_list = Agent.objects.filter(xp=self)
+        if ag_list:
+            self.size = len(ag_list) + 1
+        else:
+            xp_obj = self.get_xp()
+            self.size = xp_obj._poplist.get_last().get_size()
 
     def get_xp(self):
         if not hasattr(self,'xp'):
@@ -104,25 +118,31 @@ class Experiment(models.Model):
     @classmethod
     def get_new_xp(cls,user,xp_cfg_name="normal"):
         if xp_cfg_name == "basic":
+            size = 3
             xp_cfg["pop_cfg"]["nbagent"] = 3
             xp_cfg["pop_cfg"]["env_cfg"]["M"] = 2
             xp_cfg["pop_cfg"]["env_cfg"]["W"] = 6
             max_inter = 10
         elif xp_cfg_name == "normal":
-            xp_cfg["pop_cfg"]["nbagent"] = 5
+            size = 5
+            xp_cfg["pop_cfg"]["nbagent"] = size
             xp_cfg["pop_cfg"]["env_cfg"]["M"] = 5
             xp_cfg["pop_cfg"]["env_cfg"]["W"] = 6
             max_inter = 50
         elif xp_cfg_name == "multiuser":
-            xp_cfg["pop_cfg"]["nbagent"] = 1
+            size = 1
+            xp_cfg["pop_cfg"]["nbagent"] = size
             xp_cfg["pop_cfg"]["env_cfg"]["M"] = 5
             xp_cfg["pop_cfg"]["env_cfg"]["W"] = 6
             max_inter = 50
-                
-
-        xp_conf_obj = XpConfig(xp_config=json.dumps(xp_cfg))
-        xp_conf_obj.save()
-        xp = Experiment(xp_config=xp_conf_obj,user=user,max_interaction=max_inter)
+        xp_cfg_json = json.dumps(xp_cfg)
+        xpcfg_list = XpConfig.objects.filter(xp_config=xp_cfg_json)
+        if xpcfg_list:
+            xp_conf_model = xpcfg_list.first()
+        else:
+            xp_conf_model = XpConfig(xp_config=xp_cfg_json,xp_cfg_name=xp_cfg_name)
+            xp_conf_model.save()
+        xp = Experiment(xp_config=xp_conf_model,user=user,max_interaction=max_inter,size=size)
         xp.init_xp()
         if xp_cfg_name == 'multiuser':
             for i in range(4):
@@ -228,7 +248,7 @@ class Experiment(models.Model):
         pop_obj = xp_obj._poplist.get_last()
         ag_obj = pop_obj._agentlist[0]
         ag_obj.discover_words([w])
-        xp_obj._poplist.save()
+        xp_obj.save_pop()
 
 class Agent(models.Model):
     xp = models.ForeignKey(Experiment, on_delete=models.CASCADE, blank=True, null=True)
