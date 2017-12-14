@@ -250,6 +250,11 @@ class Experiment(models.Model):
         ag_obj.discover_words([w])
         xp_obj.save_pop()
 
+    def transfer_agents(self):
+        player_agents = Agent.objects.filter(xp=self)
+        for agent in player_agents:
+            agent.add_to_xp(None,rm_from_xpobj=False)
+
 class Agent(models.Model):
     xp = models.ForeignKey(Experiment, on_delete=models.CASCADE, blank=True, null=True)
     ngagent = models.BinaryField()
@@ -261,7 +266,7 @@ class Agent(models.Model):
         else:
             return pickle.loads(self.ngagent)
 
-    def add_to_xp(self, xp):
+    def add_to_xp(self, xp,rm_from_xpobj=True):
         if xp is not None:
             xp.get_xp().add_agent(self.get_ng_agent())
         else:
@@ -269,7 +274,8 @@ class Agent(models.Model):
             if xp_old is not None:
                 ngag = xp_old.get_xp().get_agent(self.ngagent_id)
                 self.ngagent = pickle.dumps(ngag)
-                xp_old.get_xp().rm_agent(ngag)
+                if rm_from_xpobj:
+                    xp_old.get_xp().rm_agent(ngag)
                 xp_old.save()
         self.xp = xp
         if xp is not None:

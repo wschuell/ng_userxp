@@ -312,7 +312,8 @@ def result_speaker_json(request, xp_uuid, meaning, word):
     past_interaction = PastInteraction(meaning=ms,word=w,meaning_h=mh,bool_succ=bool_succ,time_id=experiment.interaction_counter,role='speaker',experiment=experiment)
     experiment.save()
     past_interaction.save()
-    experiment.exchange_agent(1, 2)
+    if experiment.xp_config.xp_cfg_name == 'multiuser':
+        experiment.exchange_agent(1, 2)
     experiment.save()
     #return render(request, 'ng/results_new.html', {
     #        'experiment': experiment,
@@ -362,6 +363,8 @@ def continue_userxp(request, xp_uuid):
     if request.user != experiment.user:
         raise ValueError("wrong user")
     if 0 < experiment.max_interaction <= experiment.interaction_counter:
+        if experiment.xp_config.xp_cfg_name == 'multiuser':
+            experiment.transfer_agents()
         return score(request, xp_uuid=xp_uuid)
     try:
         experiment.continue_xp(steps=1)

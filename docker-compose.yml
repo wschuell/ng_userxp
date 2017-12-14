@@ -16,9 +16,7 @@ services:
   web:
     build: .
     container_name: ng
-    #INFO: Command changed to run `python manage.py runserver` instead of `gunicorn`
-    command: bash -c "service postgresql restart && sleep 10 && bash init_db_django.sh && echo \"from django.contrib.auth.models import User; User.objects.all() or User.objects.create_user('admin', 'admin@example.com', 'password').save(); exit();\" | python manage.py shell && python manage.py runserver 0.0.0.0:8000" #bash gunicorn_script.sh"
-    #command: python manage.py runserver 0.0.0.0:8000
+    command: bash start_server.sh
     volumes:
       - static-data:/static
       - ./postgresql-data:/postgresql-data

@@ -1,0 +1,6 @@
+version: '2'
+
+services:
+  web:
+    environment: 
+      - NG_USERXP_DEV_MODE=0
