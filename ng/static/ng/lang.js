@@ -16,7 +16,7 @@ var lang = {
     "homebutton": "Home",
     "hometext": "Agree on a common vocabulary with a group of individuals by interacting with them.",
     "hometitle": "Build a language!",
-    "img_interaction_text": "<b>Example of an interaction:</b> The speaker chooses an object or meaning, then a word he thinks is associated to it. Finally, the hearer interpretes the word as a meaning. If the two meanings are the same, the communication was successful.<br><br> In an interaction, you are sometimes the speaker, sometimes the hearer, and sometimes you are not involved.",
+    "img_interaction_text": "A language is not extraordinarly useful if you have nobody to talk with, so you need to agree with other people on what each word means. This is done through a series of interactions with other people.<br><br>In each interaction, there are two people. One—the <b>speaker</b>—says a word. The other—the <b>hearer</b>—shows what the word means to him. If the meaning of the word for the hearer is the same as the speaker, the interaction is successful, and the association between the word and the meaning is reinforced in both the speaker and the hearer.<br><br>You will sometimes be the hearer, sometimes the speaker, and many interactions will happen between other people, without you.",
     "interactbutton": "Interact",
     "logoutbutton": "Logout",
     "new_experiment": "New experiment",
