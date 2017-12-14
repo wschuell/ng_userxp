@@ -23,8 +23,11 @@ git clone https://github.com/wschuell/ng_userxp.git
 ```
 docker-compose up
 ```
-
+and for development, using Django runserver with debug:
+```
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+```
 
 ### Play the game:
-go to http://127.0.0.1:8000/ng
+go to http://127.0.0.1/ng
 
