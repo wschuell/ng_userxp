@@ -82,7 +82,7 @@ class Experiment(models.Model):
                 },
             "strat_cfg": {
                 "vu_cfg": {
-                "vu_type": "minimalsynonly"
+                "vu_type": "minimal"
                 },
                 "success_cfg": {
                 "success_type": "global"
