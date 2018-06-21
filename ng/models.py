@@ -10,7 +10,38 @@ import naminggamesal as ngal
 # Create your models here.
 
 import json
+import pickle
+import random
 
+xp_cfg = {
+    "step": 1,
+    "pop_cfg": {
+        "voc_cfg": {
+            "voc_type": "2dictdict"
+        },
+        'agent_init_cfg':{
+            'agent_init_type':'oneuser_noninteractive',
+        },
+        "strat_cfg": {
+            "vu_cfg": {
+                "vu_type": "minimalsynonly"
+            },
+            "success_cfg": {
+                "success_type": "global"
+            },
+            "strat_type": "naive"
+        },
+        "nbagent": 5,
+        "env_cfg": {
+            "env_type": "simple_realwords",
+            "M": 5,
+            "W": 6
+        },
+        "interact_cfg": {
+            "interact_type": "speakerschoice"
+        }
+    }
+}
 
 class Word(models.Model):
     word = models.CharField(max_length=200)
@@ -31,11 +62,10 @@ class Meaning(models.Model):
         return self.meaning
 
 class XpConfig(models.Model):
-    xp_config = models.CharField(max_length=2000)
-    usage = models.IntegerField(default=0)
+    xp_config = models.CharField(max_length=2000,unique=True)
+    xp_cfg_name = models.CharField(max_length=200,null=True,blank=True)
     def __str__(self):
         return self.xp_config
-
 
 class Experiment(models.Model):
     xp_config = models.ForeignKey(XpConfig, on_delete=models.PROTECT)
@@ -53,70 +83,71 @@ class Experiment(models.Model):
     last_role = models.CharField(max_length=200,default='')
     last_bool_succ = models.BooleanField(default=False)
     last_nb_skipped = models.IntegerField(default=0)
+    size = models.IntegerField(default=1)
 
     def __str__(self):
         return str(self.xp_uuid) + ' ' + str(self.xp_config.xp_config)
 
+    def init_xp(self):
+        db = ngal.ngdb.NamingGamesDB(db_type='psycopg2')
+        self.xp = db.get_experiment(force_new=True,**json.loads(self.xp_config.xp_config))
+        self.xp_uuid = self.xp.uuid
+        self.xp.init_poplist()
+        #self.xp.continue_exp_until(0)
+        #self.xp.commit_to_db()
+        self.save()
+
+    def save(self,*args,**kwargs):
+        self.update_size()
+        return models.Model.save(self,*args,**kwargs)
+
+    def update_size(self):
+        ag_list = Agent.objects.filter(xp=self)
+        if ag_list:
+            self.size = len(ag_list) + 1
+        else:
+            xp_obj = self.get_xp()
+            self.size = xp_obj._poplist.get_last().get_size()
+
     def get_xp(self):
         if not hasattr(self,'xp'):
             db = ngal.ngdb.NamingGamesDB(db_type='psycopg2')
-            if self.xp_uuid == '':
-                self.xp = db.get_experiment(force_new=True,**json.loads(self.xp_config.xp_config))
-                self.xp_uuid = self.xp.uuid
-                self.save()
-            else:
-                self.xp = db.get_experiment(xp_uuid=self.xp_uuid)
+            self.xp = db.get_experiment(xp_uuid=self.xp_uuid)
         return self.xp
 
     @classmethod
     def get_new_xp(cls,user,xp_cfg_name="normal"):
-        
-        xp_cfg = {
-            "step": 1,
-            "pop_cfg": {
-            "voc_cfg": {
-                "voc_type": "2dictdict"
-            },
-            'agent_init_cfg':{
-                'agent_init_type':'oneuser_noninteractive',
-                },
-            "strat_cfg": {
-                "vu_cfg": {
-                "vu_type": "minimal"
-                },
-                "success_cfg": {
-                "success_type": "global"
-                },
-                "strat_type": "naive"
-            },
-            "nbagent": 5,
-            "env_cfg": {
-                "env_type": "simple_realwords",
-                "M": 5,
-                "W": 6
-            },
-            "interact_cfg": {
-                "interact_type": "speakerschoice"
-                }
-                }
-                }
-        
         if xp_cfg_name == "basic":
+            size = 3
             xp_cfg["pop_cfg"]["nbagent"] = 3
             xp_cfg["pop_cfg"]["env_cfg"]["M"] = 2
             xp_cfg["pop_cfg"]["env_cfg"]["W"] = 6
             max_inter = 10
         elif xp_cfg_name == "normal":
-            xp_cfg["pop_cfg"]["nbagent"] = 5
+            size = 5
+            xp_cfg["pop_cfg"]["nbagent"] = size
             xp_cfg["pop_cfg"]["env_cfg"]["M"] = 5
             xp_cfg["pop_cfg"]["env_cfg"]["W"] = 6
             max_inter = 50
-
-        xp_conf_obj = XpConfig(xp_config=json.dumps(xp_cfg))
-        xp_conf_obj.save()
-        xp = Experiment(xp_config=xp_conf_obj,user=user,max_interaction=max_inter)
-        xp.get_xp()
-        xp.save()
+        elif xp_cfg_name == "multiuser":
+            size = 1
+            xp_cfg["pop_cfg"]["nbagent"] = size
+            xp_cfg["pop_cfg"]["env_cfg"]["M"] = 5
+            xp_cfg["pop_cfg"]["env_cfg"]["W"] = 6
+            max_inter = 50
+        xp_cfg_json = json.dumps(xp_cfg)
+        xpcfg_list = XpConfig.objects.filter(xp_config=xp_cfg_json)
+        if xpcfg_list:
+            xp_conf_model = xpcfg_list.first()
+        else:
+            xp_conf_model = XpConfig(xp_config=xp_cfg_json,xp_cfg_name=xp_cfg_name)
+            xp_conf_model.save()
+        xp = Experiment(xp_config=xp_conf_model,user=user,max_interaction=max_inter,size=size)
+        xp.init_xp()
+        if xp_cfg_name == 'multiuser':
+            for i in range(4):
+                ag = Agent.create()
+                ag.add_to_xp(xp)
         return xp
 
     def continue_xp(self,steps=1):
@@ -188,6 +219,77 @@ class Experiment(models.Model):
 
             self.meanings.add(m_obj)
         self.save()
+
+    def exchange_agent(self, nb_to_give, nb_to_take):
+        player_agents = Agent.objects.filter(xp=self)
+        pool_agents = Agent.objects.filter(xp=None)
+
+        if len(pool_agents) < nb_to_take:
+            for x in range(nb_to_take - len(pool_agents)):
+                ag = Agent.create()
+                ag.add_to_xp(None)
+            pool_agents = Agent.objects.filter(xp=None)
+
+#        agents_to_give = player_agents.shuffle()[:nb_to_give]
+        agents_to_give = list(player_agents.order_by('?')[:nb_to_give])
+#        agents_to_take = pool_agents.shuffle()[:nb_to_take]
+        agents_to_take = list(pool_agents.order_by('?')[:nb_to_take])
+
+        for agent in agents_to_give:
+            #self.get_xp().rm_agent(agent.ngagent_id)
+            agent.add_to_xp(None)
+
+        for agent in agents_to_take:
+            #self.get_xp().add_agent(agent.get_ng_agent())
+            agent.add_to_xp(self)
+
+    def add_word_to_user(self,w):
+        xp_obj = self.get_xp()
+        pop_obj = xp_obj._poplist.get_last()
+        ag_obj = pop_obj._agentlist[0]
+        ag_obj.discover_words([w])
+        xp_obj.save_pop()
+
+    def transfer_agents(self):
+        player_agents = Agent.objects.filter(xp=self)
+        for agent in player_agents:
+            agent.add_to_xp(None,rm_from_xpobj=False)
+
+class Agent(models.Model):
+    xp = models.ForeignKey(Experiment, on_delete=models.CASCADE, blank=True, null=True)
+    ngagent = models.BinaryField()
+    ngagent_id = models.CharField(max_length=200,default='')
+
+    def get_ng_agent(self):
+        if self.ngagent is None:
+            raise TypeError('Agent.ngagent is None, not blob')
+        else:
+            return pickle.loads(self.ngagent)
+
+    def add_to_xp(self, xp,rm_from_xpobj=True):
+        if xp is not None:
+            xp.get_xp().add_agent(self.get_ng_agent())
+        else:
+            xp_old = self.xp
+            if xp_old is not None:
+                ngag = xp_old.get_xp().get_agent(self.ngagent_id)
+                self.ngagent = pickle.dumps(ngag)
+                if rm_from_xpobj:
+                    xp_old.get_xp().rm_agent(ngag)
+                xp_old.save()
+        self.xp = xp
+        if xp is not None:
+            self.xp.save()
+        self.save()
+
+    @classmethod
+    def create(cls):
+        nga = ngal.ngagent.Agent(xp_cfg['pop_cfg']['voc_cfg'], xp_cfg['pop_cfg']['strat_cfg'])
+        nga.discover_meanings(range(5))
+        nga.discover_words(['balabu'])
+        ngagent = pickle.dumps(nga)
+        ngagent_id = nga._id
+        return cls(ngagent=ngagent,ngagent_id=ngagent_id)
 
 class PastInteraction(models.Model):
     #meaning = models.ForeignKey(Meaning, on_delete=models.CASCADE)

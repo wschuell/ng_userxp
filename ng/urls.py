@@ -25,7 +25,6 @@ urlpatterns = [
     #url(r'^login/$', views.login_view, name='login'),  
     url(r'^login/$', views.get_name, name='login'),  
 
-
     url(r'^(?P<xp_uuid>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})-hearer-(?P<meaning>[0-9a-z]+)/results_json/$', views.result_hearer_json, name='results_hearer_json'),#ResultsView.as_view(), name='results'),
      url(r'^(?P<xp_uuid>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})-speaker-(?P<meaning>[0-9a-z]+)-(?P<word>[0-9a-z]+)/results_json/$', views.result_speaker_json, name='results_speaker_json'),#ResultsView.as_view(), name='results'),
 

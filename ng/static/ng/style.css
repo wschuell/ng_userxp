@@ -1,7 +1,7 @@
 body {
     background-color: #ccc;
-    font-family: 'Indie Flower', cursive;
-    font-size: 18px;
+    font-family: 'Open Sans', cursive;
+    font-size: 14px;
     width: 100%;
     margin: 0px;
     text-align: center;
@@ -153,7 +153,7 @@ div#word_speaker {
 #show_inner,
 #choose,
 #show{
-	text-align: center;
+	text-align: left;
 }
 
 #meaning_inner,
@@ -184,7 +184,7 @@ div#word_speaker {
   padding: 8px 18px 8px 18px;
   border: solid #000000 1px;
   text-decoration: none;
-  font-family: 'Indie Flower', cursive;
+  font-family: 'Open Sans', cursive;
   font-size: 18px;
   border-radius: 15px;
 }

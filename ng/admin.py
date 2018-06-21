@@ -18,6 +18,7 @@ models_list = [
 	models.Score,
 	models.Role,
 	models.PastInteraction,
+	models.Agent,
 ]
 
 for m in models_list:
