@@ -24,5 +24,8 @@ else
 	if [ $NG_USERXP_DEV_MODE -eq 1 ]
 	then
 		python manage.py runserver 0.0.0.0:8000 --settings=$DJANGO_MODULE_SETTINGS;
+	else
+		echo 'Server started in testing mode: exiting'
+		exit 0
 	fi;
 fi;
