@@ -8,14 +8,17 @@ then
 	echo 'settings:'$DJANGO_MODULE_SETTINGS
 fi;
 
+rm ng/admin_bis.py
+touch ng/admin_bis.py
 
 service postgresql restart &&
 sleep 10 &&
+#echo $(python manage.py admin_generator ng '^exp')
+#python manage.py admin_generator ng >> ng/admin_bis.py &&
 python manage.py makemigrations &&
 python manage.py migrate auth &&
 python manage.py migrate &&
 python manage.py collectstatic --noinput &&
-python manage.py admin_generator ng > ng/admin_bis.py
 
 echo "from django.contrib.auth.models import User; User.objects.all() or User.objects.create_user('admin', 'admin@example.com', 'password').save(); exit();" | python manage.py shell &&
 
