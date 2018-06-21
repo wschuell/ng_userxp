@@ -21,5 +21,8 @@ if [ $NG_USERXP_DEV_MODE -eq 0 ]
 then
 	bash gunicorn_script.sh;
 else
-	python manage.py runserver 0.0.0.0:8000 --settings=$DJANGO_MODULE_SETTINGS
+	if [ $NG_USERXP_DEV_MODE -eq 1 ]
+	then
+		python manage.py runserver 0.0.0.0:8000 --settings=$DJANGO_MODULE_SETTINGS;
+	fi;
 fi;
