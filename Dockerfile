@@ -6,7 +6,6 @@ RUN pip install numpy matplotlib scipy django-dbbackup psycopg2 codecov coverage
 RUN pip install git+https://github.com/flowersteam/naminggamesal.git@develop
 ADD requirements-prod.txt /
 RUN pip install -r requirements-prod.txt
-#ADD . /code/
 ENV PGDATA /postgresql-data
 ADD init_db.sh /
 RUN bash init_db.sh
