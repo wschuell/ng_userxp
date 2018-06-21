@@ -14,7 +14,8 @@ sleep 10 &&
 python manage.py makemigrations &&
 python manage.py migrate auth &&
 python manage.py migrate &&
-python manage.py collectstatic --noinput && 
+python manage.py collectstatic --noinput &&
+python manage.py admin_generator ng > ng/admin_bis.py
 
 echo "from django.contrib.auth.models import User; User.objects.all() or User.objects.create_user('admin', 'admin@example.com', 'password').save(); exit();" | python manage.py shell &&
 

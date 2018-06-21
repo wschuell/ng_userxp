@@ -3,10 +3,10 @@ from __future__ import unicode_literals
 
 from django.contrib import admin
 
-from . import models 
+from . import models
 # Register your models here.
-from django_smart_autoregister import auto_configure_admin_for_model
-from django_smart_autoregister import auto_configure_admin
+#from django_smart_autoregister import auto_configure_admin_for_model
+#from django_smart_autoregister import auto_configure_admin
 
 
 models_list = [
@@ -21,8 +21,6 @@ models_list = [
 	models.Agent,
 ]
 
-for m in models_list:
-	auto_configure_admin_for_model(m)
 
 
 from django.contrib.auth.admin import UserAdmin
@@ -32,3 +30,5 @@ UserAdmin.list_display = ('username','email', 'first_name', 'last_name', 'is_act
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
+
+from .admin_bis import *

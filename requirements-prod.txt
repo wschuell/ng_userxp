@@ -1,7 +1,7 @@
-Django==1.11.6
+Django
 matplotlib
 gunicorn
-django-smart-autoregister
+django-admin-generator
 pytest
 pytest-cov
 codecov

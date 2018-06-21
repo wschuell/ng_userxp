@@ -302,14 +302,14 @@ class PastInteraction(models.Model):
     bool_succ = models.IntegerField()
     time_id = models.IntegerField()
     role = models.CharField(max_length=20)
-    experiment = models.ForeignKey(Experiment,null=True)#, on_delete=models.CASCADE, default=Experiment.objects.all()[0])
+    experiment = models.ForeignKey(Experiment,null=True, on_delete=models.CASCADE)#, default=Experiment.objects.all()[0])
     #xp_uuid = models.CharField(max_length=200,default = '')
     def __str__(self):
         return str(self.meaning) + ' ' +str(self.word) + ' ' +str(self.role) + ' ' + str(self.bool_succ)
 
 
 class Score(models.Model):
-    experiment = models.ForeignKey(Experiment,null=True)#, on_delete=models.CASCADE, default=Experiment.objects.all()[0])
+    experiment = models.ForeignKey(Experiment,null=True, on_delete=models.CASCADE)#, default=Experiment.objects.all()[0])
     score = models.IntegerField()
     user = models.ForeignKey(User, on_delete=models.PROTECT)
 
