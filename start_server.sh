@@ -19,6 +19,8 @@ done &&
 #echo $(python manage.py admin_generator ng '^exp')
 #python manage.py admin_generator ng >> ng/admin_bis.py &&
 python manage.py makemigrations &&
+python manage.py makemigrations auth &&
+python manage.py makemigrations ng &&
 python manage.py migrate auth &&
 python manage.py migrate &&
 python manage.py migrate ng &&
