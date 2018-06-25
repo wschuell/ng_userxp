@@ -21,6 +21,7 @@ done &&
 python manage.py makemigrations &&
 python manage.py migrate auth &&
 python manage.py migrate &&
+python manage.py migrate ng &&
 python manage.py collectstatic --noinput &&
 
 echo "from django.contrib.auth.models import User; User.objects.all() or User.objects.create_user('admin', 'admin@example.com', 'password').save(); exit();" | python manage.py shell &&
