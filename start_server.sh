@@ -12,7 +12,10 @@ rm ng/admin_bis.py
 touch ng/admin_bis.py
 
 service postgresql restart &&
-sleep 10 &&
+while ! pg_isready > /dev/null 2> /dev/null; do
+  echo "Waiting for database to start"
+  sleep 1
+done &&
 #echo $(python manage.py admin_generator ng '^exp')
 #python manage.py admin_generator ng >> ng/admin_bis.py &&
 python manage.py makemigrations &&
