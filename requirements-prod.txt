@@ -1,7 +1,6 @@
 Django
 matplotlib
 gunicorn
-django-admin-generator
 pytest
 pytest-cov
 codecov
