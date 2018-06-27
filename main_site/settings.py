@@ -46,7 +46,7 @@ else:
 INSTALLED_APPS = [
     'ng.apps.NgConfig',
     'django.contrib.admin',
-    'django.contrib.sites',
+    #'django.contrib.sites',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
