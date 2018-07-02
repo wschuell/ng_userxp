@@ -43,6 +43,15 @@ xp_cfg = {
     }
 }
 
+#Classe Utilisateurs du NG
+#class UserNG(models.Model):
+#	user = models.OneToOneField(User)
+#	lang=models.CharField(max_length=3, default="fr")
+	#Nombre de parties jouées -> sert à débloquer les différents modes de jeu
+#	tuto_played=models.BooleanField(default=False)
+#	nbr_played= models.IntegerField(default=0)
+
+
 class Word(models.Model):
     word = models.CharField(max_length=200)
     #experiment = models.ManyToManyField(Experiment,null=True)

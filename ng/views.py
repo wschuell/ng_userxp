@@ -46,7 +46,7 @@ def login_view(request):
 @login_required(login_url='/login')
 def home(request):
     return render(request, 'ng/home.html', {
-            
+      #Nombre de parties terminées de l'utilisateur pour débloquer les différents modes de jeu
         })
 
 
@@ -87,13 +87,15 @@ class IndexView(LoginRequiredMixin, generic.ListView):
     template_name = 'ng/index.html'
     context_object_name = 'latest_experiment_list'
     def get_queryset(self):
-        """
-        Return the last five published questions (not including those set to be
-        published in the future).
-        """
         return Experiment.objects.all()
 
 #@login_required#(login_url='/accounts/login/')
+
+
+#Vue Histoire si l'utilisateur choisit le Tutoriel
+@login_required(login_url='/ng/login/')
+def story(request) :
+	return render(request, 'ng/story.html', {'context':'story'})
 
 
 class DetailView(LoginRequiredMixin, generic.DetailView):
@@ -102,9 +104,6 @@ class DetailView(LoginRequiredMixin, generic.DetailView):
     model = Experiment
     template_name = 'ng/detail.html'
     def get_queryset(self):
-        """
-        Excludes any questions that aren't published yet.
-        """
         return Experiment.objects.filter()
 
 
@@ -292,7 +291,7 @@ def result_hearer_json(request, xp_uuid, meaning):
 def result_speaker_json(request, xp_uuid, meaning, word):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     if request.user != experiment.user:
-        raise ValueError("wrong user")    
+        raise ValueError("wrong user")
     try:
         currentgame_json = experiment.get_currentgame_json()
     except:
@@ -451,9 +450,9 @@ def score(request, xp_uuid):
     #Test if score exists
     #if not, compute and store object
     #get value
-    return render(request, 'ng/global.html', {
+    return render(request, 'ng/story.html', {
             'experiment': experiment,
             'score':score_val,
-            'context':"score",
+            'context':"end",
             'user':request.user,
             })

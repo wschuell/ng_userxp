@@ -1,0 +1,164 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+  <head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<link type="text/css" rel="stylesheet" href="{% static 'ng/ng.css' %}"/>
+
+	<script>
+		var mode = "{{context}}"; //Valeurs possibles : "end" et "story"
+	</script>
+
+	<title>Naming Game</title>
+  </head>
+
+
+
+  <body>
+
+	<div class="row">
+
+		<div class="menu">
+				<!-- Ajouter les liens pour rendre fonctionnel -->
+			<span class="glyphicon glyphicon-volume-off icon" id="sound-off"></span>
+			<span class="glyphicon glyphicon-volume-up icon" id="sound-on"></span>
+			<span class="glyphicon glyphicon-home icon" id="home"></span>
+		</div>
+	</div>
+
+	<div class="row">
+		<!--Titres-->
+		<h1 class="pagetitle story" id="story_pagetitle"> Histoire </h1>
+		<h2 class="pagetitle end" id="end_pagetitle"> Félicitations !</h2>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-1"></div>
+		<!--Partie centrale-->
+		<div class="col-lg-10">
+			<div class="row bubble ctop">
+				<!--Consignes Etape 1-->
+				<p class="c1" id="c1_1"> Vous avez été enlevé par des Extraterrestres !</p>
+				<p class="c1" id="c1_2"> Vous voilà enfermé seul dans une pièce de leur vaisseau. Dans les pièces d'à côté se trouvent <span class="important">4 autres individus</span> que vos ravisseurs ont également enlevés aux quatre coins de la galaxie.</p>
+				<!--Consignes Etape 2-->
+				<p class="c2" id="c2_1"> Pour ce faire, vous ne pourrez parler que <span class="important">deux par deux</span> grâce à une <span class="important">radio</span>, <span class="important">sans savoir lequel de vos camarades d'infortune est à l'autre bout</span>.<p>
+				<p class="c2" id="c2_2"> L'un de vous proposera un mot et l'autre devra deviner l'objet auquel il fait référence.<p>
+				<p class="c2"  id="c2_3"> Parfois vous proposerez un mot, parfois vous devinerez l'objet et parfois encore vous ne ferez pas partie de la conversation et ne saurez pas ce qui s'y est dit.<p>
+
+				<!--Bulle Fin-->
+				<p class="fin" id="text_end"> Après avoir réussi à vous comprendre, vous mettez au point un plan d'évasion spectaculaire. Vos ravisseurs ne voient rien venir avant qu'il ne soit trop tard. Vous leur volez un vaisseau qu'un de vos camarades pilote pour vous ramener tous paisiblement chez vous.<p>
+				<!--Bulle Score-->
+				<p class="score" id="text_score" style= "margin-top:45px"> Votre score est de
+          <!--  {% if context == "end" %}-->
+            {{score}}
+          <!--{% endif %}-->
+        <p>
+			</div>
+
+			<div class="row" id="picture">
+
+				<!--Image d'illustration Histoire : A changer
+				adresse : https://cdn.pixabay.com/photo/2018/02/17/18/24/a-journey-of-discovery-3160528_960_720.jpg" -->
+				<img src="{% static 'ng/img/img_illustration_temp.jpg' %}" id="illustration">
+			</div>
+
+			<div class="row" id="picture2">
+
+				<div class="col-xs-3 visible-md visible-lg"></div>
+
+				<div class="col-xs-6">
+					<!--Insérer Tableaux Fin (Tuto et Normal)-->
+					<table id="tab">
+						<tr>
+							<!--Remplacer icones meanings-->
+							<!--adresse img temp :https://cdn.pixabay.com/photo/2018/04/11/07/08/rocket-3309711_960_720.png -->
+							<th class="tuto col-xs-2"><img src="{% static 'ng/img/meaning_temp.png' %}" class="meaning"></th>
+							<th class="tuto col-xs-2"><img src="{% static 'ng/img/meaning_temp.png' %}" class="meaning"></th>
+							<th class="jeu-normal col-xs-2"><img src="{% static 'ng/img/meaning_temp.png' %}" class="meaning"></th>
+							<th class="jeu-normal col-xs-2"><img src="{% static 'ng/img/meaning_temp.png' %}" class="meaning"></th>
+							<th class="jeu-normal col-xs-2"><img src="{% static 'ng/img/meaning_temp.png' %}" class="meaning"></th>
+						</tr>
+						<tr>
+							<td class="tuto col-xs-story2">truc</td>
+							<td class="tuto col-xs-2">machin</td>
+							<td class="jeu-normal col-xs-2">bidule</td>
+							<td class="jeu-normal col-xs-2">blabla</td>
+							<td class="jeu-normal col-xs-2">blblbl</td>
+						</tr>
+						<tr>
+							<td class="tuto col-xs-2"> </td>
+							<td class="tuto col-xs-2">:O</td>
+							<td class="jeu-normal col-xs-2"> </td>
+							<td class="jeu-normal col-xs-2"> </td>
+							<td class="jeu-normal col-xs-2"> </td>
+						</tr>
+					</table>
+				</div>
+
+
+			<div class="col-xs-3 visible-md visible-lg"></div>
+
+			</div>
+
+			<div class="row bubble cbot" id="cbot">
+				<!--Consignes Etape 1-->
+				<p class="c1" id="c1_3"><span class="important">Aucun de vous ne parle la même langue</span> mais vous voulez tous vous échapper pour pouvoir rentrer chez vous.<p>
+				<!--Consignes Etape 2-->
+				<p class="c2" id="c2_4"> Mais attention, vous n'avez à vous tous qu'un <span class="important">nombre limité de conversations</span> pour réussir !<p>
+
+			</div>
+		</div>
+		<div class="col-lg-1"></div>
+	</div>
+
+	<div class="row" id="navig">
+		<!--Boutons Navigation-->
+		<button type="button" class="btn"  id="prev"><span class="glyphicon glyphicon-chevron-left"></span></button>
+		<button type="button" class="btn"  id="next"><span class="glyphicon glyphicon-chevron-right"></span></button>
+  </div>
+      	<!--Boutons Navigation-->
+	<button type="button" class="btn continue" style="margin-top : 30px; width:20%">Continuer</button>
+
+
+<!-- Modal -->
+ 	<div class="modal fade" id="myModal" role="dialog">
+   		<div class="modal-dialog">
+
+     		 <!-- Modal content-->
+      			<div class="modal-content">
+       				 <div class="modal-header">
+          				<h4 class="modal-title" style="color:black; text-align:center; margin:auto; font-size:35px;" id="modal_title">Êtes-vous sûr.e ?</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+        			</div>
+        			<div class="modal-body">
+          				<p style="font-size:20px;" id="modal_body">Si vous quittez la partie en cours, celle-ci ne sera pas sauvegardée et vos données ne pourront pas être utilisées. Voulez-vous toujours quitter ?</p>
+        			</div>
+        			<div class="modal-footer">
+					<a  href="/" type="button" class="btn btn-modal" id="btn-yes"><p>Oui, quitter la partie</p></a>
+          				<button type="button" class="btn btn-modal" id="btn-no" data-dismiss="modal"><p>Non, continuer la partie<p></button>
+        			</div>
+      			</div>
+
+   	 	</div>
+  	</div>
+
+
+    <!-- Optional JavaScript -->
+ 	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	 <script type="text/javascript" src="{% static 'ng/story.js' %}"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

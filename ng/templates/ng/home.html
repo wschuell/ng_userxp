@@ -1,56 +1,149 @@
+<!doctype html>
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title id="window_title"></title>
-    <!--<link rel="stylesheet" href="style.css">-->
+<html lang="fr">
 
-    <link rel="stylesheet" type="text/css" href="{% static 'ng/style.css' %}" />
-    <!--<link rel="stylesheet" type="text/css" href="style2.css"> -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <!-- To change font go https://fonts.google.com/ and choose whatever you like! -->
-     <!--<script src="jquery-3.2.1.min.js"></script>-->
-     <!--<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>-->
-     <script type="text/javascript">
-         var url_new_experiment = "{% url 'ng:new_experiment' %}";
-         var url_home = "{% url 'ng:home' %}";
+  <head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link type="text/css" rel="stylesheet" href="{% static 'ng/ng.css' %}"/>
+
+	<title>Naming Game</title>
+
+	<script type="text/javascript">
          var url_logout = "{% url 'ng:logout' %}";
+
      </script>
      <script src="{% static 'ng/jquery-3.2.1.min.js' %}"></script>
      <script src="{% static 'ng/js.cookie.js' %}"></script>
-     <script src="{% static 'ng/change_lang.js' %}"></script>
-     <script src="{% static 'ng/script.js' %}"></script>
+     <!--<script src="{% static 'ng/change_lang.js' %}"></script>
+     <script src="{% static 'ng/script.js' %}"></script>-->
+
   </head>
+
+
   <body>
-    <div id="maxsize">
-    <div id="pagewrap">
-        <header>
-            {% include "ng/header_home.html" %}
-        </header>
 
-        <section id="content">
-            {% include "ng/best_scores.html" %}
-        </section>
+	<div class="row" id="page">
+		<!--Colonne Avatar-->
+		<div class="col-lg-2 side-column left">
+			<div class="avatar">
+				<!--adresse img :https://cdn.pixabay.com/photo/2018/02/04/10/59/astronaut-3129587_960_720.jpg-->
+				<img src="{% static 'ng/img/avatar_player_default.jpg' %}" class="img-responsive">
+				<div class="bottomtext" id="comment_avatar"> C'est vous !</div>
+			</div>
+		</div>
 
-        <section id="middle">
-            {% include "ng/middle_home.html" %}
-        </section>
+		<!--Colonne Centrale-->
+		<div class="col-lg-8 central">
 
-        <section id="sidebar">
-            {% include "ng/sidebar_home.html" %}
-        </section>
+			<!--Icones menu-->
+			<div class="row">
+				<div class="menu">
+				<!-- Ajouter les liens pour rendre fonctionnel -->
+					<span class="icon"><img src="{% static 'ng/img/french-flag.png' %}" id="lang"></span>
+					<span class="glyphicon glyphicon-volume-off icon" id="sound-off" style="margin-right: 7px"></span>
+					<span class="glyphicon glyphicon-volume-up icon" id="sound-on" style="margin-right: 7px"></span>
+				</div>
+			</div>
 
-        <footer>
-            <h4>Footer</h4>
-            <p>Footer text</p>
-        </footer>
-    </div>
-    </div>
+			<!--Titre Page-->
+			<div class="row">
+				<h1 class="pagetitle" id="home_pagetitle"> Accueil </h1>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-2"></div>
+
+
+				<!--Boutons principaux-->
+				<div class="col-lg-8">
+					<!--Tutoriel-->
+					<button type="button" class="btn btn-default btn-large" id="button_basic"> Tutoriel </button>
+					{% csrf_token %}
+
+
+					<!--Jeu-->
+					<button type="button" class="btn btn-default btn-large " id="button_normal">
+
+						<p id="game_locked"><span class="glyphicon glyphicon-lock"></span> Terminer le tutoriel pour débloquer <span class="glyphicon glyphicon-lock"></span></p>
+						<p id="game_unlocked"> Jouer </p>
+					</button>
+					{% csrf_token %}
+
+					<!--Multijoueur-->
+					<button type="button" class="btn btn-default btn-large " id="button_multi">
+
+						<p id="multi_locked"> <span class="glyphicon glyphicon-lock"></span> Terminer le jeu 5 fois pour débloquer <span class="glyphicon glyphicon-lock"></span> </p>
+						<p id="multi_unlocked"> Multijoueur</p>
+					</button>
+					{% csrf_token %}
+				</div>
+
+				<div class="col-lg-2"></div>
+			</div>
 
 
 
+		</div>
 
+		<!--Colonne Scores-->
+		<div class="col-lg-2 side-column right">
+			<h3 id="scores_title"> Meilleurs Scores </h3>
+
+			{% for score in user.score_set.all|slice:":10"|dictsortreversed:"score" %}
+			  	<div "line_meaning">
+			  		<span class='scores'>{{ forloop.counter }} .{{ score.score }}</span> <span class="scores_right">{{ username }}</span>
+			  	</div>
+			  	{% endfor %}
+		</div>
+		</div>
+
+
+	</div>
+
+    <!-- Optional JavaScript -->
+	 <script>
+
+   //Menu
+
+   //Sound
+   $('#sound-off').click(function(){
+   	$('#sound-off').css('display','none');
+   	$('#sound-on').css('display','inline');
+   });
+   $('#sound-on').click(function(){
+   	$('#sound-on').css('display','none');
+   	$('#sound-off').css('display','inline');
+   });
+
+   //Choix du type de jeu
+		$('#button_basic').click(function(){window.location.href = "story";});
+
+		$('#button_normal').click(function(){
+			/*window.location.href = "game_normal"; */
+			$(this).prop('disable',true);
+    			$("html").addClass("wait");
+    			window.location.href='/new_experiment/normal';
+		});
+
+		$('#button_multi').click(function(){
+			/*window.location.href = "game_multi"; */
+			$(this).prop('disable',true);
+    			$("html").addClass("wait");
+    			window.location.href='/new_experiment/multiuser';
+		});
+
+	</script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
-  {% csrf_token %}
 </html>

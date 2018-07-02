@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<!--CSS-->
+	<link type="text/css" rel="stylesheet" href="{% static/ng.css %}"/>
+
+	<!--JQuery-->
+
+
+	<title>Naming Game</title>
+  </head>
+
+
+
+  <body>
+
+	<div class="row">
+		<div class="col-lg-2">
+			<!--Menu-->
+			<div class="menu" style="margin-right: auto; margin-left:auto; width:60%; max-width: 160px">
+				<!-- Ajouter les liens pour rendre fonctionnel -->
+				<span class="glyphicon glyphicon-info-sign icon" id="info"></span>
+				<span class="glyphicon glyphicon-volume-off icon" id="sound-off"></span>
+				<span class="glyphicon glyphicon-volume-up icon" id="sound-on"></span>
+				<span class="glyphicon glyphicon-home icon" id="home"></span>
+			</div>
+		</div>
+
+		<div class="col-lg-2 col-md-push-8">
+			<!--Historique-->
+			<div class="menu" id="menu-h">
+				<!--https://cdn.pixabay.com/photo/2013/07/12/13/46/clock-147257_960_720.png-->
+				<img src="../static/img/history.png" class="img-responsive" id="historique"></span>
+				<h1 style="padding:2px; margin:0px;" id="history-name">Historique</h1>
+			</div>
+		</div>
+
+		<div class="col-lg-8 col-md-pull-2">
+			<!--Titre + compteur-->
+			<div class="progress" id="compteur"><div class="progress-bar" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="50" id="bar">
+			</div></div>
+			<h1 class="pagetitle" id="conversations"> Conversation 1/50 </h1>
+		</div>
+
+	</div>
+
+
+	<div class="row">
+		<div class="col-xs-3"></div>
+		<div class="col-xs-6">
+			<!--Hearer/Speaker-->
+			<!--https://cdn.pixabay.com/photo/2017/11/23/14/03/ear-2972890_960_720.png-->
+			<div class="annonce hearer" id="anhearer"><p>On vous parle ! </p><img src="{% static ng/img/logo_hearer_temp.png %}" class="logo" id="oreille"></div>
+			<!--https://cdn.pixabay.com/photo/2012/04/18/22/40/microphone-38120_960_720.png-->
+			<div class="annonce speaker" id="anspeaker"><p>C'est à vous de parler ! </p><img src="{% static ngimg/logo_speaker_temp.png %}" class="img-responsive logo" id="bouche"></div>
+			<!--https://cdn.pixabay.com/photo/2013/07/12/19/33/panda-154984_960_720.png-->
+			<div class="annonce abs" id="anabs"><p>Vous ne faites pas partie de la conversation ! </p><img src="{% static ng/img/logo_abs_temp.png %}" class="img-responsive logo"></div>
+		</div>
+
+		<div class="col-xs-3"></div>
+	</div>
+
+	<div class="row" id="avatars-char">
+		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-3 visible-sm visible-md visible-lg"></div>
+		<!--Avatars-->
+		<div class="col-xs-6 col-sm-6 col-md-1">
+			<div id="you">
+				<img src="{% static ng/img/avatar_player_default.jpg %}" class="small-avatar">
+				<div class="txt-avatars" id="text_youravatar"> <p> C'est vous ! </p></div>
+			</div>
+		</div>
+		<div class="col-xs-6 col-sm-6 col-md-1 col-sm-push-4">
+			<div id="others">
+				<!--https://cdn.pixabay.com/photo/2015/03/12/11/30/vintage-670006_960_720.png-->
+				<img src="{% static ng/img/radio.png %}" class="small-avatar">
+				<div class="txt-avatars" id="text_others"><p> ?/3 </p></div>
+			</div>
+		</div>
+
+		<div class="col-xs-6 col-sm-6 col-md-1 col-md-pull-1">
+			<img src="{% static ng/img/logo_speaker_temp.png %}" class="logo" style="margin : 40px auto 20px" id="role_player">
+		</div>
+
+		<div class="col-xs-1 col-sm-1 col-md-1 col-lg-2 visible-sm visible-md visible-lg col-md-pull-1"></div>
+
+		<div class="col-xs-6 col-sm-6 col-md-1 col-md-pull-1 ">
+			<img src="{% static ng/img/logo_hearer_temp.png %}" class="logo" style="margin : 40px auto 20px" id="role_others">
+		</div>
+
+
+
+
+		<div class="col-xs-3 visible-sm  visible-md visible-lg"></div>
+	</div>
+
+	<div class="row" id="topic-choice">
+
+		<!--Bubble Feedback-->
+		<div class="col-xs-6 col-sm-6 col-lg-3">
+			<div class="bubble bubble-f" id="you-word" style="float:left"><p class="word" id="word1">...</p></div>
+			<div class="bubble bubble-f thought" id="you-meaning" style="float:left"></div>
+		</div>
+
+		<!--Bubble Feedback-->
+		<div class="col-xs-6 col-sm-6 col-lg-3 col-md-push-6 ">
+			<div class="bubble bubble-f" id="other-word" style="float:right"><p class="word" id="word2"></p></div>
+			<div class="bubble bubble-f thought" id="other-meaning" style="float:right"></div>
+		</div>
+
+		<div class="col-lg-6 col-md-pull-3">
+			<!--Bubble Menu-->
+			<div id="choice">
+				<!--Consignes-->
+				<div class="hearer expl">
+					<h1 class="explanation" id="hearer-expl">De quoi vous parle-t-on ?</h1>
+				</div>
+
+				<div class="speaker expl" id="speaker-expl">
+					<h1 class="explanation">De quoi voulez-vous parler ?</h1>
+				</div>
+
+				<!--Meanings-->
+				<div class="meanings">
+					<label class="mradio">
+						<input type="radio" name="m" id="m0" value="m0"/>
+						<!--<img src="../static/img/meaning_temp.png" class="img-responsive m">-->
+					</label>
+
+					<label class="mradio">
+						<input type="radio" name="m" id="m1" value="m1"/>
+						<!--<img src="../static/img/meaning_temp.png" class="img-responsive m">-->
+					</label>
+
+					<label class="mradio">
+						<input type="radio" name="m" id="m2" value="m2"/>
+					<!--<img src="../static/img/meaning_temp.png" class="img-responsive m">-->
+					</label>
+
+					<label class="mradio">
+						<input type="radio" name="m" id="m3" value="m3"/>
+					<!--<img src="../static/img/meaning_temp.png" class="img-responsive m">-->
+					</label>
+
+					<label class="mradio">
+						<input type="radio" name="m" id="m4" value="m4"/>
+					<!--<img src="../static/img/meaning_temp.png" class="img-responsive m">-->
+					</label>
+
+					<label class="mradio" id="dont_know">
+						<input type="radio" name="m" id="m5" value="m5"/>
+						<!--<img src="../static/img/question-mark.png" class="img-responsive m">-->
+					</label>
+
+					<!--Séparateur-->
+					<div class="separator_h"></div>
+				</div>
+
+
+
+				<!--Words-->
+				<div class="speaker-words">
+					<h1 class="explanation" id="choice_words"> Quel mot voulez-vous utiliser ?</h1>
+
+					<label class="wradio">
+						<input type="radio" name="w" id="w0" value="w0"/>
+						<div class="w">rowuwi</div>
+					</label>
+
+					<label class="wradio">
+						<input type="radio" name="w" id="w1" value="w1"/>
+						<div class="w">W1</div>
+					</label>
+
+					<label class="wradio">
+						<input type="radio" name="w" id="w2" value="w2"/>
+						<div class="w">W2</div>
+					</label>
+
+					<label class="wradio">
+						<input type="radio" name="w" id="w3" value="w3"/>
+						<div class="w">W3</div>
+					</label>
+
+					<label class="wradio">
+						<input type="radio" name="w" id="w4" value="w4"/>
+						<div class="w">W4</div>
+					</label>
+
+					<label class="wradio">
+						<input type="radio" name="w" id="w5" value="w5"/>
+						<div class="w">W5</div>
+					</label>
+
+					<!--Séparateur-->
+					<div class="separator"></div>
+
+				</div>
+
+
+				<!--Smiley feedback
+https://cdn.pixabay.com/photo/2016/09/01/08/24/smiley-1635451_960_720.png
+https://cdn.pixabay.com/photo/2013/07/12/13/51/thinking-147447_960_720.png
+-->
+				<div class="feedback">
+					<img src="{% static ng/img/feedback_success_temp.png %}" class="img-responsive smiley" id="success">
+					<img src="{% static ng/img/feedback_failure_temp.png %}" class="img-responsive smiley" id="failure">
+					<img src="{% static ng/img/feedback_learn_temp.png %}" class="img-responsive smiley" id="learn">
+				</div>
+
+				<!--Bouton Continuer-->
+				<button type="button" class="btn disabled" id="continue" style="margin-top: 20px">Continuer</button>
+				<button type="button" class="btn" id="next" style="margin-top: 20px; font-size:25px">Continuer</button>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="row">
+
+	</div>
+
+
+	<!--Historique-->
+	<div class="hide" id="hcontent">
+		<div id="popover-heading">
+			<div class='row' id='historyColNames'>
+				<div class='col-xs-4' >
+					<p style="font-size : 16px" id="history_objects">Objets</p>
+				</div>
+
+				<div class='col-xs-4' >
+					<p style="font-size : 16px" id="history_words">Mots</p>
+				</div>
+
+				<div class='col-xs-4' >
+					<p style="font-size : 16px" id="history_success">Succès</p>
+				</div>
+			</div>
+		</div>
+
+		<div id="popover-body">
+
+
+		</div>
+	</div>
+
+
+	<!-- Modal -->
+  	<div class="modal fade" id="myModal" role="dialog">
+   		<div class="modal-dialog">
+
+     		 <!-- Modal content-->
+      			<div class="modal-content">
+       				 <div class="modal-header">
+          				<h4 class="modal-title" style="color:black; text-align:center; margin:auto; font-size:35px;" id="modal_title">Êtes-vous sûr.e ?</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+        			</div>
+        			<div class="modal-body">
+          				<p style="font-size:20px;" id="modal_body">Si vous quittez la partie en cours, celle-ci ne sera pas sauvegardée et vos données ne pourront pas être utilisées. Voulez-vous toujours quitter ?</p>
+        			</div>
+        			<div class="modal-footer">
+					<a  href="/" type="button" class="btn btn-modal" id="btn-yes"><p>Oui, quitter la partie</p></a>
+          				<button type="button" class="btn btn-modal" id="btn-no" data-dismiss="modal"><p>Non, continuer la partie<p></button>
+        			</div>
+      			</div>
+
+   	 	</div>
+  	</div>
+
+    <!-- Optional JavaScript -->
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	 <script type="text/javascript" src="{% static ng/ng.js %}"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
