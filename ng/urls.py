@@ -45,14 +45,8 @@ urlpatterns = [
 
 	######
 	url(r'^story$', views.story, name='story'),
-    #url(r'^game_tutorial/(?P<xp_uuid>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/new', views.new, name='game_tuto'),
-	#url(r'^game_normal/(?P<xp_uuid>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/new', views.new, name='game_normal'),
-	#url(r'^game_multi$', views.game, name='game_multi'),
-    #url(r'^game_tutorial/(?P<xp_uuid>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/continue', views.game, name='game_tuto'),
-	#url(r'^game_normal/(?P<xp_uuid>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/continue', views.game, name='game_normal'),
-	#url(r'^game_tutorial/results', views.game, name='results tutorial'),
 	url(r'^(?P<xp_uuid>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/results', views.score, name='results'),
-	#url(r'^game_multi/results', views.game, name='results multi'),
+
 
 
 ]

@@ -23,7 +23,7 @@ models_list = [
 
 
 
-from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
 
 #UserAdmin.list_display = ('username','email', 'first_name', 'last_name', 'is_active', 'date_joined', 'last_login', 'is_staff')
@@ -32,3 +32,50 @@ from django.contrib.auth.models import User
 #admin.site.register(User, UserAdmin)
 
 from .admin_bis import *
+
+class ScoreAdmin(admin.ModelAdmin):
+	readonly_fields=(
+	'user',
+	'experiment',
+	'score'
+	)
+	list_display=('user', 'score')
+
+class UserNGInline(admin.StackedInline):
+	model = models.UserNG
+	can_delete = False
+
+class UserAdmin(BaseUserAdmin):
+	inlines = (UserNGInline, )
+
+class ExperimentAdmin(admin.ModelAdmin):
+
+	readonly_fields=(
+	'xp_uuid',
+	'user',
+	'user_agent_uuid',
+	'xp_config',
+	'is_complete',
+	'max_interaction',
+	'interaction_counter',
+	'words',
+	)
+	exclude = (
+	'exit_value',
+	'meanings',
+	'last_ms',
+	'last mh',
+	'last_w',
+	'last_role',
+	'last_bool_succ',
+	'last_nb_skipped',
+	'last_mh',
+	'size',
+	)
+	list_display = ('user', 'xp_uuid', 'is_complete', 'max_interaction',)
+
+
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
+admin.site.register(models.Experiment, ExperimentAdmin)
+admin.site.register(models.Score, ScoreAdmin)

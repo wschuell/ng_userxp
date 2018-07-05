@@ -44,12 +44,23 @@ xp_cfg = {
 }
 
 #Classe Utilisateurs du NG
-#class UserNG(models.Model):
-#	user = models.OneToOneField(User)
-#	lang=models.CharField(max_length=3, default="fr")
-	#Nombre de parties jouées -> sert à débloquer les différents modes de jeu
-#	tuto_played=models.BooleanField(default=False)
-#	nbr_played= models.IntegerField(default=0)
+class UserNG(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key = True)
+    lang = models.CharField(max_length=3, default="fr")
+    #Code identifiant certaines catégories d'Utilisateurs
+    code = models.CharField(max_length=100, null=True, blank= True, default='')
+    #Nombre de parties jouées -> sert à débloquer les différents modes de jeu
+    tuto_played=models.BooleanField(default=False)
+    nbr_played= models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.user.username
+
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created :
+            UserNG.objects.create(user=instance)
+            models.signals.post_save.connect(create_user_profile, sender = User)
+
 
 
 class Word(models.Model):
@@ -264,6 +275,13 @@ class Experiment(models.Model):
         for agent in player_agents:
             agent.add_to_xp(None,rm_from_xpobj=False)
 
+    #Had the experiment been completed ? (For the admin interface)
+    def is_complete(self):
+    	completed = (self.max_interaction <= self.interaction_counter)
+    	return completed
+    is_complete.boolean = True
+
+
 class Agent(models.Model):
     xp = models.ForeignKey(Experiment, on_delete=models.CASCADE, blank=True, null=True)
     ngagent = models.BinaryField()
@@ -321,6 +339,7 @@ class Score(models.Model):
     experiment = models.ForeignKey(Experiment,null=True, on_delete=models.CASCADE)#, default=Experiment.objects.all()[0])
     score = models.IntegerField()
     user = models.ForeignKey(User, on_delete=models.PROTECT)
+
 
 class CookieId(models.Model):
     value = models.CharField(max_length=50)

@@ -1,9 +1,9 @@
 $(document).ready(function() {
 
 var tuto = false;
-var game = true;
+/*var game = true;
 var firstGame = false; //Interaction serveur : Demander si Tutoriel
-var i = 1;
+var i = 1;*/
 
 
 
@@ -11,7 +11,7 @@ var src_logo_speaker = "../static/img/logo_speaker_temp.png" ;
 var src_logo_hearer = "../static/img/logo_hearer_temp.png";
 
 //Remplacer par les bons meanings
-var m0 = "<img src='../static/img/meaning_temp.png'class='img-responsive m'>";
+/*var m0 = "<img src='../static/img/meaning_temp.png'class='img-responsive m'>";
 var m1 = "<img src='../static/img/avatar_player_default.jpg'class='img-responsive m'>";
 var m2 = "<img src='../static/img/radio.png'class='img-responsive m'>";
 var m3 = "<img src='../static/img/history.png'class='img-responsive m'>";
@@ -31,7 +31,7 @@ $('#m1').after(m1);
 $('#m2').after(m2);
 $('#m3').after(m3);
 $('#m4').after(m4);
-$('#m5').after(m5);
+$('#m5').after(m5);*/
 
 
 
@@ -62,12 +62,12 @@ $('#home').click(function(){
 $('#menu-h').tooltip({
 	title : "Cliquez ici pour voir l'historique",
 	placement : "bottom",
-	trigger: "manual",	
+	trigger: "manual",
 });
 
 //Bouton info
 
-if(!firstGame){
+if(game_mode=="basic"){
 $('#info').tooltip({
 	title : "Cliquez ici pour montrer les bulles d'aide",
 	placement : "bottom",
@@ -138,7 +138,7 @@ $('#other-meaning').tooltip({
 	$('#menu-h').click(function(){
 		$('#menu-h').tooltip('hide')
 	});
-	
+
 	$('#info').click(function(){
 		$('#info').tooltip('hide')
 	});
@@ -162,7 +162,7 @@ $('#other-meaning').tooltip({
 	$('#other-word').click(function(){
 		$('#other-word').tooltip('hide')
 	});
-	
+
 	$('#m5').click(function(){
 		$('#m5').tooltip('hide')
 	});
@@ -184,11 +184,11 @@ function hideTooltips(){
 
 //Game loop function
 
-function run(){
+/*function run(){
 	// Interaction serveur : Demander rôle + mot choisi et s'il a déjà été vu si hearer
 	var role = "hearer"; //Possible values : "speaker", "hearer" and "abs"
 	var otherWord = "W2"; //Mot hearer temporaire
-	var newWord = true;
+	var newWord = true; */
 
 	//Uncheck radio buttons when script starts
 	$('.mradio').find('label').removeClass('active').end().find('[type="radio"]').prop('checked', false);
@@ -196,12 +196,12 @@ function run(){
 	$('.wradio').find('label').removeClass('active').end().find('[type="radio"]').prop('checked', false);
 
 	//Update progress bar and title
-	if(firstGame){
-		$('#conversations').text("Conversation "+i+ "/10");
-		var iUpdate = 10;
+	if(game_mode=="basic"){
+	//	$('#conversations').text("Conversation "+i+ "/10");
+		//var iUpdate = 10;
 		$('#info').css('color','gray');
-		
-	}else{
+
+	} /*else{
 		$('#conversations').text("Conversation "+i+ "/50");
 		var iUpdate = 2;
 	};
@@ -211,13 +211,13 @@ function run(){
 
 	//Change "continue" button
 	$('#next').css('display','none');
-	$('#continue').css('display','block').addClass('disabled').prop('disabled',true);
-	
+	$('#continue').css('display','block').addClass('disabled').prop('disabled',true);*/
+
 
 	//Setup depending on role
-	if(role=='speaker') {
-		
-		if(tuto || firstGame){$('#anspeaker').tooltip('show');};
+/*	if(role=='speaker') {
+
+		if(tuto || game_mode=="basic"){$('#anspeaker').tooltip('show');};
 		//Annonce rôle
 		$('#anspeaker').css('visibility','visible').css('display','block');
 		$('#anhearer').css('visibility','hidden').css('display','none');
@@ -237,11 +237,11 @@ function run(){
 		$('#you-word').css('visibility','visible').css('display','block');
 		$('#you-meaning').css('visibility','hidden').css('display','block');
 		$('#other-word').css('visibility','hidden').css('display','block');
-		$('#other-meaning').css('visibility','hidden').css('display','block');	
+		$('#other-meaning').css('visibility','hidden').css('display','block');
 	};
 
 	if(role=='hearer') {
-		
+
 		//Annonce rôle
 		$('#anhearer').css('visibility','visible').css('display','block');
 		$('#anspeaker').css('visibility','hidden').css('display','none');
@@ -257,14 +257,14 @@ function run(){
 		$('.meanings').css('visibility','visible').css('display','block');
 
 		//Bubbles
-		
+
 		$('#you-word').css('visibility','hidden').css('display','block');
 		$('#you-meaning').css('visibility','hidden').css('display','block');
-		$('#other-meaning').css('visibility','hidden').css('display','block');		
+		$('#other-meaning').css('visibility','hidden').css('display','block');
 		$('#other-word').css('visibility','visible').css('display','block');
 		$('#word2').text(otherWord);
-		
-		if(newWord){
+
+		/*if(newWord){
 			$('#dont_know').css('display', 'inline-block');
 			//"?"
 			$('#m5').tooltip({
@@ -272,22 +272,22 @@ function run(){
 				placement : "right",
 			trigger: "manual",
 			});
-		}
-		
-		if(tuto || firstGame){
+		}*/
+
+		if(tuto || game_mode=="basic"){
 			$('#anhearer').tooltip('show');
 			$('#other-word').tooltip('show');
-			if(newWord){
-				
+		/*	if(newWord){
+
 				$('#m5').tooltip('show');
-			}
-			
+			} */
+
 		};
 	};
 
-	if(role=='abs') {
+/*	if(context=='skipped') {
 
-		if(tuto || firstGame){$('#anabs').tooltip('show');};
+		if(tuto || game_mode=="basic"){$('#anabs').tooltip('show');};
 		//Annonce rôle
 		$('#anabs').css('visibility','visible').css('display','block');
 		$('#anhearer').css('visibility','hidden').css('display','none');
@@ -306,14 +306,14 @@ function run(){
 		$('#you-word').css('visibility','hidden').css('display','block');
 		$('#you-meaning').css('visibility','hidden').css('display','block');
 		$('#other-word').css('visibility','hidden').css('display','block');
-		$('#other-meaning').css('visibility','hidden').css('display','block');	
+		$('#other-meaning').css('visibility','hidden').css('display','block');
 
 		//Btn continuer
 		$('#continue').removeClass('disabled').prop('disabled',false);
 	};
 
 
-	
+
 
 
 	//Display Game History
@@ -328,11 +328,11 @@ function run(){
       		},
 	});
 
-	
-	
+
+
 
 	//Update Bubbles Choice Meaning / Words Speaker and hearer
-	$('.m').unbind().click(function(){		
+	$('.m').unbind().click(function(){
 		var mSelected = $(this).clone().removeClass('m').addClass('meaning');
 		$('#you-meaning').css('visibility', 'visible').css('display','block');
 		$('#you-meaning').html(mSelected);
@@ -345,34 +345,35 @@ function run(){
 			$('#m5').tooltip('hide');
 		};
 	});
-	
+
 	$('.w').unbind().click(function(){
 		var wSelected = $(this).text();
 		$('#word1').text(wSelected);
-		$('#continue').removeClass('disabled').prop('disabled',false);
+		//$('#continue').removeClass('disabled').prop('disabled',false);
 		$('#anspeaker').tooltip('hide');
 	});
 
 	//Select choice
-	$('#continue').unbind().click(function(){
+
+//	$('#continue').unbind().click(function(){
 
 				//Interaction serveur : Envoyer choix joueur + recevoir feedback (ok ou apprentissage +meaning)
-		
-		var okMeaning = m4; //Temporaire
-		var success = true; //Temporaire
-		var learn = false; //Temporaire
 
-		if (role=="speaker" || role=="hearer") {
+	//	var okMeaning = m4; //Temporaire
+		//var success = true; //Temporaire
+		//var learn = false; //Temporaire
+
+	/*	if (role=="speaker" || role=="hearer") {
 			$('.meanings').css('visibility', 'hidden').css('display', 'none');
 			$('#speaker-expl').css('display', 'none');
 			$('.speaker-words').css('visibility', 'hidden').css('display', 'none');
-			$('.feedback').css('display', 'block').css('visibility', 'visible');	
+			$('.feedback').css('display', 'block').css('visibility', 'visible');
 			$('#other-meaning').css('visibility', 'visible').css('display', 'block');
 			$('#other-meaning').html(okMeaning);
 			$('#other-meaning img').css("border", "none");
 			$('.expl').css('visibility','hidden').css('display','none');
-		
-		
+
+
 
 			if(success) {
 				$('#success').css('display', 'block').css('visibility', 'visible');
@@ -386,7 +387,7 @@ function run(){
 						trigger: "manual",
 					});
 					if(firstGame || tuto){$('#success').tooltip('show');}
-			
+
 				}else {//Feedback Success Hearer
 					$('#success').tooltip({
 						title : "Bravo, vous avez compris votre interlocuteur ! Vous vous en souviendrez pour la prochaine fois !",
@@ -399,7 +400,7 @@ function run(){
 					$('#success').tooltip('hide')
 				});
 
-				
+
 
 			} else if (learn) {
 				$('#failure').css('display', 'none').css('visibility', 'hidden');
@@ -426,22 +427,22 @@ function run(){
 						$('#other-meaning').tooltip('hide')
 					});
 				}
-			
-			
+
+
 
 			} else{
 				$('#failure').css('display', 'block').css('visibility', 'visible');
 				$('#success').css('display', 'none').css('visibility', 'hidden');
 				$('#learn').css('display', 'none').css('visibility', 'hidden');
-				
+
 				if(role=="speaker"){//Feedback Failure Speaker
 					$('#failure').tooltip({
 						title : "Dommage, votre interlocuteur pensait que vous parliez d'autre chose. Il s'en souviendra pour la prochaine fois !",
 						placement : "right",
 						trigger: "manual",
 					});
-					
-			
+
+
 				}else {//Feedback Failure Hearer
 					$('#failure').tooltip({
 						title : "Dommage, votre interlocuteur voulait parler d'autre chose. Vous vous en souviendrez pour la prochaine fois !",
@@ -453,10 +454,10 @@ function run(){
 				$('#failure').click(function(){
 					$('#failure').tooltip('hide')
 				});
-				
-				
-			
-			
+
+
+
+
 			};
 
 			$('#next').css('display','block').removeClass('disabled').prop('disabled',false);
@@ -476,15 +477,15 @@ function run(){
 
 				$(col).addClass("img-histo").removeClass("meaning");
 
-			};	
-	
-		}; 
+			};
+
+		};
 	});
 }
 
 //Info Button
 
-			
+
 	function showTooltips(){
 		$('#anabs').tooltip('show');
 		$('#m5').tooltip('show');
@@ -509,16 +510,16 @@ function run(){
 				$('#info').css('color', '#AF59D4');
 				showTooltips();
 			}
-		}	
-	});
+		}
+	});*/
 
-run();
+//run();
 
 
 
-$('#next').click(function(){
+/*$('#next').click(function(){
 		i=i+1;
-		
+
 		if(firstGame && i>10) {game=false;
 			$('#next').click(function(){window.location.href = "story.html";});
 		} else if(i>50){
@@ -527,12 +528,12 @@ $('#next').click(function(){
 		}else {
 			$('.feedback').css('display', 'none').css('visibility', 'hidden');
 			$('.speaker-words').css('display', 'block');
-			hideTooltips();	
+			hideTooltips();
 			run();
-			
+
 		};
-			
-	});
+
+	});*/
 
 
 

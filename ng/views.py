@@ -14,7 +14,7 @@ from django.urls import reverse
 
 from django.contrib.auth.models import User
 
-from .models import Experiment,XpConfig,PastInteraction,Score
+from .models import UserNG,Experiment,XpConfig,PastInteraction,Score
 # ...
 import json
 import uuid
@@ -27,13 +27,18 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import authenticate, login
 from .forms import NameForm
 
-def create_user(request,username='',name='',cookie_id=''):
+def create_user(request,username='',name='',cookie_id='', lang='fr', code=''):
     user = User.objects.create_user(username=str(username),first_name=str(name),email=str(cookie_id),password=str(username))
     user.save()
+    #Extended model of User
+    #userNG = UserNG(user = user, lang=str(lang), code=str(code))
+    #userNG.save()
 
 def login_user(request,username=''):
     user = authenticate(request, username=username, password=username)
     if user is not None:
+        #print("in login")
+        #request.session["user"] = user
         login(request, user)
 
 def login_view(request):
@@ -45,9 +50,17 @@ def login_view(request):
 @csrf_protect
 @login_required(login_url='/login')
 def home(request):
+    user = request.user
+    u = UserNG.objects.get(user=user)
+    game_unlocked = u.tuto_played
+    if (u.nbr_played < 5):
+        multi_unlocked = False
+    else :
+        multi_unlocked = True
     return render(request, 'ng/home.html', {
-      #Nombre de parties terminées de l'utilisateur pour débloquer les différents modes de jeu
-        })
+    'game_unlocked' : game_unlocked,
+    'multi_unlocked' : multi_unlocked,
+    })
 
 
 def create_and_login(request,username=None,name='',cookie_id=None):
@@ -56,6 +69,8 @@ def create_and_login(request,username=None,name='',cookie_id=None):
     if not User.objects.filter(username=username).exists():
         create_user(request,username,name=name,cookie_id=cookie_id)
     login_user(request,username)
+    #print("in login")
+    #request.session["user"] = user
     return render(request,'ng/index.html',{})
 
 
@@ -338,9 +353,15 @@ def choose_experiment(request,xp_cfg_name='normal'):
 @csrf_protect
 @login_required(login_url='/ng/login/')
 def new_experiment(request,xp_cfg_name='normal'):
-    experiment = Experiment.get_new_xp(user=request.user,xp_cfg_name=xp_cfg_name)
-    experiment.save()
-    return render(request, 'ng/global.html', {
+    #Test if the user can access this type of game and send them to the home page if not
+    user = request.user
+    u = UserNG.objects.get(user=user)
+    if ((xp_cfg_name == "normal" and not u.tuto_played) or (xp_cfg_name == "multiuser" and u.nbr_played < 5)):
+        return HttpResponseRedirect('/')
+    else :
+        experiment = Experiment.get_new_xp(user=request.user,xp_cfg_name=xp_cfg_name)
+        experiment.save()
+        return render(request, 'ng/global.html', {
             'experiment': experiment,
             'textid': "new_xp",
             'context':"new_xp"

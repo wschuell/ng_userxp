@@ -70,19 +70,26 @@
 
 
 					<!--Jeu-->
-					<button type="button" class="btn btn-default btn-large " id="button_normal">
 
-						<p id="game_locked"><span class="glyphicon glyphicon-lock"></span> Terminer le tutoriel pour débloquer <span class="glyphicon glyphicon-lock"></span></p>
-						<p id="game_unlocked"> Jouer </p>
-					</button>
+            {% if game_unlocked %}
+          <button type="button" class="btn btn-default btn-large " id="button_normal"> Jouer </button>
+            {% else %}
+            <button type="button" class="btn btn-default btn-large disabled"  disabled>
+            <p id="game_locked"><span class="glyphicon glyphicon-lock"></span> Terminer le tutoriel pour débloquer <span class="glyphicon glyphicon-lock"></span></p>
+            </button>
+            {% endif %}
+
 					{% csrf_token %}
 
 					<!--Multijoueur-->
-					<button type="button" class="btn btn-default btn-large " id="button_multi">
+            {% if multi_unlocked %}
+            <button type="button" class="btn btn-default btn-large " id="button_multi"> Multijoueur </button>
+            {% else %}
+            <button type="button" class="btn btn-default btn-large disabled">
+            <p id="multi_locked"> <span class="glyphicon glyphicon-lock"></span> Terminer le jeu 5 fois pour débloquer <span class="glyphicon glyphicon-lock"></span> </p>
+            </button>
+            {% endif %}
 
-						<p id="multi_locked"> <span class="glyphicon glyphicon-lock"></span> Terminer le jeu 5 fois pour débloquer <span class="glyphicon glyphicon-lock"></span> </p>
-						<p id="multi_unlocked"> Multijoueur</p>
-					</button>
 					{% csrf_token %}
 				</div>
 
@@ -127,15 +134,13 @@
 		$('#button_basic').click(function(){window.location.href = "story";});
 
 		$('#button_normal').click(function(){
-			/*window.location.href = "game_normal"; */
-			$(this).prop('disable',true);
+          $(this).prop('disabled', true);
     			$("html").addClass("wait");
     			window.location.href='/new_experiment/normal';
 		});
 
 		$('#button_multi').click(function(){
-			/*window.location.href = "game_multi"; */
-			$(this).prop('disable',true);
+          $(this).prop('disabled', true);
     			$("html").addClass("wait");
     			window.location.href='/new_experiment/multiuser';
 		});
