@@ -17,10 +17,10 @@
 	<link type="text/css" rel="stylesheet" href="{% static 'ng/ng.css' %}"/>
 
 	<!--JQuery-->
-
+  <script src="{% static 'ng/jquery-3.2.1.min.js' %}"></script>
+  <script src="{% static 'ng/js.cookie.js' %}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script type="text/javascript">
-      var url_logout = "{% url 'ng:logout' %}";
-      var url_home = "{% url 'ng:home' %}";
       {% if experiment %}
       var url_continue = "{% url 'ng:continue' experiment.xp_uuid %}";
       var url_results_inner_base = "{% url 'ng:results_inner_base' experiment.xp_uuid %}";
@@ -28,22 +28,10 @@
       var url_results_speaker_base = "{% url 'ng:results_speaker_base' experiment.xp_uuid %}";
       {% endif %}
   </script>
-  <script src="{% static 'ng/jquery-3.2.1.min.js' %}"></script>
-  <script src="{% static 'ng/js.cookie.js' %}"></script>
-  <script src="{% static 'ng/change_lang.js' %}"></script>
-  <script src="{% static 'ng/script.js' %}"></script>
+  <!--<script type="text/javascript" src="{% static 'ng/ng.js' %}">
+  <script src="{% static 'ng/change_lang.js' %}"></script>-->
+  <script src="{% static 'ng/script.js' %}" type="text/javascript"></script>
 
-  <!--<script type="text/javascript">
-    var context = {{context}};
-    var game_mode = {{game_mode}};
-    if (context== "question"){
-      var role = {{role}};
-      if (role=="hearer"){
-        var words= {{words}};}
-    } else if (context=='skipped') {
-        var nb_skipped={{nb_skipped}}
-    }
-  </script>-->
 
 	<title>Naming Game</title>
   </head>
@@ -75,9 +63,9 @@
 
 		<div class="col-lg-8 col-md-pull-2">
 			<!--Titre + compteur-->
-			<div class="progress" id="compteur"><div class="progress-bar" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="50" id="bar">
+			<div class="progress" id="compteur"><div class="progress-bar" role="progressbar" aria-valuenow="{{ experiment.interaction_counter |add:1 }}" aria-valuemin="0" aria-valuemax="{{ experiment.max_interaction }}" id="bar">
 			</div></div>
-			<h1 class="pagetitle" id="conversations"> Conversation {{ experiment.interaction_counter }} / {{ experiment.max_interaction }}  </h1>
+			<h1 class="pagetitle" id="conversations"> Conversation {{ experiment.interaction_counter |add:1 }} / {{ experiment.max_interaction }}  </h1>
 		</div>
 
 	</div>
@@ -89,16 +77,15 @@
 			<!--Hearer/Speaker-->
       {% if role == "hearer" and context == "question" %}
 			<!--https://cdn.pixabay.com/photo/2017/11/23/14/03/ear-2972890_960_720.png-->
-			<div class="annonce hearer" id="anhearer"><p>On vous parle ! </p><img src="{% static 'ng/img/logo_hearer_temp.png' %}" class="logo" id="oreille"></div>
+			<div class="annonce hearer" id="anhearer" style = "display : block; visibility : visible"><p>On vous parle ! </p><img src="{% static 'ng/img/logo_hearer_temp.png' %}" class="logo" id="oreille"></div>
       {% elif role == "speaker" and context == "question" %}
       <!--https://cdn.pixabay.com/photo/2012/04/18/22/40/microphone-38120_960_720.png-->
-			<div class="annonce speaker" id="anspeaker"><p>C'est à vous de parler ! </p><img src="{% static 'ng/img/logo_speaker_temp.png' %}" class="img-responsive logo" id="bouche"></div>
+			<div class="annonce speaker" id="anspeaker" style = "display : block; visibility : visible"><p>C'est à vous de parler ! </p><img src="{% static 'ng/img/logo_speaker_temp.png' %}" class="img-responsive logo" id="bouche"></div>
       {% elif context == "skipped" %}
     	<!--https://cdn.pixabay.com/photo/2013/07/12/19/33/panda-154984_960_720.png-->
-			<div class="annonce abs" id="anabs"><p>Vous ne faites pas partie de la conversation ! </p><img src="{% static 'ng/img/logo_abs_temp.png' %}" class="img-responsive logo"></div>
-		</div>
+			<div class="annonce abs" id="anabs" style = "display : block; visibility : visible"><p>Vous ne faites pas partie de la conversation ! </p><img src="{% static 'ng/img/logo_abs_temp.png' %}" class="img-responsive logo"></div>
     {% endif %}
-
+    </div>
 		<div class="col-xs-3"></div>
 	</div>
 
@@ -137,9 +124,6 @@
       {% endif %}
 		</div>
 
-
-
-
 		<div class="col-xs-3 visible-sm  visible-md visible-lg"></div>
 	</div>
 
@@ -147,39 +131,40 @@
 
 		<!--Bubble Feedback-->
 		<div class="col-xs-6 col-sm-6 col-lg-3">
-			<div class="bubble bubble-f" id="you-word" style="float:left"><p class="word" id="word1">
+			<div class="bubble bubble-f" id="you-word" {% if context != "question" or role == "hearer" %} style= "float:left; visibility : hidden;" {% else %} style= "float:left" {% endif %} ><p class="word" id="word1">
         {% if context == "question" and role == "speaker" %}
                 ...
         {% endif %}
       </p></div>
-			<div class="bubble bubble-f thought" id="you-meaning" style="float:left"></div>
+			<div class="bubble bubble-f thought" id="you-meaning"  {% if context != "question" %} style= "float:left; visibility : hidden;" {% else %} style= "float:left" {% endif %}></div>
 		</div>
 
 		<!--Bubble Feedback-->
 		<div class="col-xs-6 col-sm-6 col-lg-3 col-md-push-6 ">
-			<div class="bubble bubble-f" id="other-word" style="float:right"><p class="word" id="word2">
+			<div class="bubble bubble-f" id="other-word"  {% if context != "question" or role == "speaker" %} style= "float:left; visibility : hidden;" {% else %} style= "float:left" {% endif %}><p class="word" id="word2">
         {% if context == "question" and role == "hearer" %}
           {{word}}
         {% endif %}
       </p></div>
-			<div class="bubble bubble-f thought" id="other-meaning" style="float:right"></div>
+			<div class="bubble bubble-f thought" id="other-meaning"  {% if context != "result" %} style= "float:left; visibility : hidden;" {% else %} style= "float:left" {% endif %}></div>
 		</div>
 
 		<div class="col-lg-6 col-md-pull-3">
 			<!--Bubble Menu-->
 			<div id="choice">
 				<!--Consignes-->
-        {% if context == "question" %}
+
+        {% if role == "hearer" %}
 				<div class="hearer expl">
 					<h1 class="explanation" id="hearer-expl">De quoi vous parle-t-on ?</h1>
 				</div>
-
+        {% elif role == "speaker" %}
 				<div class="speaker expl" id="speaker-expl">
 					<h1 class="explanation">De quoi voulez-vous parler ?</h1>
 				</div>
-
+        {% endif %}
 				<!--Meanings-->
-				<div class="meanings">
+				<div class="meanings" id="meaning_inner">
 				<!--	<label class="mradio">
 						<input type="radio" name="m" id="m0" value="m0"/>-->
 						<!--<img src="../static/img/meaning_temp.png" class="img-responsive m">-->
@@ -206,9 +191,13 @@
       	<!--  </label>-->
 
           {% for m in experiment.meanings.all %}
-          <label class="mradio">
-            <input type="radio" name="m" id="m{{ m.meaning }}" value="m{{ m.meaning }}"/>
-            <img id="meaning_{{ m.meaning }}" class="img-responsive m" src="{% static 'ng/img/' %}kreyon_meaning{{ m.meaning }}.png" meaning_name="{{ m.meaning }}">
+            {% if context != "question" %}
+          <label class="mradio"  style = "visibility : hidden;" >
+            {% else %}
+          <label class="mradio"  style = "visibility : visible;" >
+            {% endif %}
+            <input type="radio" name="m" id="m{{ m.meaning }}" value="m{{ m.meaning }}" />
+            <img id="meaning_{{ m.meaning }}" class="img-responsive m meaning_img" src="{% static 'ng/img/' %}kreyon_meaning{{ m.meaning }}.png" meaning_name="{{ m.meaning }}">
           </label>
           {% endfor %}
 
@@ -218,22 +207,28 @@
 		      </label>
 
 					<!--Séparateur-->
+          {% if context == "question" %}
 					<div class="separator_h"></div>
+          {% endif %}
 				</div>
 
 
 
 				<!--Words-->
-        {% elif context == "question" and role =="speaker" %}
-				<div class="speaker-words">
+
+				<div class="speaker-words"  id= "word_inner" style= "visibility : hidden;" >
+        {% if context == "question" and role == "speaker" %}
 					<h1 class="explanation" id="choice_words"> Quel mot voulez-vous utiliser ?</h1>
+        {% endif %}
 
+        {% for w in experiment.words.all %}
 					<label class="wradio">
-						<input type="radio" name="w" id="w0" value="w0"/>
-						<div class="w">rowuwi</div>
+						<input type="radio" name="w" id="word_{{ w.word }}" word_name="{{ w.word }}" class=".word_text_speaker"/>
+						<div class="w">{{ w.word }}</div>
 					</label>
+        {% endfor %}
 
-					<label class="wradio">
+				<!--	<label class="wradio">
 						<input type="radio" name="w" id="w1" value="w1"/>
 						<div class="w">W1</div>
 					</label>
@@ -256,7 +251,7 @@
 					<label class="wradio">
 						<input type="radio" name="w" id="w5" value="w5"/>
 						<div class="w">W5</div>
-					</label>
+					</label> -->
 
 					<!--Séparateur-->
 					<div class="separator"></div>
@@ -268,7 +263,7 @@
 https://cdn.pixabay.com/photo/2016/09/01/08/24/smiley-1635451_960_720.png
 https://cdn.pixabay.com/photo/2013/07/12/13/51/thinking-147447_960_720.png
 -->
-        {% elif context == "result" %}
+        {% if context == "result" %}
 				<div class="feedback">
 					<img src="{% static 'ng/img/feedback_success_temp.png' %}" class="img-responsive smiley" id="success">
 					<img src="{% static 'ng/img/feedback_failure_temp.png' %}" class="img-responsive smiley" id="failure">
@@ -276,8 +271,14 @@ https://cdn.pixabay.com/photo/2013/07/12/13/51/thinking-147447_960_720.png
 				</div>
         {% endif %}
 				<!--Bouton Continuer-->
-				<button type="button" class="btn" id="button_next" style="margin-top: 20px">Continuer</button>
-			<!--	<button type="button" class="btn" id="next" style="margin-top: 20px; font-size:25px">Continuer</button> -->
+        {% if context == "question" and role == "speaker"%}
+				<button type="button" id="continue"class="interact_speaker btn" style="margin-top: 20px">Continuer</button>
+        {% elif context == "question" and role == "hearer"%}
+        <button type="button" id="continue"  class="interact_hearer btn" style="margin-top: 20px">Continuer</button>
+        {% elif context == "skipped" %}
+        <button type="button" id="button_next"  class="button_action btn" style="margin-top: 20px">Continuer</button>
+        {% endif %}
+    	<!--	<button type="button" class="btn" id="next" style="margin-top: 20px; font-size:25px">Continuer</button> -->
 			</div>
 		</div>
 
@@ -320,7 +321,7 @@ https://cdn.pixabay.com/photo/2013/07/12/13/51/thinking-147447_960_720.png
      		 <!-- Modal content-->
       			<div class="modal-content">
        				 <div class="modal-header">
-          				<h4 class="modal-title" style="color:black; text-align:center; margin:auto; font-size:35px;" id="modal_title">Êtes-vous sûr.e ?</h4>
+          				<h4 class="modal-title" style = "color:black; text-align:center; margin:auto; font-size:35px;" id="modal_title">Êtes-vous sûr.e ?</h4>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
         			</div>
         			<div class="modal-body">
@@ -336,8 +337,52 @@ https://cdn.pixabay.com/photo/2013/07/12/13/51/thinking-147447_960_720.png
   	</div>
 
     <!-- Optional JavaScript -->
-	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	 <script type="text/javascript" src="{% static 'ng/ng.js' %}"></script>
+
+   <script text="text/javascript">
+
+   //Menu
+
+   //Sound
+   $('#sound-off').click(function(){
+     $('#sound-off').css('display','none');
+     $('#sound-on').css('display','inline');
+   });
+   $('#sound-on').click(function(){
+     $('#sound-on').css('display','none');
+     $('#sound-off').css('display','inline');
+   });
+   //Home
+   $('#home').click(function(){
+     $("#myModal").modal({
+       keyboard : true,
+     });
+   });
+
+   if({{experiment.max_interaction}} == 10){$('#info').css('color','gray');}
+
+   $('.m').unbind().click(function(){
+     var mSelected = $(this).clone().removeClass('m').addClass('meaning');
+     $('#you-meaning').css('visibility', 'visible').css('display','block');
+     $('#you-meaning').html(mSelected);
+     if( '{{context}}' == 'question' && '{{role}}' == "speaker" ) {
+       $('.speaker-words').css('visibility', 'visible').css('display','block');
+     } else {
+       $('#continue').removeClass('disabled');
+       $('#other-word').tooltip('hide');
+       $('#anhearer').tooltip('hide');
+       $('#m5').tooltip('hide');
+     };
+   });
+
+   $('.w').unbind().click(function(){
+     var wSelected = $(this).text();
+     $('#word1').text(wSelected);
+     //$('#continue').removeClass('disabled').prop('disabled',false);
+     $('#anspeaker').tooltip('hide');
+   });
+
+  </script>
+
   <!-- <script type="text/javascript" src="{% static 'ng/script.js' %}"></script>-->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

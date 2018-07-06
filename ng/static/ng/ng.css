@@ -359,7 +359,7 @@ tr{width: 100%}
 
 /*Changer display en fonction rôle*/
 
-.hearer {
+/*.hearer {
 	visibility: hidden;
 	display:none;
 }
@@ -398,7 +398,6 @@ tr{width: 100%}
 
 /*Changer width en fonction du compteur*/
 #bar {
-	width : 2%;
 	background-color: #AF59D4;
 }
 
@@ -529,7 +528,7 @@ tr{width: 100%}
 
 #dont_know {
 	border-left: 2px solid white;
-	display : none;
+	/*display : none;*/
 }
 
 .separator_h {
@@ -560,7 +559,7 @@ tr{width: 100%}
 }
 
 .wradio > input {
-	visibility: hidden;
+		visibility: hidden;
   	position: absolute;
 }
 
@@ -593,7 +592,7 @@ tr{width: 100%}
 }
 
 
-#you-word {visibility : visible;}
+/*#you-word {visibility : visible;}
 
 #you-meaning {visibility : visible;}
 
@@ -604,7 +603,7 @@ tr{width: 100%}
 
 /*Feedback*/
 
-.feedback {display: none;}
+/*.feedback {display: none;}*/
 
 .smiley {
 	max-width : 75%;
@@ -612,7 +611,7 @@ tr{width: 100%}
 	margin : 10px auto 10px;
 }
 
-#success {display : none;}
+/*#success {display : none;}
 
 #failure {display: none;}
 
@@ -649,7 +648,7 @@ tr{width: 100%}
 	font-size : 40px
 }
 
-#continue, #next {
+#continue, #interactbutton, #next {
 	display : block;
 	margin : 4% auto 1%;
 	height : 60px;

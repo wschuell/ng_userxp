@@ -1,26 +1,27 @@
 $( document ).ready(function() {
-  $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
+  $.ajaxPrefilter( function(options, originalOptions, jqXHR) {
     jqXHR.setRequestHeader('X-CSRF-Token', Cookies.get('csrftoken'));
   });
 
-  $(document).ajaxStart(function () { 
-    $("html").addClass("wait"); 
+  $(document).ajaxStart(function () {
+    $("html").addClass("wait");
   });
-  $(document).ajaxStop(function () { 
-    $("html").removeClass("wait"); 
+  $(document).ajaxStop(function () {
+    $("html").removeClass("wait");
   });
 
   //$("#word_speaker").hide();
-  $('body').on('click', "#button_next, #button_start",function(event){
-  $("#button_next, #button_start").prop('disabled',true);
-  $("html").addClass("wait");
-  window.location.href = url_continue ;});
+  $("#button_next, #button_start").click(function(){
+    $("#button_next, #button_start");
+    $("html").addClass("wait");
+    window.location.href = url_continue ;}
+  );
   //select meanings and words
 
-  $("#interactbutton").prop('disabled',true);
+  $("#continue").addClass('disabled');
 
   $('#meaning_inner .meaning_img').click(function(event){
-    $("#word_speaker").show();
+    //$("#word_speaker").show();
 
     if (! $('html').hasClass('wait')) {
       if(! $(this).hasClass('selected_m')) {
@@ -28,12 +29,12 @@ $( document ).ready(function() {
         $(this).addClass("selected_m");
 
         if ($(".selected_w").length > 0) {
-          $("#interactbutton.interact_speaker").prop('disabled',false);
+          $("#continue.interact_speaker").removeClass('disabled');
         };
-        $("#interactbutton.interact_hearer").prop('disabled',false);
+        $("#continue.interact_hearer").removeClass('disabled');
       } else {
         $(this).removeClass("selected_m");
-        $("#interactbutton").prop('disabled',true);
+        $("#continue").addClass('disabled');
       };
     }
   });
@@ -44,18 +45,18 @@ $( document ).ready(function() {
         $(".selected_w").removeClass("selected_w");
         $(this).addClass('selected_w');
         if ($(".selected_m").length > 0) {
-          $("#interactbutton").prop('disabled',false);
+          $("#continue").removeClass('disabled');
         };
       } else {
         $(this).removeClass("selected_w");
-        $("#interactbutton").prop('disabled',true);
+        $("#continue").addClass('disabled');
       };
     }
   });
 
   //interact button with ajax
-  $("#interactbutton.interact_hearer").click(function(event){
-    $("#interactbutton").prop('disabled',true);
+  $("#continue.interact_hearer").click(function(event){
+    $("#continue").addClass('disabled');
     $.ajax({
       url: url_results_hearer_base + $(".selected_m").attr("meaning_name") + "/results_json/",
       success: function (result) {
@@ -72,8 +73,8 @@ $( document ).ready(function() {
     return false;
   });
 
-  $("#interactbutton.interact_speaker").click( function (event) {
-    $("#interactbutton").prop('disabled',true);
+  $("#continue.interact_speaker").click( function (event) {
+    $("#continue").addClass('disabled');
     $.ajax({
       url: url_results_speaker_base + $(".selected_m").attr("meaning_name") + "-" + $(".selected_w").attr("word_name") + "/results_json/",
       success: function (result) {
@@ -125,8 +126,8 @@ $( document ).ready(function() {
 
   //username
   var user_str = Cookies.get('NamingGameUser');
-  $("#username").html(user_str);
-  $(document).ajaxStop(function () { 
-    $("#username").html(user_str); 
+   $("#username").html(user_str);
+   $(document).ajaxStop(function () {
+   $("#username").html(user_str);
   });
 });

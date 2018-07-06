@@ -215,25 +215,25 @@ function hideTooltips(){
 
 
 	//Setup depending on role
-/*	if(role=='speaker') {
+	if(role=='speaker') {
 
 		if(tuto || game_mode=="basic"){$('#anspeaker').tooltip('show');};
 		//Annonce rôle
-		$('#anspeaker').css('visibility','visible').css('display','block');
-		$('#anhearer').css('visibility','hidden').css('display','none');
-		$('#anabs').css('visibility','hidden').css('display','none');
+		//$('#anspeaker').css('visibility','visible').css('display','block');
+		//$('#anhearer').css('visibility','hidden').css('display','none');
+		//$('#anabs').css('visibility','hidden').css('display','none');
 
 		//Logos S/H
-		$('#role_player').attr('src', src_logo_speaker);
-		$('#role_others').attr('src', src_logo_hearer);
+		//$('#role_player').attr('src', src_logo_speaker);
+		//$('#role_others').attr('src', src_logo_hearer);
 
 		//Choice Bubble
-		$('.speaker').css('visibility','visible').css('display','block');
+/*		$('.speaker').css('visibility','visible').css('display','block');
 		$('.hearer').css('visibility','hidden').css('display','none');
 		$('.meanings').css('visibility','visible').css('display','block');
 
 		//Bubbles
-		$('#word1').text('...');
+		//$('#word1').text('...');
 		$('#you-word').css('visibility','visible').css('display','block');
 		$('#you-meaning').css('visibility','hidden').css('display','block');
 		$('#other-word').css('visibility','hidden').css('display','block');
@@ -243,13 +243,13 @@ function hideTooltips(){
 	if(role=='hearer') {
 
 		//Annonce rôle
-		$('#anhearer').css('visibility','visible').css('display','block');
-		$('#anspeaker').css('visibility','hidden').css('display','none');
-		$('#anabs').css('visibility','hidden').css('display','none');
+		//$('#anhearer').css('visibility','visible').css('display','block');
+		//$('#anspeaker').css('visibility','hidden').css('display','none');
+		//$('#anabs').css('visibility','hidden').css('display','none');
 
 		//Logos S/H
-		$('#role_player').attr("src", src_logo_hearer);
-		$('#role_others').attr("src", src_logo_speaker);
+		//$('#role_player').attr("src", src_logo_hearer);
+		//$('#role_others').attr("src", src_logo_speaker);
 
 		//Choice Bubble
 		$('.hearer').css('visibility','visible').css('display','block');
@@ -262,7 +262,6 @@ function hideTooltips(){
 		$('#you-meaning').css('visibility','hidden').css('display','block');
 		$('#other-meaning').css('visibility','hidden').css('display','block');
 		$('#other-word').css('visibility','visible').css('display','block');
-		$('#word2').text(otherWord);
 
 		/*if(newWord){
 			$('#dont_know').css('display', 'inline-block');
@@ -285,20 +284,20 @@ function hideTooltips(){
 		};
 	};
 
-/*	if(context=='skipped') {
+	if(context=='skipped') {
 
 		if(tuto || game_mode=="basic"){$('#anabs').tooltip('show');};
 		//Annonce rôle
-		$('#anabs').css('visibility','visible').css('display','block');
-		$('#anhearer').css('visibility','hidden').css('display','none');
-		$('#anspeaker').css('visibility','hidden').css('display','none');
+		//$('#anabs').css('visibility','visible').css('display','block');
+		//$('#anhearer').css('visibility','hidden').css('display','none');
+		//$('#anspeaker').css('visibility','hidden').css('display','none');
 
 		//Logos S/H
-		$('#role_player').attr('src', '');
-		$('#role_others').attr('src', '');
+		//$('#role_player').attr('src', '');
+		//$('#role_others').attr('src', '');
 
 		//Choice Bubble
-		$('.speaker').css('visibility','hidden').css('display','none');
+	/*	$('.speaker').css('visibility','hidden').css('display','none');
 		$('.hearer').css('visibility','hidden').css('display','none');
 		$('.meanings').css('visibility','hidden').css('display','block');
 
@@ -309,7 +308,7 @@ function hideTooltips(){
 		$('#other-meaning').css('visibility','hidden').css('display','block');
 
 		//Btn continuer
-		$('#continue').removeClass('disabled').prop('disabled',false);
+		//$('#continue').removeClass('disabled').prop('disabled',false);*/
 	};
 
 

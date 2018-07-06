@@ -73,6 +73,7 @@ class ExperimentAdmin(admin.ModelAdmin):
 	'size',
 	)
 	list_display = ('user', 'xp_uuid', 'is_complete', 'max_interaction',)
+	list_filter = ('user', 'max_interaction')
 
 
 admin.site.unregister(User)

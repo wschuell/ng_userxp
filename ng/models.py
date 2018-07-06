@@ -105,6 +105,9 @@ class Experiment(models.Model):
     last_nb_skipped = models.IntegerField(default=0)
     size = models.IntegerField(default=1)
 
+    #For the Admin interface
+    is_complete = models.BooleanField(default = False)
+
     def __str__(self):
         return str(self.xp_uuid) + ' ' + str(self.xp_config.xp_config)
 
@@ -339,6 +342,10 @@ class Score(models.Model):
     experiment = models.ForeignKey(Experiment,null=True, on_delete=models.CASCADE)#, default=Experiment.objects.all()[0])
     score = models.IntegerField()
     user = models.ForeignKey(User, on_delete=models.PROTECT)
+
+# A compléter
+class Results(models.Model):
+    pass
 
 
 class CookieId(models.Model):

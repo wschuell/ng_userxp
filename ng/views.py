@@ -403,11 +403,14 @@ def continue_userxp(request, xp_uuid):
                 experiment.last_mh = None
                 experiment.last_bool_succ = False
                 experiment.save()
-                return render(request, 'ng/global.html', {
+                #
+                bar_width = ((experiment.interaction_counter + 1) / experiment.max_interaction )*100
+                return render(request, 'ng/game.html', {
                     'experiment': experiment,
                     'textid': "not_involved",
                     'nb_skipped': nb_steps,
-                    'context': 'skipped'
+                    'context': 'skipped',
+                    'bar_width':bar_width,
                        })
 
     except IOError as e:
@@ -419,13 +422,13 @@ def continue_userxp(request, xp_uuid):
             experiment.update_meanings()
             experiment.update_words()
             if sp_id == experiment.get_user_agent_uuid():
-                return render(request, 'ng/global.html', {
+                return render(request, 'ng/game.html', {
                     'experiment': experiment,
                     'role':"speaker",
                     'context':"question"
                     })
             elif hr_id == experiment.get_user_agent_uuid():
-                return render(request, 'ng/global.html', {
+                return render(request, 'ng/game.html', {
                     'experiment': experiment,
                     'word': currentgame_json['w'],
                     'role':"hearer",
