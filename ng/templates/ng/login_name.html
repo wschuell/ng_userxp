@@ -18,6 +18,8 @@
 	   <script src="{% static 'ng/login.js' %}"></script>
      <script type="text/javascript">
          var url_send_user_info = "{% url 'ng:send_user_info_base'  %}";
+         var url_newxp = "{% url 'ng:new_experiment'  %}";
+         var url_home = "{% url 'ng:home'  %}";
 
          //uuid
          function uuid()
@@ -55,7 +57,6 @@
 	<!-- Formulaire -->
 	 <!--action="/action_page.php"-->
 	<form id="form" method="post">
-		{% csrf_token %}
 		<div class="form-group">
 
     			<div class="row">
@@ -65,7 +66,8 @@
         				<label for="player-name" class="label" id="enter-player-name" style="display:block">Entrez votre nom ici :</label>
 
 				<!--	<input type="username" class="form-control" id="username" value="Submit" required>-->
-					{{ form }}
+<!-- 				{% csrf_token %} -->
+				{{ form }}
           <div class="not_displayed" style= "visible:hidden; display:none">
             <span id="username"></span>
           </div>
@@ -117,11 +119,16 @@
 	</form>
 
 
-<!--{% csrf_token %}-->
+{% csrf_token %}
     <!-- Optional JavaScript -->
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
+
+  <div class="not_displayed">
+    <span id="username"></span>
+</div>
+
 </html>

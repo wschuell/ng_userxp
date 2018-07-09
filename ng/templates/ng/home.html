@@ -1,5 +1,6 @@
 <!doctype html>
 {% load static %}
+{% csrf_token %}
 <html lang="fr">
 
   <head>
@@ -66,7 +67,6 @@
 				<div class="col-lg-8">
 					<!--Tutoriel-->
 					<button type="button" class="btn btn-default btn-large" id="button_basic"> Tutoriel </button>
-					{% csrf_token %}
 
 
 					<!--Jeu-->
@@ -79,9 +79,8 @@
             </button>
             {% endif %}
 
-					{% csrf_token %}
 
-					<!--Multijoueur-->
+					<!--Multiplayer-->
             {% if multi_unlocked %}
             <button type="button" class="btn btn-default btn-large " id="button_multi"> Multijoueur </button>
             {% else %}
@@ -90,7 +89,6 @@
             </button>
             {% endif %}
 
-					{% csrf_token %}
 				</div>
 
 				<div class="col-lg-2"></div>

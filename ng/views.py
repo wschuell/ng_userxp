@@ -62,7 +62,7 @@ def home(request):
     'multi_unlocked' : multi_unlocked,
     })
 
-
+@csrf_protect
 def create_and_login(request,username=None,name='',cookie_id=None):
     if username is None:
         username = name+str(cookie_id)
@@ -73,7 +73,7 @@ def create_and_login(request,username=None,name='',cookie_id=None):
     #request.session["user"] = user
     return render(request,'ng/index.html',{})
 
-
+@csrf_protect
 def get_name(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
@@ -107,7 +107,7 @@ class IndexView(LoginRequiredMixin, generic.ListView):
 #@login_required#(login_url='/accounts/login/')
 
 
-#Vue Histoire si l'utilisateur choisit le Tutoriel
+#Story view if user chooses tutorial
 @login_required(login_url='/ng/login/')
 def story(request) :
 	return render(request, 'ng/story.html', {'context':'story'})
