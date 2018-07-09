@@ -20,7 +20,7 @@ $( document ).ready(function() {
 
   $("#continue").addClass('disabled');
 
-  $('#meaning_inner .meaning_img').click(function(event){
+  $('#meaning_inner.meaning_img').click(function(event){
     //$("#word_speaker").show();
 
     if (! $('html').hasClass('wait')) {
@@ -39,7 +39,7 @@ $( document ).ready(function() {
     }
   });
 
-  $('#word_inner .word_text_speaker').click(function(event){
+  $('#word_inner.word_text_speaker').click(function(event){
     if (! $('html').hasClass('wait')) {
       if (! $(this).hasClass('selected_w')) {
         $(".selected_w").removeClass("selected_w");
@@ -83,7 +83,7 @@ $( document ).ready(function() {
           url: url_results_inner_base  + result_json.bool_succ,
           success: function (result2) {
             $("#choose").html(result2);
-            set_language();
+           set_language();
           }
         });
       }

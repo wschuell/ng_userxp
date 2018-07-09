@@ -211,7 +211,7 @@ def result_hearer(request, xp_uuid, meaning):
     past_interaction = PastInteraction(meaning=ms,word=w,bool_succ=bool_succ,time_id=experiment.interaction_counter,role='hearer',experiment=experiment)
     experiment.save()
     past_interaction.save()
-    return render(request, 'ng/global.html', {
+    return render(request, 'ng/game.html', {
             'experiment': experiment,
             'bool_succ': bool_succ,
             'role':"hearer",

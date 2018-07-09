@@ -87,7 +87,7 @@
 			<div class="annonce speaker" id="anspeaker" style = "display : block; visibility : visible"><p>C'est à vous de parler ! </p><img src="{% static 'ng/img/logo_speaker_temp.png' %}" class="img-responsive logo" id="bouche"></div>
       {% elif context == "skipped" %}
     	<!--https://cdn.pixabay.com/photo/2013/07/12/19/33/panda-154984_960_720.png-->
-			<div class="annonce abs" id="anabs" style = "display : block; visibility : visible"><p>Vous ne faites pas partie de la conversation ! </p><img src="{% static 'ng/img/logo_abs_temp.png' %}" class="img-responsive logo"></div>
+			<div class="annonce abs" id="anabs" style = "display : block; visibility : visible"><p> {{nb_skipped}} conversations ont eu lieu en votre absence ! </p><img src="{% static 'ng/img/logo_abs_temp.png' %}" class="img-responsive logo"></div>
     {% endif %}
     </div>
 		<div class="col-xs-3"></div>
@@ -227,7 +227,7 @@
 
         {% for w in experiment.words.all %}
 					<label class="wradio">
-						<input type="radio" name="w" id="word_{{ w.word }}" word_name="{{ w.word }}" class=".word_text_speaker"/>
+						<input type="radio" name="w" id="word_{{ w.word }}" word_name="{{ w.word }}" class="word_text_speaker"/>
 						<div class="w">{{ w.word }}</div>
 					</label>
         {% endfor %}
@@ -269,9 +269,13 @@ https://cdn.pixabay.com/photo/2013/07/12/13/51/thinking-147447_960_720.png
 -->
         {% if context == "result" %}
 				<div class="feedback">
+          {% if bool_succ %}
 					<img src="{% static 'ng/img/feedback_success_temp.png' %}" class="img-responsive smiley" id="success">
+          {% elif bool_succ %}
 					<img src="{% static 'ng/img/feedback_failure_temp.png' %}" class="img-responsive smiley" id="failure">
-			<!--		<img src="{% static 'ng/img/feedback_learn_temp.png' %}" class="img-responsive smiley" id="learn">-->
+          {% else %}
+			    <img src="{% static 'ng/img/feedback_learn_temp.png' %}" class="img-responsive smiley" id="learn">
+          {% endif %}
 				</div>
         {% endif %}
 				<!--Bouton Continuer-->
@@ -314,6 +318,7 @@ https://cdn.pixabay.com/photo/2013/07/12/13/51/thinking-147447_960_720.png
 		<div id="popover-body">
 
       {% for past_int in experiment.pastinteraction_set.all|dictsortreversed:"time_id" %}
+      {% if experiment.pastinteraction.role == "hearer"%}
       <div "line_meaning">
         <div class='row'>
             <div class='col-xs-3' >
@@ -327,6 +332,7 @@ https://cdn.pixabay.com/photo/2013/07/12/13/51/thinking-147447_960_720.png
           </div>
       </div>
       </div>
+      {% endif %}
       {% endfor %}
 
 	</div>
@@ -397,7 +403,7 @@ $(document).ready(function() {
      },
    });
 
-   $('.m').unbind().click(function(){
+   $('.m').click(function(){
      var mSelected = $(this).clone().removeClass('m').addClass('meaning');
      $('#you-meaning').css('visibility', 'visible').css('display','block');
      $('#you-meaning').html(mSelected);
@@ -411,16 +417,15 @@ $(document).ready(function() {
      };
    });
 
-   $('.w').unbind().click(function(){
+   $('.w').click(function(){
      var wSelected = $(this).text();
      $('#word1').text(wSelected);
-     //$('#continue').removeClass('disabled').prop('disabled',false);
+     $('#continue').removeClass('disabled').prop('disabled',false);
      $('#anspeaker').tooltip('hide');
    });
 });
   </script>
 
-  <script type="text/javascript" src="{% static 'ng/script.js' %}"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
 
