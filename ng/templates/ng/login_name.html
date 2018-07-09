@@ -14,8 +14,8 @@
      <script src="{% static 'ng/jquery-3.2.1.min.js' %}"></script>
      <script src="{% static 'ng/js.cookie.js' %}"></script>
      <script src="{% static 'ng/change_lang.js' %}"></script>
-     <!--<script src="{% static 'ng/script.js' %}"></script>-->
-	   <!--<script src="{% static 'ng/login.js' %}"></script>-->
+     <script src="{% static 'ng/script.js' %}"></script>
+	   <script src="{% static 'ng/login.js' %}"></script>
      <script type="text/javascript">
          var url_send_user_info = "{% url 'ng:send_user_info_base'  %}";
 
@@ -46,8 +46,8 @@
      <!--<form method="post">
     {% csrf_token %}
     {{ form }}
-    <input type="submit" value="Submit" />-->
-</form>
+    <input type="submit" value="Submit" />
+</form>-->
   </head>
 <body>
 	<h1 class="pagetitle" style="padding:0px; margin-top:25px;" id="welcome">Le Naming Game !</h1>
@@ -66,7 +66,7 @@
 
 				<!--	<input type="username" class="form-control" id="username" value="Submit" required>-->
 					{{ form }}
-          <div class="not_displayed">
+          <div class="not_displayed" style= "visible:hidden; display:none">
             <span id="username"></span>
           </div>
 				</div>
@@ -77,8 +77,8 @@
 				<label class="label" id="label-lang">Choisissez la langue du jeu :</label>
 
 			<div class="row" id="middle">
-        <div class="col-md-2"> </div>
-				<div class="col-md-2">
+        <div class="col-lg-2 visible-lg"> </div>
+				<div class="col-lg-2 col-xs-12">
 					<label class = "lang">
   						<input type="radio" name="lang" id="fr" value="fr"  checked/>
 						<!--adresse img :https://cdn.pixabay.com/photo/2015/11/20/18/55/french-flag-1053711_960_720.png-->
@@ -86,21 +86,21 @@
 					</label>
 				</div>
 
-				<div class="col-md-4">
+				<div class="col-lg-4 col-xs-12">
 					<label class="lang">
   						<input type="radio" name="lang" id="en" value="en"/>
 						<!--adresse img :https://cdn.pixabay.com/photo/2012/04/23/16/15/flags-38754_960_720.png-->
 						<img src="{% static 'ng/img/english-flag.png' %}" for="en" alt="english" width= 200px height= 150px >
 					</label>
 				</div>
-				<div class="col-md-2">
+				<div class="col-lg-2 col-xs-12">
 					<label class="lang">
   						<input type="radio" name="lang" id="it" value="it" />
 						<!--adresse img :https://cdn.pixabay.com/photo/2012/04/11/15/35/flag-28543_960_720.png-->
 						<img src="{% static 'ng/img/italian-flag.png' %}" for = "it" alt="italian" width= 200px height= 150px >
 					</label>
 				</div>
-        <div class="col-md-2"> </div>
+        <div class="col-lg-2 visible-lg"> </div>
 			</div>
 
 
@@ -117,12 +117,10 @@
 	</form>
 
 
-{% csrf_token %}
-
+<!--{% csrf_token %}-->
     <!-- Optional JavaScript -->
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>

@@ -8,20 +8,23 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
 	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 	<!--CSS-->
 	<link type="text/css" rel="stylesheet" href="{% static 'ng/ng.css' %}"/>
 
 	<!--JQuery-->
-  <script src="{% static 'ng/jquery-3.2.1.min.js' %}"></script>
-     <script src="{% static 'ng/js.cookie.js' %}"></script>
+  <!--<script src="{% static 'ng/jquery-3.2.1.min.js' %}"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="{% static 'ng/js.cookie.js' %}"></script>
      <!--<script src="{% static 'ng/change_lang.js' %}"></script>-->
 <script src="{% static 'ng/script.js' %}"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
   <script type="text/javascript">
       {% if experiment %}
       var url_continue = "{% url 'ng:continue' experiment.xp_uuid %}";
@@ -310,9 +313,24 @@ https://cdn.pixabay.com/photo/2013/07/12/13/51/thinking-147447_960_720.png
 
 		<div id="popover-body">
 
+      {% for past_int in experiment.pastinteraction_set.all|dictsortreversed:"time_id" %}
+      <div "line_meaning">
+        <div class='row'>
+            <div class='col-xs-3' >
+                <span class="img-histo"><img src="{% static 'ng/img/' %}kreyon_meaning{{ past_int.meaning }}.png"></span>
+            </div>
+           <div class='col-xs-6' >
+             <span class="w-histo">{{ past_int.word }}</span>
+           </div>
+           <div class='col-xs-3' >
+           {% if past_int.bool_succ %}<span class="img-responsive meaning"><img src="{% static 'ng/img/' %}feedback_success_temp.png"></span>{% endif %}
+          </div>
+      </div>
+      </div>
+      {% endfor %}
 
-		</div>
 	</div>
+</div>
 
 
 	<!-- Modal -->
@@ -341,6 +359,7 @@ https://cdn.pixabay.com/photo/2013/07/12/13/51/thinking-147447_960_720.png
 
    <script text="text/javascript">
 
+$(document).ready(function() {
    //Menu
 
    //Sound
@@ -353,10 +372,11 @@ https://cdn.pixabay.com/photo/2013/07/12/13/51/thinking-147447_960_720.png
      $('#sound-off').css('display','inline');
    });
    //Home
+   //Home
    $('#home').click(function(){
-     $("#myModal").modal({
-       keyboard : true,
-     });
+   	$("#myModal").modal({
+   		keyboard : true,
+   	});
    });
 
    var bar_width = ({{experiment.interaction_counter}} + 1) / {{experiment.max_interaction}} * 100;
@@ -364,6 +384,18 @@ https://cdn.pixabay.com/photo/2013/07/12/13/51/thinking-147447_960_720.png
    $('#bar').css('width', bar_width );
 
    if({{experiment.max_interaction}} == 10){$('#info').css('color','gray');}
+
+   //Display Game History
+   $("#menu-h").popover({
+     placement : 'bottom',
+     html : true,
+     content: function() {
+       return $('#popover-body').html();
+     },
+     title: function() {
+       return $('#popover-heading').html();
+     },
+   });
 
    $('.m').unbind().click(function(){
      var mSelected = $(this).clone().removeClass('m').addClass('meaning');
@@ -385,13 +417,12 @@ https://cdn.pixabay.com/photo/2013/07/12/13/51/thinking-147447_960_720.png
      //$('#continue').removeClass('disabled').prop('disabled',false);
      $('#anspeaker').tooltip('hide');
    });
-
+});
   </script>
 
-  <!-- <script type="text/javascript" src="{% static 'ng/script.js' %}"></script>-->
+  <script type="text/javascript" src="{% static 'ng/script.js' %}"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </body>
+
+</body>
 </html>
