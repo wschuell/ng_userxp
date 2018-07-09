@@ -51,18 +51,18 @@ if (typeof Cookies.get('NamingGameUser') === 'undefined'){
 
   <body>
 	<h1 class="pagetitle" style="padding:0px; margin-top:25px;" id="welcome">Bienvenue sur notre Naming Game !</h1>
-	
+
 	<!-- Formulaire -->
 	 <!--action="/action_page.php"-->
 	<form id="form">
-		<div class="form-group"> 
+		<div class="form-group">
 		{% csrf_token %}
-    			<div class="row"> 
+    			<div class="row">
 				<div class="col-md-4"> </div>
-				<div class="col-md-4"> 
+				<div class="col-md-4">
 					<!--Choix Nom-->
         				<label for="player-name" class="label" id="enter-player-name">Entrez votre nom ici :</label>
-	
+
 					<input type="username" class="form-control" id="username" required>
 				</div>
 				<div class="col-md-4"> </div>
@@ -71,34 +71,34 @@ if (typeof Cookies.get('NamingGameUser') === 'undefined'){
 				<!--Choix Langage-->
 				<label class="label" id="label-lang">Choisissez la langue du jeu :</label>
 
-			<div class="row" id="middle"> 
+			<div class="row" id="middle">
 				<div class="col-md-4">
 					<label class = "lang">
-  						<input type="radio" name="lang" id="fr" value="fr"  checked/> 
+  						<input type="radio" name="lang" id="fr" value="fr"  checked/>
 						<!--adresse img :https://cdn.pixabay.com/photo/2015/11/20/18/55/french-flag-1053711_960_720.png-->
-						<img src="../static/img/french-flag.png"  for="fr" alt="french" width= 300px height= 200px> 
+						<img src="../static/img/french-flag.png"  for="fr" alt="french" width= 300px height= 200px>
 					</label>
 				</div>
- 
-				<div class="col-md-4"> 
+
+				<div class="col-md-4">
 					<label class="lang">
-  						<input type="radio" name="lang" id="en" value="en"/> 
+  						<input type="radio" name="lang" id="en" value="en"/>
 						<!--adresse img :https://cdn.pixabay.com/photo/2012/04/23/16/15/flags-38754_960_720.png-->
-						<img src="../static/img/english-flag.png" for="en" alt="english" width= 300px height= 200px > 
+						<img src="../static/img/english-flag.png" for="en" alt="english" width= 300px height= 200px >
 					</label>
 				</div>
-				<div class="col-md-4"> 
+				<div class="col-md-4">
 					<label class="lang">
-  						<input type="radio" name="lang" id="it" value="it" /> 
-						<!--adresse img :https://cdn.pixabay.com/photo/2012/04/11/15/35/flag-28543_960_720.png-->						
-						<img src="../static/img/italian-flag.png" for = "it" alt="italian" width= 300px height= 200px> 
+  						<input type="radio" name="lang" id="it" value="it" />
+						<!--adresse img :https://cdn.pixabay.com/photo/2012/04/11/15/35/flag-28543_960_720.png-->
+						<img src="../static/img/italian-flag.png" for = "it" alt="italian" width= 300px height= 200px>
 					</label>
 				</div>
 			</div>
 
 
 
-			<div class="row" id="footer"> 
+			<div class="row" id="footer">
 				<div class="col-md-4"> </div>
 				<div class="col-md-4">
 					<!--Bouton Valider-->
@@ -112,10 +112,14 @@ if (typeof Cookies.get('NamingGameUser') === 'undefined'){
 
 {% csrf_token %}
     <!-- Optional JavaScript -->
-	
+
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
+  <div class="not_displayed">
+    <span id="username"></span>
+</div>
+
 </html>

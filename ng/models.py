@@ -3,7 +3,8 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 
 import naminggamesal as ngal
 
@@ -29,7 +30,8 @@ xp_cfg = {
             "success_cfg": {
                 "success_type": "global"
             },
-            "strat_type": "naive"
+            "strat_type": "naive",
+            "allow_idk":True,
         },
         "nbagent": 5,
         "env_cfg": {
@@ -43,25 +45,32 @@ xp_cfg = {
     }
 }
 
-#Classe Utilisateurs du NG
+#extended User class
 class UserNG(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key = True)
     lang = models.CharField(max_length=3, default="fr")
-    #Code identifiant certaines catégories d'Utilisateurs
+    #ID for certain types of Users
     code = models.CharField(max_length=100, null=True, blank= True, default='')
-    #Nombre de parties jouées -> sert à débloquer les différents modes de jeu
-    tuto_played=models.BooleanField(default=False)
-    nbr_played= models.IntegerField(default=0)
+    #Number of games played, used as condition for unlocking game modes
+    tuto_played = models.BooleanField(default=False)
+    nbr_played = models.IntegerField(default=0)
 
     def __str__(self):
         return self.user.username
 
-    def create_user_profile(sender, instance, created, **kwargs):
-        if created :
-            UserNG.objects.create(user=instance)
-            models.signals.post_save.connect(create_user_profile, sender = User)
+    @classmethod
+    def get(cls,user):
+        try:
+            user_ng = cls.objects.get(user=user)
+        except cls.DoesNotExist:
+            user_ng = cls.objects.create(user=user)
+            user_ng.save()
+        return user_ng
 
-
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created :
+        UserNG.objects.create(user=instance)
 
 class Word(models.Model):
     word = models.CharField(max_length=200)
@@ -186,6 +195,29 @@ class Experiment(models.Model):
         if gr._Y[0]:
             self.exit_code = gr._Y[0][-1]
         self.save()
+
+    def get_result_tab(self,normalized_w=False,normalized_ag=True):
+        xp = self.get_xp()
+        ag_list = xp._poplist.get_last()._agentlist
+        nb_ag = len(ag_list)
+        w_list = [w.word for w in self.words.all()]
+        m_list = [m.meaning for m in self.meanings.all()]
+        ans = {}
+        for m in m_list:
+            ans[m] = {}
+            for ag in ag_list:
+                kw_l = ag._vocabulary.get_known_words(m=m)
+                for w in kw_l:
+                    delta = 1
+                    if normalized_ag:
+                        delta *= 1./nb_ag
+                    if normalized:
+                        delta *= 1./len(kw_l)
+                    if w in list(ans[m].keys()):
+                        ans[m][w] += delta
+                    else:
+                        ans[m][w] = delta
+        return ans
 
     def get_currentgame_json(self):
         filename = './data/current_game_info/'+self.xp_uuid+'.txt'
@@ -326,8 +358,8 @@ class PastInteraction(models.Model):
     #word = models.ForeignKey(Word, on_delete=models.CASCADE)
     #bool_succ = models.IntegerField()
     #role = models.ForeignKey(Role, on_delete=models.CASCADE)
-    meaning = models.IntegerField()
-    meaning_h = models.IntegerField()
+    meaning = models.CharField(max_length=20)
+    meaning_h = models.CharField(max_length=20)
     word = models.CharField(max_length=20)
     bool_succ = models.IntegerField()
     time_id = models.IntegerField()

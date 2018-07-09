@@ -51,7 +51,7 @@ def login_view(request):
 @login_required(login_url='/login')
 def home(request):
     user = request.user
-    u = UserNG.objects.get(user=user)
+    u = UserNG.get(user=user)
     game_unlocked = u.tuto_played
     if (u.nbr_played < 5):
         multi_unlocked = False
@@ -199,8 +199,11 @@ def result_hearer(request, xp_uuid, meaning):
     if request.user != experiment.user:
         raise ValueError("wrong user")
     currentgame_json = experiment.get_currentgame_json()
-    currentgame_json.update({'mh':int(meaning)})
-    ms = currentgame_json['ms']
+    if meaning == 'none':
+        currentgame_json.update({'mh':None})
+    else:
+        currentgame_json.update({'mh':int(meaning)})
+    ms = str(currentgame_json['ms'])
     w = currentgame_json['w']
     experiment.save_currentgame_json(currentgame_json)
     experiment.continue_xp()
@@ -222,7 +225,7 @@ def result_speaker(request, xp_uuid, meaning, word):
     if request.user != experiment.user:
         raise ValueError("wrong user")
     currentgame_json = experiment.get_currentgame_json()
-    ms = int(meaning)
+    ms = str(meaning)
     w = word
     currentgame_json.update({'ms':ms,'w':w})
     experiment.save_currentgame_json(currentgame_json)
@@ -283,14 +286,17 @@ def result_hearer_json(request, xp_uuid, meaning):
             'context':"result",
             'ms':experiment.last_ms,
         })
-    currentgame_json.update({'mh':int(meaning)})
-    ms = currentgame_json['ms']
+    if meaning == 'none':
+        currentgame_json.update({'mh':None})
+    else:
+        currentgame_json.update({'mh':int(meaning)})
+    ms = str(currentgame_json['ms'])
     w = currentgame_json['w']
     experiment.save_currentgame_json(currentgame_json)
     experiment.add_word_to_user(w)
     experiment.continue_xp()
     bool_succ = experiment.get_last_bool_succ()
-    past_interaction = PastInteraction(meaning=ms,word=w,meaning_h=int(meaning),bool_succ=bool_succ,time_id=experiment.interaction_counter,role='hearer',experiment=experiment)
+    past_interaction = PastInteraction(meaning=ms,word=w,meaning_h=str(meaning),bool_succ=bool_succ,time_id=experiment.interaction_counter,role='hearer',experiment=experiment)
     experiment.save()
     past_interaction.save()
     return render(request, 'ng/result.json', {
@@ -316,13 +322,17 @@ def result_speaker_json(request, xp_uuid, meaning, word):
             'role':"speaker",
             'context':"result",
         })
-    ms = int(meaning)
+    ms = str(meaning)
     w = word
     currentgame_json.update({'ms':ms,'w':w})
     experiment.save_currentgame_json(currentgame_json)
     experiment.continue_xp()
     bool_succ = experiment.get_last_bool_succ()
-    mh = int(experiment.get_last_mh())
+    mh = experiment.get_last_mh()
+    if mh is None:
+        mh = 'none'
+    else:
+        mh = str(mh)
     past_interaction = PastInteraction(meaning=ms,word=w,meaning_h=mh,bool_succ=bool_succ,time_id=experiment.interaction_counter,role='speaker',experiment=experiment)
     experiment.save()
     past_interaction.save()
@@ -355,7 +365,7 @@ def choose_experiment(request,xp_cfg_name='normal'):
 def new_experiment(request,xp_cfg_name='normal'):
     #Test if the user can access this type of game and send them to the home page if not
     user = request.user
-    u = UserNG.objects.get(user=user)
+    u = UserNG.get(user=user)
     if ((xp_cfg_name == "normal" and not u.tuto_played) or (xp_cfg_name == "multiuser" and u.nbr_played < 5)):
         return HttpResponseRedirect('/')
     else :
