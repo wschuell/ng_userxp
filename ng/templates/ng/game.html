@@ -18,7 +18,9 @@
 
 	<!--JQuery-->
   <script src="{% static 'ng/jquery-3.2.1.min.js' %}"></script>
-  <script src="{% static 'ng/js.cookie.js' %}"></script>
+     <script src="{% static 'ng/js.cookie.js' %}"></script>
+     <!--<script src="{% static 'ng/change_lang.js' %}"></script>-->
+<script src="{% static 'ng/script.js' %}"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script type="text/javascript">
       {% if experiment %}
@@ -30,7 +32,6 @@
   </script>
   <!--<script type="text/javascript" src="{% static 'ng/ng.js' %}">
   <script src="{% static 'ng/change_lang.js' %}"></script>-->
-  <script src="{% static 'ng/script.js' %}" type="text/javascript"></script>
 
 
 	<title>Naming Game</title>
@@ -357,6 +358,10 @@ https://cdn.pixabay.com/photo/2013/07/12/13/51/thinking-147447_960_720.png
        keyboard : true,
      });
    });
+
+   var bar_width = ({{experiment.interaction_counter}} + 1) / {{experiment.max_interaction}} * 100;
+   bar_width = String(bar_width)+"%";
+   $('#bar').css('width', bar_width );
 
    if({{experiment.max_interaction}} == 10){$('#info').css('color','gray');}
 
