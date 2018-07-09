@@ -138,19 +138,33 @@
 			<div class="bubble bubble-f" id="you-word" {% if context != "question" or role == "hearer" %} style= "float:left; visibility : hidden;" {% else %} style= "float:left" {% endif %} ><p class="word" id="word1">
         {% if context == "question" and role == "speaker" %}
                 ...
+        {% elif context == "result" and role == "speaker" %}
+                {{experiment.last_w}}
         {% endif %}
       </p></div>
-			<div class="bubble bubble-f thought" id="you-meaning"  {% if context != "question" %} style= "float:left; visibility : hidden;" {% else %} style= "float:left" {% endif %}></div>
-		</div>
+			<div class="bubble bubble-f thought" id="you-meaning"  {% if context != "question" %} style= "float:left; visibility : hidden;" {% else %} style= "float:left" {% endif %}>
+      {% if context == "result" and role == "speaker" %}
+        <img id="meaning_{{ experiment.last_ms}}" class="img-responsive meaning" src="{% static 'ng/img/' %}kreyon_meaning{{ m.meaning }}.png" meaning_name="{{ m.meaning }}">
+        {% elif context == "result" and role == "hearer" %}
+        <img id="meaning_{{ experiment.last_mh}}" class="img-responsive meaning" src="{% static 'ng/img/' %}kreyon_meaning{{ m.meaning }}.png" meaning_name="{{ m.meaning }}">
+      {% endif %}
+      </div>
+    </div>
 
 		<!--Bubble Feedback-->
 		<div class="col-xs-6 col-sm-6 col-lg-3 col-md-push-6 ">
 			<div class="bubble bubble-f" id="other-word"  {% if context != "question" or role == "speaker" %} style= "float:left; visibility : hidden;" {% else %} style= "float:left" {% endif %}><p class="word" id="word2">
-        {% if context == "question" and role == "hearer" %}
+        {% if role == "hearer" %}
           {{word}}
         {% endif %}
       </p></div>
-			<div class="bubble bubble-f thought" id="other-meaning"  {% if context != "result" %} style= "float:left; visibility : hidden;" {% else %} style= "float:left" {% endif %}></div>
+			<div class="bubble bubble-f thought" id="other-meaning"  {% if context != "result" %} style= "float:left; visibility : hidden;" {% else %} style= "float:left" {% endif %}>
+        {% if context == "result" and role == "speaker" %}
+          <img id="meaning_{{ experiment.last_mh}}" class="img-responsive meaning" src="{% static 'ng/img/' %}kreyon_meaning{{ m.meaning }}.png" meaning_name="{{ m.meaning }}">
+          {% elif context == "result" and role == "hearer" %}
+          <img id="meaning_{{ experiment.last_ms}}" class="img-responsive meaning" src="{% static 'ng/img/' %}kreyon_meaning{{ m.meaning }}.png" meaning_name="{{ m.meaning }}">
+        {% endif %}
+      </div>
 		</div>
 
 		<div class="col-lg-6 col-md-pull-3">
@@ -195,21 +209,24 @@
       	<!--  </label>-->
 
           {% for m in experiment.meanings.all %}
-            {% if context != "question" %}
+            {% if context == "skipped"%}
           <label class="mradio"  style = "visibility : hidden;" >
+            {% elif context == "result" %}
+            <label class="mradio"  style = "display:none" >
             {% else %}
-          <label class="mradio"  style = "visibility : visible;" >
+          <label class="mradio"  style = "visibility : visible; " >
             {% endif %}
             <input type="radio" name="m" id="m{{ m.meaning }}" value="m{{ m.meaning }}" />
             <img id="meaning_{{ m.meaning }}" class="img-responsive m meaning_img" src="{% static 'ng/img/' %}kreyon_meaning{{ m.meaning }}.png" meaning_name="{{ m.meaning }}">
           </label>
           {% endfor %}
-
-					<label class="mradio" id="dont_know" style= "display : none">
-						<input type="radio" name="m" id="m5" value="m5"/>
-						<img src="{% static '/img/question-mark.png'%}" class="img-responsive m">
+          <!--Regarde si c'est la première fois que l'utilisateur voit ce mot. DOUTE SYNTAXE-->
+          {% if context == "question" and role == "hearer" and last_w not in experiment.pastinteraction_set.all%}
+					<label class="mradio" id="dont_know">
+						<input type="radio" name="m" id="none" value="none"/>
+						<img src="{% static 'ng/img/kreyon_meaningnone.png'%}" class="img-responsive m meaning_img">
 		      </label>
-
+          {% endif %}
 					<!--Séparateur-->
           {% if context == "question" %}
 					<div class="separator_h"></div>
@@ -271,10 +288,12 @@ https://cdn.pixabay.com/photo/2013/07/12/13/51/thinking-147447_960_720.png
 				<div class="feedback">
           {% if bool_succ %}
 					<img src="{% static 'ng/img/feedback_success_temp.png' %}" class="img-responsive smiley" id="success">
-          {% elif bool_succ %}
-					<img src="{% static 'ng/img/feedback_failure_temp.png' %}" class="img-responsive smiley" id="failure">
-          {% else %}
-			    <img src="{% static 'ng/img/feedback_learn_temp.png' %}" class="img-responsive smiley" id="learn">
+          {% elif bool_succ == False %}
+            {% if experiment.last_mh == "none" or experiment.last_ms == "none" %}
+            <img src="{% static 'ng/img/feedback_learn_temp.png' %}" class="img-responsive smiley" id="learn">
+            {% else %}
+			    	<img src="{% static 'ng/img/feedback_failure_temp.png' %}" class="img-responsive smiley" id="failure">
+          {% endif %}
           {% endif %}
 				</div>
         {% endif %}
@@ -318,7 +337,7 @@ https://cdn.pixabay.com/photo/2013/07/12/13/51/thinking-147447_960_720.png
 		<div id="popover-body">
 
       {% for past_int in experiment.pastinteraction_set.all|dictsortreversed:"time_id" %}
-      {% if experiment.pastinteraction.role == "hearer"%}
+      {% if past_int.role == "hearer"%}
       <div "line_meaning">
         <div class='row'>
             <div class='col-xs-3' >

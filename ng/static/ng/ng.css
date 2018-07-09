@@ -506,7 +506,7 @@ tr{width: 100%}
 .m {
 	max-height: 125px;
 	max-width: 95px;
-	margin : 5% 20% 5%;
+	margin : 10px 15px 10px;
 	display : inline-block;
 	cursor : pointer;
 	border : 2px solid rgb(0,0,0,0.1);
@@ -518,6 +518,7 @@ tr{width: 100%}
 
 .mradio > input {
 	visibility: hidden;
+	display: none;
   	position: absolute;
 }
 

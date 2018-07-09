@@ -480,7 +480,10 @@ def score(request, xp_uuid):
         score_val = int(srtheo * experiment.meanings.count() * 100)#.all().count()?
         score = Score(experiment=experiment,score=score_val,user=request.user)
         score.save()
-
+    if experiment.xp_config.xp_cfg_name == "normal" :
+        user.nbr_played =+ 1
+    elif experiment.xp_config.xp_cfg_name == "basic" and user.tuto_played == False :
+        user.tuto_played = True
     #Test if score exists
     #if not, compute and store object
     #get value
