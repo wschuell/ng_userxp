@@ -31,7 +31,7 @@ xp_cfg = {
                 "success_type": "global"
             },
             "strat_type": "naive",
-            "allow_idk":True,
+            "allow_idk":False,
         },
         "nbagent": 5,
         "env_cfg": {

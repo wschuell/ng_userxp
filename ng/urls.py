@@ -25,8 +25,11 @@ urlpatterns = [
     #url(r'^login/$', views.login_view, name='login'),
     url(r'^login/$', views.get_name, name='login'),
 
-    url(r'^(?P<xp_uuid>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})-hearer-(?P<meaning>[0-9a-z]+)/results_json/$', views.result_hearer_json, name='resgame_tutorial/ults_hearer_json'),#ResultsView.as_view(), name='results'),
-     url(r'^(?P<xp_uuid>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})-speaker-(?P<meaning>[0-9a-z]+)-(?P<word>[0-9a-z]+)/results_json/$', views.result_speaker_json, name='results_speaker_json'),#ResultsView.as_view(), name='results'),
+    url(r'^(?P<xp_uuid>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})-hearer-(?P<meaning>[0-9a-z]+)/results_json/$', views.result_hearer_json, name='results_hearer_json'),#ResultsView.as_view(), name='results'),
+     url(r'^(?P<xp_uuid>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})-speaker-(?P<meaning>[0-9a-z]+)-(?P<word>[0-9a-z]+)/results_json/$', views.result_speaker_continue, name='results_speaker_json'),#ResultsView.as_view(), name='results'),
+
+    url(r'^(?P<xp_uuid>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})-hearer-(?P<meaning>[0-9a-z]+)/results_continue/$', views.result_hearer_json, name='results_hearer_continue'),#ResultsView.as_view(), name='results'),
+     url(r'^(?P<xp_uuid>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})-speaker-(?P<meaning>[0-9a-z]+)-(?P<word>[0-9a-z]+)/results_continue/$', views.result_speaker_continue, name='results_speaker_continue'),#ResultsView.as_view(), name='results'),
 
 
     url(r'^results_inner/(?P<xp_uuid>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/(?P<bool_succ>(True|False))/$', views.result_inner, name='results_inner'),#ResultsView.as_view(), name='results'),

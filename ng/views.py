@@ -48,7 +48,7 @@ def login_view(request):
         })
 
 @csrf_protect
-@login_required(login_url='/login')
+@login_required(login_url='/ng/login')
 def home(request):
     user = request.user
     u = UserNG.get(user=user)
@@ -62,7 +62,6 @@ def home(request):
     'multi_unlocked' : multi_unlocked,
     })
 
-@csrf_protect
 def create_and_login(request,username=None,name='',cookie_id=None):
     if username is None:
         username = name+str(cookie_id)
@@ -71,7 +70,7 @@ def create_and_login(request,username=None,name='',cookie_id=None):
     login_user(request,username)
     #print("in login")
     #request.session["user"] = user
-    return render(request,'ng/index.html',{})
+    #return render(request,'ng/index.html',{})
 
 @csrf_protect
 def get_name(request):
@@ -87,7 +86,7 @@ def get_name(request):
             name = form.cleaned_data['your_name']
             cookie_id = form.cleaned_data['name_cookie_id']
             create_and_login(request=request,name=name,cookie_id=cookie_id)
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/ng/')
 
     # if a GET (or any other method) we'll create a blank form
     else:
@@ -309,6 +308,37 @@ def result_hearer_json(request, xp_uuid, meaning):
 
 @csrf_protect
 @login_required(login_url='/ng/login/')
+def result_hearer_continue(request, xp_uuid, meaning):
+    experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
+    if request.user != experiment.user:
+        raise ValueError("wrong user")
+    try:
+        currentgame_json = experiment.get_currentgame_json()
+    except:
+        return render(request, 'ng/game.html', {
+            'experiment': experiment,
+            'context':"result",
+        })
+    if meaning == 'none':
+        currentgame_json.update({'mh':None})
+    else:
+        currentgame_json.update({'mh':int(meaning)})
+    ms = str(currentgame_json['ms'])
+    w = currentgame_json['w']
+    experiment.save_currentgame_json(currentgame_json)
+    experiment.add_word_to_user(w)
+    experiment.continue_xp()
+    bool_succ = experiment.get_last_bool_succ()
+    past_interaction = PastInteraction(meaning=ms,word=w,meaning_h=str(meaning),bool_succ=bool_succ,time_id=experiment.interaction_counter,role='hearer',experiment=experiment)
+    experiment.save()
+    past_interaction.save()
+    return render(request, 'ng/game.html', {
+            'experiment': experiment,
+            'context':"result",
+        })
+
+@csrf_protect
+@login_required(login_url='/ng/login/')
 def result_speaker_json(request, xp_uuid, meaning, word):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     if request.user != experiment.user:
@@ -348,7 +378,45 @@ def result_speaker_json(request, xp_uuid, meaning, word):
             'bool_succ': bool_succ,
             'role':"speaker",
             'context':"result"
+        })
 
+@csrf_protect
+@login_required(login_url='/ng/login/')
+def result_speaker_continue(request, xp_uuid, meaning, word):
+    experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
+    if request.user != experiment.user:
+        raise ValueError("wrong user")
+    try:
+        currentgame_json = experiment.get_currentgame_json()
+    except:
+        return render(request, 'ng/game.html', {
+            'experiment': experiment,
+            'context':"result",
+        })
+    ms = str(meaning)
+    w = word
+    currentgame_json.update({'ms':ms,'w':w})
+    experiment.save_currentgame_json(currentgame_json)
+    experiment.continue_xp()
+    bool_succ = experiment.get_last_bool_succ()
+    mh = experiment.get_last_mh()
+    if mh is None:
+        mh = 'none'
+    else:
+        mh = str(mh)
+    past_interaction = PastInteraction(meaning=ms,word=w,meaning_h=mh,bool_succ=bool_succ,time_id=experiment.interaction_counter,role='speaker',experiment=experiment)
+    experiment.save()
+    past_interaction.save()
+    if experiment.xp_config.xp_cfg_name == 'multiuser':
+        experiment.exchange_agent(1, 2)
+    experiment.save()
+    #return render(request, 'ng/results_new.html', {
+    #        'experiment': experiment,
+    #        'bool_succ': bool_succ,
+    #    })
+    return render(request, 'ng/game.html', {
+            'experiment': experiment,
+            'context':"result"
         })
 
 
