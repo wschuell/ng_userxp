@@ -1,0 +1,1 @@
+{"speaker_id": "543bc7f0-851b-11e8-bc51-0242ac120002", "hearer_id": "543b9e92-851b-11e8-bc51-0242ac120002", "ms": 0, "w": "mizere"}

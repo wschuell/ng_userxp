@@ -27,7 +27,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import authenticate, login
 from .forms import NameForm
 
-def create_user(request,username='',name='',cookie_id=''):#, lang='fr', code=''):
+def create_user(request,username='',name='',cookie_id='', lang='fr', code=''):
     user = User.objects.create_user(username=str(username),first_name=str(name),email=str(cookie_id),password=str(username))
     user.save()
     #Extended model of User
@@ -62,17 +62,17 @@ def home(request):
     'multi_unlocked' : multi_unlocked,
     })
 
-def create_and_login(request,username=None,name='',cookie_id=None):
+def create_and_login(request,username=None,name='',cookie_id=None, lang='fr', code=''):
     if username is None:
         username = name+str(cookie_id)
     if not User.objects.filter(username=username).exists():
         create_user(request,username,name=name,cookie_id=cookie_id)
-        #login_user(request,username)
-        #u = UserNG.get(user=request.user)
-        #u.lang = lang
-        #u.code = code
-
-    login_user(request,username)
+        login_user(request,username)
+        u = UserNG.get(user=request.user)
+        u.lang = lang
+        u.code = code
+    else :
+        login_user(request,username)
     #print("in login")
     #request.session["user"] = user
     #return render(request,'ng/index.html',{})
@@ -90,7 +90,9 @@ def get_name(request):
             # redirect to a new URL:
             name = form.cleaned_data['your_name']
             cookie_id = form.cleaned_data['name_cookie_id']
-            create_and_login(request=request,name=name,cookie_id=cookie_id)
+            lang = form.cleaned_data['lang']
+            code = form.cleaned_data['code']
+            create_and_login(request=request,name=name,cookie_id=cookie_id, lang='fr', code='')
             return HttpResponseRedirect('/ng/')
 
     # if a GET (or any other method) we'll create a blank form
@@ -341,14 +343,11 @@ def result_hearer_continue(request, xp_uuid, meaning):
     return render(request, 'ng/game.html', {
             'experiment': experiment,
             'context':"result",
-<<<<<<< HEAD
             'role': "hearer",
             'word':w,
             'last_mh': str(currentgame_json['mh']),
             'last_ms': ms,
             'bool_succ': bool_succ,
-=======
->>>>>>> 564a9123e353d12e08620a849c43f7120b046ffd
         })
 
 @csrf_protect
@@ -430,16 +429,12 @@ def result_speaker_continue(request, xp_uuid, meaning, word):
     #    })
     return render(request, 'ng/game.html', {
             'experiment': experiment,
-<<<<<<< HEAD
             'context':"result",
             'role': "speaker",
             'word':w,
             'last_mh': mh,
             'last_ms': str(currentgame_json['ms']),
             'bool_succ': bool_succ,
-=======
-            'context':"result"
->>>>>>> 564a9123e353d12e08620a849c43f7120b046ffd
         })
 
 
