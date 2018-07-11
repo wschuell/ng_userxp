@@ -341,11 +341,14 @@ def result_hearer_continue(request, xp_uuid, meaning):
     return render(request, 'ng/game.html', {
             'experiment': experiment,
             'context':"result",
+<<<<<<< HEAD
             'role': "hearer",
             'word':w,
             'last_mh': str(currentgame_json['mh']),
             'last_ms': ms,
             'bool_succ': bool_succ,
+=======
+>>>>>>> 564a9123e353d12e08620a849c43f7120b046ffd
         })
 
 @csrf_protect
@@ -427,12 +430,16 @@ def result_speaker_continue(request, xp_uuid, meaning, word):
     #    })
     return render(request, 'ng/game.html', {
             'experiment': experiment,
+<<<<<<< HEAD
             'context':"result",
             'role': "speaker",
             'word':w,
             'last_mh': mh,
             'last_ms': str(currentgame_json['ms']),
             'bool_succ': bool_succ,
+=======
+            'context':"result"
+>>>>>>> 564a9123e353d12e08620a849c43f7120b046ffd
         })
 
 
