@@ -1,0 +1,1 @@
+{"speaker_id": "53df020e-810b-11e8-930f-0242ac120002", "hearer_id": "53deb240-810b-11e8-930f-0242ac120002", "ms": 2, "w": "vudado"}

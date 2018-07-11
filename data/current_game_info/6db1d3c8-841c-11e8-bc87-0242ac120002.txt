@@ -1,0 +1,1 @@
+{"speaker_id": "fcfd88ec-841c-11e8-ab53-0242ac120002", "hearer_id": "fcfd9a80-841c-11e8-ab53-0242ac120002"}

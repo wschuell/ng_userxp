@@ -1,0 +1,1 @@
+{"speaker_id": "a4767d04-7ddd-11e8-a8a8-0242ac120002", "hearer_id": "a47625c0-7ddd-11e8-a8a8-0242ac120002", "ms": 1, "w": "bezeni"}

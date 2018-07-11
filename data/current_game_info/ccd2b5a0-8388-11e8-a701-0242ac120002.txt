@@ -1,0 +1,1 @@
+{"speaker_id": "cd6adf60-8388-11e8-8c55-0242ac120002", "hearer_id": "cd6aaa86-8388-11e8-8c55-0242ac120002", "ms": 1, "w": "sozoja"}

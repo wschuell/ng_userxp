@@ -331,7 +331,7 @@ function hideTooltips(){
 
 
 	//Update Bubbles Choice Meaning / Words Speaker and hearer
-	$('.m').unbind().click(function(){
+/*	$('.m').unbind().click(function(){
 		var mSelected = $(this).clone().removeClass('m').addClass('meaning');
 		$('#you-meaning').css('visibility', 'visible').css('display','block');
 		$('#you-meaning').html(mSelected);

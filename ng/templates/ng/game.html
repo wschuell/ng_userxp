@@ -44,6 +44,8 @@
 
   <body>
 
+<div type="hidden">context : {{context}}; role : {{role}}; word : {{word}}; last_ms : {{last_ms}}; last_mh {{last_mh}}; bool_succ : {{bool_succ}}</div>
+
 	<div class="row">
 		<div class="col-lg-2">
 			<!--Menu-->
@@ -135,34 +137,34 @@
 
 		<!--Bubble Feedback-->
 		<div class="col-xs-6 col-sm-6 col-lg-3">
-			<div class="bubble bubble-f" id="you-word" {% if context != "question" or role == "hearer" %} style= "float:left; visibility : hidden;" {% else %} style= "float:left" {% endif %} ><p class="word" id="word1">
+			<div class="bubble bubble-f" id="you-word" {% if context != "question" or role == "hearer" %} style= "float:left; display : none;" {% else %} style= "float:left" {% endif %} ><p class="word" id="word1">
         {% if context == "question" and role == "speaker" %}
                 ...
         {% elif context == "result" and role == "speaker" %}
-                {{experiment.last_w}}
+                {{word}}
         {% endif %}
       </p></div>
-			<div class="bubble bubble-f thought" id="you-meaning"  {% if context != "question" %} style= "float:left; visibility : hidden;" {% else %} style= "float:left" {% endif %}>
+			<div class="bubble bubble-f thought" id="you-meaning"  {% if context == "skipped" %} style= "float:left; display : none;" {% else %} style= "float:left" {% endif %}>
       {% if context == "result" and role == "speaker" %}
-        <img id="meaning_{{ experiment.last_ms}}" class="img-responsive meaning" src="{% static 'ng/img/' %}kreyon_meaning{{ m.meaning }}.png" meaning_name="{{ m.meaning }}">
+        <img id="meaning_{{last_ms}}" class="img-responsive meaning" src="{% static 'ng/img/' %}kreyon_meaning{{ last_ms }}.png" meaning_name="{{ last_ms }}">
         {% elif context == "result" and role == "hearer" %}
-        <img id="meaning_{{ experiment.last_mh}}" class="img-responsive meaning" src="{% static 'ng/img/' %}kreyon_meaning{{ m.meaning }}.png" meaning_name="{{ m.meaning }}">
+        <img id="meaning_{{last_mh}}" class="img-responsive meaning" src="{% static 'ng/img/' %}kreyon_meaning{{ last_mh }}.png" meaning_name="{{ last_mh }}">
       {% endif %}
       </div>
     </div>
 
 		<!--Bubble Feedback-->
 		<div class="col-xs-6 col-sm-6 col-lg-3 col-md-push-6 ">
-			<div class="bubble bubble-f" id="other-word"  {% if context != "question" or role == "speaker" %} style= "float:left; visibility : hidden;" {% else %} style= "float:left" {% endif %}><p class="word" id="word2">
+			<div class="bubble bubble-f" id="other-word"  {% if context != "question" or role == "speaker" %} style= "float:left; display : none;" {% else %} style= "float:left" {% endif %}><p class="word" id="word2">
         {% if role == "hearer" %}
           {{word}}
         {% endif %}
       </p></div>
-			<div class="bubble bubble-f thought" id="other-meaning"  {% if context != "result" %} style= "float:left; visibility : hidden;" {% else %} style= "float:left" {% endif %}>
+			<div class="bubble bubble-f thought" id="other-meaning"  {% if context != "result" %} style= "float:left; display : none;" {% else %} style= "float:left" {% endif %}>
         {% if context == "result" and role == "speaker" %}
-          <img id="meaning_{{ experiment.last_mh}}" class="img-responsive meaning" src="{% static 'ng/img/' %}kreyon_meaning{{ m.meaning }}.png" meaning_name="{{ m.meaning }}">
+          <img id="meaning_{{ last_mh}}" class="img-responsive meaning" src="{% static 'ng/img/' %}kreyon_meaning{{ last_mh }}.png" meaning_name="{{ last_mh }}">
           {% elif context == "result" and role == "hearer" %}
-          <img id="meaning_{{ experiment.last_ms}}" class="img-responsive meaning" src="{% static 'ng/img/' %}kreyon_meaning{{ m.meaning }}.png" meaning_name="{{ m.meaning }}">
+          <img id="meaning_{{ last_ms}}" class="img-responsive meaning" src="{% static 'ng/img/' %}kreyon_meaning{{ last_ms }}.png" meaning_name="{{ last_ms }}">
         {% endif %}
       </div>
 		</div>
@@ -172,41 +174,19 @@
 			<div id="choice">
 				<!--Consignes-->
 
-        {% if role == "hearer" %}
+        {% if role == "hearer"  and context == "question" %}
 				<div class="hearer expl">
 					<h1 class="explanation" id="hearer-expl">De quoi vous parle-t-on ?</h1>
 				</div>
-        {% elif role == "speaker" %}
+        {% elif role == "speaker"  and context == "question" %}
 				<div class="speaker expl" id="speaker-expl">
 					<h1 class="explanation">De quoi voulez-vous parler ?</h1>
 				</div>
         {% endif %}
+
+
 				<!--Meanings-->
 				<div class="meanings" id="meaning_inner">
-				<!--	<label class="mradio">
-						<input type="radio" name="m" id="m0" value="m0"/>-->
-						<!--<img src="../static/img/meaning_temp.png" class="img-responsive m">-->
-					<!--	</label>
-
-					<label class="mradio">
-						<input type="radio" name="m" id="m1" value="m1"/>-->
-						<!--<img src="../static/img/meaning_temp.png" class="img-responsive m">-->
-					<!--	</label>
-
-					<label class="mradio">
-						<input type="radio" name="m" id="m2" value="m2"/>-->
-					<!--<img src="../static/img/meaning_temp.png" class="img-responsive m">-->
-					<!--	</label>
-
-					<label class="mradio">
-						<input type="radio" name="m" id="m3" value="m3"/>-->
-					<!--<img src="../static/img/meaning_temp.png" class="img-responsive m">-->
-					<!--	</label>
-
-					<label class="mradio">
-						<input type="radio" name="m" id="m4" value="m4"/>-->
-					<!--<img src="../static/img/meaning_temp.png" class="img-responsive m">-->
-      	<!--  </label>-->
 
           {% for m in experiment.meanings.all %}
             {% if context == "skipped"%}
@@ -220,13 +200,13 @@
             <img id="meaning_{{ m.meaning }}" class="img-responsive m meaning_img" src="{% static 'ng/img/' %}kreyon_meaning{{ m.meaning }}.png" meaning_name="{{ m.meaning }}">
           </label>
           {% endfor %}
-          <!--Regarde si c'est la première fois que l'utilisateur voit ce mot. DOUTE SYNTAXE-->
+          <!--Regarde si c'est la première fois que l'utilisateur voit ce mot.
           {% if context == "question" and role == "hearer" and last_w not in experiment.pastinteraction_set.all%}
 					<label class="mradio" id="dont_know">
 						<input type="radio" name="m" id="none" value="none"/>
 						<img src="{% static 'ng/img/kreyon_meaningnone.png'%}" class="img-responsive m meaning_img">
 		      </label>
-          {% endif %}
+          {% endif %}-->
 					<!--Séparateur-->
           {% if context == "question" %}
 					<div class="separator_h"></div>
@@ -236,49 +216,24 @@
 
 
 				<!--Words-->
-
+{% if context == "question" and role == "speaker" %}
 				<div class="speaker-words"  id= "word_inner" style= "visibility : hidden;" >
-        {% if context == "question" and role == "speaker" %}
+
 					<h1 class="explanation" id="choice_words"> Quel mot voulez-vous utiliser ?</h1>
-        {% endif %}
+
 
         {% for w in experiment.words.all %}
 					<label class="wradio">
-						<input type="radio" name="w" id="word_{{ w.word }}" word_name="{{ w.word }}" class="word_text_speaker"/>
-						<div class="w">{{ w.word }}</div>
+						<input type="radio"  name="m" id="{{ w.word }}" value="{{ w.word }}"/>
+						<div class="w word_text_speaker" id="word_{{ w.word }}" word_name="{{ w.word }}">{{ w.word }}</div>
 					</label>
         {% endfor %}
-
-				<!--	<label class="wradio">
-						<input type="radio" name="w" id="w1" value="w1"/>
-						<div class="w">W1</div>
-					</label>
-
-					<label class="wradio">
-						<input type="radio" name="w" id="w2" value="w2"/>
-						<div class="w">W2</div>
-					</label>
-
-					<label class="wradio">
-						<input type="radio" name="w" id="w3" value="w3"/>
-						<div class="w">W3</div>
-					</label>
-
-					<label class="wradio">
-						<input type="radio" name="w" id="w4" value="w4"/>
-						<div class="w">W4</div>
-					</label>
-
-					<label class="wradio">
-						<input type="radio" name="w" id="w5" value="w5"/>
-						<div class="w">W5</div>
-					</label> -->
 
 					<!--Séparateur-->
 					<div class="separator"></div>
 
 				</div>
-
+{% endif %}
 
 				<!--Smiley feedback
 https://cdn.pixabay.com/photo/2016/09/01/08/24/smiley-1635451_960_720.png
@@ -286,24 +241,32 @@ https://cdn.pixabay.com/photo/2013/07/12/13/51/thinking-147447_960_720.png
 -->
         {% if context == "result" %}
 				<div class="feedback">
+        <!--  # if experiment.last_mh == None or experiment.last_ms == None
+          <img src="{% static 'ng/img/feedback_learn_temp.png' %}" class="img-responsive smiley" id="learn"> -->
           {% if bool_succ %}
 					<img src="{% static 'ng/img/feedback_success_temp.png' %}" class="img-responsive smiley" id="success">
-          {% elif bool_succ == False %}
-            {% if experiment.last_mh == "none" or experiment.last_ms == "none" %}
-            <img src="{% static 'ng/img/feedback_learn_temp.png' %}" class="img-responsive smiley" id="learn">
-            {% else %}
+          {% else %}
 			    	<img src="{% static 'ng/img/feedback_failure_temp.png' %}" class="img-responsive smiley" id="failure">
           {% endif %}
-          {% endif %}
 				</div>
-        {% endif %}
+      {% endif %}
+
 				<!--Bouton Continuer-->
         {% if context == "question" and role == "speaker"%}
 				<button type="button" id="continue"class="interact_speaker btn" style="margin-top: 20px">Continuer</button>
         {% elif context == "question" and role == "hearer"%}
         <button type="button" id="continue"  class="interact_hearer btn" style="margin-top: 20px">Continuer</button>
         {% elif context == "skipped" %}
-        <button type="button" id="button_next"  class="button_action btn" style="margin-top: 20px">Continuer</button>
+        <button type="button" id="button_next"  class="button_action btn" style="margin-top: 20px; margin-bottom : 10px;">Continuer</button>
+        {% elif context == "result" %}
+        <div id="button_next_div">
+            <!--<button id="button_next">Next</button>-->
+
+          <form action="{% url 'ng:continue' experiment.xp_uuid %}" method="post">
+          {% csrf_token %}
+          <input id="button_next" class="btn" type="submit" value="Next" />
+            </form>
+        </div>
         {% endif %}
     	<!--	<button type="button" class="btn" id="next" style="margin-top: 20px; font-size:25px">Continuer</button> -->
 			</div>
@@ -341,13 +304,13 @@ https://cdn.pixabay.com/photo/2013/07/12/13/51/thinking-147447_960_720.png
       <div "line_meaning">
         <div class='row'>
             <div class='col-xs-3' >
-                <span class="img-histo"><img src="{% static 'ng/img/' %}kreyon_meaning{{ past_int.meaning }}.png"></span>
+                <span ><img src="{% static 'ng/img/' %}kreyon_meaning{{ past_int.meaning }}.png" class="img-histo"></span>
             </div>
            <div class='col-xs-6' >
              <span class="w-histo">{{ past_int.word }}</span>
            </div>
            <div class='col-xs-3' >
-           {% if past_int.bool_succ %}<span class="img-responsive meaning"><img src="{% static 'ng/img/' %}feedback_success_temp.png"></span>{% endif %}
+           {% if past_int.bool_succ %}<span ><img class="img-responsive meaning img-histo" src="{% static 'ng/img/' %}feedback_success_temp.png"></span>{% endif %}
           </div>
       </div>
       </div>
@@ -426,6 +389,20 @@ $(document).ready(function() {
      var mSelected = $(this).clone().removeClass('m').addClass('meaning');
      $('#you-meaning').css('visibility', 'visible').css('display','block');
      $('#you-meaning').html(mSelected);
+     if (! $('html').hasClass('wait')) {
+       if(! $(this).hasClass('selected_m')) {
+         $(".selected_m").removeClass("selected_m");
+         $(this).addClass("selected_m");
+
+         if ($(".selected_w").length > 0) {
+           $("#continue.interact_speaker").removeClass('disabled');
+         };
+         $("#continue.interact_hearer").removeClass('disabled');
+       } else {
+         $(this).removeClass("selected_m");
+         $("#continue").addClass('disabled');
+       };
+     }
      if( '{{context}}' == 'question' && '{{role}}' == "speaker" ) {
        $('.speaker-words').css('visibility', 'visible').css('display','block');
      } else {
@@ -439,8 +416,19 @@ $(document).ready(function() {
    $('.w').click(function(){
      var wSelected = $(this).text();
      $('#word1').text(wSelected);
-     $('#continue').removeClass('disabled').prop('disabled',false);
      $('#anspeaker').tooltip('hide');
+     if (! $('html').hasClass('wait')) {
+       if (! $(this).hasClass('selected_w')) {
+         $(".selected_w").removeClass("selected_w");
+         $(this).addClass('selected_w');
+         if ($(".selected_m").length > 0) {
+           $("#continue").removeClass('disabled');
+         };
+       } else {
+         $(this).removeClass("selected_w");
+         $("#continue").addClass('disabled');
+       };
+     }
    });
 });
   </script>

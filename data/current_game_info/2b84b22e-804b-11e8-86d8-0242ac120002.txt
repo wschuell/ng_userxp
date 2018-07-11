@@ -1,0 +1,1 @@
+{"speaker_id": "2ca9306c-804b-11e8-85db-0242ac120002", "hearer_id": "2ca8f08e-804b-11e8-85db-0242ac120002", "ms": 4, "w": "heyori"}

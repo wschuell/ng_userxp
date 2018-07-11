@@ -1,0 +1,1 @@
+{"speaker_id": "32db46c6-7ed1-11e8-bb95-0242ac120002", "hearer_id": "32db3672-7ed1-11e8-bb95-0242ac120002", "ms": 1, "w": "hexicu"}

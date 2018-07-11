@@ -76,14 +76,22 @@ body {
 	float : left;
 }
 
+#logoutbutton {
+	font-size: 30px;
+	cursor: pointer;
+	margin-top : 30px;
+	background-color : rgba(0,0,0,0.5);
+	padding: 15px;
+	border-radius: 10px;
+}
 
 
 /*Login Page*/
 
 
 .label {
-	font-size : 25px;
-	padding : 80px 15px 15px;
+	font-size : 20px;
+	padding : 50px 15px 15px;
 
 }
 
@@ -129,7 +137,7 @@ body {
 }
 
 #footer {
-	padding : 70px
+	padding : 40px
 }
 
 
@@ -522,7 +530,7 @@ tr{width: 100%}
   	position: absolute;
 }
 
-.mradio > input:checked + img{
+.selected_m{
   	border:2px solid #4098FD;
 }
 
@@ -550,7 +558,7 @@ tr{width: 100%}
 	padding-bottom : 5px;
 	text-align : center;
 	display : inline-block;
-	margin : 5% 10% 4%;
+	/*margin : 5% 10% 4%;*/
 	cursor: pointer;
 	border : 2px solid rgb(0,0,0,0.1);
 }
@@ -564,7 +572,7 @@ tr{width: 100%}
   	position: absolute;
 }
 
-.wradio > input:checked + div{
+.selected_w {
   border:2px solid #4098FD;
 }
 
@@ -649,7 +657,7 @@ tr{width: 100%}
 	font-size : 40px
 }
 
-#continue, #interactbutton, #next {
+#continue, #interactbutton, #button_next {
 	display : block;
 	margin : 4% auto 1%;
 	height : 60px;

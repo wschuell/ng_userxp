@@ -27,7 +27,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import authenticate, login
 from .forms import NameForm
 
-def create_user(request,username='',name='',cookie_id='', lang='fr', code=''):
+def create_user(request,username='',name='',cookie_id=''):#, lang='fr', code=''):
     user = User.objects.create_user(username=str(username),first_name=str(name),email=str(cookie_id),password=str(username))
     user.save()
     #Extended model of User
@@ -36,7 +36,7 @@ def create_user(request,username='',name='',cookie_id='', lang='fr', code=''):
 
 def login_user(request,username=''):
     user = authenticate(request, username=username, password=username)
-    if user is not None:
+    if user is not None :
         #print("in login")
         #request.session["user"] = user
         login(request, user)
@@ -48,7 +48,7 @@ def login_view(request):
         })
 
 @csrf_protect
-@login_required(login_url='/login')
+@login_required(login_url='/ng/login')
 def home(request):
     user = request.user
     u = UserNG.get(user=user)
@@ -62,16 +62,20 @@ def home(request):
     'multi_unlocked' : multi_unlocked,
     })
 
-@csrf_protect
 def create_and_login(request,username=None,name='',cookie_id=None):
     if username is None:
         username = name+str(cookie_id)
     if not User.objects.filter(username=username).exists():
         create_user(request,username,name=name,cookie_id=cookie_id)
+        #login_user(request,username)
+        #u = UserNG.get(user=request.user)
+        #u.lang = lang
+        #u.code = code
+
     login_user(request,username)
     #print("in login")
     #request.session["user"] = user
-    return render(request,'ng/index.html',{})
+    #return render(request,'ng/index.html',{})
 
 @csrf_protect
 def get_name(request):
@@ -87,7 +91,7 @@ def get_name(request):
             name = form.cleaned_data['your_name']
             cookie_id = form.cleaned_data['name_cookie_id']
             create_and_login(request=request,name=name,cookie_id=cookie_id)
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/ng/')
 
     # if a GET (or any other method) we'll create a blank form
     else:
@@ -238,7 +242,7 @@ def result_speaker(request, xp_uuid, meaning, word):
     #        'experiment': experiment,
     #        'bool_succ': bool_succ,
     #    })
-    return render(request, 'ng/global.html', {
+    return render(request, 'ng/game.html', {
             'experiment': experiment,
             'bool_succ': bool_succ,
             'role':"speaker",
@@ -259,14 +263,15 @@ def result_inner(request, xp_uuid, bool_succ):
     if request.user != experiment.user:
         raise ValueError("wrong user")
     past_int = experiment.pastinteraction_set.last()
-    return render(request, 'ng/results_toinclude_new.html', {
+    return render(request, 'ng/game.html', {
             'experiment': experiment,
             'bool_succ': past_int.bool_succ,
             'ms':past_int.meaning,
             'word':past_int.word,
             'mh':past_int.meaning_h,
             'role':past_int.role,
-            'username':request.user.username
+            'username':request.user.username,
+            'context' : "result",
         })
 
 
@@ -305,6 +310,42 @@ def result_hearer_json(request, xp_uuid, meaning):
             'role':"hearer",
             'context':"result",
             'ms':ms,
+        })
+
+@csrf_protect
+@login_required(login_url='/ng/login/')
+def result_hearer_continue(request, xp_uuid, meaning):
+    experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
+    if request.user != experiment.user:
+        raise ValueError("wrong user")
+    try:
+        currentgame_json = experiment.get_currentgame_json()
+    except:
+        return render(request, 'ng/game.html', {
+            'experiment': experiment,
+            'context':"result",
+        })
+    if meaning == 'none':
+        currentgame_json.update({'mh':None})
+    else:
+        currentgame_json.update({'mh':int(meaning)})
+    ms = str(currentgame_json['ms'])
+    w = currentgame_json['w']
+    experiment.save_currentgame_json(currentgame_json)
+    experiment.add_word_to_user(w)
+    experiment.continue_xp()
+    bool_succ = experiment.get_last_bool_succ()
+    past_interaction = PastInteraction(meaning=ms,word=w,meaning_h=str(meaning),bool_succ=bool_succ,time_id=experiment.interaction_counter,role='hearer',experiment=experiment)
+    experiment.save()
+    past_interaction.save()
+    return render(request, 'ng/game.html', {
+            'experiment': experiment,
+            'context':"result",
+            'role': "hearer",
+            'word':w,
+            'last_mh': str(currentgame_json['mh']),
+            'last_ms': ms,
+            'bool_succ': bool_succ,
         })
 
 @csrf_protect
@@ -348,7 +389,50 @@ def result_speaker_json(request, xp_uuid, meaning, word):
             'bool_succ': bool_succ,
             'role':"speaker",
             'context':"result"
+        })
 
+@csrf_protect
+@login_required(login_url='/ng/login/')
+def result_speaker_continue(request, xp_uuid, meaning, word):
+    experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
+    if request.user != experiment.user:
+        raise ValueError("wrong user")
+    try:
+        currentgame_json = experiment.get_currentgame_json()
+    except:
+        return render(request, 'ng/game.html', {
+            'experiment': experiment,
+            'context':"result",
+        })
+    ms = str(meaning)
+    w = word
+    currentgame_json.update({'ms':ms,'w':w})
+    experiment.save_currentgame_json(currentgame_json)
+    experiment.continue_xp()
+    bool_succ = experiment.get_last_bool_succ()
+    mh = experiment.get_last_mh()
+    if mh is None:
+        mh = 'none'
+    else:
+        mh = str(mh)
+    past_interaction = PastInteraction(meaning=ms,word=w,meaning_h=mh,bool_succ=bool_succ,time_id=experiment.interaction_counter,role='speaker',experiment=experiment)
+    experiment.save()
+    past_interaction.save()
+    if experiment.xp_config.xp_cfg_name == 'multiuser':
+        experiment.exchange_agent(1, 2)
+    experiment.save()
+    #return render(request, 'ng/results_new.html', {
+    #        'experiment': experiment,
+    #        'bool_succ': bool_succ,
+    #    })
+    return render(request, 'ng/game.html', {
+            'experiment': experiment,
+            'context':"result",
+            'role': "speaker",
+            'word':w,
+            'last_mh': mh,
+            'last_ms': str(currentgame_json['ms']),
+            'bool_succ': bool_succ,
         })
 
 
@@ -431,18 +515,21 @@ def continue_userxp(request, xp_uuid):
             hr_id = currentgame_json['hearer_id']
             experiment.update_meanings()
             experiment.update_words()
+            bar_width = ((experiment.interaction_counter + 1) / experiment.max_interaction )*100
             if sp_id == experiment.get_user_agent_uuid():
                 return render(request, 'ng/game.html', {
                     'experiment': experiment,
                     'role':"speaker",
-                    'context':"question"
+                    'context':"question",
+                    'bar_width':bar_width,
                     })
             elif hr_id == experiment.get_user_agent_uuid():
                 return render(request, 'ng/game.html', {
                     'experiment': experiment,
                     'word': currentgame_json['w'],
                     'role':"hearer",
-                    'context':"question"
+                    'context':"question",
+                    'bar_width':bar_width,
                     })
             else:
                 raise
@@ -480,10 +567,11 @@ def score(request, xp_uuid):
         score_val = int(srtheo * experiment.meanings.count() * 100)#.all().count()?
         score = Score(experiment=experiment,score=score_val,user=request.user)
         score.save()
+    u = UserNG.get(user=request.user)
     if experiment.xp_config.xp_cfg_name == "normal" :
-        user.nbr_played =+ 1
-    elif experiment.xp_config.xp_cfg_name == "basic" and user.tuto_played == False :
-        user.tuto_played = True
+        u.nbr_played =+ 1
+    elif experiment.xp_config.xp_cfg_name == "basic" and u.tuto_played == False :
+        u.tuto_played = True
     #Test if score exists
     #if not, compute and store object
     #get value

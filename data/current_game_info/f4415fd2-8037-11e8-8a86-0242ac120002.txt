@@ -1,0 +1,1 @@
+{"speaker_id": "f4cba2f0-8037-11e8-a312-0242ac120002", "hearer_id": "f4cb7b0e-8037-11e8-a312-0242ac120002", "ms": 3, "w": "fiyabu"}

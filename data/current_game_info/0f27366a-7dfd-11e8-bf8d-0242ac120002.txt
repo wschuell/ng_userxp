@@ -1,0 +1,1 @@
+{"speaker_id": "11df76c4-7dfd-11e8-b9fe-0242ac120002", "hearer_id": "11df55b8-7dfd-11e8-b9fe-0242ac120002", "ms": 1, "w": "bomipi"}

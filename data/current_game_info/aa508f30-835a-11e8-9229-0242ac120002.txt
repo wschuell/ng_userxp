@@ -1,0 +1,1 @@
+{"speaker_id": "ab639ea8-835a-11e8-bc2c-0242ac120002", "hearer_id": "ab6387d8-835a-11e8-bc2c-0242ac120002", "ms": 0, "w": "wuvevi"}

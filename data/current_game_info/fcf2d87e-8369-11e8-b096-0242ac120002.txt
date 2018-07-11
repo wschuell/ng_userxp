@@ -1,0 +1,1 @@
+{"speaker_id": "fe1a560a-8369-11e8-a6fd-0242ac120002", "hearer_id": "fe1a315c-8369-11e8-a6fd-0242ac120002", "ms": 1, "w": "fasuma"}

@@ -46,12 +46,18 @@
 
 			<!--Icones menu-->
 			<div class="row">
-				<div class="menu">
+          <div class="col-lg-2">
+				      <div class="menu">
 				<!-- Ajouter les liens pour rendre fonctionnel -->
-					<span class="icon"><img src="{% static 'ng/img/french-flag.png' %}" id="lang"></span>
-					<span class="glyphicon glyphicon-volume-off icon" id="sound-off" style="margin-right: 7px"></span>
-					<span class="glyphicon glyphicon-volume-up icon" id="sound-on" style="margin-right: 7px"></span>
-				</div>
+					        <span class="icon"><img src="{% static 'ng/img/french-flag.png' %}" id="lang"></span>
+					        <span class="glyphicon glyphicon-volume-off icon" id="sound-off" style="margin-right: 7px"></span>
+					        <span class="glyphicon glyphicon-volume-up icon" id="sound-on" style="margin-right: 7px"></span>
+                </div>
+          </div>
+          <div class="col-lg-8"></div>
+          <div class="col-lg-2">
+            <span class="glyphicon glyphicon-off icon" id= "logoutbutton" style="margin-right: 7px"></span>
+          </div>
 			</div>
 
 			<!--Titre Page-->
@@ -60,7 +66,7 @@
 			</div>
 
 			<div class="row">
-				<div class="col-lg-2"></div>
+				<div class="col-lg-2"> </div>
 
 
 				<!--Boutons principaux-->
@@ -128,6 +134,10 @@
    	$('#sound-off').css('display','inline');
    });
 
+   $("#logoutbutton").click(function(){
+     $("html").addClass("wait");
+     window.location.href=url_logout;
+   });
    //Choix du type de jeu
 		$('#button_basic').click(function(){window.location.href = "story";});
 

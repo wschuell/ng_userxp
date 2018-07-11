@@ -31,7 +31,7 @@ xp_cfg = {
                 "success_type": "global"
             },
             "strat_type": "naive",
-            "allow_idk":True,
+            "allow_idk":False,
         },
         "nbagent": 5,
         "env_cfg": {
@@ -71,6 +71,7 @@ class UserNG(models.Model):
 def create_user_profile(sender, instance, created, **kwargs):
     if created :
         UserNG.objects.create(user=instance)
+
 
 class Word(models.Model):
     word = models.CharField(max_length=200)

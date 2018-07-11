@@ -10,12 +10,13 @@
     	<link rel="stylesheet" href="style.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'ng/ng.css' %}" />
+  <!--  <link rel="stylesheet" type="text/css" href="{% static 'ng/style.css' %}" /> -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
      <script src="{% static 'ng/jquery-3.2.1.min.js' %}"></script>
      <script src="{% static 'ng/js.cookie.js' %}"></script>
      <script src="{% static 'ng/change_lang.js' %}"></script>
      <script src="{% static 'ng/script.js' %}"></script>
-	   <script src="{% static 'ng/login.js' %}"></script>
+	  <!--  <script src="{% static 'ng/login.js' %}"></script> -->
      <script type="text/javascript">
          var url_send_user_info = "{% url 'ng:send_user_info_base'  %}";
          var url_newxp = "{% url 'ng:new_experiment'  %}";
@@ -37,10 +38,19 @@
              Cookies.set('NamingGameUser',
                  user_str
                  );
-
              };
 
-          $(document).ready(function(){$("#id_name_cookie_id").val($("#username").html())});
+          //language
+        /*  $(".info_lang").click(function {
+            var language = $(this).attr(value);
+            $('#lang').html(language);
+          }); */
+
+          $(document).ready(function(){
+            //$("#id_name_cookie_id").val($("#username").html());
+            $("#id_lang").val($("#lang").html());
+            //$("#id_code").val($("#code").attr(value));
+          });
 
 
      </script>
@@ -67,6 +77,8 @@
 
 				<!--	<input type="username" class="form-control" id="username" value="Submit" required>-->
 <!-- 				{% csrf_token %} -->
+
+			{% csrf_token %}
 				{{ form }}
           <div class="not_displayed" style= "visible:hidden; display:none">
             <span id="username"></span>
@@ -82,36 +94,46 @@
         <div class="col-lg-2 visible-lg"> </div>
 				<div class="col-lg-2 col-xs-12">
 					<label class = "lang">
-  						<input type="radio" name="lang" id="fr" value="fr"  checked/>
+  						<input type="radio" name="lang" class"info_lang" id="fr" value="fr"  checked/>
 						<!--adresse img :https://cdn.pixabay.com/photo/2015/11/20/18/55/french-flag-1053711_960_720.png-->
-						<img src="{% static 'ng/img/french-flag.png' %}"  for="fr" alt="french" width= 200px height= 150px >
+						<img src="{% static 'ng/img/french-flag.png' %}"  for="fr" alt="french" width= 150px height= 125px >
 					</label>
 				</div>
 
 				<div class="col-lg-4 col-xs-12">
 					<label class="lang">
-  						<input type="radio" name="lang" id="en" value="en"/>
+  						<input type="radio" name="lang" class"info_lang" id="en" value="en"/>
 						<!--adresse img :https://cdn.pixabay.com/photo/2012/04/23/16/15/flags-38754_960_720.png-->
-						<img src="{% static 'ng/img/english-flag.png' %}" for="en" alt="english" width= 200px height= 150px >
+						<img src="{% static 'ng/img/english-flag.png' %}" for="en" alt="english" width= 150px height= 125px >
 					</label>
 				</div>
 				<div class="col-lg-2 col-xs-12">
 					<label class="lang">
-  						<input type="radio" name="lang" id="it" value="it" />
+  						<input type="radio" name="lang" class"info_lang" id="it" value="it" />
 						<!--adresse img :https://cdn.pixabay.com/photo/2012/04/11/15/35/flag-28543_960_720.png-->
-						<img src="{% static 'ng/img/italian-flag.png' %}" for = "it" alt="italian" width= 200px height= 150px >
+						<img src="{% static 'ng/img/italian-flag.png' %}" for = "it" alt="italian"width= 150px height= 125px >
 					</label>
 				</div>
         <div class="col-lg-2 visible-lg"> </div>
 			</div>
 
+      <!--<div class="row">
+        Code si pertinent
+        <div class="col-md-4"> </div>
+        <div class="col-md-4">
+        <label class="label" id="label-code" style="font-size: 20px;">Si vous avez un code spécial, veuillez l'entrer ici :</label>
+        <input type="code" class="form-control" id="code" value="no_code"  style= "width:20%; margin : auto;">
 
+      </div>
+      <div class="col-md-4"></div>
+      </div>-->
 
 			<div class="row" id="footer">
 				<div class="col-md-4"> </div>
 				<div class="col-md-4">
-					<!--Bouton Valider-->
+
 					<input type="submit" class="btn btn-default bt-lg" id="submit" value="Valider"/>
+
 				</div>
 				<div class="col-md-4"></div>
 			</div>
@@ -125,10 +147,12 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
   </body>
 
   <div class="not_displayed">
     <span id="username"></span>
+    <span id="lang"></span>
 </div>
 
 </html>

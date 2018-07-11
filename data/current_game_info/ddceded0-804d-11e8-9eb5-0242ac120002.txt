@@ -1,0 +1,1 @@
+{"speaker_id": "de9f5380-804d-11e8-9aa7-0242ac120002", "hearer_id": "de9f1fd2-804d-11e8-9aa7-0242ac120002", "ms": 4, "w": "coxola"}

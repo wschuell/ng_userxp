@@ -1,0 +1,1 @@
+{"speaker_id": "d60bf78e-8050-11e8-9cb2-0242ac120002", "hearer_id": "d60baaa4-8050-11e8-9cb2-0242ac120002", "ms": 1, "w": "xigugi"}

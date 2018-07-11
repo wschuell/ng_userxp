@@ -1,0 +1,1 @@
+{"speaker_id": "d48098ec-7b8d-11e8-a1e2-0242ac120002", "hearer_id": "d4808456-7b8d-11e8-a1e2-0242ac120002", "ms": 0, "w": "cavuyi"}

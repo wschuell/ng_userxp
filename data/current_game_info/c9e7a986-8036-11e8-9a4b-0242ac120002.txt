@@ -1,0 +1,1 @@
+{"speaker_id": "cac961f0-8036-11e8-a19f-0242ac120002", "hearer_id": "cac916fa-8036-11e8-a19f-0242ac120002", "ms": 2, "w": "safaru"}

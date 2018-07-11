@@ -12,7 +12,7 @@ $( document ).ready(function() {
 
   //$("#word_speaker").hide();
   $("#button_next, #button_start").click(function(){
-    $("#button_next, #button_start");
+    $("#button_next, #button_start").addClass('disabled');
     $("html").addClass("wait");
     window.location.href = url_continue ;}
   );
@@ -20,7 +20,7 @@ $( document ).ready(function() {
 
   $("#continue").addClass('disabled');
 
-  $('#meaning_inner.meaning_img').click(function(event){
+  /* $('#meaning_inner.meaning_img').click(function(event){
     //$("#word_speaker").show();
 
     if (! $('html').hasClass('wait')) {
@@ -39,7 +39,7 @@ $( document ).ready(function() {
     }
   });
 
-  $('#word_inner.word_text_speaker').click(function(event){
+  $('.word_text_speaker').click(function(event){
     if (! $('html').hasClass('wait')) {
       if (! $(this).hasClass('selected_w')) {
         $(".selected_w").removeClass("selected_w");
@@ -52,42 +52,44 @@ $( document ).ready(function() {
         $("#continue").addClass('disabled');
       };
     }
-  });
+  });*/
 
   //interact button with ajax
   $("#continue.interact_hearer").click(function(event){
     $("#continue").addClass('disabled');
-    $.ajax({
-      url: url_results_hearer_base + $(".selected_m").attr("meaning_name") + "/results_json/",
-      success: function (result) {
-        var result_json = JSON.parse(result);
-        $.ajax({
-          url: url_results_inner_base  + result_json.bool_succ,
-          success: function (result2) {
-            $("#choose").html(result2);
-            set_language();
-          }
-        });
-      }
-    });
+    // $.ajax({
+    //   url: url_results_hearer_base + $(".selected_m").attr("meaning_name") + "/results_json/",
+    //   success: function (result) {
+    //     var result_json = JSON.parse(result);
+    //     $.ajax({
+    //       url: url_results_inner_base  + result_json.bool_succ,
+    //       success: function (result2) {
+    //         $("#choose").html(result2);
+    //         set_language();
+    //       }
+    //     });
+    //   }
+    // });
+     window.location.href=url_results_hearer_base + $(".selected_m").attr("meaning_name") + "/results_continue/"
     return false;
   });
 
   $("#continue.interact_speaker").click( function (event) {
     $("#continue").addClass('disabled');
-    $.ajax({
-      url: url_results_speaker_base + $(".selected_m").attr("meaning_name") + "-" + $(".selected_w").attr("word_name") + "/results_json/",
-      success: function (result) {
-        var result_json = JSON.parse(result);
-        $.ajax({
-          url: url_results_inner_base  + result_json.bool_succ,
-          success: function (result2) {
-            $("#choose").html(result2);
-           set_language();
-          }
-        });
-      }
-    });
+    // $.ajax({
+    //   url: url_results_speaker_base + $(".selected_m").attr("meaning_name") + "-" + $(".selected_w").attr("word_name") + "/results_json/",
+    //   success: function (result) {
+    //     var result_json = JSON.parse(result);
+    //     $.ajax({
+    //       url: url_results_inner_base  + result_json.bool_succ,
+    //       success: function (result2) {
+    //         $("#choose").html(result2);
+    //        set_language();
+    //       }
+    //     });
+    //   }
+    // });
+    window.location.href=url_results_speaker_base + $(".selected_m").attr("meaning_name") + "-" + $(".selected_w").attr("word_name") + "/results_continue/"
     return false;
   });
 
