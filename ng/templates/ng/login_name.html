@@ -41,15 +41,24 @@
              };
 
           //language
+<<<<<<< HEAD
          $(".info_lang").click(function (){
             var language = $(this).attr("value");
+=======
+        /  $(".info_lang").click(function {
+            var language = $(this).attr(value);
+>>>>>>> 89221e0d4f88942de5f5e83b4f6e16a66177fb9f
             $('#lang').html(language);
           });
 
           $(document).ready(function(){
             $("#id_name_cookie_id").val($("#username").html());
             $("#id_lang").val($("#lang").html())
+<<<<<<< HEAD
             $("#id_code").val($("#code").attr("value"));
+=======
+            $("#id_code").val($("#code").attr(value));
+>>>>>>> 89221e0d4f88942de5f5e83b4f6e16a66177fb9f
           });
 
 
