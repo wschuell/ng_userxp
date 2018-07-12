@@ -118,7 +118,7 @@ class IndexView(LoginRequiredMixin, generic.ListView):
 #Story view if user chooses tutorial
 @login_required(login_url='/ng/login/')
 def story(request) :
-	return render(request, 'ng/story.html', {'context':'story'})
+	return render(request, 'ng/story.html', {'context':'story', 'userNG': UserNG.get(user=request.user)})
 
 
 class DetailView(LoginRequiredMixin, generic.DetailView):
@@ -350,6 +350,9 @@ def result_hearer_continue(request, xp_uuid, meaning):
             'last_mh': str(currentgame_json['mh']),
             'last_ms': ms,
             'bool_succ': bool_succ,
+            'user':request.user,
+            'userNG': UserNG.get(user=request.user),
+
         })
 
 @csrf_protect
@@ -392,7 +395,9 @@ def result_speaker_json(request, xp_uuid, meaning, word):
             'experiment': experiment,
             'bool_succ': bool_succ,
             'role':"speaker",
-            'context':"result"
+            'context':"result",
+            'user':request.user,
+            'userNG': UserNG.get(user=request.user),
         })
 
 @csrf_protect
@@ -437,6 +442,8 @@ def result_speaker_continue(request, xp_uuid, meaning, word):
             'last_mh': mh,
             'last_ms': str(currentgame_json['ms']),
             'bool_succ': bool_succ,
+            'user':request.user,
+            'userNG': UserNG.get(user=request.user),
         })
 
 
@@ -507,6 +514,9 @@ def continue_userxp(request, xp_uuid):
                     'nb_skipped': nb_steps,
                     'context': 'skipped',
                     'bar_width':bar_width,
+                    'user':request.user,
+                    'userNG': UserNG.get(user=request.user),
+
                        })
 
     except IOError as e:
@@ -524,6 +534,8 @@ def continue_userxp(request, xp_uuid):
                     'role':"speaker",
                     'context':"question",
                     'bar_width':bar_width,
+                    'user':request.user,
+                    'userNG': UserNG.get(user=request.user),
                     })
             elif hr_id == experiment.get_user_agent_uuid():
                 return render(request, 'ng/game.html', {
@@ -532,6 +544,8 @@ def continue_userxp(request, xp_uuid):
                     'role':"hearer",
                     'context':"question",
                     'bar_width':bar_width,
+                    'user':request.user,
+                    'userNG': UserNG.get(user=request.user),
                     })
             else:
                 raise
@@ -547,7 +561,7 @@ def exp_resume(request, xp_uuid):
         raise ValueError("wrong user")
     return render(request, 'ng/global.html', {
             'experiment': experiment,
-            'context':"resume"
+            'context':"resume",
             })
 
 
@@ -584,4 +598,5 @@ def score(request, xp_uuid):
             'score':score_val,
             'context':"end",
             'user':request.user,
+            'userNG': UserNG.get(user=request.user),
             })

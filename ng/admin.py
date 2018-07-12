@@ -33,6 +33,12 @@ from django.contrib.auth.models import User
 
 from .admin_bis import *
 
+class MeaningAdmin(admin.ModelAdmin):
+	readonly_fields=('meaning', 'meaning')
+
+class WordAdmin(admin.ModelAdmin):
+	readonly_fields=('word', 'word')
+
 class ScoreAdmin(admin.ModelAdmin):
 	readonly_fields=(
 	'user',
@@ -80,3 +86,5 @@ admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
 admin.site.register(models.Experiment, ExperimentAdmin)
 admin.site.register(models.Score, ScoreAdmin)
+admin.site.register(models.Meaning, MeaningAdmin)
+admin.site.register(models.Word, WordAdmin)
