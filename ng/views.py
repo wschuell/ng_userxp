@@ -299,7 +299,7 @@ def result_hearer_json(request, xp_uuid, meaning):
         currentgame_json.update({'mh':None})
     else:
         currentgame_json.update({'mh':int(meaning)})
-    ms = str(currentgame_json['ms'])
+    ms = int(currentgame_json['ms'])
     w = currentgame_json['w']
     experiment.save_currentgame_json(currentgame_json)
     experiment.add_word_to_user(w)
@@ -370,7 +370,7 @@ def result_speaker_json(request, xp_uuid, meaning, word):
             'role':"speaker",
             'context':"result",
         })
-    ms = str(meaning)
+    ms = int(meaning)
     w = word
     currentgame_json.update({'ms':ms,'w':w})
     experiment.save_currentgame_json(currentgame_json)
