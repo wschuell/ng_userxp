@@ -3,89 +3,163 @@
 import json
 
 dict_obj = {
-	"it" : {
-		"some_id_of_a_string_div": "Sono una stringa" ,
-		"title": "Titolo italiano",
-		"button_next": "Continua",
-        "hearer_header_text": "Sei l'HEARER!",
-        "speaker_header_text": "Sei lo SPEAKER!",
-        "past_interactions": "Interazioni passate",
-        "result_success": "Questa interazione è RIUSCITA, l'Hearer ha capito cosa intendesse communicare lo Speaker.",
-        "result_fail": "Questa interazione NON è RIUSCITA, l'Hearer NON ha capito cosa intendesse communicare lo Speaker, pero si ricordara di quell'associazione.",
-        "hearer_word_question":"Hai ascoltato questa parola:",
-        "hearer_meaning_question":"Di cosa pensi lo Speaker stia parlando?",
-        "speaker_word_question":"Utilizzando quale parola?",
-        "speaker_meaning_question":"Di cosa vuoi parlare?",
-        "new_xp": "Stai per iniziare un nuovo esperimento.",
-        "not_involved": "C'è stata un'interazione che NON ti ha coinvolto.",
-        "not_involved_pre": "Ci sono state ",
-        "not_involved_post": " interazioni riuscite che NON ti hanno coinvolto.",
-        "header_inter":"Interazione",
-        "homebutton":"Home",
-        "new_xp_button":"Nuovo esperimento",
-        "new_experiment":"Nuovo esperimento",
-        "logoutbutton":"Esci",
-        "best_scores":"Hall of Fame",
-        "hometitle":"Costruisci un linguaggio!",
-        "hometext":"Crea un nuovo vocabolario per comunicare con persone che non parlano la tua stessa lingua appartenenti a una diversa popolazione.",
-        "button_start":"Comincia",
-        "score_header":"Fine dell'esperimento",
-        "score_text":"Questo è il tuo punteggio per questa partita. Prova ancora per migliorarlo!",
-        "window_title":'Il Naming Game',
-        "header_home":"IL NAMING GAME",
-        "home_others":'Gli altri!<br>(Proverai a comunicare con loro)',
-        "home_you":'Tu!',
-        "img_interaction_text":"<b>Esempio di interazione:</b> Lo Speaker sceglie un oggetto, poi una parola che, secondo lui, può essere associata all'oggetto. Infine l'Hearer interpreta la parola, scegliendo un oggetto che, secondo lui, può esservi associata. Se l'oggetto è lo stesso scelto dallo Speaker, la comunicazione è avvenuta con success.<br><br> In un'interazione, sei a volte lo speaker, a volte l'hearer, o a volte non sei coinvolto nell'interazione.",
-        "skipped_text":"Non eri coinvolto in questa interazione",
-        "interactbutton":"Interagisci",
-        "text_choice":"Scegli un tipo di esperimento:",
-        "button_basic":"Basico",
-        "button_normal":"Normale",
-        "text_button_basic":"Tutoriale, semplice. Dovrebbe bisognare 1-2min",
-        "text_button_normal":"Normale. Dovrebbe bisognare 5-7 min",
-    },
-    "en" : {
-        "some_id_of_a_string_div": "I am a string" ,
-        "title": "English title",
-        "button_next": "Next",
-        "hearer_header_text": "You are the HEARER!",
-        "speaker_header_text": "You are the SPEAKER!",
-        "past_interactions": "Past Interactions",
-        "result_success": "This interaction was SUCCESSFUL, the hearer understood what the speaker meant to communicate.",
-        "result_fail": "This interaction FAILED, the hearer did not understand what the speaker was referring to but will remember the association.",
-        "hearer_word_question":"You heard this word :",
-        "hearer_meaning_question":"What do you think the speaker was talking about?",
-        "speaker_word_question":"Using which word?",
-        "speaker_meaning_question":"What do you want to talk about?",
-        "new_xp": "You are about to create a new language.",
-        "not_involved": "One interaction happened without you being a part of it.",
-        "not_involved_pre": "",
-        "not_involved_post": " interactions happened without you being a part of it.",
-        "header_inter":"Interaction",
-        "homebutton":"Home",
-        "new_xp_button":"New experiment",
-        "new_experiment":"New experiment",
-        "logoutbutton":"Logout",
-        "best_scores":"Best Scores",
-        "button_start":"Start",
-        "hometitle":"Build a language!",
-        "header_home":"THE NAMING GAME",
-        "hometext":"Agree on a common vocabulary with a group of individuals by interacting with them.",
-        "score_header":"End of the experiment",
-        "score_text":"This is the score that you obtained. You can do another experiment and try to do better!",
-        "window_title":'The Naming Game',
-        "home_others":'The others!<br>(You are interacting with them)',
-        "home_you":'This is you!',
-        "img_interaction_text":"A language is not extraordinarly useful if you have nobody to talk with, so you need to agree with other people on what each word means. This is done through a series of interactions with other people.<br><br>In each interaction, there are two people. One—the <b>speaker</b>—says a word. The other—the <b>hearer</b>—shows what the word means to him. If the meaning of the word for the hearer is the same as the speaker, the interaction is successful, and the association between the word and the meaning is reinforced in both the speaker and the hearer.<br><br>You will sometimes be the hearer, sometimes the speaker, and many interactions will happen between other people, without you.",
-        "skipped_text":"Others were interacting, without you",
-        "interactbutton":"Interact",
-        "text_choice":"Choose a type of experiment:",
-        "button_basic":"Basic",
-        "button_normal":"Normal",
-        "text_button_basic":"Tutorial, easy. It should take 1-2min",
-        "text_button_normal":"Normal. It should take 5-7 min",
-    }
-}
+  "fr":{
+    #Global
+    "window_title" : "Le Naming Game",
+
+    #Login
+    "welcome": "Le Naming Game !",
+    "enter-player-name": "Entrez votre nom ici :",
+    "label-lang": "Choisissez le langue du jeu :",
+    "label-code": "Si vous avez un code spécial, entrez le ici :",
+
+    #Home
+    "scores_title": "Meilleurs Scores",
+    "button_basic": "Tutoriel",
+    "button_multi": "Multijoueur",
+    "button_normal": "Jeu",
+    "comment_avatar": "C'est vous !",
+    "home_pagetitle": "Accueil",
+    "game_locked" : "Terminer le Tutoriel pour débloquer",
+    "multi_locked" : "Terminer le Jeu 5 fois pour débloquer",
+
+    #Story End
+    "story_pagetitle": "Histoire",
+    "end_pagetitle": "Félicitations !",
+    "c1_1": " Vous avez été enlevé par des Extraterrestres !",
+    "c1_2": "Vous voilà enfermé seul dans une pièce de leur vaisseau. Dans les pièces d'à côté se trouvent <span class='important'>4 autres individus</span> que vos ravisseurs ont également enlevés aux quatre coins de la galaxie.",
+    "c2_1":"Pour ce faire, vous ne pourrez parler que <span class='important'>deux par deux</span> grâce à une <span class='important'>radio</span>, <span class='important'>sans savoir lequel de vos camarades d'infortune est à l'autre bout</span>.",
+    "c2_2":"L'un de vous proposera un mot et l'autre devra deviner l'objet auquel il fait référence.",
+    "c2_3":"Parfois vous proposerez un mot, parfois vous devinerez l'objet et parfois encore vous ne ferez pas partie de la conversation et ne saurez pas ce qui s'y est dit.",
+    "text_end":"Après avoir réussi à vous comprendre, vous mettez au point un plan d'évasion spectaculaire. Vos ravisseurs ne voient rien venir avant qu'il ne soit trop tard. Vous leur volez un vaisseau qu'un de vos camarades pilote pour vous ramener tous paisiblement chez vous.",
+    "text_score":"Votre score est de ",
+    "c1_3":"<span class='important'>Aucun de vous ne parle la même langue</span> mais vous voulez tous vous échapper pour pouvoir rentrer chez vous.",
+    "c2_4":"Mais attention, vous n'avez à vous tous qu'un <span class='important'>nombre limité de conversations</span> pour réussir !",
+
+    #Game
+    "button_next": "Continuer",
+    "continue": "Continuer",
+    "history-name": "Historique",
+    "conversations": "Conversation",
+    "anhearer":"On vous parle !",
+    "anspeaker":"C'est à vous de parler !",
+    "anabs":"conversations ont eu lieu en votre absence",
+    "hearer-expl": "De quoi vous parle-t-on ?",
+    "speaker-expl": "De quoi voulez vous parler ?",
+    "choice_words": "Quel mot voulez-vous utiliser ?",
+    "history_objects":"Objets",
+    "history_words":"Mots",
+    "history_success":"Succès",
+    "modal_body": "Si vous quittez la partie en cours, celle-ci ne sera pas sauvegardée et vos données ne pourront pas être utilisées. Voulez-vous toujours quitter ?",
+    "btn-yes": "Oui, quitter la partie",
+    "btn-no": "Non, continuer la partie",
+    #Tooltips ici ou dans le js
+  },
+
+  "en": {
+    #Global
+    "window_title": "The Naming Game",
+
+    #Login
+    "welcome": "The Naming Game!",
+    "enter-player-name": "Enter your name here :",
+    "label-lang": "Choose the game language :",
+    "label-code": "If you have a special code, enter it here :",
+
+    #Home
+    "scores_title": "Best Scores",
+    "button_basic": "Tutorial",
+    "button_multi": "Multiplayer",
+    "button_normal": "Game",
+    "comment_avatar": "That's you !",
+    "home_pagetitle": "Home",
+    "game_locked" : "Complete the Tutorial to unlock",
+    "multi_locked" : "Complete the Game 5 times to unlock",
+
+    #Story End
+    "story_pagetitle": "Story",
+    "end_pagetitle": "Congratulations !",
+    "c1_1": " You have been kidnapped by Aliens !",
+    "c1_2": "Now, you are locked alone in a room of their huge spaceship. In the rooms next to yours, there are <span class='important'>3 other individuals</span> also kidnapped by your abductors at the four corners of the galaxy.",
+    "c2_1":"To do so, you may only talk <span class='important'>by pairs</span> thanks to a <span class='important'>radio</span>, <span class='important'>without knowing wich one of your companions in misery is on the other side</span>.",
+    "c2_2":"One of you will say a word and the other will have to guess which object he is referring to.",
+    "c2_3":"Sometimes you will talk, sometimes you will guess and sometimes you won’t be in the conversation and you won’t know what was said.",
+    "text_end":"Once you managed to understand each other, you develop a spectacular escape plan. Your abductors don’t even see it coming until it’s too late. You steal a ship from them and one of your companions drive you back home with it.",
+    "text_score":"Your score is ",
+    "c1_3":"<span class='important'><span class='important'>None of you is from the same planet or speak the same language</span> but you all want the same thing : escape and go back home.",
+    "c2_4":"But careful, you only have a <span class='important'>limited number of conversations</span> to succed !",
+
+    #Game
+    "button_next": "Continue",
+    "continue": "Continue",
+    "history-name": "Past Interactions",
+    "conversations": "Interaction",
+    "anhearer":"Someone is talking to you !",
+    "anspeaker":"Your turn to speak !",
+    "anabs":"interactions happened without you being a part of it.",
+    "hearer-expl": "What does it means ?",
+    "speaker-expl": "What do you want to talk about ?",
+    "choice_words": "Quel mot voulez-vous utiliser ?",
+    "history_objects":"Objects",
+    "history_words":"Words",
+    "history_success":"Succes",
+    "modal_body": "If you quit the ongoing game, it won’t be saved and your data won’t help us. Do you still want to quit ?",
+    "btn-yes": "Yes, quit the game",
+    "btn-no": "No, resume the game",
+  },
+  "it": {
+    #Global
+    "window_title": "Il Naming Game",
+
+    #Login
+    "welcome": "Il Naming Game !",
+    "enter-player-name": "",
+    "label-lang": "",
+    "label-code": "",
+
+    #Home
+    "scores_title": "Wall of Fame",
+    "button_basic": "",
+    "button_multi": "",
+    "button_normal": "",
+    "comment_avatar": "",
+    "home_pagetitle": "",
+    "game_locked" : "",
+    "multi_locked" : "",
+
+    #Story End
+    "story_pagetitle": "",
+    "end_pagetitle": "",
+    "c1_1": " ",
+    "c1_2": "",
+    "c2_1":"",
+    "c2_2":"",
+    "c2_3":"",
+    "text_end":" ",
+    "text_score":" ",
+    "c1_3":"",
+    "c2_4":"",
+
+    #Game
+    "button_next": "",
+    "continue": "",
+    "history-name": "",
+    "conversations": "",
+    "anhearer":"",
+    "anspeaker":"",
+    "anabs":"",
+    "hearer-expl": "",
+    "speaker-expl": "",
+    "choice_words": "",
+    "history_objects":"",
+    "history_words":"",
+    "history_success":"",
+    "modal_body": "",
+    "btn-yes": "",
+    "btn-no": "",
+  }
+};
+
 
 
 
@@ -94,8 +168,8 @@ json_str = "\nvar lang = "+json.dumps(dict_obj)+";\n"
 
 print(json_str)
 
-with open('static/ng/lang.js','w') as f:
-    f.write(json_str)
+#with open('static/ng/lang.js','w') as f:
+#    f.write(json_str)
 
 
 

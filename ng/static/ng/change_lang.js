@@ -43,7 +43,7 @@ var lang = {"it": {"some_id_of_a_string_div": "Sono una stringa", "title": "Tito
         $('#text_button_normal').html(current_lang.text_button_normal);
         $('#text_button_basic').html(current_lang.text_button_basic);
 
-        console.log(current_lang.button_multi)
+        console.log(current_lang.button_multi);
 
 
         //$(document).prop('title', current_lang.title);
@@ -59,8 +59,10 @@ var lang = {"it": {"some_id_of_a_string_div": "Sono una stringa", "title": "Tito
         lang_str
         );
         $('html').attr('lang',lang_str);
-        if (lang_str == "en"){$("#flag_it").show();$("#flag_en").hide();};
-        if (lang_str == "it"){$("#flag_en").show();$("#flag_it").hide();};
+        if (lang_str == "en"){$("#lang").attr("src","{% static 'ng/img/english-flag.png' %}").val("en");};
+        if (lang_str == "it"){$("#lang").attr("src","{% static 'ng/img/italian-flag.png' %}").val("it");};
+        if (lang_str == "fr"){$("#lang").attr("src","{% static 'ng/img/french-flag.png' %}").val("fr");};
+
     };
 
 
@@ -85,8 +87,8 @@ $( document ).ready(function(){
 
         $.each(lang,function(key,value){
 
-    $('#flag_'+key).click(function(event){
-        change_language(key);
+    $('#lang').click(function(event){
+        change_language($(this).val());
     });
 });
 

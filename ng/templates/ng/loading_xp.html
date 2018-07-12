@@ -1,0 +1,109 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+  <head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+
+
+	<!--CSS-->
+	<link type="text/css" rel="stylesheet" href="{% static 'ng/ng.css' %}"/>
+
+	<!--JQuery-->
+  <!--<script src="{% static 'ng/jquery-3.2.1.min.js' %}"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="{% static 'ng/js.cookie.js' %}"></script>
+     <!--<script src="{% static 'ng/change_lang.js' %}"></script>-->
+<script src="{% static 'ng/script.js' %}"></script>
+
+  <script type="text/javascript">
+      {% if experiment %}
+      var url_continue = "{% url 'ng:continue' experiment.xp_uuid %}";
+      var url_results_inner_base = "{% url 'ng:results_inner_base' experiment.xp_uuid %}";
+      var url_results_hearer_base = "{% url 'ng:results_hearer_base' experiment.xp_uuid %}";
+      var url_results_speaker_base = "{% url 'ng:results_speaker_base' experiment.xp_uuid %}";
+      {% endif %}
+  </script>
+  <!--<script type="text/javascript" src="{% static 'ng/ng.js' %}">-->
+  <script src="{% static 'ng/change_lang.js' %}"></script>
+
+
+	<title id="window_title">Naming Game</title>
+  </head>
+
+
+
+  <body>
+
+	<div class="row">
+		<div class="col-lg-2">
+			<!--Menu-->
+			<div class="menu" style="margin-right: auto; margin-left:auto; width:60%; max-width: 160px">
+				<!-- Ajouter les liens pour rendre fonctionnel -->
+				<span class="glyphicon glyphicon-info-sign icon" id="info"></span>
+				<span class="glyphicon glyphicon-volume-off icon" id="sound-off"></span>
+				<span class="glyphicon glyphicon-volume-up icon" id="sound-on"></span>
+				<span class="glyphicon glyphicon-home icon" id="home"></span>
+			</div>
+		</div>
+
+		<div class="col-lg-2 col-md-push-8">
+			<!--Historique-->
+			<div class="menu" id="menu-h">
+				<!--https://cdn.pixabay.com/photo/2013/07/12/13/46/clock-147257_960_720.png-->
+				<img src="{% static  '/img/history.png' %}" class="img-responsive" id="historique"></span>
+				<h1 style="padding:2px; margin:0px;" id="history-name">Historique</h1>
+			</div>
+		</div>
+
+		<div class="col-lg-8 col-md-pull-2">
+			<!--Titre + compteur-->
+			<div class="progress" id="compteur"><div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="{{ experiment.max_interaction }}" id="bar">
+			</div></div>
+
+		</div>
+
+	</div>
+
+
+
+    <!-- Optional JavaScript -->
+
+   <script text="text/javascript">
+   //Menu
+
+   //Sound
+   $('#sound-off').click(function(){
+     $('#sound-off').css('display','none');
+     $('#sound-on').css('display','inline');
+   });
+   $('#sound-on').click(function(){
+     $('#sound-on').css('display','none');
+     $('#sound-off').css('display','inline');
+   });
+   //Home
+   $('#home').click(function(){
+   	$("#myModal").modal({
+   		keyboard : true,
+   	});
+   });
+
+$(document).ready(function() {
+   window.location.href= url_continue;
+});
+  </script>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+
+</body>
+</html>

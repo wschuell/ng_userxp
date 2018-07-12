@@ -457,10 +457,8 @@ def new_experiment(request,xp_cfg_name='normal'):
     else :
         experiment = Experiment.get_new_xp(user=request.user,xp_cfg_name=xp_cfg_name)
         experiment.save()
-        return render(request, 'ng/global.html', {
+        return render(request, 'ng/loading_xp.html', {
             'experiment': experiment,
-            'textid': "new_xp",
-            'context':"new_xp"
         })
 
 @csrf_protect

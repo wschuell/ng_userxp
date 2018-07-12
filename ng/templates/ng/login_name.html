@@ -41,24 +41,17 @@
              };
 
           //language
-<<<<<<< HEAD
-         $(".info_lang").click(function (){
-            var language = $(this).attr("value");
-=======
-        /  $(".info_lang").click(function {
-            var language = $(this).attr(value);
->>>>>>> 89221e0d4f88942de5f5e83b4f6e16a66177fb9f
+         $(".info_lang").click(function(){
+            var language = $(this).val();
+            print(language);
             $('#lang').html(language);
+
           });
 
           $(document).ready(function(){
             $("#id_name_cookie_id").val($("#username").html());
-            $("#id_lang").val($("#lang").html())
-<<<<<<< HEAD
-            $("#id_code").val($("#code").attr("value"));
-=======
-            $("#id_code").val($("#code").attr(value));
->>>>>>> 89221e0d4f88942de5f5e83b4f6e16a66177fb9f
+            $("#id_lang").val($("#lang").html());
+            $("#id_code").val($("#code").val());
           });
 
 
@@ -103,24 +96,24 @@
         <div class="col-lg-2 visible-lg"> </div>
 				<div class="col-lg-2 col-xs-12">
 					<label class = "lang">
-  						<input type="radio" name="lang" class"info_lang" id="fr" value="fr"  checked/>
+  						<input type="radio" name="lang" class="info_lang"  id="fr" value="fr"  checked/>
 						<!--adresse img :https://cdn.pixabay.com/photo/2015/11/20/18/55/french-flag-1053711_960_720.png-->
-						<img src="{% static 'ng/img/french-flag.png' %}"  for="fr" alt="french" width= 150px height= 125px >
+						<img src="{% static 'ng/img/french-flag.png' %}"  value="fr" for="fr" alt="french" width= 160px height= 115px >
 					</label>
 				</div>
 
 				<div class="col-lg-4 col-xs-12">
 					<label class="lang">
-  						<input type="radio" name="lang" class"info_lang" id="en" value="en"/>
+  						<input type="radio" name="lang" class="info_lang" id="en" value="en"/>
 						<!--adresse img :https://cdn.pixabay.com/photo/2012/04/23/16/15/flags-38754_960_720.png-->
-						<img src="{% static 'ng/img/english-flag.png' %}" for="en" alt="english" width= 150px height= 125px >
+						<img src="{% static 'ng/img/english-flag.png' %}"  value="en" for="en" alt="english" width= 160px height= 115px >
 					</label>
 				</div>
 				<div class="col-lg-2 col-xs-12">
 					<label class="lang">
-  						<input type="radio" name="lang" class"info_lang" id="it" value="it" />
+  						<input type="radio" name="lang" class="info_lang" id="it" value="it" />
 						<!--adresse img :https://cdn.pixabay.com/photo/2012/04/11/15/35/flag-28543_960_720.png-->
-						<img src="{% static 'ng/img/italian-flag.png' %}" for = "it" alt="italian"width= 150px height= 125px >
+						<img src="{% static 'ng/img/italian-flag.png' %}"  value="it" for = "it" alt="italian" width= 160px height= 125px >
 					</label>
 				</div>
         <div class="col-lg-2 visible-lg"> </div>
@@ -131,7 +124,7 @@
         <div class="col-md-4"> </div>
         <div class="col-md-4">
         <label class="label" id="label-code" style="font-size: 20px;">Si vous avez un code spécial, veuillez l'entrer ici :</label>
-        <input type="code" class="form-control" id="code" value="no_code"  style= "width:20%; margin : auto;">
+        <input type="text" class="form-control" id="code" value="no_code"  style= "width:40%; margin : auto;">
 
       </div>
       <div class="col-md-4"></div>
