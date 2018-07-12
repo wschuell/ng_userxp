@@ -299,7 +299,7 @@ def result_hearer_json(request, xp_uuid, meaning):
         currentgame_json.update({'mh':None})
     else:
         currentgame_json.update({'mh':int(meaning)})
-    ms = str(currentgame_json['ms'])
+    ms = int(currentgame_json['ms'])
     w = currentgame_json['w']
     experiment.save_currentgame_json(currentgame_json)
     experiment.add_word_to_user(w)
@@ -370,7 +370,7 @@ def result_speaker_json(request, xp_uuid, meaning, word):
             'role':"speaker",
             'context':"result",
         })
-    ms = str(meaning)
+    ms = int(meaning)
     w = word
     currentgame_json.update({'ms':ms,'w':w})
     experiment.save_currentgame_json(currentgame_json)
@@ -380,7 +380,7 @@ def result_speaker_json(request, xp_uuid, meaning, word):
     if mh is None:
         mh = 'none'
     else:
-        mh = str(mh)
+        mh = int(mh)
     past_interaction = PastInteraction(meaning=ms,word=w,meaning_h=mh,bool_succ=bool_succ,time_id=experiment.interaction_counter,role='speaker',experiment=experiment)
     experiment.save()
     past_interaction.save()
@@ -423,7 +423,7 @@ def result_speaker_continue(request, xp_uuid, meaning, word):
     if mh is None:
         mh = 'none'
     else:
-        mh = str(mh)
+        mh = int(mh)
     past_interaction = PastInteraction(meaning=ms,word=w,meaning_h=mh,bool_succ=bool_succ,time_id=experiment.interaction_counter,role='speaker',experiment=experiment)
     experiment.save()
     past_interaction.save()
