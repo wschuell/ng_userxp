@@ -1,0 +1,1 @@
+{"speaker_id": "151aba2a-85ea-11e8-9d5e-0242ac120002", "hearer_id": "151a9432-85ea-11e8-9d5e-0242ac120002", "ms": 1, "w": "qunofa"}

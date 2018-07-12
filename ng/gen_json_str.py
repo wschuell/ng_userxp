@@ -52,7 +52,7 @@ dict_obj = {
     'history_success':'Succès',
     'modal_body': 'Si vous quittez la partie en cours, celle-ci ne sera pas sauvegardée et vos données ne pourront pas être utilisées. Voulez-vous toujours quitter ?',
     'btn-yes': 'Oui, quitter la partie',
-    'btn-no': 'Non, continuer la partie',
+    'btn_no': 'Non, continuer la partie',
     #Tooltips ici ou dans le js
   },
 
@@ -105,7 +105,7 @@ dict_obj = {
     'history_success':'Succes',
     'modal_body': 'If you quit the ongoing game, it won’t be saved and your data won’t help us. Do you still want to quit ?',
     'btn-yes': 'Yes, quit the game',
-    'btn-no': 'No, resume the game',
+    'btn_no': 'No, resume the game',
   },
   'it': {
     #Global
@@ -156,7 +156,7 @@ dict_obj = {
     'history_success':'',
     'modal_body': '',
     'btn-yes': '',
-    'btn-no': '',
+    'btn_no': '',
   }
 };
 
