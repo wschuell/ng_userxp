@@ -1,0 +1,1 @@
+{"speaker_id": "5ffc6b8c-85cd-11e8-a06a-0242ac120002", "hearer_id": "5ffc58ea-85cd-11e8-a06a-0242ac120002", "ms": 0, "w": "xunodo"}

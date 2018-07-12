@@ -45,15 +45,12 @@
             var language = $(this).val();
             print(language);
             $('#lang').html(language);
-
+            $("#id_lang").val($("#lang").html());
           });
 
           $(document).ready(function(){
             $("#id_name_cookie_id").val($("#username").html());
-            $("#id_lang").val($("#lang").html());
-            $("#id_code").val($("#code").val());
           });
-
 
      </script>
 
@@ -75,20 +72,34 @@
 				<div class="col-md-4"> </div>
 				<div class="col-md-4">
 					<!--Choix Nom-->
-        				<label for="player-name" class="label" id="enter-player-name" style="display:block">Entrez votre nom ici :</label>
+
 
 				<!--	<input type="username" class="form-control" id="username" value="Submit" required>-->
 <!-- 				{% csrf_token %} -->
 
 			{% csrf_token %}
-				{{ form }}
+      {{form.non_field_errors}}
+      <div class="fieldWrapper">
+      {{ form.name_cookie_id.errors }}
+      {{ form.name_cookie_id }}
+      </div>
+
+      <div class="fieldWrapper">
+        {{ form.your_name.errors }}
+        <label for="player-name" class="label" id="enter-player-name" style="display:block">Entrez votre nom ici :</label>
+				{{ form.your_name }}
+      </div>
+
           <div class="not_displayed" style= "visible:hidden; display:none">
             <span id="username"></span>
           </div>
 				</div>
 				<div class="col-md-4"> </div>
 			</div>
-
+      <div class="fieldWrapper">
+      {{ form.name_lang.errors }}
+      {{ form.name_lang }}
+      </div>
 				<!--Choix Langage-->
 				<label class="label" id="label-lang">Choisissez la langue du jeu :</label>
 
@@ -123,9 +134,11 @@
         <!--Code si pertinent-->
         <div class="col-md-4"> </div>
         <div class="col-md-4">
-        <label class="label" id="label-code" style="font-size: 20px;">Si vous avez un code spécial, veuillez l'entrer ici :</label>
-        <input type="text" class="form-control" id="code" value="no_code"  style= "width:40%; margin : auto;">
-
+          <div class="fieldWrapper">
+              {{form.code.errors}}
+              <label class="label" id="label-code" style= "font-size: 20px;">Si vous avez un code spécial, veuillez l'entrer ici :</label>
+              {{form.code}}
+          </div>
       </div>
       <div class="col-md-4"></div>
       </div>

@@ -60,6 +60,7 @@ def home(request):
     return render(request, 'ng/home.html', {
     'game_unlocked' : game_unlocked,
     'multi_unlocked' : multi_unlocked,
+    'user': u,
     })
 
 def create_and_login(request,username=None,name='',cookie_id=None, lang='fr', code=''):
@@ -71,6 +72,7 @@ def create_and_login(request,username=None,name='',cookie_id=None, lang='fr', co
         u = UserNG.get(user=request.user)
         u.lang = lang
         u.code = code
+        u.save()
     else :
         login_user(request,username)
     #print("in login")
@@ -92,7 +94,7 @@ def get_name(request):
             cookie_id = form.cleaned_data['name_cookie_id']
             lang = form.cleaned_data['lang']
             code = form.cleaned_data['code']
-            create_and_login(request=request,name=name,cookie_id=cookie_id, lang='fr', code='')
+            create_and_login(request=request,name=name,cookie_id=cookie_id, lang=lang, code=code)
             return HttpResponseRedirect('/ng/')
 
     # if a GET (or any other method) we'll create a blank form
@@ -570,8 +572,10 @@ def score(request, xp_uuid):
     u = UserNG.get(user=request.user)
     if experiment.xp_config.xp_cfg_name == "normal" :
         u.nbr_played =+ 1
+        u.save()
     elif experiment.xp_config.xp_cfg_name == "basic" and u.tuto_played == False :
         u.tuto_played = True
+        u.save()
     #Test if score exists
     #if not, compute and store object
     #get value
