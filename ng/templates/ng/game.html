@@ -22,8 +22,7 @@
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="{% static 'ng/js.cookie.js' %}"></script>
-     <!--<script src="{% static 'ng/change_lang.js' %}"></script>-->
-<script src="{% static 'ng/script.js' %}"></script>
+<!--<script src="{% static 'ng/script.js' %}"></script>-->
 
   <script type="text/javascript">
       {% if experiment %}
@@ -63,7 +62,7 @@
 			<div class="menu" id="menu-h">
 				<!--https://cdn.pixabay.com/photo/2013/07/12/13/46/clock-147257_960_720.png-->
 				<img src="{% static  '/img/history.png' %}" class="img-responsive" id="historique"></span>
-				<h1 style="padding:2px; margin:0px;" id="history_name">Historique</h1>
+				<h1 style="padding:5px; margin:0px; font-size:26px;" id="history_name">Historique</h1>
 			</div>
 		</div>
 
@@ -72,9 +71,9 @@
 			<div class="progress" id="compteur"><div class="progress-bar" role="progressbar" aria-valuenow="{{ experiment.interaction_counter |add:1 }}" aria-valuemin="0" aria-valuemax="{{ experiment.max_interaction }}" id="bar">
 			</div></div>
       {% if context != "result" %}
-			<h1 class="pagetitle" id="conversations"> Conversation {{ experiment.interaction_counter |add:1 }} / {{ experiment.max_interaction }}  </h1>
+			<h1 class="pagetitle" id="conversations"> <!--Conversation--> {{ experiment.interaction_counter |add:1 }} / {{ experiment.max_interaction }} </h1>
       {% else %}
-      <h1 class="pagetitle" id="conversations"> Conversation {{ experiment.interaction_counter }} / {{ experiment.max_interaction }}  </h1>
+      <h1 class="pagetitle" id="conversations"> <!--Conversation--> {{ experiment.interaction_counter }} / {{ experiment.max_interaction }}  </h1>
       {% endif %}
 		</div>
 
@@ -87,13 +86,13 @@
 			<!--Hearer/Speaker-->
       {% if role == "hearer" and context == "question" %}
 			<!--https://cdn.pixabay.com/photo/2017/11/23/14/03/ear-2972890_960_720.png-->
-			<div class="annonce hearer" id="anhearer" style = "display : block; visibility : visible"><p>On vous parle ! </p><img src="{% static 'ng/img/logo_hearer_temp.png' %}" class="logo" id="oreille"></div>
+			<div class="annonce hearer" id="anhearer" style = "display : block; visibility : visible"><p id="anhearer_text">On vous parle ! </p><img src="{% static 'ng/img/logo_hearer_temp.png' %}" class="logo" id="oreille"></div>
       {% elif role == "speaker" and context == "question" %}
       <!--https://cdn.pixabay.com/photo/2012/04/18/22/40/microphone-38120_960_720.png-->
-			<div class="annonce speaker" id="anspeaker" style = "display : block; visibility : visible"><p>C'est à vous de parler ! </p><img src="{% static 'ng/img/logo_speaker_temp.png' %}" class="img-responsive logo" id="bouche"></div>
+			<div class="annonce speaker" id="anspeaker" style = "display : block; visibility : visible"><p id="anspeaker_text">C'est à vous de parler ! </p><img src="{% static 'ng/img/logo_speaker_temp.png' %}" class="img-responsive logo" id="bouche"></div>
       {% elif context == "skipped" %}
     	<!--https://cdn.pixabay.com/photo/2013/07/12/19/33/panda-154984_960_720.png-->
-			<div class="annonce abs" id="anabs" style = "display : block; visibility : visible"><p> {{nb_skipped}} conversations ont eu lieu en votre absence ! </p><img src="{% static 'ng/img/logo_abs_temp.png' %}" class="img-responsive logo"></div>
+			<div class="annonce abs" id="anabs" style = "display : block; visibility : visible"> <p>{{nb_skipped}}</p> <p id="anabs_text"> conversations ont eu lieu en votre absence ! </p><img src="{% static 'ng/img/logo_abs_temp.png' %}" class="img-responsive logo"></div>
     {% endif %}
     </div>
 		<div class="col-xs-3"></div>
@@ -183,8 +182,8 @@
 					<h1 class="explanation" id="hearer_expl">De quoi vous parle-t-on ?</h1>
 				</div>
         {% elif role == "speaker"  and context == "question" %}
-				<div class="speaker expl" id="speaker_expl">
-					<h1 class="explanation">De quoi voulez-vous parler ?</h1>
+				<div class="speaker expl">
+					<h1 class="explanation" id="speaker_expl">De quoi voulez-vous parler ?</h1>
 				</div>
         {% endif %}
 
@@ -332,7 +331,7 @@ https://cdn.pixabay.com/photo/2013/07/12/13/51/thinking-147447_960_720.png
      		 <!-- Modal content-->
       			<div class="modal-content">
        				 <div class="modal-header">
-          				<h4 class="modal-title" style = "color:black; text-align:center; margin:auto; font-size:35px;" id="modal_title">Êtes-vous sûr.e ?</h4>
+          				<h4 class="modal_title" style = "color:black; text-align:center; margin:auto; font-size:35px;" id="modal_title">Êtes-vous sûr.e ?</h4>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
         			</div>
         			<div class="modal-body">
@@ -352,6 +351,28 @@ https://cdn.pixabay.com/photo/2013/07/12/13/51/thinking-147447_960_720.png
    <script text="text/javascript">
 
 $(document).ready(function() {
+
+  $.ajaxPrefilter( function(options, originalOptions, jqXHR) {
+    jqXHR.setRequestHeader('X-CSRF-Token', Cookies.get('csrftoken'));
+  });
+
+  $(document).ajaxStart(function () {
+    $("html").addClass("wait");
+  });
+  $(document).ajaxStop(function () {
+    $("html").removeClass("wait");
+  });
+
+  //$("#word_speaker").hide();
+  $("#button_next, #button_start").click(function(){
+    $("#button_next, #button_start").addClass('disabled');
+    $("html").addClass("wait");
+    window.location.href = url_continue ;}
+  );
+  //select meanings and words
+
+  $("#continue").addClass('disabled');
+
    //Menu
 
    //Sound
@@ -434,6 +455,61 @@ $(document).ready(function() {
        };
      }
    });
+
+   $("#continue.interact_hearer").click(function(event){
+     if($('.selected_m')[0] != undefined && !$("#continue").hasClass('disabled') ) {
+       $("#continue").addClass('disabled');
+      window.location.href=url_results_hearer_base + $(".selected_m").attr("meaning_name") + "/results_continue/"}
+    return false;
+   });
+
+   $("#continue.interact_speaker").click( function (event) {
+     if($('.selected_m')[0] != undefined && $('.selected_w')[0] != undefined && !$("#continue").hasClass('disabled') ){
+       $("#continue").addClass('disabled');
+       window.location.href=url_results_speaker_base + $(".selected_m").attr("meaning_name") + "-" + $(".selected_w").attr("word_name") + "/results_continue/"}
+      return false;
+   });
+
+   //buttons
+   $("#homebutton").click(function(){
+     $("html").addClass("wait");
+     window.location.href=url_home;
+   });
+
+   $("#logoutbutton").click(function(){
+     $("html").addClass("wait");
+     window.location.href=url_logout;
+   });
+
+   $("#new_xp_button").click(function(){
+     $(this).prop('disable',true);
+     $("html").addClass("wait");
+     window.location.href='/choose_experiment';
+   });
+
+   $("#button_basic").click(function(){
+     $(this).prop('disable',true);
+     $("html").addClass("wait");
+     window.location.href='/new_experiment/basic';
+   });
+   $("#button_normal").click(function(){
+     $(this).prop('disable',true);
+     $("html").addClass("wait");
+     window.location.href='/new_experiment/normal';
+   });
+   $("#button_multi").click(function(){
+     $(this).prop('disable',true);
+     $("html").addClass("wait");
+     window.location.href='/new_experiment/multiuser';
+   });
+
+   //username
+   var user_str = Cookies.get('NamingGameUser');
+    $("#username").html(user_str);
+    $(document).ajaxStop(function () {
+    $("#username").html(user_str);
+   });
+
 });
   </script>
 

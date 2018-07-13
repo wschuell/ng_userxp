@@ -18,7 +18,11 @@ var m3 = "<img src='../static/img/history.png'class='img-responsive m'>";
 var m4 = "<img src='../static/img/logo_abs_temp.png'class='img-responsive m'>";
 var m5 = "<img src='../static/img/question-mark.png'class='img-responsive m'>";
 
-//Interaction serveur : Mots proposés pour la partie
+//In//Tooltips Game
+
+//Historique
+$('#menu-h').tooltip({
+	titlteraction serveur : Mots proposés pour la partie
 var w0 = "rowuwi";
 var w1 = "W1";
 var w2 = "W2";
@@ -39,7 +43,7 @@ $('#m5').after(m5);*/
 //Menu
 
 //Sound
-$('#sound-off').click(function(){
+/*$('#sound-off').click(function(){
 	$('#sound-off').css('display','none');
 	$('#sound-on').css('display','inline');
 });
@@ -52,7 +56,7 @@ $('#home').click(function(){
 	$("#myModal").modal({
 		keyboard : true,
 	});
-});
+});*/
 
 
 
@@ -191,9 +195,9 @@ function hideTooltips(){
 	var newWord = true; */
 
 	//Uncheck radio buttons when script starts
-	$('.mradio').find('label').removeClass('active').end().find('[type="radio"]').prop('checked', false);
+	//$('.mradio').find('label').removeClass('active').end().find('[type="radio"]').prop('checked', false);
 
-	$('.wradio').find('label').removeClass('active').end().find('[type="radio"]').prop('checked', false);
+	//$('.wradio').find('label').removeClass('active').end().find('[type="radio"]').prop('checked', false);
 
 	//Update progress bar and title
 	if(game_mode=="basic"){
@@ -238,7 +242,7 @@ function hideTooltips(){
 		$('#you-meaning').css('visibility','hidden').css('display','block');
 		$('#other-word').css('visibility','hidden').css('display','block');
 		$('#other-meaning').css('visibility','hidden').css('display','block');
-	};
+	};*/
 
 	if(role=='hearer') {
 
@@ -252,13 +256,13 @@ function hideTooltips(){
 		//$('#role_others').attr("src", src_logo_speaker);
 
 		//Choice Bubble
-		$('.hearer').css('visibility','visible').css('display','block');
-		$('.speaker').css('visibility','hidden').css('display','none');
-		$('.meanings').css('visibility','visible').css('display','block');
+	//	$('.hearer').css('visibility','visible').css('display','block');
+	//	$('.speaker').css('visibility','hidden').css('display','none');
+	//	$('.meanings').css('visibility','visible').css('display','block');
 
 		//Bubbles
 
-		$('#you-word').css('visibility','hidden').css('display','block');
+	/*	$('#you-word').css('visibility','hidden').css('display','block');
 		$('#you-meaning').css('visibility','hidden').css('display','block');
 		$('#other-meaning').css('visibility','hidden').css('display','block');
 		$('#other-word').css('visibility','visible').css('display','block');
@@ -316,7 +320,7 @@ function hideTooltips(){
 
 
 	//Display Game History
-	$("#menu-h").popover({
+	/*$("#menu-h").popover({
 		placement : 'bottom',
         	html : true,
         	content: function() {

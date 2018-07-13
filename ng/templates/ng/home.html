@@ -62,7 +62,7 @@
 
 			<!--Titre Page-->
 			<div class="row">
-				<h1 class="pagetitle" id="home_pagetitle"> Accueil {{user.username}}</h1>
+				<h1 class="pagetitle" id="home_pagetitle"> </h1>
 			</div>
 
 			<div class="row">
@@ -72,26 +72,26 @@
 				<!--Boutons principaux-->
 				<div class="col-lg-8">
 					<!--Tutoriel-->
-					<button type="button" class="btn btn-default btn-large" id="button_basic"> Tutoriel </button>
+					<button type="button" class="btn btn-default btn-large" id="button_basic">   </button>
 
 
 					<!--Jeu-->
 
             {% if game_unlocked %}
-          <button type="button" class="btn btn-default btn-large " id="button_normal"> Jouer </button>
+          <button type="button" class="btn btn-default btn-large " id="button_normal">  </button>
             {% else %}
             <button type="button" class="btn btn-default btn-large disabled"  disabled>
-            <p id="game_locked"><span class="glyphicon glyphicon-lock"></span> Terminer le tutoriel pour débloquer <span class="glyphicon glyphicon-lock"></span></p>
+            <p id="game_locked"> </p>
             </button>
             {% endif %}
 
 
 					<!--Multiplayer-->
             {% if multi_unlocked %}
-            <button type="button" class="btn btn-default btn-large " id="button_multi"> Multijoueur </button>
+            <button type="button" class="btn btn-default btn-large " id="button_multi">   </button>
             {% else %}
             <button type="button" class="btn btn-default btn-large disabled">
-            <p id="multi_locked"> <span class="glyphicon glyphicon-lock"></span> Terminer le jeu 5 fois pour débloquer <span class="glyphicon glyphicon-lock"></span> </p>
+            <p id="multi_locked"> </p>
             </button>
             {% endif %}
 
@@ -106,7 +106,7 @@
 
 		<!--Colonne Scores-->
 		<div class="col-lg-2 side-column right">
-			<h3 id="scores_title"> Meilleurs Scores </h3>
+			<h3 id="scores_title">  </h3>
 
 			{% for score in user.score_set.all|slice:":10"|dictsortreversed:"score" %}
 			  	<div "line_meaning">
