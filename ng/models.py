@@ -264,7 +264,20 @@ class Experiment(models.Model):
         xp = self.get_xp()
         ag = xp._poplist.get_last()._agentlist[0]
         m_list = sorted(ag._vocabulary.get_accessible_meanings())
+
+
+        ###############################
+        #debug
+        str1 = str(self.meanings)
+        ################################
+
+
         self.meanings.clear()
+
+        #debug
+        str2 = str(self.meanings)
+
+
         for m in m_list:
             obj_list = Meaning.objects.filter(meaning=str(m))
             #print str(obj_list)
@@ -272,8 +285,13 @@ class Experiment(models.Model):
                 m_obj = Meaning.objects.create(meaning=str(m))
             else:
                 m_obj = obj_list[0]
+#debug
+            try :
+                self.meanings.add(m_obj)
+            except :
+                raise ValueError(str(m_list))
 
-            self.meanings.add(m_obj)
+
         self.save()
 
     def exchange_agent(self, nb_to_give, nb_to_take):

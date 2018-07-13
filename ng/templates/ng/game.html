@@ -32,9 +32,9 @@
       var url_results_speaker_base = "{% url 'ng:results_speaker_base' experiment.xp_uuid %}";
       {% endif %}
   </script>
-  <!--<script type="text/javascript" src="{% static 'ng/ng.js' %}">-->
-  <script src="{% static 'ng/change_lang.js' %}"></script>
 
+  <script src="{% static 'ng/change_lang.js' %}"></script>
+  <script src="{% static 'ng/ng.js' %}"></script>
 
 	<title id="window_title">Naming Game</title>
   </head>
@@ -44,7 +44,9 @@
   <body>
 
 <div type="hidden">context : {{context}}; role : {{role}}; word : {{word}}; last_ms : {{last_ms}}; last_mh {{last_mh}}; bool_succ : {{bool_succ}}</div>
-
+<div class="not_displayed" style= "visible:hidden; display:none">
+  <span id="max_inter">{{experiment.max_interaction}}</span>
+</div>
 	<div class="row">
 		<div class="col-lg-2">
 			<!--Menu-->
@@ -71,9 +73,9 @@
 			<div class="progress" id="compteur"><div class="progress-bar" role="progressbar" aria-valuenow="{{ experiment.interaction_counter |add:1 }}" aria-valuemin="0" aria-valuemax="{{ experiment.max_interaction }}" id="bar">
 			</div></div>
       {% if context != "result" %}
-			<h1 class="pagetitle" id="conversations"> <!--Conversation--> {{ experiment.interaction_counter |add:1 }} / {{ experiment.max_interaction }} </h1>
+			<h1 class="pagetitle" id="conversations" nbr ="{{ experiment.interaction_counter |add:1 }} / {{ experiment.max_interaction }} ">  {{ experiment.interaction_counter |add:1 }} / {{ experiment.max_interaction }} </h1>
       {% else %}
-      <h1 class="pagetitle" id="conversations"> <!--Conversation--> {{ experiment.interaction_counter }} / {{ experiment.max_interaction }}  </h1>
+      <h1 class="pagetitle" id="conversations" nbr ="{{ experiment.interaction_counter}} / {{ experiment.max_interaction }} "> {{ experiment.interaction_counter}} / {{ experiment.max_interaction }} </h1>
       {% endif %}
 		</div>
 
@@ -92,7 +94,7 @@
 			<div class="annonce speaker" id="anspeaker" style = "display : block; visibility : visible"><p id="anspeaker_text">C'est à vous de parler ! </p><img src="{% static 'ng/img/logo_speaker_temp.png' %}" class="img-responsive logo" id="bouche"></div>
       {% elif context == "skipped" %}
     	<!--https://cdn.pixabay.com/photo/2013/07/12/19/33/panda-154984_960_720.png-->
-			<div class="annonce abs" id="anabs" style = "display : block; visibility : visible"> <p>{{nb_skipped}}</p> <p id="anabs_text"> conversations ont eu lieu en votre absence ! </p><img src="{% static 'ng/img/logo_abs_temp.png' %}" class="img-responsive logo"></div>
+			<div class="annonce abs" id="anabs" style = "display : block; visibility : visible" nb_skipped={{nb_skipped}}> <p>{{nb_skipped}}</p> <p id="anabs_text"> conversations ont eu lieu en votre absence ! </p><img src="{% static 'ng/img/logo_abs_temp.png' %}" class="img-responsive logo"></div>
     {% endif %}
     </div>
 		<div class="col-xs-3"></div>

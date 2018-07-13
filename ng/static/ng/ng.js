@@ -1,6 +1,9 @@
 $(document).ready(function() {
 
 var tuto = false;
+
+if ($("#max_inter") == 10) {var game_mode="basic"};
+if ($("#max_inter") == 50) {var game_mode="normal"};
 /*var game = true;
 var firstGame = false; //Interaction serveur : Demander si Tutoriel
 var i = 1;*/
@@ -241,8 +244,8 @@ function hideTooltips(){
 		$('#you-word').css('visibility','visible').css('display','block');
 		$('#you-meaning').css('visibility','hidden').css('display','block');
 		$('#other-word').css('visibility','hidden').css('display','block');
-		$('#other-meaning').css('visibility','hidden').css('display','block');
-	};*/
+		$('#other-meaning').css('visibility','hidden').css('display','block');*/
+	};
 
 	if(role=='hearer') {
 

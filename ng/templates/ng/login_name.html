@@ -1,21 +1,25 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang={{userNG.lang}}>
+<html lang="fr">
   <head>
     <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Conceptizer</title>
+    <title id="window_title">Naming Game</title>
     	<link rel="stylesheet" href="style.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'ng/ng.css' %}" />
   <!--  <link rel="stylesheet" type="text/css" href="{% static 'ng/style.css' %}" /> -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
      <script src="{% static 'ng/jquery-3.2.1.min.js' %}"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
      <script src="{% static 'ng/js.cookie.js' %}"></script>
-     <script src="{% static 'ng/change_lang.js' %}"></script>
      <script src="{% static 'ng/script.js' %}"></script>
+     <script src="{% static 'ng/change_lang.js' %}"></script>
+
 	  <!--  <script src="{% static 'ng/login.js' %}"></script> -->
      <script type="text/javascript">
          var url_send_user_info = "{% url 'ng:send_user_info_base'  %}";
@@ -50,7 +54,19 @@
 
           $(document).ready(function(){
             $("#id_name_cookie_id").val($("#username").html());
-          });
+
+            $('#it').click(function(event){
+                change_language(($('#it').attr('value')));
+            });
+            $('#en').click(function(event){
+                change_language(($('#en').attr('value')));
+            });
+            $('#fr').click(function(event){
+                change_language(($('#fr').attr('value')));
+            });
+                set_language();
+            });
+
 
      </script>
 
@@ -107,24 +123,24 @@
         <div class="col-lg-2 visible-lg"> </div>
 				<div class="col-lg-2 col-xs-12">
 					<label class = "lang">
-  						<input type="radio" name="lang" class="info_lang"  id="fr" value="fr"  checked/>
+  						<input type="radio"  name="lang" class="info_lang"  id="fr" value="fr"  checked/>
 						<!--adresse img :https://cdn.pixabay.com/photo/2015/11/20/18/55/french-flag-1053711_960_720.png-->
-						<img src="{% static 'ng/img/french-flag.png' %}"  value="fr" for="fr" alt="french" width= 160px height= 115px >
+						<img src="{% static 'ng/img/french-flag.png' %}"  class="lang" value="fr" for="fr" alt="french" width= 160px height= 115px >
 					</label>
 				</div>
 
 				<div class="col-lg-4 col-xs-12">
 					<label class="lang">
-  						<input type="radio" name="lang" class="info_lang" id="en" value="en"/>
+  						<input type="radio" class="lang" name="lang" class="info_lang" id="en" value="en"/>
 						<!--adresse img :https://cdn.pixabay.com/photo/2012/04/23/16/15/flags-38754_960_720.png-->
-						<img src="{% static 'ng/img/english-flag.png' %}"  value="en" for="en" alt="english" width= 160px height= 115px >
+						<img src="{% static 'ng/img/english-flag.png' %}" class="lang" value="en" for="en" alt="english" width= 160px height= 115px >
 					</label>
 				</div>
 				<div class="col-lg-2 col-xs-12">
 					<label class="lang">
-  						<input type="radio" name="lang" class="info_lang" id="it" value="it" />
+  						<input type="radio" class="lang" name="lang" class="info_lang" id="it" value="it" />
 						<!--adresse img :https://cdn.pixabay.com/photo/2012/04/11/15/35/flag-28543_960_720.png-->
-						<img src="{% static 'ng/img/italian-flag.png' %}"  value="it" for = "it" alt="italian" width= 160px height= 125px >
+						<img src="{% static 'ng/img/italian-flag.png' %}" class="lang" value="it" for = "it" alt="italian" width= 160px height= 125px >
 					</label>
 				</div>
         <div class="col-lg-2 visible-lg"> </div>
@@ -160,8 +176,6 @@
     <!-- Optional JavaScript -->
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
   </body>
 

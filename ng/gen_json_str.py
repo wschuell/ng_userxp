@@ -9,9 +9,9 @@ dict_obj = {
 
     #Login
     'welcome': 'Le Naming Game !',
-    'enter-player-name': 'Entrez votre nom ici :',
-    'label-lang': 'Choisissez le langue du jeu :',
-    'label-code': 'Si vous avez un code spécial, entrez le ici :',
+    'enter_player_name': 'Entrez votre nom ici :',
+    'label_lang': 'Choisissez le langue du jeu :',
+    'label_code': 'Si vous avez un code spécial, entrez le ici :',
 
     #Home
     'scores_title': 'Meilleurs Scores',
