@@ -1,1 +1,0 @@
-{"speaker_id": "20ee8dce-8453-11e8-9d42-0242ac120002", "hearer_id": "20ee6b00-8453-11e8-9d42-0242ac120002", "ms": 0, "w": "jeqelo"}

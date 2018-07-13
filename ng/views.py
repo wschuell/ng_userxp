@@ -211,12 +211,12 @@ def result_hearer(request, xp_uuid, meaning):
         currentgame_json.update({'mh':None})
     else:
         currentgame_json.update({'mh':int(meaning)})
-    ms = str(currentgame_json['ms'])
+    ms = currentgame_json['ms']
     w = currentgame_json['w']
     experiment.save_currentgame_json(currentgame_json)
     experiment.continue_xp()
     bool_succ = experiment.get_last_bool_succ()
-    past_interaction = PastInteraction(meaning=ms,word=w,bool_succ=bool_succ,time_id=experiment.interaction_counter,role='hearer',experiment=experiment)
+    past_interaction = PastInteraction(meaning=str(ms),word=w,bool_succ=bool_succ,time_id=experiment.interaction_counter,role='hearer',experiment=experiment)
     experiment.save()
     past_interaction.save()
     return render(request, 'ng/game.html', {
@@ -233,13 +233,13 @@ def result_speaker(request, xp_uuid, meaning, word):
     if request.user != experiment.user:
         raise ValueError("wrong user")
     currentgame_json = experiment.get_currentgame_json()
-    ms = str(meaning)
+    ms = int(meaning)
     w = word
     currentgame_json.update({'ms':ms,'w':w})
     experiment.save_currentgame_json(currentgame_json)
     experiment.continue_xp()
     bool_succ = experiment.get_last_bool_succ()
-    past_interaction = PastInteraction(meaning=ms,word=w,bool_succ=bool_succ,time_id=experiment.interaction_counter,role='speaker',experiment=experiment)
+    past_interaction = PastInteraction(meaning=str(ms),word=w,bool_succ=bool_succ,time_id=experiment.interaction_counter,role='speaker',experiment=experiment)
     experiment.save()
     past_interaction.save()
     #return render(request, 'ng/results_new.html', {
@@ -305,7 +305,7 @@ def result_hearer_json(request, xp_uuid, meaning):
     experiment.add_word_to_user(w)
     experiment.continue_xp()
     bool_succ = experiment.get_last_bool_succ()
-    past_interaction = PastInteraction(meaning=ms,word=w,meaning_h=str(meaning),bool_succ=bool_succ,time_id=experiment.interaction_counter,role='hearer',experiment=experiment)
+    past_interaction = PastInteraction(meaning=str(ms),word=w,meaning_h=str(meaning),bool_succ=bool_succ,time_id=experiment.interaction_counter,role='hearer',experiment=experiment)
     experiment.save()
     past_interaction.save()
     return render(request, 'ng/result.json', {
@@ -333,13 +333,13 @@ def result_hearer_continue(request, xp_uuid, meaning):
         currentgame_json.update({'mh':None})
     else:
         currentgame_json.update({'mh':int(meaning)})
-    ms = str(currentgame_json['ms'])
+    ms = currentgame_json['ms']
     w = currentgame_json['w']
     experiment.save_currentgame_json(currentgame_json)
     experiment.add_word_to_user(w)
     experiment.continue_xp()
     bool_succ = experiment.get_last_bool_succ()
-    past_interaction = PastInteraction(meaning=ms,word=w,meaning_h=str(meaning),bool_succ=bool_succ,time_id=experiment.interaction_counter,role='hearer',experiment=experiment)
+    past_interaction = PastInteraction(meaning=str(ms),word=w,meaning_h=str(meaning),bool_succ=bool_succ,time_id=experiment.interaction_counter,role='hearer',experiment=experiment)
     experiment.save()
     past_interaction.save()
     return render(request, 'ng/game.html', {
@@ -413,7 +413,7 @@ def result_speaker_continue(request, xp_uuid, meaning, word):
             'experiment': experiment,
             'context':"result",
         })
-    ms = str(meaning)
+    ms = int(meaning)
     w = word
     currentgame_json.update({'ms':ms,'w':w})
     experiment.save_currentgame_json(currentgame_json)
@@ -424,7 +424,7 @@ def result_speaker_continue(request, xp_uuid, meaning, word):
         mh = 'none'
     else:
         mh = int(mh)
-    past_interaction = PastInteraction(meaning=ms,word=w,meaning_h=mh,bool_succ=bool_succ,time_id=experiment.interaction_counter,role='speaker',experiment=experiment)
+    past_interaction = PastInteraction(meaning=str(ms),word=w,meaning_h=mh,bool_succ=bool_succ,time_id=experiment.interaction_counter,role='speaker',experiment=experiment)
     experiment.save()
     past_interaction.save()
     if experiment.xp_config.xp_cfg_name == 'multiuser':

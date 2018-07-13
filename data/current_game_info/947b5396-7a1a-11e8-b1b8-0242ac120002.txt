@@ -1,1 +1,0 @@
-{"speaker_id": "956dc31a-7a1a-11e8-8719-0242ac120002", "hearer_id": "956dabb4-7a1a-11e8-8719-0242ac120002", "ms": 0, "w": "cadega"}

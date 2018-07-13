@@ -1,1 +1,0 @@
-{"speaker_id": "8d9a4996-8434-11e8-a6c6-0242ac120002", "hearer_id": "8d9a2fec-8434-11e8-a6c6-0242ac120002", "ms": 1, "w": "retuji"}

@@ -1,1 +1,0 @@
-{"speaker_id": "a5b71bba-84ea-11e8-9478-0242ac120002", "hearer_id": "a5b6f61c-84ea-11e8-9478-0242ac120002", "ms": 0, "w": "yemuhe"}

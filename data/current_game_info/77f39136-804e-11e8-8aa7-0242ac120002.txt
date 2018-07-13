@@ -1,1 +1,0 @@
-{"speaker_id": "78d1c26c-804e-11e8-af2a-0242ac120002", "hearer_id": "78d1b1e6-804e-11e8-af2a-0242ac120002", "ms": 3, "w": "damoxo"}

@@ -1,1 +1,0 @@
-{"speaker_id": "9016e998-84fe-11e8-80db-0242ac120002", "hearer_id": "9016c44a-84fe-11e8-80db-0242ac120002", "ms": 0, "w": "wejibi"}

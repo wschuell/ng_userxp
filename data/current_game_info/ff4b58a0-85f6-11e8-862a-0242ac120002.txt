@@ -1,1 +1,0 @@
-{"speaker_id": "ff8a91aa-85f6-11e8-8129-0242ac120002", "hearer_id": "ff8a6ee6-85f6-11e8-8129-0242ac120002", "ms": 0, "w": "jawilu"}

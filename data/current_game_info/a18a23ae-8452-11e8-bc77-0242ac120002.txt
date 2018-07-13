@@ -1,1 +1,0 @@
-{"speaker_id": "a255e50c-8452-11e8-a5c6-0242ac120002", "hearer_id": "a255bd48-8452-11e8-a5c6-0242ac120002", "ms": 1, "w": "tuguxu"}

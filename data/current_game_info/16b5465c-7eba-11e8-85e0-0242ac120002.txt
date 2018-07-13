@@ -1,1 +1,0 @@
-{"speaker_id": "17a757bc-7eba-11e8-aac0-0242ac120002", "hearer_id": "17a74498-7eba-11e8-aac0-0242ac120002", "ms": 0, "w": "tijude"}

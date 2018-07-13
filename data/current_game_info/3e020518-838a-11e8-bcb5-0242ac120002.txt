@@ -1,1 +1,0 @@
-{"speaker_id": "3eda5ba2-838a-11e8-977c-0242ac120002", "hearer_id": "3eda4932-838a-11e8-977c-0242ac120002", "ms": 2, "w": "galeda"}

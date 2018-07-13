@@ -1,1 +1,0 @@
-{"speaker_id": "f7ec2fa2-7eb8-11e8-83bf-0242ac120002", "hearer_id": "f7ec0a9a-7eb8-11e8-83bf-0242ac120002", "ms": 2, "w": "vopika"}

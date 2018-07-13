@@ -1,1 +1,0 @@
-{"speaker_id": "d53c1780-7ea7-11e8-9a68-0242ac120002", "hearer_id": "d53bf890-7ea7-11e8-9a68-0242ac120002", "ms": 3, "w": "codapi"}

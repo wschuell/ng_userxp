@@ -1,1 +1,0 @@
-{"speaker_id": "16bc123a-7ebe-11e8-a27f-0242ac120002", "hearer_id": "16bbe350-7ebe-11e8-a27f-0242ac120002", "ms": 2, "w": "kaheno"}

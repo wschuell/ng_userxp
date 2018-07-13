@@ -1,1 +1,0 @@
-{"speaker_id": "c1c7cd36-7dec-11e8-aa89-0242ac120002", "hearer_id": "c1c7a0fe-7dec-11e8-aa89-0242ac120002", "ms": 0, "w": "tijuwe"}

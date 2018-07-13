@@ -1,1 +1,0 @@
-{"speaker_id": "7711f1d0-8388-11e8-be7e-0242ac120002", "hearer_id": "7711b0f8-8388-11e8-be7e-0242ac120002", "ms": 3, "w": "tufaro"}

@@ -1,1 +1,0 @@
-{"speaker_id": "b4ef2b1c-7ebf-11e8-8187-0242ac120002", "hearer_id": "b4ef0402-7ebf-11e8-8187-0242ac120002", "ms": 4, "w": "tecufi"}

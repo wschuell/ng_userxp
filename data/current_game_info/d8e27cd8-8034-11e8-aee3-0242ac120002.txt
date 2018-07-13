@@ -1,1 +1,0 @@
-{"speaker_id": "d98cd246-8034-11e8-ba08-0242ac120002", "hearer_id": "d98cbbd0-8034-11e8-ba08-0242ac120002", "ms": 4, "w": "xulini"}

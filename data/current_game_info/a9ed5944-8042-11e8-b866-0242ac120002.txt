@@ -1,1 +1,0 @@
-{"speaker_id": "aaac7590-8042-11e8-a27c-0242ac120002", "hearer_id": "aaac39d6-8042-11e8-a27c-0242ac120002", "ms": 0, "w": "qasetu"}

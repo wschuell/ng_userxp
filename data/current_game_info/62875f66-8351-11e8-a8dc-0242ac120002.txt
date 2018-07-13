@@ -1,1 +1,0 @@
-{"speaker_id": "63ac046e-8351-11e8-a4c2-0242ac120002", "hearer_id": "63abed4e-8351-11e8-a4c2-0242ac120002", "ms": 0, "w": "toqegi"}

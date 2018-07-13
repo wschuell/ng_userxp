@@ -1,1 +1,0 @@
-{"speaker_id": "f8192e30-7ebd-11e8-9372-0242ac120002", "hearer_id": "f818ed1c-7ebd-11e8-9372-0242ac120002", "ms": 0, "w": "gugomi"}

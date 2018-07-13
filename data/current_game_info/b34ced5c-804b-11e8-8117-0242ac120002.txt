@@ -1,1 +1,0 @@
-{"speaker_id": "b4644848-804b-11e8-ace1-0242ac120002", "hearer_id": "b4643466-804b-11e8-ace1-0242ac120002", "ms": 0, "w": "renoha"}
