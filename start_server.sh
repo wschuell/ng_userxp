@@ -16,6 +16,21 @@ while ! pg_isready > /dev/null 2> /dev/null; do
   echo "Waiting for database to start"
   sleep 1
 done &&
+
+if [ ! -d ../naminggamesal ]
+then
+	cd ..
+	git clone https://github.com/flowersteam/naminggamesal.git
+	cd naminggamesal
+	git checkout develop
+	python3 setup.py develop
+	cd ../code
+else
+	cd ../naminggamesal
+	git pull
+	cd ../code
+fi;
+
 #echo $(python manage.py admin_generator ng '^exp')
 #python manage.py admin_generator ng >> ng/admin_bis.py &&
 python manage.py makemigrations &&

@@ -31,7 +31,7 @@ xp_cfg = {
                 "success_type": "global"
             },
             "strat_type": "naive",
-            "allow_idk":False,
+            "allow_idk":True,
         },
         "nbagent": 5,
         "env_cfg": {
@@ -74,20 +74,20 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 
 class Word(models.Model):
-    word = models.CharField(max_length=200)
+    word = models.CharField(max_length=200,unique=True)
     #experiment = models.ManyToManyField(Experiment,null=True)
     def __str__(self):
         return self.word
 
 class Role(models.Model):
-    role = models.CharField(max_length=10)
+    role = models.CharField(max_length=10,unique=True)
     def __str__(self):
         return self.role
 
 class Meaning(models.Model):
     #experiment = models.ManyToManyField(Experiment,null=True)
     #meaning = models.IntegerField()
-    meaning = models.CharField(max_length=100)
+    meaning = models.CharField(max_length=100,unique=True)
     def __str__(self):
         return self.meaning
 
