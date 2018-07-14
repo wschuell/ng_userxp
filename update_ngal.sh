@@ -1,5 +1,16 @@
-#pip install git+https://github.com/flowersteam/naminggamesal.git@develop -U --no-deps
-cd naminggamesal
-git pull
-cd ..
+if [ ! -d ../ng_userxp_deps/naminggamesal ]
+then
+	cd ..
+	mkdir -p ng_userxp_deps
+	cd ng_userxp_deps
+	git clone https://github.com/flowersteam/naminggamesal.git
+	cd naminggamesal
+	git checkout develop
+	python3 setup.py develop
+	cd /code
+else
+	cd ../ng_userxp_deps/naminggamesal
+	git pull
+	cd /code
+fi;
 touch ng/models.py
