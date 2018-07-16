@@ -12,6 +12,7 @@ dict_obj = {
     'enter_player_name': 'Entrez votre nom ici :',
     'label_lang': 'Choisissez le langue du jeu :',
     'label_code': 'Si vous avez un code spécial, entrez le ici :',
+    'submit':'Valider',
 
     #Home
     'scores_title': 'Meilleurs Scores',
@@ -66,6 +67,7 @@ dict_obj = {
     'enter_player_name': 'Enter your name here :',
     'label_lang': 'Choose the game language :',
     'label_code': 'If you have a special code, enter it here :',
+    'submit' : "Submit",
 
     #Home
     'scores_title': 'Best Scores',
@@ -106,8 +108,8 @@ dict_obj = {
     'history_success':'Succes',
     'modal_title': 'Are you sure ?',
     'modal_body': 'If you quit the ongoing game, it won’t be saved and your data won’t help us. Do you still want to quit ?',
-    'btn_yes': 'Yes, quit the game',
-    'btn_no': 'No, resume the game',
+    'btn_yes': '<p>Yes, quit the game</p>',
+    'btn_no': '<p>No, resume the game</p>',
   },
   'it': {
     #Global
@@ -118,6 +120,7 @@ dict_obj = {
     'enter_player_name': '',
     'label_lang': '',
     'label_code': '',
+    'submit' : '',
 
     #Home
     'scores_title': 'Wall of Fame',

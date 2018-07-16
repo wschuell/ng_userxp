@@ -43,9 +43,13 @@
 
   <body>
 
-<div type="hidden">context : {{context}}; role : {{role}}; word : {{word}}; last_ms : {{last_ms}}; last_mh {{last_mh}}; bool_succ : {{bool_succ}}</div>
 <div class="not_displayed" style= "visible:hidden; display:none">
   <span id="max_inter">{{experiment.max_interaction}}</span>
+  <span id="role">{{role}}</span>
+  <span id="context">{{context}}</span>
+  <span id="s">{{bool_succ}}</span>
+  <span id="ms">{{last_ms}}</span>
+  <span id="mh">{{last_mh}}</span>
 </div>
 	<div class="row">
 		<div class="col-lg-2">
@@ -269,7 +273,7 @@ https://cdn.pixabay.com/photo/2013/07/12/13/51/thinking-147447_960_720.png
 
           <form action="{% url 'ng:continue' experiment.xp_uuid %}" method="post">
           {% csrf_token %}
-          <input id="button_next" class="btn" type="submit" value="Next" />
+          <input id="button_next" class="btn" type="submit" value="" />
             </form>
         </div>
         {% endif %}
