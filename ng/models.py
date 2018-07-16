@@ -257,7 +257,10 @@ class Experiment(models.Model):
                 w_obj = Word.objects.create(word=w)
             else:
                 w_obj = obj_list[0]
-            self.words.add(w_obj)
+            try:
+                self.words.add(w_obj)
+            except:
+                print('Adding already present word ',w)
         self.save()
 
     def update_meanings(self):
@@ -265,31 +268,24 @@ class Experiment(models.Model):
         ag = xp._poplist.get_last()._agentlist[0]
         m_list = sorted(ag._vocabulary.get_accessible_meanings())
 
-
-        ###############################
-        #debug
         str1 = str(self.meanings)
-        ################################
 
 
         self.meanings.clear()
-
-        #debug
         str2 = str(self.meanings)
 
 
         for m in m_list:
             obj_list = Meaning.objects.filter(meaning=str(m))
-            #print str(obj_list)
             if len(obj_list) == 0:
                 m_obj = Meaning.objects.create(meaning=str(m))
             else:
                 m_obj = obj_list[0]
-#debug
+
             try :
                 self.meanings.add(m_obj)
             except :
-                raise ValueError(str(m_list))
+                print('Adding already present meaning ',m)
 
 
         self.save()

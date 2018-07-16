@@ -384,8 +384,8 @@ def result_speaker_json(request, xp_uuid, meaning, word):
     past_interaction = PastInteraction(meaning=ms,word=w,meaning_h=mh,bool_succ=bool_succ,time_id=experiment.interaction_counter,role='speaker',experiment=experiment)
     experiment.save()
     past_interaction.save()
-    if experiment.xp_config.xp_cfg_name == 'multiuser':
-        experiment.exchange_agent(1, 2)
+    # if experiment.xp_config.xp_cfg_name == 'multiuser':
+    #     experiment.exchange_agent(1, 2)
     experiment.save()
     #return render(request, 'ng/results_new.html', {
     #        'experiment': experiment,
@@ -427,8 +427,8 @@ def result_speaker_continue(request, xp_uuid, meaning, word):
     past_interaction = PastInteraction(meaning=str(ms),word=w,meaning_h=mh,bool_succ=bool_succ,time_id=experiment.interaction_counter,role='speaker',experiment=experiment)
     experiment.save()
     past_interaction.save()
-    if experiment.xp_config.xp_cfg_name == 'multiuser':
-        experiment.exchange_agent(1, 2)
+    # if experiment.xp_config.xp_cfg_name == 'multiuser':
+    #     experiment.exchange_agent(1, 2)
     experiment.save()
     #return render(request, 'ng/results_new.html', {
     #        'experiment': experiment,
