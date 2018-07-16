@@ -401,6 +401,8 @@ tr{width: 100%}
 /*Changer width en fonction du compteur*/
 #bar {
 	background-color: #AF59D4;
+	height : 43px;
+	float : left;
 }
 
 
