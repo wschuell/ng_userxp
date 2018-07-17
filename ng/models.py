@@ -126,21 +126,27 @@ class Experiment(models.Model):
         self.xp = db.get_experiment(force_new=True,**json.loads(self.xp_config.xp_config))
         self.xp_uuid = self.xp.uuid
         self.xp.init_poplist()
+        self.xp._poplist.compress()
         #self.xp.continue_exp_until(0)
         #self.xp.commit_to_db()
+
+        self.update_words()
+        self.update_meanings()
+        self.get_user_agent_uuid()
+        self.xp._poplist.compress()
         self.save()
 
     def save(self,*args,**kwargs):
-        self.update_size()
+        # self.update_size()
         return models.Model.save(self,*args,**kwargs)
 
-    def update_size(self):
-        ag_list = Agent.objects.filter(xp=self)
-        if ag_list:
-            self.size = len(ag_list) + 1
-        else:
-            xp_obj = self.get_xp()
-            self.size = xp_obj._poplist.get_last().get_size()
+    # def update_size(self):
+    #     ag_list = Agent.objects.filter(xp=self)
+    #     if ag_list:
+    #         self.size = len(ag_list) + 1
+    #     else:
+    #         xp_obj = self.get_xp()
+    #         self.size = xp_obj._poplist.get_last().get_size()
 
     def get_xp(self):
         if not hasattr(self,'xp'):
@@ -177,10 +183,10 @@ class Experiment(models.Model):
             xp_conf_model.save()
         xp = Experiment(xp_config=xp_conf_model,user=user,max_interaction=max_inter,size=size)
         xp.init_xp()
-        if xp_cfg_name == 'multiuser':
-            for i in range(4):
-                ag = Agent.create()
-                ag.add_to_xp(xp)
+        # if xp_cfg_name == 'multiuser':
+        #     for i in range(4):
+        #         ag = Agent.create()
+        #         ag.add_to_xp(xp)
         return xp
 
     def continue_xp(self,steps=1):
@@ -234,7 +240,9 @@ class Experiment(models.Model):
     def get_user_agent_uuid(self):
         if self.user_agent_uuid == '':
             xp = self.get_xp()
-            self.user_agent_uuid = xp._poplist.get_last()._agentlist[0]._id
+            ag = xp._poplist.get_last()._agentlist[0]
+            print(ag._id)
+            self.user_agent_uuid = ag._id
         self.save()
         return self.user_agent_uuid
 
@@ -249,8 +257,9 @@ class Experiment(models.Model):
     def update_words(self):
         xp = self.get_xp()
         ag = xp._poplist.get_last()._agentlist[0]
+        print(ag._id)
         w_list = sorted(ag._vocabulary.get_accessible_words())
-        self.words.clear()
+        #self.words.clear()
         for w in w_list:
             obj_list = Word.objects.filter(word=w)
             if len(obj_list) == 0:
@@ -266,12 +275,13 @@ class Experiment(models.Model):
     def update_meanings(self):
         xp = self.get_xp()
         ag = xp._poplist.get_last()._agentlist[0]
+        print(ag._id)
         m_list = sorted(ag._vocabulary.get_accessible_meanings())
 
         str1 = str(self.meanings)
 
 
-        self.meanings.clear()
+        #self.meanings.clear()
         str2 = str(self.meanings)
 
 
@@ -290,28 +300,28 @@ class Experiment(models.Model):
 
         self.save()
 
-    def exchange_agent(self, nb_to_give, nb_to_take):
-        player_agents = Agent.objects.filter(xp=self)
-        pool_agents = Agent.objects.filter(xp=None)
+#     def exchange_agent(self, nb_to_give, nb_to_take):
+#         player_agents = Agent.objects.filter(xp=self)
+#         pool_agents = Agent.objects.filter(xp=None)
 
-        if len(pool_agents) < nb_to_take:
-            for x in range(nb_to_take - len(pool_agents)):
-                ag = Agent.create()
-                ag.add_to_xp(None)
-            pool_agents = Agent.objects.filter(xp=None)
+#         if len(pool_agents) < nb_to_take:
+#             for x in range(nb_to_take - len(pool_agents)):
+#                 ag = Agent.create()
+#                 ag.add_to_xp(None)
+#             pool_agents = Agent.objects.filter(xp=None)
 
-#        agents_to_give = player_agents.shuffle()[:nb_to_give]
-        agents_to_give = list(player_agents.order_by('?')[:nb_to_give])
-#        agents_to_take = pool_agents.shuffle()[:nb_to_take]
-        agents_to_take = list(pool_agents.order_by('?')[:nb_to_take])
+# #        agents_to_give = player_agents.shuffle()[:nb_to_give]
+#         agents_to_give = list(player_agents.order_by('?')[:nb_to_give])
+# #        agents_to_take = pool_agents.shuffle()[:nb_to_take]
+#         agents_to_take = list(pool_agents.order_by('?')[:nb_to_take])
 
-        for agent in agents_to_give:
-            #self.get_xp().rm_agent(agent.ngagent_id)
-            agent.add_to_xp(None)
+#         for agent in agents_to_give:
+#             #self.get_xp().rm_agent(agent.ngagent_id)
+#             agent.add_to_xp(None)
 
-        for agent in agents_to_take:
-            #self.get_xp().add_agent(agent.get_ng_agent())
-            agent.add_to_xp(self)
+#         for agent in agents_to_take:
+#             #self.get_xp().add_agent(agent.get_ng_agent())
+#             agent.add_to_xp(self)
 
     def add_word_to_user(self,w):
         xp_obj = self.get_xp()
@@ -320,10 +330,10 @@ class Experiment(models.Model):
         ag_obj.discover_words([w])
         xp_obj.save_pop()
 
-    def transfer_agents(self):
-        player_agents = Agent.objects.filter(xp=self)
-        for agent in player_agents:
-            agent.add_to_xp(None,rm_from_xpobj=False)
+    # def transfer_agents(self):
+    #     player_agents = Agent.objects.filter(xp=self)
+    #     for agent in player_agents:
+    #         agent.add_to_xp(None,rm_from_xpobj=False)
 
     #Had the experiment been completed ? (For the admin interface)
     def is_complete(self):

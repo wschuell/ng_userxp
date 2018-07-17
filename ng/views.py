@@ -302,7 +302,7 @@ def result_hearer_json(request, xp_uuid, meaning):
     ms = int(currentgame_json['ms'])
     w = currentgame_json['w']
     experiment.save_currentgame_json(currentgame_json)
-    experiment.add_word_to_user(w)
+    #experiment.add_word_to_user(w)
     experiment.continue_xp()
     bool_succ = experiment.get_last_bool_succ()
     past_interaction = PastInteraction(meaning=str(ms),word=w,meaning_h=str(meaning),bool_succ=bool_succ,time_id=experiment.interaction_counter,role='hearer',experiment=experiment)
@@ -336,7 +336,7 @@ def result_hearer_continue(request, xp_uuid, meaning):
     ms = currentgame_json['ms']
     w = currentgame_json['w']
     experiment.save_currentgame_json(currentgame_json)
-    experiment.add_word_to_user(w)
+    #experiment.add_word_to_user(w)
     experiment.continue_xp()
     bool_succ = experiment.get_last_bool_succ()
     past_interaction = PastInteraction(meaning=str(ms),word=w,meaning_h=str(meaning),bool_succ=bool_succ,time_id=experiment.interaction_counter,role='hearer',experiment=experiment)
@@ -486,8 +486,8 @@ def continue_userxp(request, xp_uuid):
     if request.user != experiment.user:
         raise ValueError("wrong user")
     if 0 < experiment.max_interaction <= experiment.interaction_counter:
-        if experiment.xp_config.xp_cfg_name == 'multiuser':
-            experiment.transfer_agents()
+        # if experiment.xp_config.xp_cfg_name == 'multiuser':
+        #     experiment.transfer_agents()
         return score(request, xp_uuid=xp_uuid)
     try:
         experiment.continue_xp(steps=1)
@@ -497,7 +497,7 @@ def continue_userxp(request, xp_uuid):
                 experiment.continue_xp(steps=1)
                 nb_steps += 1
             raise IOError('Not skipping more than 1000 steps at a time')
-        except IOError as e:
+        except Exception as e:
             if str(e) == 'User intervention needed' or str(e) == 'Not skipping more than 1000 steps at a time':
                 experiment.last_role = 'skipped'
                 experiment.last_nb_skipped = nb_steps
@@ -519,14 +519,14 @@ def continue_userxp(request, xp_uuid):
 
                        })
 
-    except IOError as e:
+    except Exception as e:
         if str(e) == 'User intervention needed':
             currentgame_json = experiment.get_currentgame_json()
             experiment.save()
             sp_id = currentgame_json['speaker_id']
             hr_id = currentgame_json['hearer_id']
-            experiment.update_meanings()
-            experiment.update_words()
+            # experiment.update_meanings()
+            # experiment.update_words()
             bar_width = ((experiment.interaction_counter + 1) / experiment.max_interaction )*100
             if sp_id == experiment.get_user_agent_uuid():
                 return render(request, 'ng/game.html', {
@@ -548,8 +548,9 @@ def continue_userxp(request, xp_uuid):
                     'userNG': UserNG.get(user=request.user),
                     })
             else:
-                raise
+                raise Exception('Exception catch failed, sp_id or hr_id not recognized')
         else:
+            print('Exception catch failed:',str(e))
             raise
 
 
