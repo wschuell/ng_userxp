@@ -752,3 +752,17 @@ tr{width: 100%}
 	padding-top : 13px;
 	text-align : center;
 }
+
+/*Error Page*/
+
+.error_div{
+	height : 33vh;
+}
+
+#error_text{
+	font-size : 30px;
+}
+
+#error_span {
+	font-size : 45px;
+}

@@ -17,7 +17,7 @@ dict_obj = {
     #Home
     'scores_title': 'Meilleurs Scores',
     'button_basic': 'Tutoriel',
-    'button_multi': 'Multijoueur',
+    'button_multi': 'Crédits',
     'button_normal': 'Jeu',
     'comment_avatar': "<p>C'est vous !</p>",
     'home_pagetitle': 'Accueil',
@@ -55,7 +55,11 @@ dict_obj = {
     'modal_body': 'Si vous quittez la partie en cours, celle-ci ne sera pas sauvegardée et vos données ne pourront pas être utilisées. Voulez-vous toujours quitter ?',
     'btn_yes': '<p>Oui, quitter la partie</p>',
     'btn_no': '<p>Non, continuer la partie</p>',
-    #Tooltips ici ou dans le js
+
+    #Error Page
+    'error_text': "<span id='error_span'>Oups !</span> Il semblerait qu'une erreur se soit produite ! Vous pouvez tenter de continuer ou revenir à l'accueil pour commencer une nouvelle partie.",
+    'btn_home': "Revenir à l'Accueil",
+    'btn_continue': 'Continuer',
   },
 
   'en': {
@@ -72,7 +76,7 @@ dict_obj = {
     #Home
     'scores_title': 'Best Scores',
     'button_basic': 'Tutorial',
-    'button_multi': 'Multiplayer',
+    'button_multi': 'Credits',
     'button_normal': 'Game',
     'comment_avatar': "<p>That's you !</p>",
     'home_pagetitle': 'Home',
@@ -110,6 +114,12 @@ dict_obj = {
     'modal_body': 'If you quit the ongoing game, it won’t be saved and your data won’t help us. Do you still want to quit ?',
     'btn_yes': '<p>Yes, quit the game</p>',
     'btn_no': '<p>No, resume the game</p>',
+
+        #Error Page
+    'error_text': "<span id='error_span'>Oops!</span> It seems that an error occured! You can try to resume your game or go back at home page an start a new one.",
+    'btn_home': "Go back to Home page",
+    'btn_continue': 'Resume the game',
+
   },
   'it': {
     #Global
@@ -163,6 +173,12 @@ dict_obj = {
     'modal_body': '',
     'btn_yes': '',
     'btn_no': '',
+
+    #Error Page
+    'error_text': "<span id='error_span'>Oups !</span> ",
+    'btn_home': " ",
+    'btn_continue': '',
+
   }
 };
 
