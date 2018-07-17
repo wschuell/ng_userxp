@@ -129,11 +129,13 @@ class Experiment(models.Model):
         self.xp._poplist.compress()
         #self.xp.continue_exp_until(0)
         #self.xp.commit_to_db()
+        self.save()
 
         self.update_words()
         self.update_meanings()
         self.get_user_agent_uuid()
         self.xp._poplist.compress()
+        self.xp.commit_to_db()
         self.save()
 
     def save(self,*args,**kwargs):
