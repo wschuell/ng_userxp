@@ -10,9 +10,8 @@
 
   <!-- Bootstrap CSS -->
 
-  <link type="text/css" rel="stylesheet" href="{% static 'ng/bootstrap.min.css' %}" >
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
+  <link type="text/css" rel="stylesheet" href="{% static 'ng/bootstrap-4.0.0-dist/css/bootstrap.min.css' %}"/>
+  <link type="text/css" rel="stylesheet" href="{% static 'ng/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}"/>
 	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 
 
@@ -57,11 +56,11 @@
 			<!--Icones menu-->
 			<div class="row">
           <div class="col-lg-2">
-				      <div class="menu">
+				      <div class="menu" style="width: 85%">
 				<!-- Ajouter les liens pour rendre fonctionnel -->
 					        <span class="icon"><img src="{% static 'ng/img/french-flag.png' %}" id="lang" value="fr" ></span>
-					        <span class="glyphicon glyphicon-volume-off icon" id="sound-off" style="margin-right: 7px"></span>
-					        <span class="glyphicon glyphicon-volume-up icon" id="sound-on" style="margin-right: 7px"></span>
+					        <span class="glyphicon glyphicon-volume-off icon" id="sound-off" style="margin-right: 27px; float:right;"></span>
+					        <span class="glyphicon glyphicon-volume-up icon" id="sound-on" style="margin-right: 27px; float:right;"></span>
                 </div>
           </div>
           <div class="col-lg-8"></div>
@@ -98,9 +97,9 @@
 
 					<!--Multiplayer-->
             {% if multi_unlocked %}
-            <button type="button" class="btn btn-default btn-large " id="button_multi">   </button>
+            <button type="button" class="btn btn-default btn-large " id="button_multi" style="margin-bottom : 75px">   </button>
             {% else %}
-            <button type="button" class="btn btn-default btn-large disabled">
+            <button type="button" class="btn btn-default btn-large disabled" style="margin-bottom : 75px">
             <p id="multi_locked"> </p>
             </button>
             {% endif %}
