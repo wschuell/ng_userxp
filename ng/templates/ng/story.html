@@ -10,7 +10,6 @@
   <!-- Bootstrap CSS -->
   <link type="text/css" rel="stylesheet" href="{% static 'ng/bootstrap-4.0.0-dist/css/bootstrap.min.css' %}"/>
   <link type="text/css" rel="stylesheet" href="{% static 'ng/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}"/>
-	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 
 	<!--CSS-->
 	<link type="text/css" rel="stylesheet" href="{% static 'ng/ng.css' %}"/>
@@ -34,7 +33,6 @@
   <body>
 
 	<div class="row">
-
 		<div class="menu">
 				<!-- Ajouter les liens pour rendre fonctionnel -->
 			<span class="glyphicon glyphicon-volume-off icon" id="sound-off"></span>
@@ -46,7 +44,7 @@
 	<div class="row">
 		<!--Titres-->
 		<h1 class="pagetitle story" id="story_pagetitle"> Histoire </h1>
-		<h2 class="pagetitle end" id="end_pagetitle"> Félicitations !</h2>
+		<h2 class="pagetitle end" id="page_title_end"> <span id="end_pagetitle">Félicitations</span> {{user.username}} !</h2>
 	</div>
 
 	<div class="row">
@@ -58,18 +56,14 @@
 				<p class="c1" id="c1_1"> Vous avez été enlevé par des Extraterrestres !</p>
 				<p class="c1" id="c1_2"> Vous voilà enfermé seul dans une pièce de leur vaisseau. Dans les pièces d'à côté se trouvent <span class="important">4 autres individus</span> que vos ravisseurs ont également enlevés aux quatre coins de la galaxie.</p>
 				<!--Consignes Etape 2-->
-				<p class="c2" id="c2_1"> Pour ce faire, vous ne pourrez parler que <span class="important">deux par deux</span> grâce à une <span class="important">radio</span>, <span class="important">sans savoir lequel de vos camarades d'infortune est à l'autre bout</span>.<p>
-				<p class="c2" id="c2_2"> L'un de vous proposera un mot et l'autre devra deviner l'objet auquel il fait référence.<p>
-				<p class="c2"  id="c2_3"> Parfois vous proposerez un mot, parfois vous devinerez l'objet et parfois encore vous ne ferez pas partie de la conversation et ne saurez pas ce qui s'y est dit.<p>
+				<p class="c2" id="c2_1"> Pour ce faire, vous ne pourrez parler que <span class="important">deux par deux</span> grâce à une <span class="important">radio</span>, <span class="important">sans savoir lequel de vos camarades d'infortune est à l'autre bout</span>.</p>
+				<p class="c2" id="c2_2"> L'un de vous proposera un mot et l'autre devra deviner l'objet auquel il fait référence.</p>
+				<p class="c2"  id="c2_3"> Parfois vous proposerez un mot, parfois vous devinerez l'objet et parfois encore vous ne ferez pas partie de la conversation et ne saurez pas ce qui s'y est dit.</p>
 
 				<!--Bulle Fin-->
-				<p class="fin" id="text_end"> Après avoir réussi à vous comprendre, vous mettez au point un plan d'évasion spectaculaire. Vos ravisseurs ne voient rien venir avant qu'il ne soit trop tard. Vous leur volez un vaisseau qu'un de vos camarades pilote pour vous ramener tous paisiblement chez vous.<p>
+				<p class="fin" id="text_end"> Après avoir réussi à vous comprendre, vous mettez au point un plan d'évasion spectaculaire. Vos ravisseurs ne voient rien venir avant qu'il ne soit trop tard. Vous leur volez un vaisseau qu'un de vos camarades pilote pour vous ramener tous paisiblement chez vous.</p>
 				<!--Bulle Score-->
-				<p class="score" id="text_score" style= "margin-top:45px"> Votre score est de
-          <!--  {% if context == "end" %}-->
-            {{score}}
-          <!--{% endif %}-->
-        <p>
+				<p class="score" id="score_text" style= "margin-top:45px"> <span id="text_score">Votre score est de</span> {{score}}.</p>
 			</div>
 
 			<div class="row" id="picture">
@@ -119,9 +113,9 @@
 
 			<div class="row bubble cbot" id="cbot">
 				<!--Consignes Etape 1-->
-				<p class="c1" id="c1_3"><span class="important">Aucun de vous ne parle la même langue</span> mais vous voulez tous vous échapper pour pouvoir rentrer chez vous.<p>
+				<p class="c1" id="c1_3"><span class="important">Aucun de vous ne parle la même langue</span> mais vous voulez tous vous échapper pour pouvoir rentrer chez vous.</p>
 				<!--Consignes Etape 2-->
-				<p class="c2" id="c2_4"> Mais attention, vous n'avez à vous tous qu'un <span class="important">nombre limité de conversations</span> pour réussir !<p>
+				<p class="c2" id="c2_4"> Mais attention, vous n'avez à vous tous qu'un <span class="important">nombre limité de conversations</span> pour réussir !</p>
 
 			</div>
 		</div>
@@ -152,7 +146,7 @@
         			</div>
         			<div class="modal-footer">
 					<a  href="/" type="button" class="btn btn-modal" id="btn_yes"><p>Oui, quitter la partie</p></a>
-          				<button type="button" class="btn btn-modal" id="btn_no" data-dismiss="modal"><p>Non, continuer la partie<p></button>
+          				<button type="button" class="btn btn-modal" id="btn_no" data-dismiss="modal"><p>Non, continuer la partie</p></button>
         			</div>
       			</div>
 
@@ -163,9 +157,6 @@
     <!-- Optional JavaScript -->
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<!-- 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
- -->	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   	 <script type="text/javascript" src="{% static 'ng/story.js' %}"></script>
   </body>
 </html>

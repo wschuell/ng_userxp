@@ -66,6 +66,13 @@
                 change_language(($('#fr').attr('value')));
             });
                 set_language();
+
+            $('#id_code').tooltip({
+              title : "Si vous n'avez pas de code, laissez ce champ vide.",
+              placement : "left",
+              trigger : "hover",
+            })
+
             });
 
 

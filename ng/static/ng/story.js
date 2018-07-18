@@ -4,7 +4,7 @@
 if(mode=="end"){
 	//Interroger serveur pour savoir si jeu normal ou tuto
 	//var game_type ="tuto"; //Valeurs possibles : "tuto" et "normal"
-	$('#end_pagetitle').css('display', 'block');
+	$('#page_title_end').css('display', 'block');
 	$('#story_pagetitle').css('display', 'none');
 	$('#picture2').css('display', 'none');
 	$('#picture').css('display', 'block');
@@ -12,12 +12,12 @@ if(mode=="end"){
 	$('.c1').css('display', 'none');
 	$('.c2').css('display', 'none');
 	$('#text_end').css('display', 'block');
-	$('#text_score').css('display', 'none');
+	$('#score_text').css('display', 'none');
 
 
 	$('.continue').click(function(){
 		if($('#text_end').css('display')=='block'){
-			$('#text_score').css('display', 'block');
+			$('#score_text').css('display', 'block');
 			//$('#picture').css('display', 'none');
 			//$('#picture2').css('display', 'block');
 			$('#text_end').css('display', 'none');
@@ -31,9 +31,9 @@ if(mode=="end"){
 
 
 } else if (mode=="story"){
-	$('#text_score').css('display', 'none');
+	$('#score_text').css('display', 'none');
 	$('#text_end').css('display', 'none');
-	$('#end_pagetitle').css('display', 'none');
+	$('#page_title_end').css('display', 'none');
 	$('#story_pagetitle').css('display', 'block');
 	$('#picture').css('display', 'block');
 	$('#picture2').css('display', 'none');

@@ -26,14 +26,14 @@ dict_obj = {
 
     #Story End
     'story_pagetitle': 'Histoire',
-    'end_pagetitle': 'Félicitations !',
+    'end_pagetitle': 'Félicitations',
     'c1_1': ' Vous avez été enlevé par des Extraterrestres !',
     'c1_2': "Vous voilà enfermé seul dans une pièce de leur vaisseau. Dans les pièces d'à côté se trouvent <span class='important'>4 autres individus</span> que vos ravisseurs ont également enlevés aux quatre coins de la galaxie.",
     'c2_1':"Pour ce faire, vous ne pourrez parler que <span class='important'>deux par deux</span> grâce à une <span class='important'>radio</span>, <span class='important'>sans savoir lequel de vos camarades d'infortune est à l'autre bout</span>.",
     'c2_2':"L'un de vous proposera un mot et l'autre devra deviner l'objet auquel il fait référence.",
     'c2_3':"Parfois vous proposerez un mot, parfois vous devinerez l'objet et parfois encore vous ne ferez pas partie de la conversation et ne saurez pas ce qui s'y est dit.",
     'text_end':"Après avoir réussi à vous comprendre, vous mettez au point un plan d'évasion spectaculaire. Vos ravisseurs ne voient rien venir avant qu'il ne soit trop tard. Vous leur volez un vaisseau qu'un de vos camarades pilote pour vous ramener tous paisiblement chez vous.",
-    'text_score':'Votre score est de ',
+    'text_score':'Votre score est de',
     'c1_3':'<span class="important">Aucun de vous ne parle la même langue</span> mais vous voulez tous vous échapper pour pouvoir rentrer chez vous.',
     'c2_4':"Mais attention, vous n'avez à vous tous qu'un <span class='important'>nombre limité de conversations</span> pour réussir !",
 
@@ -85,7 +85,7 @@ dict_obj = {
 
     #Story End
     'story_pagetitle': 'Story',
-    'end_pagetitle': 'Congratulations !',
+    'end_pagetitle': 'Congratulations',
     'c1_1': ' You have been kidnapped by Aliens !',
     'c1_2': 'Now, you are locked alone in a room of their huge spaceship. In the rooms next to yours, there are <span class="important">3 other individuals</span> also kidnapped by your abductors at the four corners of the galaxy.',
     'c2_1':'To do so, you may only talk <span class="important">by pairs</span> thanks to a <span class="important">radio</span>, <span class="important">without knowing wich one of your companions in misery is on the other side</span>.',

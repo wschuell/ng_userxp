@@ -508,7 +508,7 @@ def continue_userxp(request, xp_uuid):
                 experiment.last_bool_succ = False
                 experiment.save()
                 #
-                bar_width = ((experiment.interaction_counter + 1) / experiment.max_interaction )*100
+                bar_width = ((experiment.interaction_counter) / experiment.max_interaction )*100
                 return render(request, 'ng/game.html', {
                     'experiment': experiment,
                     'textid': "not_involved",
@@ -528,7 +528,7 @@ def continue_userxp(request, xp_uuid):
             hr_id = currentgame_json['hearer_id']
             # experiment.update_meanings()
             # experiment.update_words()
-            bar_width = ((experiment.interaction_counter + 1) / experiment.max_interaction )*100
+            bar_width = ((experiment.interaction_counter) / experiment.max_interaction )*100
             if sp_id == experiment.get_user_agent_uuid():
                 return render(request, 'ng/game.html', {
                     'experiment': experiment,
@@ -597,8 +597,31 @@ def score(request, xp_uuid):
     #get value
     return render(request, 'ng/story.html', {
             'experiment': experiment,
-            'score':score_val,
+            'score':str(score_val),
             'context':"end",
             'user':request.user,
+            'userNG': UserNG.get(user=request.user),
+            })
+
+####DEBUG####
+def test_score(request):
+    experiment = Experiment.get_new_xp(user=request.user,xp_cfg_name="normal")
+    experiment.save()
+    try:
+        score = Score.objects.get(experiment=experiment)
+        score_val = score.score
+    except:
+        experiment.get_xp()
+        srtheo = experiment.xp.graph(method="srtheo")._Y[0][-1]
+        score_val = int(srtheo * experiment.meanings.count() * 100)#.all().count()?
+        score = Score(experiment=experiment,score=score_val,user=request.user)
+        score.save()
+        r = str(experiment)+str(score_val)+str(request.user)
+    #return HttpResponse(r)
+    return render(request, 'ng/story.html', {
+            'experiment': str(experiment),
+            'score':str(score_val),
+            'context':"end",
+            'user':str(request.user),
             'userNG': UserNG.get(user=request.user),
             })

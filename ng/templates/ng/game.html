@@ -7,11 +7,11 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Bootstrap CSS -->>
+  <!-- Bootstrap CSS -->
   <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >-->
   <link type="text/css" rel="stylesheet" href="{% static 'ng/bootstrap-4.0.0-dist/css/bootstrap.min.css' %}"/>
   <link type="text/css" rel="stylesheet" href="{% static 'ng/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}"/>
-	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+
 
   <!--CSS-->
   <link type="text/css" rel="stylesheet" href="{% static 'ng/ng.css' %}"/>
@@ -67,7 +67,7 @@
 			<!--Historique-->
 			<div class="menu" id="menu-h">
 				<!--https://cdn.pixabay.com/photo/2013/07/12/13/46/clock-147257_960_720.png-->
-				<img src="{% static  '/img/history.png' %}" class="img-responsive" id="historique"></span>
+				<img src="{% static  'ng/img/history.png' %}" class="img-responsive" id="historique"></span>
 				<h1 style="padding:5px; margin:0px; font-size:26px;" id="history_name">Historique</h1>
 			</div>
 		</div>
@@ -77,9 +77,9 @@
 			<div class="progress" id="compteur"><div id="bar">
 			</div></div>
       {% if context != "result" %}
-			<h1 class="pagetitle" id="conversations" nbr ="{{ experiment.interaction_counter |add:1 }} / {{ experiment.max_interaction }} ">  {{ experiment.interaction_counter |add:1 }} / {{ experiment.max_interaction }} </h1>
+			<h1 class="pagetitle" id="conversations" nbr ="{{ experiment.interaction_counter}} / {{ experiment.max_interaction }} ">  {{ experiment.interaction_counter |add:1 }} / {{ experiment.max_interaction }} </h1>
       {% else %}
-      <h1 class="pagetitle" id="conversations" nbr ="{{ experiment.interaction_counter}} / {{ experiment.max_interaction }} "> {{ experiment.interaction_counter}} / {{ experiment.max_interaction }} </h1>
+      <h1 class="pagetitle" id="conversations" nbr ="{{ experiment.interaction_counter |add:-1}} / {{ experiment.max_interaction }} "> {{ experiment.interaction_counter}} / {{ experiment.max_interaction }} </h1>
       {% endif %}
 		</div>
 
@@ -397,8 +397,11 @@ $(document).ready(function() {
    		keyboard : true,
    	});
    });
-
-   var bar_width = ({{experiment.interaction_counter}} + 1) / {{experiment.max_interaction}} * 100;
+   {% if context == "question" %}
+   var bar_width = ({{experiment.interaction_counter}}) / {{experiment.max_interaction}} * 100;
+   {% else %}
+   var bar_width = ({{experiment.interaction_counter}}-1) / {{experiment.max_interaction}} * 100;
+   {% endif %}
    bar_width = String(bar_width)+"%";
    $('#bar').css('width', bar_width );
 
