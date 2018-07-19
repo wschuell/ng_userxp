@@ -1,6 +1,10 @@
 version: '2'
 
 services:
+  db:
+    image: postgres
+    volumes:
+      - ./init_db:/docker-entrypoint-initdb.d
   nginx:
     image: nginx:latest
     container_name: nginx-ng
@@ -19,7 +23,6 @@ services:
     command: bash start_server.sh
     volumes:
       - static-data:/static
-      - ./postgresql-data:/postgresql-data
       - .:/code
     ports:
       - "8000:8000"

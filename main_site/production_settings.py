@@ -89,7 +89,7 @@ DATABASES = {
         'NAME': 'ng_userxp',
         'USER': 'ng_userxp_user',
         'PASSWORD': 'pass',
-        'HOST': 'localhost',
+        'HOST': 'db',#'localhost',
         'PORT': '',
         #'TEST':{
             #'ENGINE': 'django.db.backends.sqlite3',

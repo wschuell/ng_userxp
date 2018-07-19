@@ -11,11 +11,11 @@ fi;
 rm ng/admin_bis.py
 touch ng/admin_bis.py
 
-service postgresql restart &&
-while ! pg_isready > /dev/null 2> /dev/null; do
-  echo "Waiting for database to start"
-  sleep 1
-done &&
+#service postgresql restart &&
+# while ! pg_isready > /dev/null 2> /dev/null; do
+#   echo "Waiting for database to start"
+#   sleep 1
+# done &&
 
 bash update_ngal.sh
 
