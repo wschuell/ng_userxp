@@ -1,5 +1,6 @@
 secret.txt
 allowed_hosts.txt
 debug.txt
+superusers.json
 main_site/__pycache__/
 ng/__pycache__/

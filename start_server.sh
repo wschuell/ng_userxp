@@ -29,7 +29,7 @@ python manage.py migrate &&
 python manage.py migrate ng &&
 python manage.py collectstatic --noinput &&
 
-bash check_users.sh
+echo "import check_users; exit();" | python manage.py shell &&
 
 if [ $NG_USERXP_DEV_MODE -eq 0 ]
 then
