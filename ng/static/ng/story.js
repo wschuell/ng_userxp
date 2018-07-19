@@ -1,6 +1,4 @@
 
-
-
 if(mode=="end"){
 	//Interroger serveur pour savoir si jeu normal ou tuto
 	//var game_type ="tuto"; //Valeurs possibles : "tuto" et "normal"
@@ -71,4 +69,9 @@ $('#home').click(function(){
 	$("#myModal").modal({
 		keyboard : true,
 	});
+});
+
+
+$(document).ready(function(){
+	$('body').css('visibility', 'visible');
 });

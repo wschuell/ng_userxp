@@ -11,6 +11,7 @@ body {
 	text-align : center;
 	color : white;
 	font-family : serif;
+	visibility: hidden;
 }
 
 .pagetitle {

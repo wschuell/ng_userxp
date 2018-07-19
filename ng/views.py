@@ -60,7 +60,8 @@ def home(request):
     return render(request, 'ng/home.html', {
     'game_unlocked' : game_unlocked,
     'multi_unlocked' : multi_unlocked,
-    'user': u,
+    'user' : user,
+    'userNG': u,
     })
 
 def create_and_login(request,username=None,name='',cookie_id=None, lang='fr', code=''):
@@ -331,6 +332,8 @@ def result_hearer_continue(request, xp_uuid, meaning):
         })
     if meaning == 'none':
         currentgame_json.update({'mh':None})
+    elif meaning == "undefined":
+        currentgame_json.update({'mh':None})
     else:
         currentgame_json.update({'mh':int(meaning)})
     ms = currentgame_json['ms']
@@ -421,6 +424,8 @@ def result_speaker_continue(request, xp_uuid, meaning, word):
     bool_succ = experiment.get_last_bool_succ()
     mh = experiment.get_last_mh()
     if mh is None:
+        mh = 'none'
+    elif mh is "undefined":
         mh = 'none'
     else:
         mh = int(mh)
