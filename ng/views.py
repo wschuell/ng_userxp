@@ -332,10 +332,13 @@ def result_hearer_continue(request, xp_uuid, meaning):
         })
     if meaning == 'none':
         currentgame_json.update({'mh':None})
+        learn = True
     elif meaning == "undefined":
         currentgame_json.update({'mh':None})
+        learn = True
     else:
         currentgame_json.update({'mh':int(meaning)})
+        learn = False
     ms = currentgame_json['ms']
     w = currentgame_json['w']
     experiment.save_currentgame_json(currentgame_json)
@@ -353,6 +356,7 @@ def result_hearer_continue(request, xp_uuid, meaning):
             'last_mh': str(currentgame_json['mh']),
             'last_ms': ms,
             'bool_succ': bool_succ,
+            'learn': learn,
             'user':request.user,
             'userNG': UserNG.get(user=request.user),
 
@@ -425,10 +429,13 @@ def result_speaker_continue(request, xp_uuid, meaning, word):
     mh = experiment.get_last_mh()
     if mh is None:
         mh = 'none'
+        learn = True
     elif mh is "undefined":
         mh = 'none'
+        learn = True
     else:
         mh = int(mh)
+        learn = False
     past_interaction = PastInteraction(meaning=str(ms),word=w,meaning_h=mh,bool_succ=bool_succ,time_id=experiment.interaction_counter,role='speaker',experiment=experiment)
     experiment.save()
     past_interaction.save()
@@ -447,6 +454,7 @@ def result_speaker_continue(request, xp_uuid, meaning, word):
             'last_mh': mh,
             'last_ms': str(currentgame_json['ms']),
             'bool_succ': bool_succ,
+            'learn': learn,
             'user':request.user,
             'userNG': UserNG.get(user=request.user),
         })
@@ -540,16 +548,27 @@ def continue_userxp(request, xp_uuid):
                     'role':"speaker",
                     'context':"question",
                     'bar_width':bar_width,
+                    'dont_know': False,
                     'user':request.user,
                     'userNG': UserNG.get(user=request.user),
                     })
             elif hr_id == experiment.get_user_agent_uuid():
+                w_list = []
+                pi_l = experiment.pastinteraction_set.all()
+                for past_int in pi_l :
+                    w = past_int.word
+                    w_list.append(w)
+                if currentgame_json['w'] in w_list :
+                    dont_know = False
+                else :
+                    dont_know = True
                 return render(request, 'ng/game.html', {
                     'experiment': experiment,
                     'word': currentgame_json['w'],
                     'role':"hearer",
                     'context':"question",
                     'bar_width':bar_width,
+                    'dont_know': dont_know,
                     'user':request.user,
                     'userNG': UserNG.get(user=request.user),
                     })
