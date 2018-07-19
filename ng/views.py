@@ -648,7 +648,7 @@ def score(request, xp_uuid):
 
 ####DEBUG####
 def test_score(request):
-    experiment = Experiment.get_new_xp(user=request.user,xp_cfg_name="normal")
+    experiment = Experiment.objects.last()#Experiment.get_new_xp(user=request.user,xp_cfg_name="normal")
     experiment.save()
     try:
         score = Score.objects.get(experiment=experiment)
