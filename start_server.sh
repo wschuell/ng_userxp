@@ -29,7 +29,7 @@ python manage.py migrate &&
 python manage.py migrate ng &&
 python manage.py collectstatic --noinput &&
 
-echo "from django.contrib.auth.models import User; User.objects.all() or User.objects.create_user('admin', 'admin@example.com', 'password').save(); exit();" | python manage.py shell &&
+bash check_users.sh
 
 if [ $NG_USERXP_DEV_MODE -eq 0 ]
 then
