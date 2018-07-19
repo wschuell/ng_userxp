@@ -16,8 +16,8 @@ if(mode=="end"){
 	$('.continue').click(function(){
 		if($('#text_end').css('display')=='block'){
 			$('#score_text').css('display', 'block');
-			//$('#picture').css('display', 'none');
-			//$('#picture2').css('display', 'block');
+			$('#picture').css('display', 'none');
+			$('#picture2').css('display', 'block');
 			$('#text_end').css('display', 'none');
 		} else {
 			/*window.location.href = "game_tutorial";*/

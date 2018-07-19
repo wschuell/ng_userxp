@@ -348,7 +348,10 @@ td, th {
 	object-fit: cover;
 }
 
-tr{width: 100%}
+tr{
+	width: 100%;
+	margin : auto;
+}
 
 .meaning {
 	max-height : 100px;
