@@ -22,7 +22,7 @@ dict_obj = {
     'comment_avatar': "<p>C'est vous !</p>",
     'home_pagetitle': 'Accueil',
     'game_locked' : '<span class="glyphicon glyphicon-lock"></span> Terminer le Tutoriel pour débloquer <span class="glyphicon glyphicon-lock"></span>',
-    'multi_locked' : '<span class="glyphicon glyphicon-lock"></span> Terminer le Jeu 5 fois pour débloquer <span class="glyphicon glyphicon-lock"></span>',
+    'multi_locked' : '<span class="glyphicon glyphicon-lock"></span> Terminer le Jeu 3 fois pour débloquer <span class="glyphicon glyphicon-lock"></span>',
 
     #Story End
     'story_pagetitle': 'Histoire',
@@ -81,7 +81,7 @@ dict_obj = {
     'comment_avatar': "<p>That's you !</p>",
     'home_pagetitle': 'Home',
     'game_locked' : '<span class="glyphicon glyphicon-lock"></span> Complete the Tutorial to unlock <span class="glyphicon glyphicon-lock"></span>',
-    'multi_locked' : '<span class="glyphicon glyphicon-lock"></span> Complete the Game 5 times to unlock <span class="glyphicon glyphicon-lock"></span>',
+    'multi_locked' : '<span class="glyphicon glyphicon-lock"></span> Complete the Game 3 times to unlock <span class="glyphicon glyphicon-lock"></span>',
 
     #Story End
     'story_pagetitle': 'Story',

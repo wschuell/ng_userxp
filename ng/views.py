@@ -474,7 +474,7 @@ def new_experiment(request,xp_cfg_name='normal'):
     #Test if the user can access this type of game and send them to the home page if not
     user = request.user
     u = UserNG.get(user=user)
-    if ((xp_cfg_name == "normal" and not u.tuto_played) or (xp_cfg_name == "multiuser" and u.nbr_played < 5)):
+    if ((xp_cfg_name == "normal" and not u.tuto_played) or (xp_cfg_name == "multiuser" and u.nbr_played < 3)):
         return HttpResponseRedirect('/')
     else :
         experiment = Experiment.get_new_xp(user=request.user,xp_cfg_name=xp_cfg_name)
@@ -609,6 +609,7 @@ def score(request, xp_uuid):
         score_val = int(srtheo * experiment.meanings.count() * 100)#.all().count()?
         score = Score(experiment=experiment,score=score_val,user=request.user)
         score.save()
+
     u = UserNG.get(user=request.user)
     if experiment.xp_config.xp_cfg_name == "normal" :
         u.nbr_played =+ 1
@@ -622,10 +623,11 @@ def score(request, xp_uuid):
     w_list2 = []
     for elt in m_list:
         if len(tab_results[elt].items()) == 0 :
-            w_list1.append('-')
-            w_list2.append('-')
+            w_list1.append('?')
+            w_list2.append('?')
         elif len(tab_results[elt].items()) == 1 :
-            w_list1.append(tab_results[elt].keys()[0])
+            l = [c for c,v in tab_results[elt].items()]
+            w_list1.append(l[0])
             w_list2.append('-')
         else :
             sorted_tab= sorted(tab_results[elt].items(), key=lambda colonnes: colonnes[1])
@@ -638,49 +640,10 @@ def score(request, xp_uuid):
             'experiment': experiment,
             'score':str(score_val),
             'context':"end",
-            'tab_results': experiment.get_result_tab(),
-            'user':request.user,
-            'userNG': UserNG.get(user=request.user),
-            })
-
-####DEBUG####
-def test_score(request):
-    experiment = Experiment.get_new_xp(user=request.user,xp_cfg_name="normal")
-    experiment.save()
-    try:
-        score = Score.objects.get(experiment=experiment)
-        score_val = score.score
-    except:
-        experiment.get_xp()
-        srtheo = experiment.xp.graph(method="srtheo")._Y[0][-1]
-        score_val = int(srtheo * experiment.meanings.count() * 100)#.all().count()?
-        score = Score(experiment=experiment,score=score_val,user=request.user)
-        score.save()
-    tab_results = experiment.get_result_tab()
-    m_list = [elt for elt in tab_results.keys()]
-    w_list1 = []
-    w_list2 = []
-    for elt in m_list:
-        if len(tab_results[elt].items()) == 0 :
-            w_list1.append('-')
-            w_list2.append('-')
-        elif len(tab_results[elt].items()) == 1 :
-            w_list1.append(tab_results[elt].keys()[0])
-            w_list2.append('-')
-        else :
-            sorted_tab= sorted(tab_results[elt].items(), key=lambda colonnes: colonnes[1])
-            w_list1.append(sorted_tab)
-            w_list2.append(sorted_tab[1])
-        r = str(experiment)+str(score_val)+str(request.user)
-    #return HttpResponse(experiment.get_result_tab())
-    return render(request, 'ng/story.html', {
-            'experiment': str(experiment),
-            'score':str(score_val),
-            'context':"end",
             'tab_results': tab_results,
             'm_list': m_list,
             'w_list1': w_list1,
             'w_list2': w_list2,
-            'user':str(request.user),
+            'user':request.user,
             'userNG': UserNG.get(user=request.user),
             })
