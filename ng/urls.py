@@ -51,7 +51,10 @@ urlpatterns = [
 	url(r'^story$', views.story, name='story'),
 	url(r'^(?P<xp_uuid>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/results', views.score, name='results'),
 
+<<<<<<< HEAD
     ###DEBUG###
     #url(r'^test_score', views.test_score, name='test_score'),
+=======
+>>>>>>> 5aaf8fef294e60647b4b89f218c1296d987e8a19
 
 ]
