@@ -38,7 +38,8 @@ dict_obj = {
     'c2_4':"Mais attention, vous n'avez à vous tous qu'un <span class='important'>nombre limité de conversations</span> pour réussir !",
 
     #Game
-    'button_next': 'Continuer',
+    'button_next': 'Continuer','titre_info' : "",
+
     'continue': 'Continuer',
     'history_name': 'Historique',
     'conversations': 'Conversation',
@@ -60,6 +61,15 @@ dict_obj = {
     'error_text': "<span id='error_span'>Oups !</span> Il semblerait qu'une erreur se soit produite ! Vous pouvez tenter de continuer ou revenir à l'accueil pour commencer une nouvelle partie.",
     'btn_home': "Revenir à l'Accueil",
     'btn_continue': 'Continuer',
+
+    #Info page
+    'titre_info' : "",
+    'info_text': "",
+    'q1':"",
+    'q2':"",
+    'q3':"",
+    'q4':"",
+    'q5':"",
   },
 
   'en': {
@@ -70,7 +80,7 @@ dict_obj = {
     'welcome': 'The Naming Game!',
     'enter_player_name': 'Enter your name here :',
     'label_lang': 'Choose the game language :',
-    'label_code': 'If you have a special code, enter it here :',
+    'label_code': 'If you have a special token, enter it here :',
     'submit' : "Submit",
 
     #Home
@@ -119,6 +129,15 @@ dict_obj = {
     'error_text': "<span id='error_span'>Oops!</span> It seems that an error occured! You can try to resume your game or go back at home page an start a new one.",
     'btn_home': "Go back to Home page",
     'btn_continue': 'Resume the game',
+
+    #Info page
+    'titre_info' : "",
+    'info_text': "",
+    'q1':"",
+    'q2':"",
+    'q3':"",
+    'q4':"",
+    'q5':"",
 
   },
   'it': {
@@ -178,7 +197,15 @@ dict_obj = {
     'error_text': "<span id='error_span'>Oups !</span> ",
     'btn_home': " ",
     'btn_continue': '',
-
+    
+    #Info page
+    'titre_info' : "",
+    'info_text': "",
+    'q1':"",
+    'q2':"",
+    'q3':"",
+    'q4':"",
+    'q5':"",
   }
 };
 

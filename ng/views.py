@@ -647,3 +647,8 @@ def score(request, xp_uuid):
             'user':request.user,
             'userNG': UserNG.get(user=request.user),
             })
+
+@csrf_protect
+@login_required(login_url='/ng/login/')
+def test_info(request):
+    return render(request, 'ng/infos.html')

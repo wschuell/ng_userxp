@@ -389,7 +389,7 @@ if (context == "question" || context == "skipped") {
 				} else {
 					if (lang == 'fr'){
 					$('#other-meaning').tooltip({
-						title : "Voià ce que voulait dire votre interlocuteur. Vous vous en souviendrez pour la prochaine fois !",
+						title : "Voilà ce que voulait dire votre interlocuteur. Vous vous en souviendrez pour la prochaine fois !",
 						placement : "right",
 						trigger: "manual",
 					});

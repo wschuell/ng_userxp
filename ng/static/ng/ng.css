@@ -323,11 +323,7 @@ p {
 
 #tab {
 	display : block;
-<<<<<<< HEAD
 	margin : 5% 2% 0%;
-=======
-	margin : 5% 5% 0%;
->>>>>>> 5aaf8fef294e60647b4b89f218c1296d987e8a19
 	width : 100%;
 	table-layout : fixed;
 }
