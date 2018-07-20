@@ -210,7 +210,7 @@ class Experiment(models.Model):
         ag_list = xp._poplist.get_last()._agentlist
         nb_ag = len(ag_list)
         w_list = [w.word for w in self.words.all()]
-        m_list = [m.meaning for m in self.meanings.all()]
+        m_list = [int(m.meaning) for m in self.meanings.all()]
         ans = {}
         for m in m_list:
             ans[m] = {}
@@ -220,7 +220,7 @@ class Experiment(models.Model):
                     delta = 1
                     if normalized_ag:
                         delta *= 1./nb_ag
-                    if normalized:
+                    if normalized_w:
                         delta *= 1./len(kw_l)
                     if w in list(ans[m].keys()):
                         ans[m][w] += delta

@@ -79,10 +79,11 @@
 
 				<div class="col-xs-6">
 					<!--Insérer Tableaux Fin (Tuto et Normal)-->
+          {{tab_results}}
 					<table id="tab">
 						<tr>
 							<!--Remplacer icones meanings-->
-							<!--adresse img temp :https://cdn.pixabay.com/photo/2018/04/11/07/08/rocket-3309711_960_720.png -->
+							<!--adresse img temp :https://cdn.pixabay.com/photo/2018/04/11/07/08/rocket-3309711_960_720.png
 							<th class="tuto col-xs-2"><img src="{% static 'ng/img/meaning_temp.png' %}" class="meaning"></th>
 							<th class="tuto col-xs-2"><img src="{% static 'ng/img/meaning_temp.png' %}" class="meaning"></th>
 							<th class="jeu-normal col-xs-2"><img src="{% static 'ng/img/meaning_temp.png' %}" class="meaning"></th>
@@ -90,18 +91,33 @@
 							<th class="jeu-normal col-xs-2"><img src="{% static 'ng/img/meaning_temp.png' %}" class="meaning"></th>
 						</tr>
 						<tr>
-							<td class="tuto col-xs-story2">truc</td>
-							<td class="tuto col-xs-2">machin</td>
-							<td class="jeu-normal col-xs-2">bidule</td>
-							<td class="jeu-normal col-xs-2">blabla</td>
-							<td class="jeu-normal col-xs-2">blblbl</td>
+							<td class="tuto col-xs-2"></td>
+							<td class="tuto col-xs-2"></td>
+							<td class="jeu-normal col-xs-2"></td>
+							<td class="jeu-normal col-xs-2"></td>
+							<td class="jeu-normal col-xs-2"></td>
 						</tr>
 						<tr>
 							<td class="tuto col-xs-2"> </td>
-							<td class="tuto col-xs-2">:O</td>
+							<td class="tuto col-xs-2"></td>
 							<td class="jeu-normal col-xs-2"> </td>
 							<td class="jeu-normal col-xs-2"> </td>
-							<td class="jeu-normal col-xs-2"> </td>
+							<td class="jeu-normal col-xs-2"> </td> -->
+              {% for m in m_list %}
+            <th {% if experiment.max_interaction == 10 %}class="tuto col-xs-2"{% else %}class="jeu-normal col-xs-2"{% endif %}><img src="{% static 'ng/img/' %}kreyon_meaning{{m}}.png" class="meaning"></th>
+              {% endfor %}
+            </tr>
+
+            <tr>
+              {% for w in w_list1 %}
+              <td {% if experiment.max_interaction == 10 %}class="tuto col-xs-2"{% else %}class="jeu-normal col-xs-2"{% endif %}>{{w}}</td>
+              {% endfor %}
+						</tr>
+
+            <tr>
+              {% for w in w_list2 %}
+              <td {% if experiment.max_interaction == 10 %}class="tuto col-xs-2"{% else %}class="jeu-normal col-xs-2"{% endif %}>{{w}}</td>
+              {% endfor %}
 						</tr>
 					</table>
 				</div>

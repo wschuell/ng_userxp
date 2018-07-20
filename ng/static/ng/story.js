@@ -1,6 +1,4 @@
 
-
-
 if(mode=="end"){
 	//Interroger serveur pour savoir si jeu normal ou tuto
 	//var game_type ="tuto"; //Valeurs possibles : "tuto" et "normal"
@@ -18,8 +16,8 @@ if(mode=="end"){
 	$('.continue').click(function(){
 		if($('#text_end').css('display')=='block'){
 			$('#score_text').css('display', 'block');
-			//$('#picture').css('display', 'none');
-			//$('#picture2').css('display', 'block');
+			$('#picture').css('display', 'none');
+			$('#picture2').css('display', 'block');
 			$('#text_end').css('display', 'none');
 		} else {
 			/*window.location.href = "game_tutorial";*/
@@ -71,4 +69,9 @@ $('#home').click(function(){
 	$("#myModal").modal({
 		keyboard : true,
 	});
+});
+
+
+$(document).ready(function(){
+	$('body').css('visibility', 'visible');
 });

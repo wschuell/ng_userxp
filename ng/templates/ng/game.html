@@ -90,10 +90,10 @@
 		<div class="col-xs-3"></div>
 		<div class="col-xs-6">
 			<!--Hearer/Speaker-->
-      {% if role == "hearer" and context == "question" %}
+      {% if role == "hearer"  %}
 			<!--https://cdn.pixabay.com/photo/2017/11/23/14/03/ear-2972890_960_720.png-->
 			<div class="annonce hearer" id="anhearer" style = "display : block; visibility : visible"><p id="anhearer_text">On vous parle ! </p><img src="{% static 'ng/img/logo_hearer_temp.png' %}" class="logo" id="oreille"></div>
-      {% elif role == "speaker" and context == "question" %}
+      {% elif role == "speaker" %}
       <!--https://cdn.pixabay.com/photo/2012/04/18/22/40/microphone-38120_960_720.png-->
 			<div class="annonce speaker" id="anspeaker" style = "display : block; visibility : visible"><p id="anspeaker_text">C'est à vous de parler ! </p><img src="{% static 'ng/img/logo_speaker_temp.png' %}" class="img-responsive logo" id="bouche"></div>
       {% elif context == "skipped" %}
@@ -154,9 +154,11 @@
         {% endif %}
       </p></div>
 			<div class="bubble bubble-f thought" id="you-meaning"  {% if context == "skipped" %} style= "float:left; display : none;" {% else %} style= "float:left" {% endif %}>
-      {% if context == "result" and role == "speaker" %}
+      {% if context == "result" and role == "speaker" and last_ms != 'None' %}
         <img id="meaning_{{last_ms}}" class="img-responsive meaning" src="{% static 'ng/img/' %}kreyon_meaning{{ last_ms }}.png" meaning_name="{{ last_ms }}">
-        {% elif context == "result" and role == "hearer" %}
+      {% elif context == "result" and role == "speaker" %}
+        <img id="meaning_{{last_ms}}" class="img-responsive meaning" src="{% static 'ng/img/' %}kreyon_meaningnone.png" meaning_name="{{ last_ms }}">
+      {% elif context == "result" and role == "hearer" %}
         <img id="meaning_{{last_mh}}" class="img-responsive meaning" src="{% static 'ng/img/' %}kreyon_meaning{{ last_mh }}.png" meaning_name="{{ last_mh }}">
       {% endif %}
       </div>
@@ -164,7 +166,7 @@
 
 		<!--Bubble Feedback-->
 		<div class="col-xs-6 col-sm-6 col-lg-3 col-md-push-6 ">
-			<div class="bubble bubble-f" id="other-word"  {% if context != "question" or role == "speaker" %} style= "float:left; display : none;" {% else %} style= "float:left" {% endif %}><p class="word" id="word2">
+			<div class="bubble bubble-f" id="other-word"  {% if  role == "speaker" or context == "skipped"%} style= "float:left; display : none;" {% else %} style= "float:left" {% endif %}><p class="word" id="word2">
         {% if role == "hearer" %}
           {{word}}
         {% endif %}
@@ -209,13 +211,13 @@
             <img id="meaning_{{ m.meaning }}" class="img-responsive m meaning_img" src="{% static 'ng/img/' %}kreyon_meaning{{ m.meaning }}.png" meaning_name="{{ m.meaning }}">
           </label>
           {% endfor %}
-          <!--Regarde si c'est la première fois que l'utilisateur voit ce mot.
-          {% if context == "question" and role == "hearer" and last_w not in experiment.pastinteraction_set.all%}
+          <!--Regarde si c'est la première fois que l'utilisateur voit ce mot.-->
+          {% if context == "question" and role == "hearer" and dont_know %}
 					<label class="mradio" id="dont_know">
 						<input type="radio" name="m" id="none" value="none"/>
 						<img src="{% static 'ng/img/kreyon_meaningnone.png'%}" class="img-responsive m meaning_img">
 		      </label>
-          {% endif %}-->
+          {% endif %}
 					<!--Séparateur-->
           {% if context == "question" %}
 					<div class="separator_h"></div>
@@ -225,7 +227,7 @@
 
 
 				<!--Words-->
-{% if context == "question" and role == "speaker" %}
+{% if context == "question" %}
 				<div class="speaker-words"  id= "word_inner" style= "visibility : hidden;" >
 
 					<h1 class="explanation" id="choice_words"> Quel mot voulez-vous utiliser ?</h1>
@@ -250,12 +252,16 @@ https://cdn.pixabay.com/photo/2013/07/12/13/51/thinking-147447_960_720.png
 -->
         {% if context == "result" %}
 				<div class="feedback">
-        <!--  # if experiment.last_mh == None or experiment.last_ms == None
-          <img src="{% static 'ng/img/feedback_learn_temp.png' %}" class="img-responsive smiley" id="learn"> -->
+
+
           {% if bool_succ %}
 					<img src="{% static 'ng/img/feedback_success_temp.png' %}" class="img-responsive smiley" id="success">
           {% else %}
+             {% if learn  %}
+             <img src="{% static 'ng/img/feedback_learn_temp.png' %}" class="img-responsive smiley" id="learn">
+             {% else %}
 			    	<img src="{% static 'ng/img/feedback_failure_temp.png' %}" class="img-responsive smiley" id="failure">
+            {% endif %}
           {% endif %}
 				</div>
       {% endif %}
@@ -369,6 +375,8 @@ $(document).ready(function() {
     $("html").removeClass("wait");
   });
 
+  	$('body').css('visibility', 'visible');
+
   //$("#word_speaker").hide();
   $("#button_next, #button_start").click(function(){
     $("#button_next, #button_start").addClass('disabled');
@@ -448,21 +456,23 @@ $(document).ready(function() {
    });
 
    $('.w').click(function(){
-     var wSelected = $(this).text();
-     $('#word1').text(wSelected);
-     $('#anspeaker').tooltip('hide');
-     if (! $('html').hasClass('wait')) {
-       if (! $(this).hasClass('selected_w')) {
-         $(".selected_w").removeClass("selected_w");
-         $(this).addClass('selected_w');
-         if ($(".selected_m").length > 0) {
+     if('{{role}}' == "speaker"){
+       var wSelected = $(this).text();
+       $('#word1').text(wSelected);
+       $('#anspeaker').tooltip('hide');
+       if (! $('html').hasClass('wait')) {
+         if (! $(this).hasClass('selected_w')) {
+           $(".selected_w").removeClass("selected_w");
+           $(this).addClass('selected_w');
+           if ($(".selected_m").length > 0) {
            $("#continue").removeClass('disabled');
-         };
-       } else {
-         $(this).removeClass("selected_w");
-         $("#continue").addClass('disabled');
-       };
-     }
+            };
+        } else {
+          $(this).removeClass("selected_w");
+          $("#continue").addClass('disabled');
+        };
+      }
+    }
    });
 
    $("#continue.interact_hearer").click(function(event){

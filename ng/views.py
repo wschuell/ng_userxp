@@ -60,7 +60,8 @@ def home(request):
     return render(request, 'ng/home.html', {
     'game_unlocked' : game_unlocked,
     'multi_unlocked' : multi_unlocked,
-    'user': u,
+    'user' : user,
+    'userNG': u,
     })
 
 def create_and_login(request,username=None,name='',cookie_id=None, lang='fr', code=''):
@@ -331,8 +332,13 @@ def result_hearer_continue(request, xp_uuid, meaning):
         })
     if meaning == 'none':
         currentgame_json.update({'mh':None})
+        learn = True
+    elif meaning == "undefined":
+        currentgame_json.update({'mh':None})
+        learn = True
     else:
         currentgame_json.update({'mh':int(meaning)})
+        learn = False
     ms = currentgame_json['ms']
     w = currentgame_json['w']
     experiment.save_currentgame_json(currentgame_json)
@@ -350,6 +356,7 @@ def result_hearer_continue(request, xp_uuid, meaning):
             'last_mh': str(currentgame_json['mh']),
             'last_ms': ms,
             'bool_succ': bool_succ,
+            'learn': learn,
             'user':request.user,
             'userNG': UserNG.get(user=request.user),
 
@@ -422,8 +429,13 @@ def result_speaker_continue(request, xp_uuid, meaning, word):
     mh = experiment.get_last_mh()
     if mh is None:
         mh = 'none'
+        learn = True
+    elif mh is "undefined":
+        mh = 'none'
+        learn = True
     else:
         mh = int(mh)
+        learn = False
     past_interaction = PastInteraction(meaning=str(ms),word=w,meaning_h=mh,bool_succ=bool_succ,time_id=experiment.interaction_counter,role='speaker',experiment=experiment)
     experiment.save()
     past_interaction.save()
@@ -442,6 +454,7 @@ def result_speaker_continue(request, xp_uuid, meaning, word):
             'last_mh': mh,
             'last_ms': str(currentgame_json['ms']),
             'bool_succ': bool_succ,
+            'learn': learn,
             'user':request.user,
             'userNG': UserNG.get(user=request.user),
         })
@@ -535,16 +548,27 @@ def continue_userxp(request, xp_uuid):
                     'role':"speaker",
                     'context':"question",
                     'bar_width':bar_width,
+                    'dont_know': False,
                     'user':request.user,
                     'userNG': UserNG.get(user=request.user),
                     })
             elif hr_id == experiment.get_user_agent_uuid():
+                w_list = []
+                pi_l = experiment.pastinteraction_set.all()
+                for past_int in pi_l :
+                    w = past_int.word
+                    w_list.append(w)
+                if currentgame_json['w'] in w_list :
+                    dont_know = False
+                else :
+                    dont_know = True
                 return render(request, 'ng/game.html', {
                     'experiment': experiment,
                     'word': currentgame_json['w'],
                     'role':"hearer",
                     'context':"question",
                     'bar_width':bar_width,
+                    'dont_know': dont_know,
                     'user':request.user,
                     'userNG': UserNG.get(user=request.user),
                     })
@@ -592,6 +616,21 @@ def score(request, xp_uuid):
     elif experiment.xp_config.xp_cfg_name == "basic" and u.tuto_played == False :
         u.tuto_played = True
         u.save()
+    tab_results = experiment.get_result_tab()
+    m_list = [elt for elt in tab_results.keys()]
+    w_list1 = []
+    w_list2 = []
+    for elt in m_list:
+        if len(tab_results[elt].items()) == 0 :
+            w_list1.append('-')
+            w_list2.append('-')
+        elif len(tab_results[elt].items()) == 1 :
+            w_list1.append(tab_results[elt].keys())
+            w_list2.append('-')
+        else :
+            sorted_tab= sorted(tab_results[elt].items(), key=lambda colonnes: colonnes[1])
+            w_list1.append(sorted_tab[0][1])
+            w_list2.append(sorted_tab[1][1])
     #Test if score exists
     #if not, compute and store object
     #get value
@@ -599,13 +638,17 @@ def score(request, xp_uuid):
             'experiment': experiment,
             'score':str(score_val),
             'context':"end",
+            'tab_results': tab_results,
+            'm_list': m_list,
+            'w_list1': w_list1,
+            'w_list2': w_list2,
             'user':request.user,
             'userNG': UserNG.get(user=request.user),
             })
 
 ####DEBUG####
 def test_score(request):
-    experiment = Experiment.get_new_xp(user=request.user,xp_cfg_name="normal")
+    experiment = Experiment.objects.last()#Experiment.get_new_xp(user=request.user,xp_cfg_name="normal")
     experiment.save()
     try:
         score = Score.objects.get(experiment=experiment)
@@ -616,12 +659,31 @@ def test_score(request):
         score_val = int(srtheo * experiment.meanings.count() * 100)#.all().count()?
         score = Score(experiment=experiment,score=score_val,user=request.user)
         score.save()
+        tab_results = experiment.get_result_tab()
+        m_list = [elt for elt in tab_results.keys()]
+        w_list1 = []
+        w_list2 = []
+        for elt in m_list:
+            if len(tab_results[elt].items()) == 0 :
+                w_list1.append('-')
+                w_list2.append('-')
+            elif len(tab_results[elt].items()) == 1 :
+                w_list1.append(tab_results[elt].keys())
+                w_list2.append('-')
+            else :
+                sorted_tab= sorted(tab_results[elt].items(), key=lambda colonnes: colonnes[1])
+                w_list1.append(sorted_tab[0][1])
+                w_list2.append(sorted_tab[1][1])
         r = str(experiment)+str(score_val)+str(request.user)
-    #return HttpResponse(r)
+    #return HttpResponse(experiment.get_result_tab())
     return render(request, 'ng/story.html', {
             'experiment': str(experiment),
             'score':str(score_val),
             'context':"end",
+            'tab_results': tab_results,
+            'm_list': m_list,
+            'w_list1': w_list1,
+            'w_list2': w_list2,
             'user':str(request.user),
             'userNG': UserNG.get(user=request.user),
             })

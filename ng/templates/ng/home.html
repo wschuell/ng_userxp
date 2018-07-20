@@ -28,7 +28,7 @@
 	<title id="window_title">Naming Game</title>
 
 	<script type="text/javascript">
-         var url_logout = "{% url 'ng:logout' %}";s
+         var url_logout = "{% url 'ng:logout' %}";
 
      </script>
      <script src="{% static 'ng/js.cookie.js' %}"></script>
@@ -119,9 +119,9 @@
 
 			{% for score in user.score_set.all|slice:":10"|dictsortreversed:"score" %}
 			  	<div "line_meaning">
-			  		<span class='scores'>{{ forloop.counter }} .{{ score.score }}</span> <span class="scores_right">{{ username }}</span>
+			  		<span class='scores'>{{ forloop.counter }} .{{ score.score }}</span>
 			  	</div>
-			  	{% endfor %}
+			  {% endfor %}
 		</div>
 		</div>
 
@@ -131,6 +131,9 @@
     <!-- Optional JavaScript -->
 	 <script>
 
+   $(document).ready(function(){
+     $('body').css('visibility', 'visible');
+   });
    //Menu
 
    //Sound
@@ -161,6 +164,8 @@
     			$("html").addClass("wait");
     			window.location.href='/new_experiment/multiuser';
 		});
+
+
 
 	</script>
   </body>
