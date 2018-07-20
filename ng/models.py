@@ -122,7 +122,7 @@ class Experiment(models.Model):
         return str(self.xp_uuid) + ' ' + str(self.xp_config.xp_config)
 
     def init_xp(self):
-        db = ngal.ngdb.NamingGamesDB(db_type='psycopg2')
+        db = ngal.ngdb.NamingGamesDB(db_type='psycopg2',conn_info="host='db' dbname='naminggames' user='naminggames' password='naminggames'")
         self.xp = db.get_experiment(force_new=True,**json.loads(self.xp_config.xp_config))
         self.xp_uuid = self.xp.uuid
         self.xp.init_poplist()
@@ -152,7 +152,7 @@ class Experiment(models.Model):
 
     def get_xp(self):
         if not hasattr(self,'xp'):
-            db = ngal.ngdb.NamingGamesDB(db_type='psycopg2')
+            db = ngal.ngdb.NamingGamesDB(db_type='psycopg2',conn_info="host='db' dbname='naminggames' user='naminggames' password='naminggames'")
             self.xp = db.get_experiment(xp_uuid=self.xp_uuid)
         return self.xp
 
