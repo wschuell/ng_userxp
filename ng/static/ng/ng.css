@@ -271,7 +271,6 @@ li {
 	display : block;
 	object-fit : cover;
 	width : 100%;
-	height : 100%;
 }
 
 
@@ -313,6 +312,7 @@ p {
 .fin {
 	display : none;
 	font-size : 16px;
+	margin-top : 20px;
 }
 
 .score {
@@ -323,7 +323,7 @@ p {
 
 #tab {
 	display : block;
-	margin : 5% auto 5%;
+	margin : 5% 5% 0%;
 	width : 100%;
 	table-layout : fixed;
 }
@@ -350,7 +350,6 @@ td, th {
 
 tr{
 	width: 100%;
-	margin : auto;
 }
 
 .meaning {
