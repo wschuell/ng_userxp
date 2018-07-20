@@ -25,7 +25,8 @@
 
 	<title id="window_title">Naming Game</title>
   <script src="{% static 'ng/js.cookie.js' %}"></script>
-   <script src="{% static 'ng/change_lang.js' %}"></script>
+  <script src="{% static 'ng/change_lang.js' %}"></script>
+
   </head>
 
 
@@ -144,8 +145,9 @@
 		<button type="button" class="btn"  id="next"><span class="glyphicon glyphicon-chevron-right"></span></button>
   </div>
       	<!--Boutons Navigation-->
-	<button type="button" class="btn continue" id="continue" style="margin-top : 30px; width:20%">Continuer</button>
-
+  	<div class="row">
+	     <button type="button" class="btn continue" id="continue" style="margin-top : 30px; width:20%">Continuer</button>
+    </div>
 
 <!-- Modal -->
  	<div class="modal fade" id="myModal" role="dialog">
@@ -171,8 +173,7 @@
 
 
     <!-- Optional JavaScript -->
-
+  <script type="text/javascript" src="{% static 'ng/story.js' %}"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  	 <script type="text/javascript" src="{% static 'ng/story.js' %}"></script>
   </body>
 </html>

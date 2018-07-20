@@ -625,12 +625,12 @@ def score(request, xp_uuid):
             w_list1.append('-')
             w_list2.append('-')
         elif len(tab_results[elt].items()) == 1 :
-            w_list1.append(tab_results[elt].keys())
+            w_list1.append(tab_results[elt].keys()[0])
             w_list2.append('-')
         else :
             sorted_tab= sorted(tab_results[elt].items(), key=lambda colonnes: colonnes[1])
-            w_list1.append(sorted_tab[0][1])
-            w_list2.append(sorted_tab[1][1])
+            w_list1.append(sorted_tab[0][0])
+            w_list2.append(sorted_tab[1][0])
     #Test if score exists
     #if not, compute and store object
     #get value
@@ -638,17 +638,14 @@ def score(request, xp_uuid):
             'experiment': experiment,
             'score':str(score_val),
             'context':"end",
-            'tab_results': tab_results,
-            'm_list': m_list,
-            'w_list1': w_list1,
-            'w_list2': w_list2,
+            'tab_results': experiment.get_result_tab(),
             'user':request.user,
             'userNG': UserNG.get(user=request.user),
             })
 
 ####DEBUG####
 def test_score(request):
-    experiment = Experiment.objects.last()#Experiment.get_new_xp(user=request.user,xp_cfg_name="normal")
+    experiment = Experiment.get_new_xp(user=request.user,xp_cfg_name="normal")
     experiment.save()
     try:
         score = Score.objects.get(experiment=experiment)
@@ -659,21 +656,21 @@ def test_score(request):
         score_val = int(srtheo * experiment.meanings.count() * 100)#.all().count()?
         score = Score(experiment=experiment,score=score_val,user=request.user)
         score.save()
-        tab_results = experiment.get_result_tab()
-        m_list = [elt for elt in tab_results.keys()]
-        w_list1 = []
-        w_list2 = []
-        for elt in m_list:
-            if len(tab_results[elt].items()) == 0 :
-                w_list1.append('-')
-                w_list2.append('-')
-            elif len(tab_results[elt].items()) == 1 :
-                w_list1.append(tab_results[elt].keys())
-                w_list2.append('-')
-            else :
-                sorted_tab= sorted(tab_results[elt].items(), key=lambda colonnes: colonnes[1])
-                w_list1.append(sorted_tab[0][1])
-                w_list2.append(sorted_tab[1][1])
+    tab_results = experiment.get_result_tab()
+    m_list = [elt for elt in tab_results.keys()]
+    w_list1 = []
+    w_list2 = []
+    for elt in m_list:
+        if len(tab_results[elt].items()) == 0 :
+            w_list1.append('-')
+            w_list2.append('-')
+        elif len(tab_results[elt].items()) == 1 :
+            w_list1.append(tab_results[elt].keys()[0])
+            w_list2.append('-')
+        else :
+            sorted_tab= sorted(tab_results[elt].items(), key=lambda colonnes: colonnes[1])
+            w_list1.append(sorted_tab)
+            w_list2.append(sorted_tab[1])
         r = str(experiment)+str(score_val)+str(request.user)
     #return HttpResponse(experiment.get_result_tab())
     return render(request, 'ng/story.html', {
