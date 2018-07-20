@@ -312,6 +312,7 @@ p {
 .fin {
 	display : none;
 	font-size : 16px;
+	margin-top : 20px;
 }
 
 .score {
@@ -322,7 +323,7 @@ p {
 
 #tab {
 	display : block;
-	margin : 5% auto 0%;
+	margin : 5% 2% 0%;
 	width : 100%;
 	table-layout : fixed;
 }
