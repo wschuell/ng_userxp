@@ -17,8 +17,8 @@
 	<!--JQuery-->
   <!--<script src="{% static 'ng/jquery-3.2.1.min.js' %}"></script>-->
 	<script src="{% static 'ng/jquery-3.3.1.min.js' %}"></script>
-	<script src="{% static 'ng/popper.min.js' %}"></script>
 	<script src="{% static 'ng/bootstrap.min.js' %}"></script>
+  	<script src="{% static 'ng/popper.min.js' %}"></script>
   <script src="{% static 'ng/change_lang.js' %}"></script>
   <script src="{% static 'ng/js.cookie.js' %}"></script>
   <script>
@@ -76,11 +76,11 @@
 			</div>
 
 			<div class="row" id="picture2">
- {{tab_results}}
 				<div class="col-xs-3 visible-md visible-lg"></div>
 
 				<div class="col-xs-6">
           {{tab_results}}
+          {{debug}}
 					<!--Insérer Tableaux Fin (Tuto et Normal)-->
 					<table id="tab">
 						<tr>

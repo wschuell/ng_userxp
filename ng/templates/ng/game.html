@@ -19,8 +19,8 @@
   <!--JQuery-->
   <!--<script src="{% static 'ng/jquery-3.2.1.min.js' %}"></script>-->
   <script src="{% static 'ng/jquery-3.3.1.min.js' %}"></script>
-  <script src="{% static 'ng/popper.min.js' %}"></script>
   <script src="{% static 'ng/bootstrap.min.js' %}"></script>
+  <script src="{% static 'ng/popper.min.js' %}"></script>
   <script src="{% static 'ng/js.cookie.js' %}"></script>
   <script src="{% static 'ng/change_lang.js' %}"></script>
 
@@ -154,10 +154,8 @@
         {% endif %}
       </p></div>
 			<div class="bubble bubble-f thought" id="you-meaning"  {% if context == "skipped" %} style= "float:left; display : none;" {% else %} style= "float:left" {% endif %}>
-      {% if context == "result" and role == "speaker" and last_ms != 'None' %}
+      {% if context == "result" and role == "speaker" %}
         <img id="meaning_{{last_ms}}" class="img-responsive meaning" src="{% static 'ng/img/' %}kreyon_meaning{{ last_ms }}.png" meaning_name="{{ last_ms }}">
-      {% elif context == "result" and role == "speaker" %}
-        <img id="meaning_{{last_ms}}" class="img-responsive meaning" src="{% static 'ng/img/' %}kreyon_meaningnone.png" meaning_name="{{ last_ms }}">
       {% elif context == "result" and role == "hearer" %}
         <img id="meaning_{{last_mh}}" class="img-responsive meaning" src="{% static 'ng/img/' %}kreyon_meaning{{ last_mh }}.png" meaning_name="{{ last_mh }}">
       {% endif %}

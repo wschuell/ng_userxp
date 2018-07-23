@@ -634,7 +634,8 @@ def score(request, xp_uuid):
             w_list1.append(l[0])
             w_list2.append('-')
         else :
-            sorted_tab= sorted(tab_results[elt].items(), key=lambda colonnes: colonnes[1])
+            sorted_tab = list(sorted(tab_results[elt].items(), key=lambda colonnes: colonnes[1]))
+            sorted_tab.reverse()
             w_list1.append(sorted_tab[0][0])
             w_list2.append(sorted_tab[1][0])
     #Test if score exists

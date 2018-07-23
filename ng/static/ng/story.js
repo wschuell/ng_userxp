@@ -75,56 +75,56 @@ $('#home').click(function(){
 
 $(document).ready(function(){
 	$('body').css('visibility', 'visible');
-	var lang = $('html').attr('lang');
+
 	//Tooltips
 
-	if (lang == 'fr'){
+	if ($('html').attr('lang') == 'fr'){
 	$('#1.0').tooltip({
 		title : "Objets",
 		placement : "left",
-		trigger: "manual",
+		trigger: "hover focus",
 	});
 	$('#2.0').tooltip({
 		title : "Mots préférés",
 		placement : "left",
-		trigger: "manual",
+		trigger: "hover focus",
 	});
 	$('#3.0').tooltip({
 		title : "Seconds mots préférés s'il y en a",
 		placement : "left",
-		trigger: "manual",
+		trigger: "hover focus",
 	});
-	} else if (lang == 'en'){
+	} else if ($('html').attr('lang') == 'en'){
 		$('#1.0').tooltip({
 			title : "Objets",
 			placement : "left",
-			trigger: "manual",
+			trigger: "hover focus",
 		});
 		$('#2.0').tooltip({
 			title : "Mots préférés",
 			placement : "left",
-			trigger: "manual",
+			trigger: "hover focus",
 		});
 		$('#3.0').tooltip({
 			title : "Seconds mots préférés s'il y en a",
 			placement : "left",
-			trigger: "manual",
+			trigger: "hover focus",
 		});
-	} else if (lang == 'it'){
+	} else {
 		$('#1.0').tooltip({
 			title : "ITALIAN",
 			placement : "left",
-			trigger: "manual",
+			trigger: "hover focus",
 		});
 		$('#2.0').tooltip({
 			title : "ITALIAN",
 			placement : "left",
-			trigger: "manual",
+			trigger: "hover focus",
 		});
 		$('#3.0').tooltip({
 			title : "ITALIAN",
 			placement : "left",
-			trigger: "manual",
+			trigger: "hover focus",
 		});
 	}
 		$('#1.0').tooltip("show");

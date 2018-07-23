@@ -9,6 +9,8 @@
     <title id="window_title">Naming Game</title>
     <!-- Bootstrap CSS -->
     <link type="text/css" rel="stylesheet" href="{% static 'ng/bootstrap-4.0.0-dist/css/bootstrap.min.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'ng/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}"/>
+
   	<!--CSS-->
   	<link type="text/css" rel="stylesheet" href="{% static 'ng/ng.css' %}"/>
 
@@ -71,23 +73,23 @@
             set_language();
 
             if ($('html').attr('lang') == 'fr') {
-              $('#label_code').tooltip({
+              $('#id_code').tooltip({
                 title : "Si vous n'avez pas de code, laissez ce champ vide.",
                 placement : "left",
                 trigger : "hover focus",
-              })
+              });
             } else if ($('html').attr('lang') == "en"){
-                $('#label_code').tooltip({
+                $('#id_code').tooltip({
                   title : "If you don't have any code, leave this field empty.",
                   placement : "left",
                   trigger : "hover focus",
-                })
-            } else if ($('html').attr('lang') == 'it') {
-              $('#label_code').tooltip({
+                });
+            } else {
+              $('#id_code').tooltip({
                 title : "ITALIAN",
                 placement : "left",
                 trigger : "hover focus",
-              })
+              });
             }
 
             });
@@ -127,7 +129,7 @@
 
       <div class="fieldWrapper">
         {{ form.your_name.errors }}
-        <label for="player-name" class="label" id="enter_player_name" style="display:block">Entrez votre nom ici :</label>
+        <label for="player-name" class="label1" id="enter_player_name" style="display:block">Entrez votre nom ici :</label>
 				{{ form.your_name }}
       </div>
 
@@ -142,7 +144,7 @@
       {{ form.name_lang }}
       </div>
 				<!--Choix Langage-->
-				<label class="label" id="label_lang">Choisissez la langue du jeu :</label>
+				<label class="label1" id="label_lang">Choisissez la langue du jeu :</label>
 
 			<div class="row" id="middle">
         <div class="col-lg-2 visible-lg"> </div>
@@ -177,7 +179,7 @@
         <div class="col-md-4">
           <div class="fieldWrapper">
               {{form.code.errors}}
-              <label class="label" id="label_code" style= "font-size: 20px;">Si vous avez un code spécial, veuillez l'entrer ici :</label>
+              <label class="label1" id="label_code" style= "font-size: 20px;">Si vous avez un code spécial, veuillez l'entrer ici :</label>
               {{form.code}}
           </div>
       </div>

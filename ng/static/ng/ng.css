@@ -90,7 +90,8 @@ body {
 /*Login Page*/
 
 
-.label {
+.label1 {
+	font-family : serif;
 	font-size : 20px;
 	padding : 55px 15px 15px;
 
