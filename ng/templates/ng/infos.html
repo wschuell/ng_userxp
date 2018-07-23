@@ -1,0 +1,90 @@
+{% load static %}
+<!doctype html>
+<html lang={{userNG.lang}}>
+
+  <head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+  <link type="text/css" rel="stylesheet" href="{% static 'ng/bootstrap-4.0.0-dist/css/bootstrap.min.css' %}"/>
+  <link type="text/css" rel="stylesheet" href="{% static 'ng/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}"/>
+
+	<!--CSS-->
+	<link type="text/css" rel="stylesheet" href="{% static 'ng/ng.css' %}"/>
+
+	<!--JQuery-->
+  <!--<script src="{% static 'ng/jquery-3.2.1.min.js' %}"></script>-->
+	<script src="{% static 'ng/jquery-3.3.1.min.js' %}"></script>
+	<script src="{% static 'ng/popper.min.js' %}"></script>
+	<script src="{% static 'ng/bootstrap.min.js' %}"></script>
+	<script src="{% static 'ng/js.cookie.js' %}"></script>
+  <script src="{% static 'ng/change_lang.js' %}"></script>
+
+	<title id="window_title">Naming Game</title>
+  </head>
+
+<body>
+  	<div class="error_div row">
+  		<div class="col-lg-2">
+  		<!--Menu-->
+  			<div class="menu" style="margin-right: auto; margin-left:auto; width:40%; max-width: 160px">
+  				<!--<span class="glyphicon glyphicon-info-sign icon" id="info"></span>-->
+  				<span class="glyphicon glyphicon-volume-off icon" id="sound-off"></span>
+  				<span class="glyphicon glyphicon-volume-up icon" id="sound-on"></span>
+  				<span class="glyphicon glyphicon-home icon" id="home"></span>
+  			</div>
+  		</div>
+  		<div class="col-lg-8"><h1 id="titre_info" class="pagetitle" style="margin: 10px auto 10px;"> TITRE </h1></div>
+      <div class="col-lg-2"></div>
+  	</div>
+  	<div class="error_div row">
+  		<div class="col-md-3"></div>
+  		<div class="col-xs-10 col-md-6">
+  			<div class = "row">
+  				<div id="info_text" class="col-xs-12">
+            A COMPLETER
+  				</div>
+  			</div>
+        {% if q_filled %}
+        <div class="row">
+            <button class="btn" id="btn_home">Revenir à l'Accueil</button>
+        </div>
+        {% else %}
+        <form id="form" method="post">
+        <div class="row form-group">
+          {% csrf_token %}
+            {{form}}
+            <input type="submit" class="btn btn-default bt-lg" id="submit" value="Valider"/>
+        </div>
+      </form>
+        {% endif %}
+  		</div>
+  		<div class="col-md-3"></div>
+  	</div>
+  	<div class="error_div row"></div>
+
+	<script text="text/javascript">
+
+$(document).ready(function() {
+
+  	$('body').css('visibility', 'visible');
+
+	//Menu
+
+	//Home
+
+	$('#btn_home').click(function(){
+	 window.location.href = "/";
+	});
+
+  $('#home').click(function(){
+	 window.location.href = "/";
+	});
+
+
+});
+	</script>
+</body>
+</html>
