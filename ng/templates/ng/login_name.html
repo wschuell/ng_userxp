@@ -54,6 +54,9 @@
           });
 
           $(document).ready(function(){
+
+            $('body').css('visibility', 'visible');
+
             $("#id_name_cookie_id").val($("#username").html());
 
             $('#it').click(function(event){
@@ -65,15 +68,27 @@
             $('#fr').click(function(event){
                 change_language(($('#fr').attr('value')));
             });
-                set_language();
+            set_language();
 
-                $('body').css('visibility', 'visible');            
-
-            $('#id_code').tooltip({
-              title : "Si vous n'avez pas de code, laissez ce champ vide.",
-              placement : "left",
-              trigger : "hover",
-            })
+            if ($('html').attr('lang') == 'fr') {
+              $('#label_code').tooltip({
+                title : "Si vous n'avez pas de code, laissez ce champ vide.",
+                placement : "left",
+                trigger : "hover focus",
+              })
+            } else if ($('html').attr('lang') == "en"){
+                $('#label_code').tooltip({
+                  title : "If you don't have any code, leave this field empty.",
+                  placement : "left",
+                  trigger : "hover focus",
+                })
+            } else if ($('html').attr('lang') == 'it') {
+              $('#label_code').tooltip({
+                title : "ITALIAN",
+                placement : "left",
+                trigger : "hover focus",
+              })
+            }
 
             });
 

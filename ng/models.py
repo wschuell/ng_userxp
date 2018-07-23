@@ -55,6 +55,19 @@ class UserNG(models.Model):
     tuto_played = models.BooleanField(default=False)
     nbr_played = models.IntegerField(default=0)
 
+    #Has the user seen the informations displayed after 3 games ?
+    q_seen = models.BooleanField(default=False)
+
+    #Has the user already filled the form ?
+    q_filled = models.BooleanField(default=False)
+
+    #Questions
+    q1 =  models.BooleanField(default=False)
+    q2 =  models.BooleanField(default=False)
+    q3 =  models.BooleanField(default=False)
+    q4 =  models.BooleanField(default=False)
+    q5 = models.CharField(max_length=100, null=True, blank= True, default='')
+
     def __str__(self):
         return self.user.username
 
@@ -115,6 +128,10 @@ class Experiment(models.Model):
     last_nb_skipped = models.IntegerField(default=0)
     size = models.IntegerField(default=1)
 
+    #Has the player seen the informations on the experiment before this game ?
+    before_info = models.BooleanField(default=False)
+    #Experiment number for the user
+    xp_number = models.IntegerField(default=-1)
     #For the Admin interface
     is_complete = models.BooleanField(default = False)
 

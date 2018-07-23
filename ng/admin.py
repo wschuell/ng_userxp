@@ -78,7 +78,7 @@ class ExperimentAdmin(admin.ModelAdmin):
 	'last_mh',
 	'size',
 	)
-	list_display = ('user', 'xp_uuid', 'is_complete', 'max_interaction',)
+	list_display = ('user', 'xp_uuid', 'before_info', 'is_complete', 'max_interaction',)
 	list_filter = ('user', 'max_interaction')
 
 

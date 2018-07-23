@@ -25,7 +25,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import authenticate, login
-from .forms import NameForm
+from .forms import NameForm, QuestionForm
 
 def create_user(request,username='',name='',cookie_id='', lang='fr', code=''):
     user = User.objects.create_user(username=str(username),first_name=str(name),email=str(cookie_id),password=str(username))
@@ -53,7 +53,7 @@ def home(request):
     user = request.user
     u = UserNG.get(user=user)
     game_unlocked = u.tuto_played
-    if (u.nbr_played < 5):
+    if (u.nbr_played < 3):
         multi_unlocked = False
     else :
         multi_unlocked = True
@@ -474,10 +474,11 @@ def new_experiment(request,xp_cfg_name='normal'):
     #Test if the user can access this type of game and send them to the home page if not
     user = request.user
     u = UserNG.get(user=user)
-    if ((xp_cfg_name == "normal" and not u.tuto_played) or (xp_cfg_name == "multiuser" and u.nbr_played < 3)):
+    if (xp_cfg_name == "normal" and not u.tuto_played) :
         return HttpResponseRedirect('/')
     else :
         experiment = Experiment.get_new_xp(user=request.user,xp_cfg_name=xp_cfg_name)
+        experiment.before_info= not u.q_seen
         experiment.save()
         return continue_userxp(request,experiment.xp_uuid)
         # return render(request, 'ng/loading_xp.html', {
@@ -617,6 +618,9 @@ def score(request, xp_uuid):
     elif experiment.xp_config.xp_cfg_name == "basic" and u.tuto_played == False :
         u.tuto_played = True
         u.save()
+    #Update xp_number
+    experiment.xp_number= u.nbr_played + 1
+    experiment.save()
     tab_results = experiment.get_result_tab()
     m_list = [elt for elt in tab_results.keys()]
     w_list1 = []
@@ -650,5 +654,38 @@ def score(request, xp_uuid):
 
 @csrf_protect
 @login_required(login_url='/ng/login/')
-def test_info(request):
-    return render(request, 'ng/infos.html')
+def info(request):
+    u = UserNG.get(user=request.user)
+    if u.nbr_played < 3 :
+        return HttpResponseRedirect('/')
+    else:
+        u.q_seen = True
+        u.save()
+        # if this is a POST request we need to process the form data
+        if request.method == 'POST':
+            # create a form instance and populate it with data from the request:
+            form = QuestionForm(request.POST)
+            # check whether it's valid:
+            if form.is_valid():
+                # process the data in form.cleaned_data as required
+                # ...
+                # redirect to a new URL:
+                u.q_filled = True
+                u.q1 = form.cleaned_data['q1']
+                u.q2 = form.cleaned_data['q2']
+                u.q3 = form.cleaned_data['q3']
+                u.q4 = form.cleaned_data['q4']
+                u.q5 = form.cleaned_data['q5']
+                u.save()
+                return HttpResponseRedirect('/')
+
+        # if a GET (or any other method) we'll create a blank form
+        else:
+            form = QuestionForm()
+
+        return render(request, 'ng/infos.html', {
+            'user':request.user,
+            'userNG': u,
+            'form' : form,
+            'q_filled' : u.q_filled,
+    })

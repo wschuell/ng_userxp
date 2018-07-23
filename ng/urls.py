@@ -53,6 +53,6 @@ urlpatterns = [
 
     ###DEBUG###
     #url(r'^test_score', views.test_score, name='test_score'),
-    url(r'^infos', views.test_info, name='test_info'),
+    url(r'^infos', views.info, name='info'),
 
 ]
