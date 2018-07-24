@@ -37,6 +37,10 @@ dict_obj = {
     'c1_3':'<span class="important">Aucun de vous ne parle la même langue</span> mais vous voulez tous vous échapper pour pouvoir rentrer chez vous.',
     'c2_4':"Mais attention, vous n'avez à vous tous qu'un <span class='important'>nombre limité de conversations</span> pour réussir !",
 
+    'col_1':'Objets',
+    'col_2':'Mots Préférés',
+    'col_3':'Seconds mots préférés',
+
     #Game
     'button_next': 'Continuer','titre_info' : "",
 
@@ -65,11 +69,11 @@ dict_obj = {
     #Info page
     'titre_info' : "",
     'info_text': "",
-    'q1':"",
-    'q2':"",
-    'q3':"",
-    'q4':"",
-    'q5':"",
+    'q1':"Êtiez-vous déjà familier.ère avec le principe des Naming Games ? ",
+    'q2':"Aviez-vous déjà joué à un jeu de ce type ou participé à une expérience similaire auparavant ?",
+    'q3':"Êtes-vous familier.ère avec les concepts évoqués plus haut ? ",
+    'q4':"Avez-vous eu l'impression d'utiliser une certaine stratégie (ou plusieurs) lors de vos parties ?",
+    'q5':"Si oui, pourriez-vous la ou les décrire brièvement ?",
   },
 
   'en': {
@@ -106,6 +110,10 @@ dict_obj = {
     'c1_3':'<span class="important">None of you is from the same planet or speak the same language</span> but you all want the same thing : escape and go back home.',
     'c2_4':'But careful, you only have a <span class="important">limited number of conversations</span> to succed !',
 
+    'col_1':'Objects',
+    'col_2':'Favorite Words',
+    'col_3':'Second Favorite Words',
+
     #Game
     'button_next': 'Continue',
     'continue': 'Continue',
@@ -133,11 +141,11 @@ dict_obj = {
     #Info page
     'titre_info' : "",
     'info_text': "",
-    'q1':"",
-    'q2':"",
-    'q3':"",
-    'q4':"",
-    'q5':"",
+    'q1':"Were you already familiar with the Naming Games principle ? ",
+    'q2':"Have you already played such a game or been taking part into a similar experiment ?",
+    'q3':"Were you already familiar with the concepts evoked above ?",
+    'q4':"Did you felt like you used a certain strategy (or several) during your games ?",
+    'q5':"If it is a 'Yes', could you describe it briefly ?",
 
   },
   'it': {
@@ -174,6 +182,10 @@ dict_obj = {
     'c1_3':'',
     'c2_4':'',
 
+    'col_1':'',
+    'col_2':'',
+    'col_3':'',
+
     #Game
     'button_next': '',
     'continue': '',
@@ -197,7 +209,7 @@ dict_obj = {
     'error_text': "<span id='error_span'>Oups !</span> ",
     'btn_home': " ",
     'btn_continue': '',
-    
+
     #Info page
     'titre_info' : "",
     'info_text': "",

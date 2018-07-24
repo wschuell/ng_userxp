@@ -277,7 +277,7 @@ https://cdn.pixabay.com/photo/2013/07/12/13/51/thinking-147447_960_720.png
 
           <form action="{% url 'ng:continue' experiment.xp_uuid %}" method="post">
           {% csrf_token %}
-          <input id="button_next" class="btn" type="submit" value="" />
+          <input id="button_next" class="btn" type="submit" value="{% static 'ng/sounds/silence.wav' %}" />
             </form>
         </div>
         {% endif %}
@@ -382,8 +382,8 @@ https://cdn.pixabay.com/photo/2013/07/12/13/51/thinking-147447_960_720.png
      $('#sound-on').css('display','none');
      $('#sound-off').css('display','inline');
  } else {
-    sound_click.setAttribute('src', "");
-    music.setAttribute('src', "");
+    sound_click.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
+    music.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
     $('#sound-off').css('display','none');
     $('#sound-on').css('display','inline');
  }
@@ -418,7 +418,7 @@ https://cdn.pixabay.com/photo/2013/07/12/13/51/thinking-147447_960_720.png
    //Sound
    $('#sound-off').click(function(){
      Cookies.set('NamingGameSound', false);
-     sound_click.setAttribute('src', "");
+     sound_click.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
    	$('#sound-off').css('display','none');
    	$('#sound-on').css('display','inline');
    });

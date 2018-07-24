@@ -80,7 +80,7 @@
     $('#sound-on').css('display','none');
     $('#sound-off').css('display','inline');
 } else {
-   sound_click.setAttribute('src', "");
+   sound_click.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
    $('#sound-off').css('display','none');
    $('#sound-on').css('display','inline');
 }
@@ -89,7 +89,7 @@
 //Sound
 $('#sound-off').click(function(){
   Cookies.set('NamingGameSound', false);
-  sound_click.setAttribute('src', "");
+  sound_click.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
  $('#sound-off').css('display','none');
  $('#sound-on').css('display','inline');
 });

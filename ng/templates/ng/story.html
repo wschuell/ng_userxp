@@ -80,23 +80,32 @@
 				<div class="col-xs-3 visible-md visible-lg"></div>
 
 				<div class="col-xs-6">
-          {{tab_results}}
-          {{debug}}
 					<!--Insérer Tableaux Fin (Tuto et Normal)-->
 					<table id="tab">
 						<tr>
+              <td style="width:15%;background-color : rgba(0,0,0,0.8);">
+                <p id="col_1" class="label1" style= "font-size : 25px;text-align : center;">Objets</p>
+              </td>
               {% for m in m_list %}
-              <th {% if experiment.max_interaction == 10 %}class="tuto col-xs-2"{% else %}class="jeu-normal col-xs-2"{% endif %} id="1.{{m}}"><img src="{% static 'ng/img/' %}kreyon_meaning{{m}}.png" class="meaning"></th>
+              <td {% if experiment.max_interaction == 10 %}class="tuto col-xs-2"{% else %}class="jeu-normal col-xs-2"{% endif %} style="background-color : rgba(0,0,0,0.8);" id="1.{{m}}">
+                <img src="{% static 'ng/img/' %}kreyon_meaning{{m}}.png" class="meaning">
+              </td>
               {% endfor %}
             </tr>
 
             <tr>
+              <td style="width:15%;background-color : rgba(0,0,0,0.8);">
+                <p id="col_2" class="label1" style= "font-size : 25px;text-align : center;">Mots Préférés</p>
+              </td>
               {% for w in w_list1 %}
               <td {% if experiment.max_interaction == 10 %}class="tuto col-xs-2"{% else %}class="jeu-normal col-xs-2"{% endif %} id="2.{{w}}">{{w}}</td>
               {% endfor %}
 						</tr>
 
             <tr>
+              <td style="width:15%;background-color : rgba(0,0,0,0.8);">
+                <p id="col_3" class="label1" style= "font-size : 25px;text-align : center;">Seconds mots préférés</p>
+              </td>
               {% for w in w_list2 %}
               <td {% if experiment.max_interaction == 10 %}class="tuto col-xs-2"{% else %}class="jeu-normal col-xs-2"{% endif %} id="3.{{w}}">{{w}}</td>
               {% endfor %}
@@ -157,7 +166,10 @@
   <script text="text/javascript">
 
   $(document).ready(function(){
-  	var sound_click = document.createElement('audio');
+
+    $('body').css('visibility', 'visible');
+
+    var sound_click = document.createElement('audio');
   	var music = document.createElement('audio');
 
     if (typeof Cookies.get('NamingGameSound') === 'undefined'){
@@ -174,8 +186,8 @@
   	 $('#sound-on').css('display','none');
   	 $('#sound-off').css('display','inline');
     } else {
-      sound_click.setAttribute('src', "");
-      music.setAttribute('src', "");
+      sound_click.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
+      music.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
 
       $('#sound-off').css('display','none');
       $('#sound-on').css('display','inline');
@@ -183,14 +195,19 @@
 
     //Sound
     $('#sound-off').click(function(){
-    	sound_click.play();
-    	$('#sound-off').css('display','none');
-    	$('#sound-on').css('display','inline');
+      Cookies.set('NamingGameSound', false);
+      sound_click.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
+      music.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
+     $('#sound-off').css('display','none');
+     $('#sound-on').css('display','inline');
     });
     $('#sound-on').click(function(){
-    	sound_click.play();
-    	$('#sound-on').css('display','none');
-    	$('#sound-off').css('display','inline');
+      Cookies.set('NamingGameSound', true);
+      sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+      music.setAttribute('src', "{% static 'ng/sounds/263479__orangefreesounds__dreamy-melodic-synth-loop.wav' %}");
+      sound_click.play();
+     $('#sound-on').css('display','none');
+     $('#sound-off').css('display','inline');
     });
     //Home
     $('#home').click(function(){
