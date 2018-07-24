@@ -13,22 +13,6 @@ if(mode=="end"){
 	$('#score_text').css('display', 'none');
 
 
-	$('.continue').click(function(){
-		sound_click.play();
-		if($('#text_end').css('display')=='block'){
-			$('#score_text').css('display', 'block');
-			$('#picture').css('display', 'none');
-			$('#picture2').css('display', 'block');
-			$('#text_end').css('display', 'none');
-		} else {
-			/*window.location.href = "game_tutorial";*/
-			$(this).prop('disable',true);
-    			$("html").addClass("wait");
-					window.location.href='/';
-			}
-	});
-
-
 } else if (mode=="story"){
 	$('#score_text').css('display', 'none');
 	$('#text_end').css('display', 'none');
@@ -40,62 +24,14 @@ if(mode=="end"){
 	$('.c1').css('display', 'block');
 	$('.c2').css('display', 'none');
 
-	$('.continue').click(function(){
-		if($('.c1').css('display')=='block'){
-			$('.c2').css('display', 'block');
-			$('.c1').css('display', 'none');
-		} else {
-			/*window.location.href = "game_tutorial";*/
-			$(this).prop('disable',true);
-    			$("html").addClass("wait");
-					window.location.href='/new_experiment/basic';
-			}
-	});
 };
 
 
 //Menu
 
-//Sound
-$('#sound-off').click(function(){
-	sound_click.play();
-	$('#sound-off').css('display','none');
-	$('#sound-on').css('display','inline');
-});
-$('#sound-on').click(function(){
-	sound_click.play();
-	$('#sound-on').css('display','none');
-	$('#sound-off').css('display','inline');
-});
-//Home
-$('#home').click(function(){
-	sound_click.play();
-	$("#myModal").modal({
-		keyboard : true,
-	});
-});
-
-
-
-var sound_click = document.createElement('audio');
 
 $(document).ready(function(){
 	$('body').css('visibility', 'visible');
-
-if (typeof Cookies.get('NamingGameSound') === 'undefined'){
-	Cookies.set('NamingGameSound', true);
-	sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
-	$('#sound-on').css('display','none');
-	$('#sound-off').css('display','inline');
-} else if (Cookies.get('NamingGameSound')) {
-	sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
-	$('#sound-on').css('display','none');
-	$('#sound-off').css('display','inline');
-} else {
- sound_click.setAttribute('src', "");
- $('#sound-off').css('display','none');
- $('#sound-on').css('display','inline');
-}
 
 	//Tooltips
 

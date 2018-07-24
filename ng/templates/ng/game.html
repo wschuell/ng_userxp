@@ -32,9 +32,6 @@
       var url_results_hearer_base = "{% url 'ng:results_hearer_base' experiment.xp_uuid %}";
       var url_results_speaker_base = "{% url 'ng:results_speaker_base' experiment.xp_uuid %}";
       {% endif %}
-      var sound_click = document.createElement('audio');
-      sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
-
   </script>
 
   <script src="{% static 'ng/ng.js' %}"></script>
@@ -363,22 +360,30 @@ https://cdn.pixabay.com/photo/2013/07/12/13/51/thinking-147447_960_720.png
 
    <script text="text/javascript">
 
-   var sound_click = document.createElement('audio');
 
    $(document).ready(function(){
+
+    var sound_click = document.createElement('audio');
+    var music = document.createElement('audio');
+
      $('body').css('visibility', 'visible');
 
    if (typeof Cookies.get('NamingGameSound') === 'undefined'){
      Cookies.set('NamingGameSound', true);
      sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+     music.setAttribute('src', "{% static 'ng/sounds/204432__nhumphrey__spooky-alien-language-04.wav' %}");
+
      $('#sound-on').css('display','none');
      $('#sound-off').css('display','inline');
   } else if (Cookies.get('NamingGameSound')) {
      sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+     music.setAttribute('src', "{% static 'ng/sounds/204432__nhumphrey__spooky-alien-language-04.wav' %}");
+
      $('#sound-on').css('display','none');
      $('#sound-off').css('display','inline');
  } else {
     sound_click.setAttribute('src', "");
+    music.setAttribute('src', "");
     $('#sound-off').css('display','none');
     $('#sound-on').css('display','inline');
  }
@@ -505,6 +510,7 @@ https://cdn.pixabay.com/photo/2013/07/12/13/51/thinking-147447_960_720.png
    });
 
    $("#continue.interact_hearer").click(function(event){
+     music.play();
      sound_click.play();
      if($('.selected_m')[0] != undefined && !$("#continue").hasClass('disabled') ) {
        $("#continue").addClass('disabled');
@@ -513,6 +519,7 @@ https://cdn.pixabay.com/photo/2013/07/12/13/51/thinking-147447_960_720.png
    });
 
    $("#continue.interact_speaker").click( function (event) {
+     music.play();
      sound_click.play();
      if($('.selected_m')[0] != undefined && $('.selected_w')[0] != undefined && !$("#continue").hasClass('disabled') ){
        $("#continue").addClass('disabled');
