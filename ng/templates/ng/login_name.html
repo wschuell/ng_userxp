@@ -29,6 +29,10 @@
          var url_newxp = "{% url 'ng:new_experiment'  %}";
          var url_home = "{% url 'ng:home'  %}";
 
+         var sound_click = document.createElement('audio');
+         sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+         Cookies.set('NamingGameSound', true);
+         
          //uuid
          function uuid()
          {
@@ -49,10 +53,14 @@
 
           //language
          $(".info_lang").click(function(){
+            sound_click.play();
             var language = $(this).val();
-            print(language);
             $('#lang').html(language);
             $("#id_lang").val($("#lang").html());
+          });
+
+          $('#submit').click(function(){
+            sound_click.play();
           });
 
           $(document).ready(function(){
@@ -105,7 +113,6 @@
   </head>
 <body>
 	<h1 class="pagetitle" style="padding:0px; margin-top:25px;" id="welcome">Le Naming Game !</h1>
-
 	<!-- Formulaire -->
 	 <!--action="/action_page.php"-->
 	<form id="form" method="post">

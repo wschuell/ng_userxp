@@ -8,29 +8,29 @@ class NameForm(forms.Form):
     code = forms.CharField(max_length=100, required=False)
 
 class QuestionForm(forms.Form):
-    CHOICES = ((True,'Oui'), (False,'Non'))
+    CHOICES = ((True,'Yes / Oui'), (False,'No / Non'))
     q1 =forms.TypedChoiceField(
-        label="Êtiez-vous déjà familier.ère avec le principe des Naming Games ?",
+        label="",
         required=True,
         widget=forms.RadioSelect,
         choices= CHOICES,
     )
     q2 =forms.TypedChoiceField(
-        label="Aviez-vous déjà joué à un jeu de ce type ou participé à une expérience similaire auparavant ?",
+        label="",
         required=True,
         widget=forms.RadioSelect,
         choices= CHOICES,
     )
     q3 =forms.TypedChoiceField(
-        label="Êtes-vous familier.ère avec les concepts évoqués plus haut ?",
+        label="",
         required=True,
         widget=forms.RadioSelect,
         choices= CHOICES,
     )
     q4 =forms.TypedChoiceField(
-        label="Avez-vous eu l'impression d'utiliser une certaine stratégie (ou plusieurs) lors de vos parties ?",
+        label="",
         required=True,
         widget=forms.RadioSelect,
         choices= CHOICES,
     )
-    q5 = forms.CharField(label="Si oui, pourriez-vous la ou les décrire brièvement ?",required=False,widget=forms.Textarea)
+    q5 = forms.CharField(label="",required=False,widget=forms.Textarea)

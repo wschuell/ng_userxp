@@ -64,32 +64,56 @@
 	{% if experiment %}
 	var url_continue = "{% url 'ng:continue' experiment.xp_uuid %}";
 	{% endif %}
-$(document).ready(function() {
 
-  	$('body').css('visibility', 'visible');
+  var sound_click = document.createElement('audio');
 
-	//Menu
+  $(document).ready(function(){
+    $('body').css('visibility', 'visible');
 
-	//Sound
-	$('#sound-off').click(function(){
-		$('#sound-off').css('display','none');
-		$('#sound-on').css('display','inline');
-	});
-	$('#sound-on').click(function(){
-		$('#sound-on').css('display','none');
-		$('#sound-off').css('display','inline');
-	})
+  if (typeof Cookies.get('NamingGameSound') === 'undefined'){
+    Cookies.set('NamingGameSound', true);
+    sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+    $('#sound-on').css('display','none');
+    $('#sound-off').css('display','inline');
+ } else if (Cookies.get('NamingGameSound')) {
+    sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+    $('#sound-on').css('display','none');
+    $('#sound-off').css('display','inline');
+} else {
+   sound_click.setAttribute('src', "");
+   $('#sound-off').css('display','none');
+   $('#sound-on').css('display','inline');
+}
+//Menu
+
+//Sound
+$('#sound-off').click(function(){
+  Cookies.set('NamingGameSound', false);
+  sound_click.setAttribute('src', "");
+ $('#sound-off').css('display','none');
+ $('#sound-on').css('display','inline');
+});
+$('#sound-on').click(function(){
+  Cookies.set('NamingGameSound', true);
+  sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+  sound_click.play();
+ $('#sound-on').css('display','none');
+ $('#sound-off').css('display','inline');
+});
 
 	//Home
 	$('#home').click(function(){
+    sound_click.play();
 	 window.location.href = "/";
 	});
 
 	$('#btn_home').click(function(){
+    sound_click.play();
 	 window.location.href = "/";
 	});
 
 	$('#btn_continue').click(function(){
+    sound_click.play();
 	 window.location.href = url_continue;
 	});
 

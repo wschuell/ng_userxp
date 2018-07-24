@@ -40,8 +40,8 @@
       <div class="col-lg-2"></div>
   	</div>
   	<div class="error_div row">
-  		<div class="col-md-3"></div>
-  		<div class="col-xs-10 col-md-6">
+  		<div class="col-md-2"></div>
+  		<div class="col-xs-10 col-md-8">
   			<div class = "row">
   				<div id="info_text" class="col-xs-12">
             A COMPLETER
@@ -55,31 +55,102 @@
         <form id="form" method="post">
         <div class="row form-group">
           {% csrf_token %}
-            {{form}}
+
+            {{form.non_field_errors}}
+
+            <div class="fieldWrapper" >
+              {{ form.q1.errors }}
+              <div class="row">
+              <label id="label_q1" class="label1" style="float:left; display:block"> Êtiez-vous déjà familier.ère avec le principe des Naming Games ? </label>
+              </div>
+              <div class="row">
+              <div style="font-size:16px; display:block; float:right;">{{ form.q1 }}</div>
+              </div>
+            </div>
+
+            <div class="fieldWrapper">
+              {{ form.q2.errors }}
+              <div class="row">
+              <label id="label_q2" class="label1" style="float:left; display:block"> Aviez-vous déjà joué à un jeu de ce type ou participé à une expérience similaire auparavant ? </label>
+            </div>
+            <div class="row">
+              <div style="font-size:16px; display:block; float:right;">{{ form.q2 }}</div>
+            </div>
+            </div>
+
+            <div class="fieldWrapper">
+              {{ form.q3.errors }}
+              <div class="row">
+              <label id="label_q3" class="label1" style="float:left; display:block"> Êtes-vous familier.ère avec les concepts évoqués plus haut ? </label>
+            </div>
+            <div class="row">
+              <div style="font-size:16px; display:block;float:right; ">{{ form.q3 }}</div>
+            </div>
+            </div>
+
+            <div class="fieldWrapper">
+              {{ form.q4.errors }}
+              <div class="row">
+              <label id="label_q4" class="label1" style="float:left; display:block"> Avez-vous eu l'impression d'utiliser une certaine stratégie (ou plusieurs) lors de vos parties ? </label>
+            </div>
+            <div class="row">
+              <div style="font-size:16px; display:block;float:right; ">{{ form.q4 }}</div>
+            </div>
+            </div>
+
+            <div class="fieldWrapper">
+              {{ form.q5.errors }}
+              <div class="row">
+              <label id="label_q5" class="label1" style="float:left; display:block"> Si oui, pourriez-vous la ou les décrire brièvement ? </label>
+            </div>
+            <div class="row">
+              {{ form.q5 }}
+            </div>
+            </div>
+
+
             <input type="submit" class="btn btn-default bt-lg" id="submit" value="Valider"/>
         </div>
       </form>
         {% endif %}
   		</div>
-  		<div class="col-md-3"></div>
+  		<div class="col-md-2"></div>
   	</div>
   	<div class="error_div row"></div>
 
 	<script text="text/javascript">
 
-$(document).ready(function() {
+  var sound_click = document.createElement('audio');
 
-  	$('body').css('visibility', 'visible');
+  $(document).ready(function(){
+    $('body').css('visibility', 'visible');
+
+  if (typeof Cookies.get('NamingGameSound') === 'undefined'){
+    Cookies.set('NamingGameSound', true);
+    sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+    $('#sound-on').css('display','none');
+    $('#sound-off').css('display','inline');
+ } else if (Cookies.get('NamingGameSound')) {
+    sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+    $('#sound-on').css('display','none');
+    $('#sound-off').css('display','inline');
+} else {
+   sound_click.setAttribute('src', "");
+   $('#sound-off').css('display','none');
+   $('#sound-on').css('display','inline');
+}
 
 	//Menu
 
 	//Home
 
 	$('#btn_home').click(function(){
+    sound_click.play();
 	 window.location.href = "/";
 	});
 
   $('#home').click(function(){
+    sound_click.play();
 	 window.location.href = "/";
 	});
 

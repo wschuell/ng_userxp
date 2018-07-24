@@ -50,14 +50,12 @@ body {
 #sound-off {
 	margin-top : 11px;
 	cursor : pointer;
-	display : none;
 	font-size: 37px;
 }
 
 #sound-on {
 	margin-top : 11px;
 	cursor : pointer;
-	display : inline;
 	font-size: 37px;
 }
 

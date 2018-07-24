@@ -132,6 +132,9 @@ $(document).ready(function(){
       //  $.each(lang,function(key,value){
 
     $('#lang').click(function(event){
+      //var sound_click = document.createElement('audio');
+      //sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+      sound_click.play();
         change_language(switch_language($('#lang').attr('value')));
     });
 //});

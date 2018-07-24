@@ -20,10 +20,6 @@ var lang = $('html').attr('lang');
 
 
 
-var src_logo_speaker = "../static/img/logo_speaker_temp.png" ;
-var src_logo_hearer = "../static/img/logo_hearer_temp.png";
-
-
 //Tooltips Game
 if (lang == "fr"){
 //Historique
