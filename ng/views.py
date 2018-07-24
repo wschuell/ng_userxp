@@ -59,7 +59,8 @@ def home(request):
         multi_unlocked = True
     return render(request, 'ng/home.html', {
     'game_unlocked' : game_unlocked,
-    'multi_unlocked' : multi_unlocked,
+    #####DEBUG 'multi_unlocked' : multi_unlocked,
+    'multi_unlocked' : True,
     'user' : user,
     'userNG': u,
     })
@@ -342,6 +343,9 @@ def result_hearer_continue(request, xp_uuid, meaning):
     ms = currentgame_json['ms']
     w = currentgame_json['w']
     experiment.save_currentgame_json(currentgame_json)
+    mh = str(currentgame_json['mh'])
+    if mh == "None":
+        mh='none'
     #experiment.add_word_to_user(w)
     experiment.continue_xp()
     bool_succ = experiment.get_last_bool_succ()
@@ -353,7 +357,7 @@ def result_hearer_continue(request, xp_uuid, meaning):
             'context':"result",
             'role': "hearer",
             'word':w,
-            'last_mh': str(currentgame_json['mh']),
+            'last_mh': mh,
             'last_ms': ms,
             'bool_succ': bool_succ,
             'learn': learn,

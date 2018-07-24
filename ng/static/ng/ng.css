@@ -769,3 +769,22 @@ tr{
 #error_span {
 	font-size : 45px;
 }
+
+/*Info Page*/
+
+.text_info{
+	font-size: 20px;
+	color : white;
+	font-family: serif;
+	margin-bottom: : 30px;
+}
+
+#question_title {
+	margin : 50px auto 30px;
+	font-size : 36px;
+	text-align: center;
+}
+
+#info_text {
+	background-color: background-color : rgba(0,0,0,0.6);
+}

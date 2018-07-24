@@ -36,7 +36,7 @@
   				<span class="glyphicon glyphicon-home icon" id="home"></span>
   			</div>
   		</div>
-  		<div class="col-lg-8"><h1 id="titre_info" class="pagetitle" style="margin: 10px auto 10px;"> TITRE </h1></div>
+  		<div class="col-lg-8"><h1 id="titre_info" class="pagetitle" style="margin: 10px auto 10px;"> Merci de votre participation ! </h1></div>
       <div class="col-lg-2"></div>
   	</div>
   	<div class="error_div row">
@@ -44,7 +44,22 @@
   		<div class="col-xs-10 col-md-8">
   			<div class = "row">
   				<div id="info_text" class="col-xs-12">
-            A COMPLETER
+            <p class="text_info">Ce jeu auquel vous venez de jouer est bien plus qu'un jeu. C'est une simulation informatique qui modélise l'apparition et l'évolution du vocabulaire d'une population. On parle aussi de modèle computationnel multi-agent de l'émergence et de l'évolution des conventions lexicales, autrement dit un Naming Game.</p>
+
+<p class="text_info">Celui-ci est un peu particulier puisqu'il vous permet de prendre la place d'un de ses agents virtuels et de participer vous aussi à la création de ces conventions lexicales. </p>
+
+<p class="text_info">Vous avez pu remarquer que vos choix ont eu une influence, ou pas, sur ceux des autres agents. Car dans ce jeu tout le mode est à égalité et vous n'êtes pas seul.e à pouvoir influer sur le jeu.</p>
+
+<p class="text_info">Le score et le tableau à la fin de chaque partie vous indiquent à quel point vous avez tous réussi à vous mettre d'accord. En 50 interactions seulement, c'est un exercice difficile qui comporte une certaine part de hasard. Mais le succès de chaque partie est loin d'être aléatoire. De très nombreuses stratégies sont possibles et permettent, à votre échelle, d'influencer significativement le résultat.
+Nous nous penchons ici plus précisément sur la manière dont vous choisissez les objets lorsque c'est à votre tour de parler (on dit aussi que vous êtes le speaker).</p>
+
+<p class="text_info">Vous pouvez par exemple choisir complètement au hasard. On appelle cette stratégie une stratégie naïve. Vous pouvez aussi choisir ces objets en fonction de certains critères.
+Une possibilité serait de parler toujours du même objet. Vous aurez ainsi de grandes chances pour que tout le monde partage le même mot pour cette objet, mais il y a également beaucoup de risques pour que les autres objets se retrouvent sans nom partagé par tous à la fin de la partie.</p>
+
+<p  class="text_info">Une autre stratégie consiste à parler uniquement ou presque des objets dont vous connaissez le nom pour augmenter vos chances que ce nom soit utilisé par le plus grand nombre de vos partenaires.</p>
+
+<p class="text_info">Bref, il y a énormément de stratégies et c'est justement ce qui nous intéresse dans le cadre de notre recherche. Afin de nous aidez, pourriez-vous remplir ce bref questionnaire ?</p>
+
   				</div>
   			</div>
         {% if q_filled %}
@@ -52,6 +67,9 @@
             <button class="btn" id="btn_home">Revenir à l'Accueil</button>
         </div>
         {% else %}
+        <div class="row">
+          <h3 id="question_title">Questionnaire :</h3>
+        </div>
         <form id="form" method="post">
         <div class="row form-group">
           {% csrf_token %}

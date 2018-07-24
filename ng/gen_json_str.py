@@ -69,11 +69,11 @@ dict_obj = {
     #Info page
     'titre_info' : "",
     'info_text': "",
-    'q1':"Êtiez-vous déjà familier.ère avec le principe des Naming Games ? ",
-    'q2':"Aviez-vous déjà joué à un jeu de ce type ou participé à une expérience similaire auparavant ?",
-    'q3':"Êtes-vous familier.ère avec les concepts évoqués plus haut ? ",
-    'q4':"Avez-vous eu l'impression d'utiliser une certaine stratégie (ou plusieurs) lors de vos parties ?",
-    'q5':"Si oui, pourriez-vous la ou les décrire brièvement ?",
+    'label_q1':"Êtiez-vous déjà familier.ère avec le principe des Naming Games ? ",
+    'label_q2':"Aviez-vous déjà joué à un jeu de ce type ou participé à une expérience similaire auparavant ?",
+    'label_q3':"Êtes-vous familier.ère avec les concepts évoqués plus haut ? ",
+    'label_q4':"Avez-vous eu l'impression d'utiliser une certaine stratégie (ou plusieurs) lors de vos parties ?",
+    'label_q5':"Si oui, pourriez-vous la ou les décrire brièvement ?",
   },
 
   'en': {
@@ -141,11 +141,11 @@ dict_obj = {
     #Info page
     'titre_info' : "",
     'info_text': "",
-    'q1':"Were you already familiar with the Naming Games principle ? ",
-    'q2':"Have you already played such a game or been taking part into a similar experiment ?",
-    'q3':"Were you already familiar with the concepts evoked above ?",
-    'q4':"Did you felt like you used a certain strategy (or several) during your games ?",
-    'q5':"If it is a 'Yes', could you describe it briefly ?",
+    'label_q1':"Were you already familiar with the Naming Games principle ? ",
+    'label_q2':"Have you already played such a game or been taking part into a similar experiment ?",
+    'label_q3':"Were you already familiar with the concepts evoked above ?",
+    'label_q4':"Did you felt like you used a certain strategy (or several) during your games ?",
+    'label_q5':"If it is a 'Yes', could you describe it briefly ?",
 
   },
   'it': {
@@ -213,11 +213,11 @@ dict_obj = {
     #Info page
     'titre_info' : "",
     'info_text': "",
-    'q1':"",
-    'q2':"",
-    'q3':"",
-    'q4':"",
-    'q5':"",
+    'label_q1':"",
+    'label_q2':"",
+    'label_q3':"",
+    'label_q4':"",
+    'label_q5':"",
   }
 };
 
