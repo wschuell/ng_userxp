@@ -59,8 +59,7 @@ def home(request):
         multi_unlocked = True
     return render(request, 'ng/index.html', {
     'game_unlocked' : game_unlocked,
-    #####DEBUG 'multi_unlocked' : multi_unlocked,
-    'multi_unlocked' : True,
+    'multi_unlocked' : multi_unlocked,
     'user' : user,
     'userNG': u,
     })
@@ -688,7 +687,7 @@ def info(request):
         else:
             form = QuestionForm()
 
-        return render(request, 'ng/infos.html', {
+        return render(request, 'ng/infosv2.html', {
             'user':request.user,
             'userNG': u,
             'form' : form,

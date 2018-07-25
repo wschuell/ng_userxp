@@ -435,6 +435,12 @@ html{
 	border-top: 18px solid white !important;
 }
 
+/*Info Page*/
+
+.fieldWrapper {
+	display: block;
+}
+
 @font-face {
   font-family: 'AvenirNext-Bold';
   src: url('fonts/AvenirNext-Bold.eot') format('embedded-opentype');
