@@ -5,7 +5,6 @@ import json
 dict_obj = {
   'fr':{
     #Global
-    'window_title' : 'Le Naming Game',
 
     #Login
     'welcome': 'Le Naming Game !',
@@ -15,14 +14,14 @@ dict_obj = {
     'submit':'Valider',
 
     #Home
-    'scores_title': 'Meilleurs Scores',
-    'button_basic': 'Tutoriel',
-    'button_multi': 'Crédits',
-    'button_normal': 'Jeu',
+    'subtitle': 'Explorer le language.',
+    'button_basic': 'TUTORIEL',
+    'button_multi': 'INFORMATIONS',
+    'button_normal': 'JEU',
     'comment_avatar': "<p>C'est vous !</p>",
     'home_pagetitle': 'Accueil',
-    'game_locked' : '<span class="glyphicon glyphicon-lock"></span> Terminer le Tutoriel pour débloquer <span class="glyphicon glyphicon-lock"></span>',
-    'multi_locked' : '<span class="glyphicon glyphicon-lock"></span> Terminer le Jeu 3 fois pour débloquer <span class="glyphicon glyphicon-lock"></span>',
+    'game_locked' : 'Terminer le Tutoriel pour débloquer',
+    'multi_locked' : 'Terminer le Jeu 3 fois pour débloquer',
 
     #Story End
     'story_pagetitle': 'Histoire',
@@ -78,7 +77,6 @@ dict_obj = {
 
   'en': {
     #Global
-    'window_title': 'The Naming Game',
 
     #Login
     'welcome': 'The Naming Game!',
@@ -88,14 +86,14 @@ dict_obj = {
     'submit' : "Submit",
 
     #Home
-    'scores_title': 'Best Scores',
-    'button_basic': 'Tutorial',
-    'button_multi': 'Credits',
-    'button_normal': 'Game',
+    'subtitle': 'Explorer le language.',
+    'button_basic': 'TUTORIAL',
+    'button_multi': 'INFORMATIONS',
+    'button_normal': 'GAME',
     'comment_avatar': "<p>That's you !</p>",
     'home_pagetitle': 'Home',
-    'game_locked' : '<span class="glyphicon glyphicon-lock"></span> Complete the Tutorial to unlock <span class="glyphicon glyphicon-lock"></span>',
-    'multi_locked' : '<span class="glyphicon glyphicon-lock"></span> Complete the Game 3 times to unlock <span class="glyphicon glyphicon-lock"></span>',
+    'game_locked' : 'COMPLETE THE TUTORIAL TO UNLOCK',
+    'multi_locked' : 'COMPLETE THE GAME 3 TIMES TO UNLOCK ',
 
     #Story End
     'story_pagetitle': 'Story',
@@ -149,8 +147,6 @@ dict_obj = {
 
   },
   'it': {
-    #Global
-    'window_title': 'Il Naming Game',
 
     #Login
     'welcome': 'Il Naming Game !',
@@ -160,14 +156,14 @@ dict_obj = {
     'submit' : '',
 
     #Home
-    'scores_title': 'Wall of Fame',
+    'subtitle': 'Explorer le language.',
     'button_basic': '',
     'button_multi': '',
     'button_normal': '',
     'comment_avatar': '<p></p>',
     'home_pagetitle': '',
-    'game_locked' : '<span class="glyphicon glyphicon-lock"></span> TEXTE <span class="glyphicon glyphicon-lock"></span>',
-    'multi_locked' : '<span class="glyphicon glyphicon-lock"></span> TEXTE <span class="glyphicon glyphicon-lock"></span>',
+    'game_locked' : '  TEXTE  ',
+    'multi_locked' : '  TEXTE  ',
 
     #Story End
     'story_pagetitle': '',

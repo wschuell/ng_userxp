@@ -57,7 +57,7 @@ def home(request):
         multi_unlocked = False
     else :
         multi_unlocked = True
-    return render(request, 'ng/home.html', {
+    return render(request, 'ng/index.html', {
     'game_unlocked' : game_unlocked,
     #####DEBUG 'multi_unlocked' : multi_unlocked,
     'multi_unlocked' : True,
