@@ -1,1 +1,0 @@
-{"speaker_id": "c76a6fbc-8e88-11e8-ba36-0242ac120002", "hearer_id": "c76a5072-8e88-11e8-ba36-0242ac120002", "ms": 0, "w": "nereqo"}
