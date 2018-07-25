@@ -1,0 +1,135 @@
+<!doctype html>
+{% load static %}
+{% csrf_token %}
+<html lang={{userNG.lang}}>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link href="{% static 'ng/stylev2.css' %}" rel="stylesheet" type="text/css">
+    <script src="{% static 'ng/jquery-3.3.1.min.js' %}"></script>
+  	<script src="{% static 'ng/bootstrap.min.js' %}"></script>
+    <script src="{% static 'ng/popper.min.js' %}"></script>
+
+    <title>NamingGame</title>
+
+    <script type="text/javascript">
+           var url_logout = "{% url 'ng:logout' %}";
+   </script>
+       <script src="{% static 'ng/js.cookie.js' %}"></script>
+
+       <!--<script src="{% static 'ng/script.js' %}"></script>-->
+
+       	<script type="text/javascript">
+                var sound_click = document.createElement('audio');
+
+                $(document).ready(function(){
+                  $('body').css('visibility', 'visible');
+
+                if (typeof Cookies.get('NamingGameSound') === 'undefined'){
+                  Cookies.set('NamingGameSound', true);
+                  sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+                  $('#sound-on').css('display','none');
+                  $('#sound-off').css('display','inline');
+               } else if (Cookies.get('NamingGameSound')) {
+                  sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+                  $('#sound-on').css('display','none');
+                  $('#sound-off').css('display','inline');
+              } else {
+                 sound_click.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
+                 $('#sound-off').css('display','none');
+                 $('#sound-on').css('display','inline');
+              }
+  });
+            </script>
+             <script src="{% static 'ng/change_lang.js' %}"></script>
+
+  </head>
+  <body class="five">
+    <div class="container">
+        <div class="col_1 col">
+
+        </div>
+        <div class="col_2 col">
+          <div>
+            <h1 class="naiming">NAMING<i class="game">GAME</i></h1>
+            <h2 class="droop_five" id="subtitle" >Explorer le langage.</h2>
+            <div>
+              <img class="mic" src="{% static 'ng/img/chat.png' %}" >
+            </div>
+            <a href="#" class="btn five_btm" id="button_basic" style="margin-bottom:42px;">TUTORIEL</a>
+            <br>
+            {% if game_unlocked %}
+            <a href="#" class="btn" id="button_normal" style="margin-top: 0px;margin-bottom:42px;" ></a>
+            {% else %}
+            <a href="#" class="btn second-btn disabled" id="game_locked">TERMINEZ LE TUTORIEL POUR DEBLOQUER</a>
+            {% endif %}
+            <br>
+            {% if multi_unlocked %}
+            <a  href="#" class="btn" id="button_multi" style="margin-top: 0px;margin-bottom:42px;"></a>
+            {% else %}
+            <a  href="#" class="btn second-btn disabled" id="multi_locked">TERMINEZ LE JEU 3 FOIS POUR DEBLOQUER</a>
+            {% endif %}
+          </div>
+
+        </div>
+        <div class="col_3 col col_4">
+          <div class="control_ico">
+            <img src="{% static 'ng/img/bitmap-2.png' %}" style="margin:auto;">
+          </div>
+          {% for score in user.score_set.all|slice:":10"|dictsortreversed:"score" %}
+           <p class="col_3_p">{{ forloop.counter }} .{{ score.score }}</p>
+           {% endfor %}
+
+        </div>
+    </div>
+
+    <script>
+
+
+    //Menu
+
+    //Sound
+    $('#sound-off').click(function(){
+      Cookies.set('NamingGameSound', false);
+      sound_click.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
+    	$('#sound-off').css('display','none');
+    	$('#sound-on').css('display','inline');
+    });
+    $('#sound-on').click(function(){
+      Cookies.set('NamingGameSound', true);
+      sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+      sound_click.play();
+    	$('#sound-on').css('display','none');
+    	$('#sound-off').css('display','inline');
+    });
+
+    $("#logoutbutton").click(function(){
+      sound_click.play();
+      $("html").addClass("wait");
+      window.location.href=url_logout;
+    });
+    //Choix du type de jeu
+ 		$('#button_basic').click(function(){sound_click.play();window.location.href = "story";});
+
+ 		$('#button_normal').click(function(){
+           sound_click.play();
+           $(this).prop('disabled', true);
+     			$("html").addClass("wait");
+     			window.location.href='/new_experiment/normal';
+ 		});
+
+ 		$('#button_multi').click(function(){
+         sound_click.play();
+           $(this).prop('disabled', true);
+     			$("html").addClass("wait");
+     			window.location.href='/infos';
+ 		});
+
+
+
+ 	</script>
+
+  
+  </body>
+</html>
