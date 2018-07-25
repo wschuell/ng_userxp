@@ -32,7 +32,7 @@
          var sound_click = document.createElement('audio');
          sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
          Cookies.set('NamingGameSound', true);
-         
+
          //uuid
          function uuid()
          {
@@ -63,42 +63,34 @@
             sound_click.play();
           });
 
+
           $(document).ready(function(){
 
             $('body').css('visibility', 'visible');
 
             $("#id_name_cookie_id").val($("#username").html());
 
+            $('#id_code').tooltip({
+              title : "",
+              placement : "left",
+              trigger : "hover focus",
+            });
+
+
             $('#it').click(function(event){
                 change_language(($('#it').attr('value')));
+                $('#id_code').attr('data-original-title', "ITALIAN");
             });
             $('#en').click(function(event){
                 change_language(($('#en').attr('value')));
+                $('#id_code').attr('data-original-title', "If you don't have any code, leave this field empty.");
             });
             $('#fr').click(function(event){
                 change_language(($('#fr').attr('value')));
+                $('#id_code').attr('data-original-title', "Si vous n'avez pas de code, laissez ce champ vide.");
+
             });
             set_language();
-
-            if ($('html').attr('lang') == 'fr') {
-              $('#id_code').tooltip({
-                title : "Si vous n'avez pas de code, laissez ce champ vide.",
-                placement : "left",
-                trigger : "hover focus",
-              });
-            } else if ($('html').attr('lang') == "en"){
-                $('#id_code').tooltip({
-                  title : "If you don't have any code, leave this field empty.",
-                  placement : "left",
-                  trigger : "hover focus",
-                });
-            } else {
-              $('#id_code').tooltip({
-                title : "ITALIAN",
-                placement : "left",
-                trigger : "hover focus",
-              });
-            }
 
             });
 
