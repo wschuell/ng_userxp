@@ -10,7 +10,7 @@ dict_obj = {
     #Login
     'welcome': 'Le Naming Game !',
     'enter_player_name': 'Entrez votre nom ici :',
-    'label_lang': 'Choisissez le langue du jeu :',
+    'label_lang': 'Choisissez la langue du jeu :',
     'label_code': 'Si vous avez un code spécial, entrez le ici :',
     'submit':'Valider',
 

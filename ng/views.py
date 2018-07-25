@@ -103,7 +103,7 @@ def get_name(request):
     else:
         form = NameForm()
 
-    return render(request, 'ng/login_name.html', {'form': form})
+    return render(request, 'ng/loginv2.html', {'form': form})
 
 #@login_required#(login_url='/accounts/login/')
 class IndexView(LoginRequiredMixin, generic.ListView):
