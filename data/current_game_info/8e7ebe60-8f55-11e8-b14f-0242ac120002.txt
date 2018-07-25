@@ -1,0 +1,1 @@
+{"speaker_id": "8e80f324-8f55-11e8-b14f-0242ac120002", "hearer_id": "8e80d89e-8f55-11e8-b14f-0242ac120002", "ms": 1, "w": "keyifa"}

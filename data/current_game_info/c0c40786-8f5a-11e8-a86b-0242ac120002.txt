@@ -1,0 +1,1 @@
+{"speaker_id": "c0c4e0e8-8f5a-11e8-a86b-0242ac120002", "hearer_id": "c0c4ce5a-8f5a-11e8-a86b-0242ac120002", "ms": 1, "w": "lalofo"}

@@ -1,0 +1,1 @@
+{"speaker_id": "cf80ba76-8e8d-11e8-94aa-0242ac120002", "hearer_id": "cf804082-8e8d-11e8-94aa-0242ac120002", "ms": 1, "w": "nilomu"}

@@ -1,0 +1,1 @@
+{"speaker_id": "7d084f48-8f55-11e8-b27d-0242ac120002", "hearer_id": "7d0830f8-8f55-11e8-b27d-0242ac120002", "ms": 1, "w": "peviga"}

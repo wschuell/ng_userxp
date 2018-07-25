@@ -1,0 +1,1 @@
+{"speaker_id": "3a938faa-8c27-11e8-ac15-0242ac120002", "hearer_id": "3a936f66-8c27-11e8-ac15-0242ac120002", "ms": 0, "w": "buxige"}

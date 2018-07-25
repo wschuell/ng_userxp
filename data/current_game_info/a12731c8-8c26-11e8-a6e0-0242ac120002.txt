@@ -1,0 +1,1 @@
+{"speaker_id": "a12bdbc4-8c26-11e8-a6e0-0242ac120002", "hearer_id": "a12b7d50-8c26-11e8-a6e0-0242ac120002", "ms": 0, "w": "zujaqo"}
