@@ -1,64 +1,142 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="fr">
+<html lang={{userNG.lang}}>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <link href="css/style.css" rel="stylesheet" type="text/css">
+
+    <link type="text/css" rel="stylesheet" href="{% static 'ng/bootstrap-4.0.0-dist/css/bootstrap.min.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'ng/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}"/>
+
+    <link href="{% static 'ng/stylev2.css' %}" rel="stylesheet" type="text/css">
+
+    <script src="{% static 'ng/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'ng/bootstrap.min.js' %}"></script>
+    <script src="{% static 'ng/popper.min.js' %}"></script>
+    <script src="{% static 'ng/change_lang.js' %}"></script>
+    <script src="{% static 'ng/js.cookie.js' %}"></script>
+
+    <title>NamingGame</title>
   </head>
   <body class="resultats_page">
     <div class="container">
         <div class="col_1 col">
           <div class="imag_center">
-          <img src="images/logo.png">
+          <img src="{% static 'ng/img/logo.png' %}">
         </div>
         <div class="imag_center_two">
-          <img src="images/chat-min.png">
+          <img src="{% static 'ng/img/chat-min.png' %}">
         </div>
         <div class="imag_center_twot_tru">
-          <img src="images/user_groop.png">
+          <img src="{% static 'ng/img/user_groop.png' %}">
         </div>
         </div>
         <div class="col_2 col">
-          <h1 class="convers_font">RESULTATS</h1>
-          <h2 class="droop">Score : 196</h2>
-
+          <h1 class="convers_font" id="results">RESULTATS</h1>
+          <h2 class="droop"><span id="texte_score">Score :</span> {{score}}</h2>
+          <div class="text_content_div" >
+            <p class="text_content_four" id="text_end" style="max-width:1000px;"></p>
+          </div>
           <form>
             <div class="row_inputs_file row_inputs_top">
+              {% for m in m_list %}
               <label class="label_input_file">
                 <input name="result_checkbox" type="radio" hidden>
-                <span class="castom_input_file"></span>
+                <span class="castom_input_file"><img src="{% static 'ng/img/' %}kreyon_meaning{{m}}.png" style="width:80px; height:80px"></span>
               </label>
-              <label class="label_input_file">
-                <input name="result_checkbox" type="radio" hidden>
-                <span class="castom_input_file"></span>
-              </label>
+              {% endfor %}
             </div>
             <div class="row_inputs_file row_inputs_file_three">
+              {% for w in w_list1 %}
               <label class="label_input_file_two label_input_right">
-                <input type="text" class="castom_input" value="koala">
+                <input type="text" class="castom_input" value="{{w}}" readonly>
               </label>
-              <label class="label_input_file_two">
-                <input type="text" class="castom_input">
-              </label> 
+              {% endfor %}
             </div>
             <div class="row_inputs_file_two">
+              {% for w in w_list2 %}
               <label class="label_input_file_two label_input_right">
-                <input type="text" class="castom_input" value="-">
+                <input type="text" class="castom_input" value="{{w}}">
               </label>
-              <label class="label_input_file_two">
-                <input type="text" class="castom_input">
-              </label> 
+              {% endfor %}
             </div>
-            <a href="#" class="btn trangle">CONTINUER <span class="block"></span></a>
-          </form>     
+            <a href="#" class="btn trangle" id="continue">CONTINUER <span class="block"></span></a>
+          </form>
         </div>
         <div class="col_3 col">
-          <div class="control_ico">
-            <img src="images/clock.png">
-            <img src="images/bitmap.png">
+          <div class="control_ico" style="display:block;">
+            <img src="{% static 'ng/img/clock.png' %}">
+            <img src="{% static 'ng/img/bitmap.png' %}" id="sound-on">
+            <span class="glyphicon glyphicon-volume-off icon" id="sound-off" style="font-size:30px"></span>
           </div>
         </div>
     </div>
+
+    <!-- Optional JavaScript -->
+    <script text="text/javascript">
+
+    $(document).ready(function(){
+
+    $('body').css('visibility', 'visible');
+
+    var sound_click = document.createElement('audio');
+    var music = document.createElement('audio');
+
+    if (typeof Cookies.get('NamingGameSound') === 'undefined'){
+        Cookies.set('NamingGameSound', true);
+        sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+        music.setAttribute('src', "{% static 'ng/sounds/263479__orangefreesounds__dreamy-melodic-synth-loop.wav' %}");
+
+     $('#sound-on').css('display','none');
+     $('#sound-off').css('display','inline');
+    } else if (Cookies.get('NamingGameSound')) {
+       sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+       music.setAttribute('src', "{% static 'ng/sounds/263479__orangefreesounds__dreamy-melodic-synth-loop.wav' %}");
+
+     $('#sound-on').css('display','none');
+     $('#sound-off').css('display','inline');
+    } else {
+      sound_click.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
+      music.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
+
+      $('#sound-off').css('display','none');
+      $('#sound-on').css('display','inline');
+    }
+
+    //Sound
+    $('#sound-off').click(function(){
+      Cookies.set('NamingGameSound', false);
+      sound_click.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
+      music.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
+     $('#sound-off').css('display','none');
+     $('#sound-on').css('display','inline');
+    });
+    $('#sound-on').click(function(){
+      Cookies.set('NamingGameSound', true);
+      sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+      music.setAttribute('src', "{% static 'ng/sounds/263479__orangefreesounds__dreamy-melodic-synth-loop.wav' %}");
+      sound_click.play();
+     $('#sound-on').css('display','none');
+     $('#sound-off').css('display','inline');
+    });
+    //Home
+    $('#home').click(function(){
+      sound_click.play();
+      $(this).prop('disable',true);
+      $("html").addClass("wait");
+      window.location.href='/';
+    });
+
+    $('.continue').click(function(){
+      sound_click.play();
+      $(this).prop('disable',true);
+      $("html").addClass("wait");
+      window.location.href='/';
+    });
+
+    });
+    </script>
+
   </body>
 </html>

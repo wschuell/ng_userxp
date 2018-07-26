@@ -119,7 +119,7 @@ class IndexView(LoginRequiredMixin, generic.ListView):
 #Story view if user chooses tutorial
 @login_required(login_url='/ng/login/')
 def story(request) :
-	return render(request, 'ng/story.html', {'context':'story', 'userNG': UserNG.get(user=request.user)})
+	return render(request, 'ng/histoire.html', {'context':'story', 'userNG': UserNG.get(user=request.user)})
 
 
 class DetailView(LoginRequiredMixin, generic.DetailView):
@@ -526,7 +526,7 @@ def continue_userxp(request, xp_uuid):
                 experiment.save()
                 #
                 bar_width = ((experiment.interaction_counter) / experiment.max_interaction )*100
-                return render(request, 'ng/game.html', {
+                return render(request, 'ng/conversation1.html', {
                     'experiment': experiment,
                     'textid': "not_involved",
                     'nb_skipped': nb_steps,
@@ -644,7 +644,7 @@ def score(request, xp_uuid):
     #Test if score exists
     #if not, compute and store object
     #get value
-    return render(request, 'ng/story.html', {
+    return render(request, 'ng/resultats.html', {
             'experiment': experiment,
             'score':str(score_val),
             'context':"end",

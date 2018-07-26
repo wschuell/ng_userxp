@@ -14,25 +14,25 @@ dict_obj = {
     'submit':'Valider',
 
     #Home
-    'subtitle': 'Explorer le language.',
+    'subtitle': 'Explorer le langage.',
     'button_basic': 'TUTORIEL',
     'button_multi': 'INFORMATIONS',
     'button_normal': 'JEU',
     'comment_avatar': "<p>C'est vous !</p>",
-    'home_pagetitle': 'Accueil',
     'game_locked' : 'Terminer le Tutoriel pour débloquer',
     'multi_locked' : 'Terminer le Jeu 3 fois pour débloquer',
 
     #Story End
-    'story_pagetitle': 'Histoire',
+    'story_pagetitle': 'HISTOIRE',
     'end_pagetitle': 'Félicitations',
+    'results': "RESULTATS",
     'c1_1': ' Vous avez été enlevé par des Extraterrestres !',
     'c1_2': "Vous voilà enfermé seul dans une pièce de leur vaisseau. Dans les pièces d'à côté se trouvent <span class='important'>4 autres individus</span> que vos ravisseurs ont également enlevés aux quatre coins de la galaxie.",
     'c2_1':"Pour ce faire, vous ne pourrez parler que <span class='important'>deux par deux</span> grâce à une <span class='important'>radio</span>, <span class='important'>sans savoir lequel de vos camarades d'infortune est à l'autre bout</span>.",
     'c2_2':"L'un de vous proposera un mot et l'autre devra deviner l'objet auquel il fait référence.",
     'c2_3':"Parfois vous proposerez un mot, parfois vous devinerez l'objet et parfois encore vous ne ferez pas partie de la conversation et ne saurez pas ce qui s'y est dit.",
     'text_end':"Après avoir réussi à vous comprendre, vous mettez au point un plan d'évasion spectaculaire. Vos ravisseurs ne voient rien venir avant qu'il ne soit trop tard. Vous leur volez un vaisseau qu'un de vos camarades pilote pour vous ramener tous paisiblement chez vous.",
-    'text_score':'Votre score est de',
+    'text_score':'Score :',
     'c1_3':'<span class="important">Aucun de vous ne parle la même langue</span> mais vous voulez tous vous échapper pour pouvoir rentrer chez vous.',
     'c2_4':"Mais attention, vous n'avez à vous tous qu'un <span class='important'>nombre limité de conversations</span> pour réussir !",
 
@@ -41,9 +41,8 @@ dict_obj = {
     'col_3':'Seconds mots préférés',
 
     #Game
-    'button_next': 'Continuer','titre_info' : "",
-
-    'continue': 'Continuer',
+    'button_next': 'CONTINUER',
+    'continue': 'CONTINUER',
     'history_name': 'Historique',
     'conversations': 'Conversation',
     'anhearer_text':"On vous parle ! ",
@@ -86,25 +85,24 @@ dict_obj = {
     'submit' : "Submit",
 
     #Home
-    'subtitle': 'Explorer le language.',
+    'subtitle': 'Explore the language.',
     'button_basic': 'TUTORIAL',
     'button_multi': 'INFORMATIONS',
     'button_normal': 'GAME',
     'comment_avatar': "<p>That's you !</p>",
-    'home_pagetitle': 'Home',
     'game_locked' : 'COMPLETE THE TUTORIAL TO UNLOCK',
     'multi_locked' : 'COMPLETE THE GAME 3 TIMES TO UNLOCK ',
 
     #Story End
     'story_pagetitle': 'Story',
-    'end_pagetitle': 'Congratulations',
+    'end_pagetitle': 'RESULTS',
     'c1_1': ' You have been kidnapped by Aliens !',
     'c1_2': 'Now, you are locked alone in a room of their huge spaceship. In the rooms next to yours, there are <span class="important">3 other individuals</span> also kidnapped by your abductors at the four corners of the galaxy.',
     'c2_1':'To do so, you may only talk <span class="important">by pairs</span> thanks to a <span class="important">radio</span>, <span class="important">without knowing wich one of your companions in misery is on the other side</span>.',
     'c2_2':'One of you will say a word and the other will have to guess which object he is referring to.',
     'c2_3':'Sometimes you will talk, sometimes you will guess and sometimes you won’t be in the conversation and you won’t know what was said.',
     'text_end':'Once you managed to understand each other, you develop a spectacular escape plan. Your abductors don’t even see it coming until it’s too late. You steal a ship from them and one of your companions drive you back home with it.',
-    'text_score':'Your score is ',
+    'text_score':'Score :',
     'c1_3':'<span class="important">None of you is from the same planet or speak the same language</span> but you all want the same thing : escape and go back home.',
     'c2_4':'But careful, you only have a <span class="important">limited number of conversations</span> to succed !',
 
@@ -113,8 +111,8 @@ dict_obj = {
     'col_3':'Second Favorite Words',
 
     #Game
-    'button_next': 'Continue',
-    'continue': 'Continue',
+    'button_next': 'CONTINUE',
+    'continue': 'CONTINUE',
     'history_name': 'Past Interactions',
     'conversations': 'Interaction',
     'anhearer_text':'Someone is talking to you !',
@@ -156,14 +154,13 @@ dict_obj = {
     'submit' : '',
 
     #Home
-    'subtitle': 'Explorer le language.',
+    'subtitle': '',
     'button_basic': '',
     'button_multi': '',
     'button_normal': '',
     'comment_avatar': '<p></p>',
-    'home_pagetitle': '',
-    'game_locked' : '  TEXTE  ',
-    'multi_locked' : '  TEXTE  ',
+    'game_locked' : 'TEXTE',
+    'multi_locked' : 'TEXTE',
 
     #Story End
     'story_pagetitle': '',

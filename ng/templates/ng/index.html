@@ -54,7 +54,7 @@
     <div class="container">
         <div class="col_1 col">
           <div>
-            <img src="{% static 'ng/img/logo.png' %}"  class= "icon" style="margin-top: 215px; margin-bottom: 60px">
+            <img src="{% static 'ng/img/logo.png' %}" id="btn_home" class= "icon" style="margin-top: 215px; margin-bottom: 60px">
             <br>
             <img src="{% static 'ng/img/bitmap.png' %}" class="icon" id="sound-on" style="margin-left: 8px;">
             <span class="glyphicon glyphicon-volume-off icon" id="sound-off" style="margin-left: 8px;font-size:30px"></span>
@@ -102,6 +102,11 @@
 
 
     //Menu
+
+    $('#btn_home').click(function(){
+      sound_click.play();
+     window.location.href = "/";
+    });
 
     //Sound
     $('#sound-off').click(function(){
