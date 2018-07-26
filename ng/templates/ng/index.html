@@ -6,7 +6,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <link type="text/css" rel="stylesheet" href="{% static 'ng/bootstrap-4.0.0-dist/css/bootstrap.min.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'ng/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}"/>
+
     <link href="{% static 'ng/stylev2.css' %}" rel="stylesheet" type="text/css">
+
     <script src="{% static 'ng/jquery-3.3.1.min.js' %}"></script>
   	<script src="{% static 'ng/bootstrap.min.js' %}"></script>
     <script src="{% static 'ng/popper.min.js' %}"></script>
@@ -48,7 +53,16 @@
   <body class="five">
     <div class="container">
         <div class="col_1 col">
-
+          <div>
+            <img src="{% static 'ng/img/logo.png' %}"  class= "icon" style="margin-top: 215px; margin-bottom: 60px">
+            <br>
+            <img src="{% static 'ng/img/bitmap.png' %}" class="icon" id="sound-on" style="margin-left: 8px;">
+            <span class="glyphicon glyphicon-volume-off icon" id="sound-off" style="margin-left: 8px;font-size:30px"></span>
+            <br>
+            <span class="icon"><img src="{% static 'ng/img/french-flag.png' %}" id="lang" value="fr" class="icon"></span>
+            <br>
+            <span class="glyphicon glyphicon-off icon" id= "logoutbutton" style="margin-left: 8px;"></span>
+          </div>
         </div>
         <div class="col_2 col">
           <div>
@@ -130,6 +144,6 @@
 
  	</script>
 
-  
+
   </body>
 </html>

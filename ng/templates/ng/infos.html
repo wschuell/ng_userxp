@@ -57,9 +57,11 @@ Nous nous penchons ici plus précisément sur la manière dont vous choisissez l
 Une possibilité serait de parler toujours du même objet. Vous aurez ainsi de grandes chances pour que tout le monde partage le même mot pour cette objet, mais il y a également beaucoup de risques pour que les autres objets se retrouvent sans nom partagé par tous à la fin de la partie.</p>
 
 <p  class="text_info">Une autre stratégie consiste à parler uniquement ou presque des objets dont vous connaissez le nom pour augmenter vos chances que ce nom soit utilisé par le plus grand nombre de vos partenaires.</p>
-
-<p class="text_info">Bref, il y a énormément de stratégies et c'est justement ce qui nous intéresse dans le cadre de notre recherche. Afin de nous aidez, pourriez-vous remplir ce bref questionnaire ?</p>
-
+{% if q_filled %}
+<p class="text_info">Bref, il y a énormément de stratégies et c'est justement ce qui nous intéresse dans le cadre de notre recherche. Amusez-vous à en tester de nouvelles ! </p>
+{% else %}
+<p class="text_info">Bref, il y a énormément de stratégies et c'est justement ce qui nous intéresse dans le cadre de notre recherche. Afin de nous aider, pourriez-vous remplir ce bref questionnaire ?</p>
+{% endif %}
   				</div>
   			</div>
         {% if q_filled %}

@@ -17,7 +17,7 @@ var lang = {"fr": {"btn_continue": "Continuer", "subtitle": "Explorer le languag
         $('#button_multi').html(current_lang.button_multi);
         $('#button_normal').html(current_lang.button_normal);
         $('#comment_avatar').html(current_lang.comment_avatar);
-        $('#home_pagetitle').html(current_lang.home_pagetitle);
+        $('#subtitle').html(current_lang.subtitle);
         $('#game_locked' ).html(current_lang.game_locked);
         $('#multi_locked').html(current_lang.multi_locked);
 
