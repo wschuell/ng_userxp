@@ -44,7 +44,7 @@ dict_obj = {
     'conversations': 'CONVERSATION',
     'anhearer_text':"on essaye de communiquer avec vous.<br>de quoi vous parle-t-on ?",
     'anspeaker_text':"c’est à vous de prendre la parole.<br> choissisez l’objet dont vous allez parler.",
-    'anabs_text':'conversation a eu lieu en votre absence',
+    'anabs_text':'conversations ont eu lieu en votre absence',
     'choice_words': 'c’est à vous de prendre la parole.<br> choissisez le mot que vous allez utiliser pour parler de cet objet.',
     'history_objects':'Objets',
     'history_words':'Mots',
