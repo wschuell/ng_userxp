@@ -45,7 +45,10 @@
     <div class="container">
         <div class="col_1 col">
           <div class="imag_center">
-          <img src="{% static  'ng/img/logo.png' %}">
+          <img src="{% static  'ng/img/logo.png' %}" id="home" style="pointer:cursor;">
+          <img src="{% static  'ng/img/bitmap.png' %}" id="sound-on">
+          <img src="{% static  'ng/img/bitmap-sound-off.png' %}" id="sound-off">
+
         </div>
         <div class="imag_center_two">
           <img src="{% static  'ng/img/chat-min.png' %}">
@@ -56,14 +59,14 @@
         </div>
         <div class="col_2 col">
           <div>
-            <h1 class="convers_font">CONVERSATION</h1>
+            <h1 class="convers_font" id="conversations">CONVERSATION</h1>
             <h2 class="droop">{{ experiment.interaction_counter}} / {{ experiment.max_interaction }}</h2>
             <div>
-              <img class="hearing" src="{% static  'ng/img/bitmap-1.png' %}">
+              <img class="hearing" src="{% static  'ng/img/bitmap-skipped.png' %}">
             </div>
             <div class="text_content_div">
-              <span class="text_content">{{nb_skipped}} conversations ont eu lieu sans vous.
-                <br>vous n'avez rien entendu de ce qu'ils s'y est dit.
+              <span class="text_content">{{nb_skipped}} <span id="anabs_text" nb_skipped="{{nb_skipped}}">conversations ont eu lieu sans vous.
+                <br>vous n'avez rien entendu de ce qu'il s'y est dit.</span>
               </span>
             </div>
           </div>
@@ -71,13 +74,74 @@
         </div>
         <div class="col_3 col">
           <div class="control_ico" style="display:block;">
-            <img src="{% static  'ng/img/clock.png' %}">
-            <img src="{% static  'ng/img/bitmap.png' %}" id="sound-on">
-            <span class="glyphicon glyphicon-volume-off icon" id="sound-off" style="font-size:30px"></span>
+            <img src="{% static  'ng/img/history.png' %}" id="menu-h">
+            <!--<span class="glyphicon glyphicon-volume-off icon" id="sound-off" style="font-size:30px"></span> -->
 
           </div>
         </div>
     </div>
+    <!--Historique-->
+    <div class="hide" id="hcontent">
+      <div id="popover-heading">
+        <div class='row' id='historyColNames'>
+          <div class='col-xs-4' >
+            <p style="font-size : 16px" id="history_objects">Objets</p>
+          </div>
+
+          <div class='col-xs-4' >
+            <p style="font-size : 16px" id="history_words">Mots</p>
+          </div>
+
+          <div class='col-xs-4' >
+            <p style="font-size : 16px" id="history_success">Succès</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="popover-body">
+
+        {% for past_int in experiment.pastinteraction_set.all|dictsortreversed:"time_id" %}
+        {% if past_int.role == "hearer"%}
+        <div "line_meaning">
+          <div class='row'>
+              <div class='col-xs-3' >
+                  <span ><img src="{% static 'ng/img/' %}kreyon_meaning{{ past_int.meaning }}.png" class="img-histo"></span>
+              </div>
+             <div class='col-xs-6' >
+               <span class="w-histo">{{ past_int.word }}</span>
+             </div>
+             <div class='col-xs-3' >
+             {% if past_int.bool_succ %}<span ><img class="img-responsive meaning img-histo" src="{% static 'ng/img/' %}feedback_success_temp.png"></span>{% endif %}
+            </div>
+        </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+    </div>
+    </div>
+
+    <!-- Modal -->
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+           <!-- Modal content-->
+              <div class="modal-content">
+                 <div class="modal-header">
+                    <h4 class="modal_title" style = "color:black; text-align:center; margin:auto; font-size:35px;" id="modal_title">Êtes-vous sûr.e ?</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p style="font-size:20px;" id="modal_body">Si vous quittez la partie en cours, celle-ci ne sera pas sauvegardée et vos données ne pourront pas être utilisées. Voulez-vous toujours quitter ?</p>
+                </div>
+                <div class="modal-footer">
+            <a  href="/" type="button" class="btn btn-modal" id="btn_yes"><p>Oui, quitter la partie</p></a>
+                    <button type="button" class="btn btn-modal" id="btn_no" data-dismiss="modal"><p>Non, continuer la partie<p></button>
+                </div>
+              </div>
+
+        </div>
+      </div>
 
     <!-- Optional JavaScript -->
 

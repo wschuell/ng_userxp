@@ -23,7 +23,7 @@
     <div class="container">
         <div class="col_1 col">
           <div class="imag_center">
-          <img src="{% static 'ng/img/logo.png' %}">
+          <img src="{% static 'ng/img/logo.png' %}" id="home">
         </div>
         <div class="imag_center_two">
           <img src="{% static 'ng/img/chat-min.png' %}">
@@ -38,12 +38,13 @@
           <div class="text_content_div" >
             <p class="text_content_four" id="text_end" style="max-width:1000px;"></p>
           </div>
+          {{tab_results}}
           <form>
             <div class="row_inputs_file row_inputs_top">
               {% for m in m_list %}
               <label class="label_input_file">
                 <input name="result_checkbox" type="radio" hidden>
-                <span class="castom_input_file"><img src="{% static 'ng/img/' %}kreyon_meaning{{m}}.png" style="width:80px; height:80px"></span>
+                <span class="castom_input_file" disabled><img src="{% static 'ng/img/' %}kreyon_meaning{{m}}.png" style="width:80px; height:80px"></span>
               </label>
               {% endfor %}
             </div>
@@ -57,7 +58,7 @@
             <div class="row_inputs_file_two">
               {% for w in w_list2 %}
               <label class="label_input_file_two label_input_right">
-                <input type="text" class="castom_input" value="{{w}}">
+                <input type="text" class="castom_input" value="{{w}}" readonly>
               </label>
               {% endfor %}
             </div>
@@ -66,9 +67,9 @@
         </div>
         <div class="col_3 col">
           <div class="control_ico" style="display:block;">
-            <img src="{% static 'ng/img/clock.png' %}">
+            <img src="{% static 'ng/img/history.png' %}">
             <img src="{% static 'ng/img/bitmap.png' %}" id="sound-on">
-            <span class="glyphicon glyphicon-volume-off icon" id="sound-off" style="font-size:30px"></span>
+            <img src="{% static  'ng/img/bitmap-sound-off.png' %}" id="sound-off">
           </div>
         </div>
     </div>

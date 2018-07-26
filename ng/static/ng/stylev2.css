@@ -74,9 +74,19 @@ html{
     font-weight: 100;
     font-family: sans-serif;
 }
-.castom_input:focus {
+.selected_w, .selected_m {
     box-shadow: 0 0 3pt 2pt #fff;
 }
+
+.w {
+	padding-top:5px;
+}
+
+.castom_input > input {
+		visibility: hidden;
+  	position: absolute;
+}
+
 
 .label_input_file_two {
 	max-width: 148px;
@@ -429,6 +439,9 @@ html{
 #sound-off, #sound-on {
 	cursor : pointer;
 	text-align: center;
+	display: inline;
+	margin: 1px auto 4px;
+	padding-left: 25px;
 }
 
 #logoutbutton {
@@ -436,6 +449,16 @@ html{
 	cursor: pointer;
 }
 
+/*Game Page */
+
+#img_dont_know {
+	height: 53px;
+	margin: auto;
+	margin-top: 4px;
+	padding-left: 16px;
+	padding-right: 16px;
+	padding-bottom: 2px;
+}
 
 /*Tooltips*/
 
@@ -472,10 +495,61 @@ html{
 	display: block;
 }
 
+/*Historique*/
+
+#menu-h {
+	width: 85px;
+	padding-right: 10px;
+}
+
+.popover {
+	background-color : gray;
+	max-height : 80vh;
+	max-width : 500px;
+	min-width : 250px;
+	border : 3px solid black;
+	overflow-y : auto;
+	overflow-x: hidden;
+}
+
+.popover .popover-title {
+	color : black;
+	text-decoration : underline;
+	font-family : serif;
+	font-size : 16px;
+	text-align : center;
+	background-color : gray;
+}
+
+#historyColNames > p {
+	font-size : 16px;
+	color : black;
+	text-align : center;
+}
+
+
+.popover > img, .img-histo {
+	max-height: 50px;
+	max-width: 40px;
+	min-height: 10px;
+	min-width: 10px;
+	margin : 5px auto 5px;
+}
+
+.w-histo {
+	font-size : 20px;
+	margin : auto;
+	padding-top : 13px;
+	text-align : center;
+}
+
 /*Modal*/
 
 .modal-content {
 	margin-top : 200px;
+	color : grey;
+	font: 700 20px/1.3 'AvenirNext-Bold', sans-serif;
+
 }
 
 .btn-modal {
@@ -484,14 +558,21 @@ html{
 }
 
 #btn_yes {border : 4px solid #EBECEC;}
-#btn_no {border : 4px solid gray;}
+#btn_no {border : 4px solid gray; }
+
+#btn_no > p {margin-left: -10px; }
+
 
 #btn_yes:hover {border : 4px solid #4098FD;}
 #btn_no:hover {border : 4px solid #4098FD;}
 
 .btn-modal > p {
-	font-size : 15px;
+	color : grey;
+	letter-spacing: normal;
+	font: 700 14px/1.3 'AvenirNext-Bold', sans-serif;
 }
+
+.modal-footer {align-items: normal;}
 
 #id_q5 {width:100%;}
 

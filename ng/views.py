@@ -545,14 +545,16 @@ def continue_userxp(request, xp_uuid):
             hr_id = currentgame_json['hearer_id']
             # experiment.update_meanings()
             # experiment.update_words()
-            bar_width = ((experiment.interaction_counter) / experiment.max_interaction )*100
+            word_list = []
+            for w in experiment.words.all():
+                word_list.append(w)
             if sp_id == experiment.get_user_agent_uuid():
-                return render(request, 'ng/game.html', {
+                return render(request, 'ng/conversation2.html', {
                     'experiment': experiment,
                     'role':"speaker",
                     'context':"question",
-                    'bar_width':bar_width,
                     'dont_know': False,
+                    'words': word_list,
                     'user':request.user,
                     'userNG': UserNG.get(user=request.user),
                     })
@@ -566,12 +568,12 @@ def continue_userxp(request, xp_uuid):
                     dont_know = False
                 else :
                     dont_know = True
-                return render(request, 'ng/game.html', {
+                return render(request, 'ng/conversation3.html', {
                     'experiment': experiment,
                     'word': currentgame_json['w'],
                     'role':"hearer",
                     'context':"question",
-                    'bar_width':bar_width,
+                    'words': word_list,
                     'dont_know': dont_know,
                     'user':request.user,
                     'userNG': UserNG.get(user=request.user),

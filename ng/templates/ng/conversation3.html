@@ -1,68 +1,294 @@
-<!DOCTYPE html>
-<html lang="fr">
+{% load static %}
+<!doctype html>
+<html lang={{userNG.lang}}>
+
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link type="text/css" rel="stylesheet" href="{% static 'ng/bootstrap-4.0.0-dist/css/bootstrap.min.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'ng/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}"/>
+
+    <link href="{% static 'ng/stylev2.css' %}" rel="stylesheet" type="text/css">
+
+    <script src="{% static 'ng/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'ng/bootstrap.min.js' %}"></script>
+    <script src="{% static 'ng/popper.min.js' %}"></script>
+    <script src="{% static 'ng/change_lang.js' %}"></script>
+    <script src="{% static 'ng/js.cookie.js' %}"></script>
+
+    <title>NamingGame</title>
+
+    <script type="text/javascript">
+        {% if experiment %}
+        var url_continue = "{% url 'ng:continue' experiment.xp_uuid %}";
+        var url_results_inner_base = "{% url 'ng:results_inner_base' experiment.xp_uuid %}";
+        var url_results_hearer_base = "{% url 'ng:results_hearer_base' experiment.xp_uuid %}";
+        var url_results_speaker_base = "{% url 'ng:results_speaker_base' experiment.xp_uuid %}";
+        {% endif %}
+    </script>
+
+    <script src="{% static 'ng/ng.js' %}"></script>
+
   </head>
   <body class="third_page">
+
+    <div class="not_displayed" style= "visible:hidden; display:none">
+      <span id="max_inter">{{experiment.max_interaction}}</span>
+      <span id="role">{{role}}</span>
+      <span id="context">{{context}}</span>
+      <span id="s">{{bool_succ}}</span>
+      <span id="ms">{{last_ms}}</span>
+      <span id="mh">{{last_mh}}</span>
+    </div>
+
+
     <div class="container">
-        <div class="col_1 col">
-          <div class="imag_center">
-          <img src="images/logo.png">
-        </div>
-        <div class="imag_center_two">
-          <img src="images/chat-min.png">
-        </div>
-        <div class="imag_center_twot_tru">
-          <img src="images/user_groop.png">
-        </div>
-        </div>
+      <div class="col_1 col">
+        <div class="imag_center">
+        <img src="{% static  'ng/img/logo.png' %}" id="home" style="pointer:cursor;">
+      </div>
+      <div class="imag_center_two">
+        <img src="{% static  'ng/img/chat-min.png' %}">
+      </div>
+      <div class="imag_center_twot_tru">
+        <img src="{% static  'ng/img/user_groop.png' %}">
+      </div>
+      <img src="{% static  'ng/img/bitmap.png' %}" id="sound-on">
+      <img src="{% static  'ng/img/bitmap-sound-off.png' %}" id="sound-off">
+      </div>
         <div class="col_2 col">
-          <h1 class="convers_font">CONVERSATION</h1>
-          <h2 class="droop">0/10</h2>
+          <h1 class="convers_font" id="conversations">CONVERSATION</h1>
+          <h2 class="droop">{{ experiment.interaction_counter |add:1 }} / {{ experiment.max_interaction }}</h2>
           <div>
-            <img class="mic" src="images/mic-512.png">
+            <img class="hearing" src="{% static  'ng/img/bitmap-1.png' %}">
           </div>
           <div class="text_content_div">
-            <span class="text_content">vous tentez de communiquer.
-              <br>quel est le mot correspondant à cette image ?
+            <span class="text_content" id="anhearer_text">quelqu'un essaye de communiquer avec vous.
+              <br>de quoi parle-il ?
             </span>
           </div>
           <form>
             <div class="row_inputs_file row_inputs_top">
+              {% for m in experiment.meanings.all %}
               <label class="label_input_file">
-                <input type="checkbox" hidden>
-                <span class="castom_input_file"></span>
+                <input name="select_radio" type="radio" id="m{{ m.meaning }}" value="m{{ m.meaning }}" hidden>
+                <span class="castom_input_file"><img id="meaning_{{ m.meaning }}" class="img-responsive m meaning_img" src="{% static 'ng/img/' %}kreyon_meaning{{ m.meaning }}.png" meaning_name="{{ m.meaning }}"></span>
               </label>
-            </div>
-
-            <div class="row_inputs_file row_inputs_file_three">
-              <label class="label_input_file_two label_input_right">
-                <input type="text" class="castom_input">
+              {% endfor %}
+              {% if context == "question" and role == "hearer" and dont_know %}
+              <label class="label_input_file">
+                <input name="select_radio" type="radio" id="none" value="none" hidden>
+                <span class="castom_input_file"><img meaning_name="none" class="img-responsive m meaning_img" src="{% static 'ng/img/kreyon_meaningnone.png' %}" meaning_name="{{ m.meaning }}" id="img_dont_know"></span>
               </label>
-              <label class="label_input_file_two">
-                <input type="text" class="castom_input">
-              </label> 
+              {% endif %}
             </div>
-            <div class="row_inputs_file_two">
-              <label class="label_input_file_two label_input_right">
-                <input type="text" class="castom_input">
-              </label>
-              <label class="label_input_file_two">
-                <input type="text" class="castom_input">
-              </label> 
-            </div>
-            <a href="resultats.html" class="btn">CONTINUER <span class="block"></span></a>
+            <a href="" class="btn" id="continue">CONTINUER <span class="block"></span></a>
           </form>
         </div>
         <div class="col_3 col">
-          <div class="control_ico">
-            <img src="images/clock.png">
-            <img src="images/bitmap.png">
+          <div class="control_ico" style="display:block;">
+            <img src="{% static  'ng/img/history.png' %}" id="menu-h">
           </div>
         </div>
     </div>
+
+    <!--Historique-->
+    <div class="hide" id="hcontent">
+      <div id="popover-heading">
+        <div class='row' id='historyColNames'>
+          <div class='col-xs-4' >
+            <p style="font-size : 16px" id="history_objects">Objets</p>
+          </div>
+
+          <div class='col-xs-4' >
+            <p style="font-size : 16px" id="history_words">Mots</p>
+          </div>
+
+          <div class='col-xs-4' >
+            <p style="font-size : 16px" id="history_success">Succès</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="popover-body">
+
+        {% for past_int in experiment.pastinteraction_set.all|dictsortreversed:"time_id" %}
+        {% if past_int.role == "hearer"%}
+        <div "line_meaning">
+          <div class='row'>
+              <div class='col-xs-3' >
+                  <span ><img src="{% static 'ng/img/' %}kreyon_meaning{{ past_int.meaning }}.png" class="img-histo"></span>
+              </div>
+             <div class='col-xs-6' >
+               <span class="w-histo">{{ past_int.word }}</span>
+             </div>
+             <div class='col-xs-3' >
+             {% if past_int.bool_succ %}<span ><img class="img-responsive meaning img-histo" src="{% static 'ng/img/' %}feedback_success_temp.png"></span>{% endif %}
+            </div>
+        </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+    </div>
+    </div>
+
+        <!-- Modal -->
+        	<div class="modal fade" id="myModal" role="dialog">
+         		<div class="modal-dialog">
+
+           		 <!-- Modal content-->
+            			<div class="modal-content">
+             				 <div class="modal-header">
+                				<h4 class="modal_title" style = "color:black; text-align:center; margin:auto; font-size:35px;" id="modal_title">Êtes-vous sûr.e ?</h4>
+      					<button type="button" class="close" data-dismiss="modal">&times;</button>
+              			</div>
+              			<div class="modal-body">
+                				<p style="font-size:20px;" id="modal_body">Si vous quittez la partie en cours, celle-ci ne sera pas sauvegardée et vos données ne pourront pas être utilisées. Voulez-vous toujours quitter ?</p>
+              			</div>
+              			<div class="modal-footer">
+      					<a  href="/" type="button" class="btn btn-modal" id="btn_yes"><p>Oui, quitter la partie</p></a>
+                				<button type="button" class="btn btn-modal" id="btn_no" data-dismiss="modal"><p>Non, continuer la partie<p></button>
+              			</div>
+            			</div>
+
+         	 	</div>
+        	</div>
+
+          <!-- Optional JavaScript -->
+
+         <script text="text/javascript">
+
+
+         $(document).ready(function(){
+
+          var sound_click = document.createElement('audio');
+          var music = document.createElement('audio');
+
+           $('body').css('visibility', 'visible');
+
+         if (typeof Cookies.get('NamingGameSound') === 'undefined'){
+           Cookies.set('NamingGameSound', true);
+           sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+           music.setAttribute('src', "{% static 'ng/sounds/204432__nhumphrey__spooky-alien-language-04.wav' %}");
+
+           $('#sound-on').css('display','none');
+           $('#sound-off').css('display','inline');
+        } else if (Cookies.get('NamingGameSound')) {
+           sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+           music.setAttribute('src', "{% static 'ng/sounds/204432__nhumphrey__spooky-alien-language-04.wav' %}");
+
+           $('#sound-on').css('display','none');
+           $('#sound-off').css('display','inline');
+       } else {
+          sound_click.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
+          music.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
+          $('#sound-off').css('display','none');
+          $('#sound-on').css('display','inline');
+       }
+
+        $.ajaxPrefilter( function(options, originalOptions, jqXHR) {
+          jqXHR.setRequestHeader('X-CSRF-Token', Cookies.get('csrftoken'));
+        });
+
+        $(document).ajaxStart(function () {
+          $("html").addClass("wait");
+        });
+        $(document).ajaxStop(function () {
+          $("html").removeClass("wait");
+        });
+
+
+        //$("#word_speaker").hide();
+        $("#button_next, #button_start").click(function(){
+          sound_click.play();
+          $("#button_next, #button_start").addClass('disabled');
+          $("html").addClass("wait");
+          window.location.href = url_continue ;}
+        );
+        //select meanings and words
+
+        $("#continue").addClass('disabled');
+
+         //Menu
+
+         //Menu
+
+         //Sound
+         $('#sound-off').click(function(){
+           Cookies.set('NamingGameSound', false);
+           sound_click.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
+         	$('#sound-off').css('display','none');
+         	$('#sound-on').css('display','inline');
+         });
+         $('#sound-on').click(function(){
+           Cookies.set('NamingGameSound', true);
+           sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+           sound_click.play();
+         	$('#sound-on').css('display','none');
+         	$('#sound-off').css('display','inline');
+         });
+
+         //Home
+         $('#home').click(function(){
+           sound_click.play();
+         	$("#myModal").modal({
+         		keyboard : true,
+         	});
+         });
+
+
+         //Display Game History
+         $("#menu-h").popover({
+           placement : 'bottom',
+           html : true,
+           content: function() {
+             return $('#popover-body').html();
+           },
+           title: function() {
+             return $('#popover-heading').html();
+           },
+         });
+
+         $('.m').click(function(){
+           sound_click.play();
+           if (! $('html').hasClass('wait')) {
+             if(! $(this).hasClass('selected_m')) {
+               $(".selected_m").removeClass("selected_m");
+               $(this).addClass("selected_m");
+
+               $("#continue.interact_hearer").removeClass('disabled');
+             } else {
+               $(this).removeClass("selected_m");
+               $("#continue").addClass('disabled');
+             };
+           }
+             $('#continue').removeClass('disabled');
+             $('#other-word').tooltip('hide');
+             $('#anhearer').tooltip('hide');
+             $('#m5').tooltip('hide');
+         });
+
+
+         $("#continue").click(function(event){
+           music.play();
+           sound_click.play();
+           if($('.selected_m')[0] != undefined && !$("#continue").hasClass('disabled') ) {
+             $("#continue").addClass('disabled');
+            window.location.href=url_results_hearer_base + $(".selected_m").attr("meaning_name") + "/results_continue/"}
+          return false;
+         });
+
+         //buttons
+         $("#homebutton").click(function(){
+           sound_click.play();
+           $("html").addClass("wait");
+           window.location.href=url_home;
+         });
+
+      });
+        </script>
+
   </body>
 </html>
