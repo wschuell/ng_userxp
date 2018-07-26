@@ -460,6 +460,16 @@ html{
 	padding-bottom: 2px;
 }
 
+.smiley {
+	width : 300px;
+}
+
+#word {
+	width: auto;
+	margin : 40px;
+	padding-top: 5px;
+}
+
 /*Tooltips*/
 
 .tooltip-inner {

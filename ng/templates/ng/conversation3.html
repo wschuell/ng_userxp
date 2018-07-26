@@ -20,7 +20,7 @@
     <title>NamingGame</title>
 
     <script type="text/javascript">
-        {% if experiment %}
+    {% if experiment %}
         var url_continue = "{% url 'ng:continue' experiment.xp_uuid %}";
         var url_results_inner_base = "{% url 'ng:results_inner_base' experiment.xp_uuid %}";
         var url_results_hearer_base = "{% url 'ng:results_hearer_base' experiment.xp_uuid %}";
@@ -28,7 +28,7 @@
         {% endif %}
     </script>
 
-    <script src="{% static 'ng/ng.js' %}"></script>
+    <!--<script src="{% static 'ng/ng.js' %}"></script>-->
 
   </head>
   <body class="third_page">
@@ -63,10 +63,36 @@
           <div>
             <img class="hearing" src="{% static  'ng/img/bitmap-1.png' %}">
           </div>
+          {% if context == "result" %}
+          <div class="text_content_div">
+            {% if bool_succ %}
+            <span class="text_content" id='hearer_success'></span>
+            {% elif learn%}
+               <span class="text_content" id='hearer_learn'></span>
+            {% else %}
+               <span class="text_content" id='hearer_failure'></span>
+            {% endif %}
+             </div>
+
+           <div class="row_inputs_file">
+             <!--IMGS A CHANGER -->
+             {% if bool_succ %}
+             <img src="{% static 'ng/img/feedback_success_temp.png' %}" class="img-responsive smiley" id="success">
+             {% else %}
+                {% if learn  %}
+                <img src="{% static 'ng/img/feedback_learn_temp_temp.png' %}" class="img-responsive smiley" id="learn">
+              {% else %}
+               <img src="{% static 'ng/img/feedback_failure_temp.png' %}" class="img-responsive smiley" id="failure">
+              {% endif %}
+              {% endif %}
+           </div>
+           {% elif context == "question" %}
           <div class="text_content_div">
             <span class="text_content" id="anhearer_text">quelqu'un essaye de communiquer avec vous.
               <br>de quoi parle-il ?
             </span>
+            <br>
+            <span class="text_content castom_input" id="word"> {{word}} </span>
           </div>
           <form>
             <div class="row_inputs_file row_inputs_top">
@@ -83,7 +109,12 @@
               </label>
               {% endif %}
             </div>
-            <a href="" class="btn" id="continue">CONTINUER <span class="block"></span></a>
+            {% endif %}
+            {% if context == "question" %}
+              <a href="" class="btn btn-d" id="continue">CONTINUER <span class="block"></span></a>
+            {% elif context == "result" %}
+              <a href="" class="btn btn-d" id="button_next">CONTINUER <span class="block"></span></a>
+            {% endif %}
           </form>
         </div>
         <div class="col_3 col">
@@ -237,6 +268,53 @@
          		keyboard : true,
          	});
          });
+
+         //Tooltips
+         var lang = $('html').attr('lang');
+
+         if (lang == "fr"){
+           $('#word').tooltip({
+         	   title : "Vous entendez ce mot :",
+         	   placement : "top",
+         	   trigger: "hover focus",
+           });
+
+           $('#menu-h').tooltip({
+           	title : "Cliquez ici pour voir l'historique",
+           	placement : "bottom",
+           	trigger: "hover focus",
+           });
+
+        } else if (lang == "en") {
+
+            $('#menu-h').tooltip({
+            	title : "Click to see past interactions",
+            	placement : "bottom",
+            	trigger: "hover focus",
+            });
+
+            $('#word').tooltip({
+          	   title : "You hear this word :",
+          	   placement : "top",
+          	   trigger: "hover focus",
+            });
+
+        } else {
+
+          $('#menu-h').tooltip({
+            title : "ITALIAN",
+            placement : "bottom",
+            trigger: "hover focus",
+          });
+
+            $('#word').tooltip({
+          	   title : "ITALIAN",
+          	   placement : "top",
+          	   trigger: "hover focus",
+            });
+
+        }
+
 
 
          //Display Game History

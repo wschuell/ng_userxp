@@ -20,7 +20,7 @@
     <title>NamingGame</title>
 
     <script type="text/javascript">
-        {% if experiment %}
+    {% if experiment %}
         var url_continue = "{% url 'ng:continue' experiment.xp_uuid %}";
         var url_results_inner_base = "{% url 'ng:results_inner_base' experiment.xp_uuid %}";
         var url_results_hearer_base = "{% url 'ng:results_hearer_base' experiment.xp_uuid %}";
@@ -28,7 +28,7 @@
         {% endif %}
     </script>
 
-    <script src="{% static 'ng/ng.js' %}"></script>
+    <!--<script src="{% static 'ng/ng.js' %}"></script>-->
 
 
   <body>
@@ -65,6 +65,33 @@
             <div>
               <img class="mic" src="{% static  'ng/img/mic-512.png' %}">
             </div>
+            {% if context == "result" %}
+            <div class="text_content_div">
+              {% if bool_succ %}
+              <span class="text_content" id='speaker_success'></span>
+              {% else %}
+                 {% if learn  %}
+                 <span class="text_content" id='speaker_learn'></span>
+                 {% else %}
+                 <span class="text_content" id='speaker_failure'></span>
+              {% endif %}
+              {% endif %}
+                 </div>
+
+            <div class="row_inputs_file">
+              <!--IMGS A CHANGER -->
+              {% if bool_succ %}
+    					<img src="{% static 'ng/img/feedback_success_temp.png' %}" class="img-responsive smiley" id="success">
+              {% else %}
+                 {% if learn  %}
+                 <img src="{% static 'ng/img/feedback_learn_temp.png' %}" class="img-responsive smiley" id="learn">
+              {% else %}
+    			    	<img src="{% static 'ng/img/feedback_failure_temp.png' %}" class="img-responsive smiley" id="failure">
+              {% endif %}
+                {% endif %}
+            </div>
+            {% endif %}
+            {% if context == "question" %}
             <div class="text_content_div">
               <span class="text_content" id='anspeaker_text'>c’est à vous de parler.
               <br> choissisez l’objet que vous allez désigner.</span>
@@ -113,8 +140,12 @@
                 </label>
               </div>
             </div>
-        
-              <a href=""class="btn btn-d" id="continue">CONTINUER <span class="block"></span></a>
+            {% endif %}
+            {% if context == "question" %}
+              <a href="" class="btn btn-d" id="continue">CONTINUER <span class="block"></span></a>
+            {% elif context == "result" %}
+              <a href="" class="btn btn-d" id="button_next">CONTINUER <span class="block"></span></a>
+            {% endif %}
             </form>
         </div>
         <div class="col_3 col">
@@ -269,6 +300,51 @@
       });
      });
 
+     //Tooltips
+     var lang = $('html').attr('lang');
+
+     if (lang == "fr"){
+       $('#word').tooltip({
+         title : "Vous entendez ce mot :",
+         placement : "top",
+         trigger: "hover focus",
+       });
+
+       $('#menu-h').tooltip({
+        title : "Cliquez ici pour voir l'historique",
+        placement : "bottom",
+        trigger: "hover focus",
+       });
+
+    } else if (lang == "en") {
+
+        $('#menu-h').tooltip({
+          title : "Click to see past interactions",
+          placement : "bottom",
+          trigger: "hover focus",
+        });
+
+        $('#word').tooltip({
+           title : "You hear this word :",
+           placement : "top",
+           trigger: "hover focus",
+        });
+
+    } else {
+
+      $('#menu-h').tooltip({
+        title : "ITALIAN",
+        placement : "bottom",
+        trigger: "hover focus",
+      });
+
+        $('#word').tooltip({
+           title : "ITALIAN",
+           placement : "top",
+           trigger: "hover focus",
+        });
+
+    }
 
      //Display Game History
      $("#menu-h").popover({

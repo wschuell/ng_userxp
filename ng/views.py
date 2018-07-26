@@ -220,7 +220,7 @@ def result_hearer(request, xp_uuid, meaning):
     past_interaction = PastInteraction(meaning=str(ms),word=w,bool_succ=bool_succ,time_id=experiment.interaction_counter,role='hearer',experiment=experiment)
     experiment.save()
     past_interaction.save()
-    return render(request, 'ng/game.html', {
+    return render(request, 'ng/conversation3.html', {
             'experiment': experiment,
             'bool_succ': bool_succ,
             'role':"hearer",
@@ -247,7 +247,7 @@ def result_speaker(request, xp_uuid, meaning, word):
     #        'experiment': experiment,
     #        'bool_succ': bool_succ,
     #    })
-    return render(request, 'ng/game.html', {
+    return render(request, 'ng/conversation2.html', {
             'experiment': experiment,
             'bool_succ': bool_succ,
             'role':"speaker",
@@ -326,7 +326,7 @@ def result_hearer_continue(request, xp_uuid, meaning):
     try:
         currentgame_json = experiment.get_currentgame_json()
     except:
-        return render(request, 'ng/game.html', {
+        return render(request, 'ng/conversation3.html', {
             'experiment': experiment,
             'context':"result",
         })
@@ -351,7 +351,7 @@ def result_hearer_continue(request, xp_uuid, meaning):
     past_interaction = PastInteraction(meaning=str(ms),word=w,meaning_h=str(meaning),bool_succ=bool_succ,time_id=experiment.interaction_counter,role='hearer',experiment=experiment)
     experiment.save()
     past_interaction.save()
-    return render(request, 'ng/game.html', {
+    return render(request, 'ng/conversation3.html', {
             'experiment': experiment,
             'context':"result",
             'role': "hearer",
@@ -419,7 +419,7 @@ def result_speaker_continue(request, xp_uuid, meaning, word):
     try:
         currentgame_json = experiment.get_currentgame_json()
     except:
-        return render(request, 'ng/game.html', {
+        return render(request, 'ng/conversation2.html', {
             'experiment': experiment,
             'context':"result",
         })
@@ -449,7 +449,7 @@ def result_speaker_continue(request, xp_uuid, meaning, word):
     #        'experiment': experiment,
     #        'bool_succ': bool_succ,
     #    })
-    return render(request, 'ng/game.html', {
+    return render(request, 'ng/conversation2.html', {
             'experiment': experiment,
             'context':"result",
             'role': "speaker",

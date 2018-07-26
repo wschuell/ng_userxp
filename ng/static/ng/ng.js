@@ -26,7 +26,7 @@ if (lang == "fr"){
 $('#menu-h').tooltip({
 	title : "Cliquez ici pour voir l'historique",
 	placement : "bottom",
-	trigger: "manual",
+	trigger: "hover focus",
 });
 
 //Bouton info
@@ -98,7 +98,7 @@ $('#other-meaning').tooltip({
 	$('#menu-h').tooltip({
 		title : "Click to see past interactions",
 		placement : "bottom",
-		trigger: "manual",
+		trigger: "hover focus",
 	});
 
 	//Speaker Role
@@ -199,7 +199,7 @@ $('#other-meaning').tooltip({
 
 //Display Tooltips
 
-	$('#menu-h').tooltip('show');
+	//$('#menu-h').tooltip('show');
 
 	$('#menu-h').click(function(){
 		$('#menu-h').tooltip('hide')

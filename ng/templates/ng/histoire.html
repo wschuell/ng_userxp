@@ -1,0 +1,162 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang={{userNG.lang}}>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <link type="text/css" rel="stylesheet" href="{% static 'ng/bootstrap-4.0.0-dist/css/bootstrap.min.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'ng/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}"/>
+
+    <link href="{% static 'ng/stylev2.css' %}" rel="stylesheet" type="text/css">
+
+    <script src="{% static 'ng/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'ng/bootstrap.min.js' %}"></script>
+    <script src="{% static 'ng/popper.min.js' %}"></script>
+    <script src="{% static 'ng/change_lang.js' %}"></script>
+    <script src="{% static 'ng/js.cookie.js' %}"></script>
+
+    <title>NamingGame</title>
+
+  </head>
+  <body class="four_page">
+    <div class="container">
+        <div class="col_1 col">
+          <div class="imag_center">
+            <img src="{% static 'ng/img/logo.png' %}" id="home">
+          </div>
+        </div>
+        <div class="col_2 col">
+          <div>
+            <h1 class="convers_font" id='story_pagetitle'>HISTOIRE</h1>
+            <div class="text_content_div" id="block1">
+              <p class="text_content_four" id="c1_1">
+              Vous avez été enlevé par des Extraterrestres !</p>
+              <p class="text_content_four" id="c1_2">
+                Vous voilà enfermé seul dans une pièce de leur vaisseau. Dans les
+                 pièces d'à côté se trouvent <span class='important'>4 autres
+                   individus</span> que vos ravisseurs ont également enlevés aux
+                   quatre coins de la galaxie.</p>
+              <p class="text_content_four" id="c1_3"><span class="important">Aucun de vous
+                ne parle la même langue</span> mais vous voulez tous vous échapper
+                pour pouvoir rentrer chez vous.</p>
+            </div>
+            <div class="text_content_div" id="block2" style="display:none;">
+              <p class="text_content_four" id="c2_1">
+              Pour ce faire, vous ne pourrez parler que deux par deux grâce à une radio,
+              sans savoir lequel de vos camarades d'infortune est à l'autre bout.</p>
+              <p class="text_content_four" id="c2_2">
+                L'un de vous proposera un mot et l'autre devra deviner l'objet auquel
+                il fait référence.</p>
+              <p class="text_content_four" id="c2_3">Parfois vous proposerez un mot, parfois
+                vous devinerez l'objet et parfois encore vous ne ferez pas partie
+                de la conversation et ne saurez pas ce qui s'y est dit.</p>
+              <p class="text_four" id="c2_4">Mais attention, vous n'avez à vous tous qu'un
+                <span class='important'>nombre limité de conversations</span> pour réussir !</p>
+            </div>
+          </div>
+          <a href="#" class="btn continue">CONTINUER <span class="block"></span></a>
+        </div>
+        <div class="col_3 col">
+          <div class="control_ico" style="display:block;">
+            <img src="{% static 'ng/img/bitmap.png' %}" class="icon" id="sound-on" style="margin-left: 8px;">
+            <img src="{% static  'ng/img/bitmap-sound-off.png' %}" id="sound-off">
+          </div>
+        </div>
+    </div>
+    <!-- Modal -->
+     	<div class="modal fade" id="myModal" role="dialog">
+       		<div class="modal-dialog">
+
+         		 <!-- Modal content-->
+          			<div class="modal-content">
+           				 <div class="modal-header">
+              				<h4 class="modal_title" style="color:black; text-align:center; margin:auto; font-size:35px;" id="modal_title">Êtes-vous sûr.e ?</h4>
+    					<button type="button" class="close" data-dismiss="modal">&times;</button>
+            			</div>
+            			<div class="modal-body">
+              				<p style="font-size:20px;" id="modal_body">Si vous quittez la partie en cours, celle-ci ne sera pas sauvegardée et vos données ne pourront pas être utilisées. Voulez-vous toujours quitter ?</p>
+            			</div>
+            			<div class="modal-footer">
+    					<a  href="/" type="button" class="btn btn-modal" id="btn_yes"><p>Oui, quitter la partie</p></a>
+              				<button type="button" class="btn btn-modal" id="btn_no" data-dismiss="modal"><p>Non, continuer la partie</p></button>
+            			</div>
+          			</div>
+
+       	 	</div>
+      	</div>
+    <!-- Optional JavaScript -->
+  <script text="text/javascript">
+
+  $(document).ready(function(){
+
+    $('body').css('visibility', 'visible');
+
+    var sound_click = document.createElement('audio');
+    var music = document.createElement('audio');
+
+    if (typeof Cookies.get('NamingGameSound') === 'undefined'){
+        Cookies.set('NamingGameSound', true);
+        sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+        music.setAttribute('src', "{% static 'ng/sounds/263479__orangefreesounds__dreamy-melodic-synth-loop.wav' %}");
+
+     $('#sound-on').css('display','none');
+     $('#sound-off').css('display','inline');
+    } else if (Cookies.get('NamingGameSound')) {
+       sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+       music.setAttribute('src', "{% static 'ng/sounds/263479__orangefreesounds__dreamy-melodic-synth-loop.wav' %}");
+
+     $('#sound-on').css('display','none');
+     $('#sound-off').css('display','inline');
+    } else {
+      sound_click.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
+      music.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
+
+      $('#sound-off').css('display','none');
+      $('#sound-on').css('display','inline');
+    }
+
+    //Sound
+    $('#sound-off').click(function(){
+      Cookies.set('NamingGameSound', false);
+      sound_click.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
+      music.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
+     $('#sound-off').css('display','none');
+     $('#sound-on').css('display','inline');
+    });
+    $('#sound-on').click(function(){
+      Cookies.set('NamingGameSound', true);
+      sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+      music.setAttribute('src', "{% static 'ng/sounds/263479__orangefreesounds__dreamy-melodic-synth-loop.wav' %}");
+      sound_click.play();
+     $('#sound-on').css('display','none');
+     $('#sound-off').css('display','inline');
+    });
+    //Home
+    $('#home').click(function(){
+      sound_click.play();
+      $("#myModal").modal({
+        keyboard : true,
+      });
+    });
+
+    $('.continue').click(function(){
+      sound_click.play();
+      if($('#block1').css('display')=='block'){
+        $('#block2').css('display', 'block');
+        $('#block1').css('display', 'none');
+      } else {
+        /*window.location.href = "game_tutorial";*/
+        $(this).prop('disable',true);
+            $("html").addClass("wait");
+            window.location.href='/new_experiment/basic';
+        }
+    });
+
+  });
+  </script>
+
+
+  </body>
+</html>
