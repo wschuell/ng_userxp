@@ -20,12 +20,10 @@
     <title>NamingGame</title>
 
     <script type="text/javascript">
-    {% if experiment %}
         var url_continue = "{% url 'ng:continue' experiment.xp_uuid %}";
         var url_results_inner_base = "{% url 'ng:results_inner_base' experiment.xp_uuid %}";
         var url_results_hearer_base = "{% url 'ng:results_hearer_base' experiment.xp_uuid %}";
         var url_results_speaker_base = "{% url 'ng:results_speaker_base' experiment.xp_uuid %}";
-        {% endif %}
     </script>
 
     <!--<script src="{% static 'ng/ng.js' %}"></script>-->
@@ -54,12 +52,16 @@
       <div class="imag_center_twot_tru">
         <img src="{% static  'ng/img/user_groop.png' %}">
       </div>
-      <img src="{% static  'ng/img/bitmap.png' %}" id="sound-on">
-      <img src="{% static  'ng/img/bitmap-sound-off.png' %}" id="sound-off">
+      <img src="{% static  'ng/img/bitmap.png' %}" id="sound-on" style= "margin: 1px auto 4px; padding-left: 25px;">
+      <img src="{% static  'ng/img/bitmap-sound-off.png' %}" id="sound-off" style= "margin: 1px auto 4px; padding-left: 25px;">
       </div>
         <div class="col_2 col">
           <h1 class="convers_font" id="conversations">CONVERSATION</h1>
-          <h2 class="droop">{{ experiment.interaction_counter |add:1 }} / {{ experiment.max_interaction }}</h2>
+          {% if context == "result" %}
+          <h2 class="droop">{{ experiment.interaction_counter| add:-1 }} / {{ experiment.max_interaction }}</h2>
+          {% else %}
+          <h2 class="droop">{{ experiment.interaction_counter }} / {{ experiment.max_interaction }}</h2>
+          {% endif %}
           <div>
             <img class="hearing" src="{% static  'ng/img/bitmap-1.png' %}">
           </div>
@@ -80,7 +82,7 @@
              <img src="{% static 'ng/img/feedback_success_temp.png' %}" class="img-responsive smiley" id="success">
              {% else %}
                 {% if learn  %}
-                <img src="{% static 'ng/img/feedback_learn_temp_temp.png' %}" class="img-responsive smiley" id="learn">
+                <img src="{% static 'ng/img/feedback_learn_temp.png' %}" class="img-responsive smiley" id="learn">
               {% else %}
                <img src="{% static 'ng/img/feedback_failure_temp.png' %}" class="img-responsive smiley" id="failure">
               {% endif %}
@@ -111,9 +113,16 @@
             </div>
             {% endif %}
             {% if context == "question" %}
-              <a href="" class="btn btn-d" id="continue">CONTINUER <span class="block"></span></a>
+              <a href="#" class="btn btn-d" id="continue">CONTINUER <span class="block"></span></a>
             {% elif context == "result" %}
-              <a href="" class="btn btn-d" id="button_next">CONTINUER <span class="block"></span></a>
+            <div id="button_next_div">
+                <!--<button id="button_next">Next</button>-->
+
+              <form action="{% url 'ng:continue' experiment.xp_uuid %}" method="post">
+              {% csrf_token %}
+              <input id="button_next" class="btn" type="submit" value="{% static 'ng/sounds/silence.wav' %}" />
+                </form>
+            </div>
             {% endif %}
           </form>
         </div>
@@ -275,13 +284,19 @@
          if (lang == "fr"){
            $('#word').tooltip({
          	   title : "Vous entendez ce mot :",
-         	   placement : "top",
+         	   placement : "left",
          	   trigger: "hover focus",
            });
 
            $('#menu-h').tooltip({
            	title : "Cliquez ici pour voir l'historique",
            	placement : "bottom",
+           	trigger: "hover focus",
+           });
+
+           $('#img_dont_know').tooltip({
+           	title : "Vous pouvez cliquer ici si c'est la première fois que vous entendez ce mot et que vous ne savez pas de quoi votre coéquipier parle.",
+           	placement : "right",
            	trigger: "hover focus",
            });
 
@@ -295,8 +310,14 @@
 
             $('#word').tooltip({
           	   title : "You hear this word :",
-          	   placement : "top",
+          	   placement : "left",
           	   trigger: "hover focus",
+            });
+
+            $('#img_dont_know').tooltip({
+            	title : "You can click here if it is the first time you hear this word and you don't know what your partner is talking about.",
+            	placement : "right",
+            	trigger: "hover focus",
             });
 
         } else {
@@ -311,6 +332,12 @@
           	   title : "ITALIAN",
           	   placement : "top",
           	   trigger: "hover focus",
+            });
+
+            $('#img_dont_know').tooltip({
+            	title : "ITALIAN",
+            	placement : "right",
+            	trigger: "hover focus",
             });
 
         }

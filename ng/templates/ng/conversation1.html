@@ -54,13 +54,13 @@
         <div class="imag_center_twot_tru">
           <img src="{% static  'ng/img/user_groop.png' %}">
         </div>
-        <img src="{% static  'ng/img/bitmap.png' %}" id="sound-on">
-        <img src="{% static  'ng/img/bitmap-sound-off.png' %}" id="sound-off">
+        <img src="{% static  'ng/img/bitmap.png' %}" id="sound-on" style= "margin: 1px auto 4px; padding-left: 25px;">
+        <img src="{% static  'ng/img/bitmap-sound-off.png' %}" id="sound-off" style= "margin: 1px auto 4px; padding-left: 25px;">
         </div>
         <div class="col_2 col">
           <div>
             <h1 class="convers_font" id="conversations">CONVERSATION</h1>
-            <h2 class="droop">{{ experiment.interaction_counter}} / {{ experiment.max_interaction }}</h2>
+            <h2 class="droop">{{ experiment.interaction_counter }} / {{ experiment.max_interaction }}</h2>
             <div>
               <img class="hearing" src="{% static  'ng/img/bitmap-skipped.png' %}">
             </div>
