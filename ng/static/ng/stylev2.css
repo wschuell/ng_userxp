@@ -437,13 +437,14 @@ html{
 	opacity : 0.7;
 }
 
-/* #sound-off, #sound-on {
-	cursor : pointer;
+#sound-off, #sound-on {
+	/*cursor : pointer;
 	text-align: center;
 	display: inline;
 	margin: 1px auto 4px;
-	padding-left: 25px;
-} */
+	padding-left: 25px;*/
+
+}
 
 #logoutbutton {
 	font-size: 25px;
@@ -452,7 +453,7 @@ html{
 
 /*Game Page */
 
-#img_dont_know {
+#img_dont_know, #last_mh_none, #last_ms_none {
 	height: 53px;
 	margin: auto;
 	margin-top: 4px;
@@ -462,13 +463,40 @@ html{
 }
 
 .smiley {
-	width : 300px;
+	width: 150px;
+	margin: 40px auto 40px;
 }
 
 #word {
 	width: auto;
 	margin : 40px;
 	padding-top: 5px;
+}
+
+.role_s {
+	width: 44.5px;
+	height: 50.5px;
+	margin-right: 8%;
+	margin-top: 28px;
+}
+
+.role_h {
+width: 44.5px;
+height: 50.5px;
+margin-left: 8%;
+margin-top: 28px;
+}
+
+table {
+	margin-top : 30px;
+}
+
+/*Results Page*/
+
+.result_img {
+	width: 165px;
+	display: inline-block;
+	margin: auto;
 }
 
 /*Tooltips*/
@@ -485,10 +513,10 @@ html{
 
  .tooltip.right{
  	padding-left: : 30px;
-	max-width: 100px;
+	max-width: 500px;
  }
  .tooltip.left {
- 	padding-right: 70px;
+ 	padding-right: 30px;
  }
  .tooltip.bottom  {
  	padding-top: 18px;
@@ -501,7 +529,7 @@ html{
 	border-right: 30px solid white;
 }
 .tooltip.left .tooltip-arrow {
-	border-left: 70px solid white;
+	border-left: 30px solid white;
 }
 .tooltip.bottom .tooltip-arrow {
 	border-bottom: 18px solid white;

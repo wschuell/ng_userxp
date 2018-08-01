@@ -63,31 +63,87 @@
           <h2 class="droop">{{ experiment.interaction_counter }} / {{ experiment.max_interaction }}</h2>
           {% endif %}
           <div>
-            <img class="hearing" src="{% static  'ng/img/bitmap-1.png' %}">
+            {% if context == "question" %}
+              <img class="hearing" src="{% static  'ng/img/bitmap-1.png' %}">
+            {% else %}
+              <!--IMGS A CHANGER -->
+              {% if bool_succ %}
+    					<img src="{% static 'ng/img/feedback_success_temp.png' %}" class="img-responsive smiley" id="success">
+              {% else %}
+                 {% if learn  %}
+                 <img src="{% static 'ng/img/feedback_learn_temp.png' %}" class="img-responsive smiley" id="learn">
+              {% else %}
+    			    	<img src="{% static 'ng/img/feedback_failure_temp.png' %}" class="img-responsive smiley" id="failure">
+              {% endif %}
+                {% endif %}
+            {% endif %}
+
           </div>
           {% if context == "result" %}
           <div class="text_content_div">
             {% if bool_succ %}
             <span class="text_content" id='hearer_success'></span>
-            {% elif learn%}
-               <span class="text_content" id='hearer_learn'></span>
             {% else %}
+              {% if learn  %}
+               <span class="text_content" id='hearer_learn'></span>
+               {% else %}
                <span class="text_content" id='hearer_failure'></span>
+               {% endif %}
             {% endif %}
              </div>
+             {% if context == "result" %}
+             <div class="text_content_div">
+               {% if bool_succ %}
+               <span class="text_content" id='hearer_success'></span>
+               {% else %}
+                  {% if learn  %}
+                  <span class="text_content" id='hearer_learn'></span>
+                  {% else %}
+                  <span class="text_content" id='hearer_failure'></span>
+               {% endif %}
+               {% endif %}
+                  </div>
+                  <table style="margin:auto;">
+                    <tr>
 
-           <div class="row_inputs_file">
-             <!--IMGS A CHANGER -->
-             {% if bool_succ %}
-             <img src="{% static 'ng/img/feedback_success_temp.png' %}" class="img-responsive smiley" id="success">
-             {% else %}
-                {% if learn  %}
-                <img src="{% static 'ng/img/feedback_learn_temp.png' %}" class="img-responsive smiley" id="learn">
-              {% else %}
-               <img src="{% static 'ng/img/feedback_failure_temp.png' %}" class="img-responsive smiley" id="failure">
+             <td>
+             <img class="role_s" src="{% static 'ng/img/mic-512.png' %}" >
+             </td>
+             <td style="width:250px;">
+             <div class="row_inputs_file">
+               <label class="label_input_file_two label_input">
+                 <input type="radio" value="{{word}}" name="m" id="{{word}}" hidden>
+                 <div class="w word_text_speaker castom_input text_content" id="word_inter" word_name="{{ word }}">{{ word }}</div>
+               </label>
+                 </div>
+             </td>
+             <td>
+             <img class="role_h" src="{% static  'ng/img/bitmap-1.png' %}" style="border : 2px solid white; padding:3px;">
+             </td>
+             </tr>
+               <tr style="height:35px;"><td></td><td></td><td></td></tr>
+             <tr>
+                 <td>
+                 <label class="label_input_file">
+                   <input name="select_radio" type="radio" id="meaning_{{ last_ms }}" value="{{ last_ms }}" hidden>
+                   <span class="castom_input_file" disabled><img id="last_ms_{{ last_ms }}" class="img-responsive m meaning_img" src="{% static 'ng/img/' %}kreyon_meaning{{ last_ms }}.png" meaning_name="last_ms_{{ last_ms }}"></span>
+                 </label>
+               </td>
+
+               <td>
+               </td>
+
+               <td>
+                 <label class="label_input_file">
+                   <input name="select_radio" type="radio" id="meaning_{{ last_mh }}" value="{{ last_mh }}" hidden>
+                   <span class="castom_input_file" disabled><img  id="last_mh_{{ last_mh }}" class="img-responsive m meaning_img" src="{% static 'ng/img/' %}kreyon_meaning{{ last_mh }}.png" meaning_name="last_mh_{{ last_mh }}"></span>
+                 </label>
+               </td>
+
+             </tr>
+               </table>
+
               {% endif %}
-              {% endif %}
-           </div>
            {% elif context == "question" %}
           <div class="text_content_div">
             <span class="text_content" id="anhearer_text">quelqu'un essaye de communiquer avec vous.
@@ -280,8 +336,11 @@
 
          //Tooltips
          var lang = $('html').attr('lang');
+         var context = $('#context').text();
 
          if (lang == "fr"){
+           if (context == "question"){
+
            $('#word').tooltip({
          	   title : "Vous entendez ce mot :",
          	   placement : "left",
@@ -300,8 +359,28 @@
            	trigger: "hover focus",
            });
 
-        } else if (lang == "en") {
+         } else {
+           $('#word_inter').tooltip({
+            title : "Le mot utilisé dans cette conversation",
+            placement : "bottom",
+            trigger: "hover focus",
+           });
 
+           $('#last_mh').tooltip({
+            title : "Ce à quoi vous pensiez",
+            placement : "left",
+            trigger: "hover focus",
+           });
+
+           $('#last_ms').tooltip({
+            title : "Ce à quoi votre coéquipier pensait",
+            placement : "right",
+            trigger: "hover focus",
+           });
+         }
+
+        } else if (lang == "en") {
+          if (context == "question"){
             $('#menu-h').tooltip({
             	title : "Click to see past interactions",
             	placement : "bottom",
@@ -320,8 +399,28 @@
             	trigger: "hover focus",
             });
 
-        } else {
+          } else {
+            $('#word_inter').tooltip({
+             title : "The word used in this conversation",
+             placement : "bottom",
+             trigger: "hover focus",
+            });
 
+            $('#last_mh').tooltip({
+             title : "What you were thinking",
+             placement : "left",
+             trigger: "hover focus",
+            });
+
+            $('#last_ms').tooltip({
+             title : "What your partner was thinking",
+             placement : "right",
+             trigger: "hover focus",
+            });
+          }
+
+        } else if (lang == "it"){
+          if (context == "question"){
           $('#menu-h').tooltip({
             title : "ITALIAN",
             placement : "bottom",
@@ -339,6 +438,26 @@
             	placement : "right",
             	trigger: "hover focus",
             });
+
+          } else {
+            $('#word_inter').tooltip({
+             title : "ITALIAN",
+             placement : "bottom",
+             trigger: "hover focus",
+            });
+
+            $('#last_mh').tooltip({
+             title : "ITALIAN",
+             placement : "left",
+             trigger: "hover focus",
+            });
+
+            $('#last_ms').tooltip({
+             title : "ITALIAN",
+             placement : "right",
+             trigger: "hover focus",
+            });
+          }
 
         }
 

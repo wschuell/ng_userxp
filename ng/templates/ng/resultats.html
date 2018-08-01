@@ -47,10 +47,12 @@
             <div class="row_inputs_file row_inputs_top" id="r1">
               <div id="div1">
               {% for m in m_list %}
+              <div class="result_img">
               <label class="label_input_file">
                 <input name="result_checkbox" type="radio" hidden>
                 <span class="castom_input_file" disabled><img src="{% static 'ng/img/' %}kreyon_meaning{{m}}.png" id="meaning{{m}}" style="width:80px; height:80px"></span>
               </label>
+            </div>
               {% endfor %}
             </div>
             </div>

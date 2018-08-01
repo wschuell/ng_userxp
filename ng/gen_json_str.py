@@ -56,7 +56,7 @@ dict_obj = {
 
     #Feedback
     'speaker_success': "Bravo, votre interlocuteur vous a compris !",
-    'speaker-learn': "Votre coéquipier ne connaissait pas ce mot mais il s'en souviendra pour la prochaine fois !",
+    'speaker_learn': "Votre coéquipier ne connaissait pas ce mot mais il s'en souviendra pour la prochaine fois !",
     'speaker_failure': "Oups, votre interlocuteur pensait que vous parliez d'autre chose. Il s'en souviendra pour la prochaine fois !",
     'hearer_success': "Bravo, vous avez compris votre interlocuteur ! Vous vous en souviendrez pour la prochaine fois !",
     'hearer_learn': "Voilà ce que votre coéquipier voulait dire, vous vous en souviendrez pour la prochaine fois !",
