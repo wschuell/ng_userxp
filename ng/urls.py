@@ -1,5 +1,6 @@
 from django.conf.urls import url
 from django.contrib.auth import views as auth_views
+from django.conf.urls import handler404, handler500
 import django
 
 from . import views
@@ -54,6 +55,8 @@ urlpatterns = [
     ###DEBUG###
     #url(r'^test_score', views.test_score, name='test_score'),
     url(r'^infos', views.info, name='info'),
-    url(r'^error_page', views.test_error, name="error"),
-
+    url(r'^error', views.error, name="error"),
 ]
+
+handler404 = views.error
+handler500 = views.error

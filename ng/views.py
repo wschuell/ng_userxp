@@ -698,7 +698,5 @@ def info(request):
 
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
-def test_error(request):
-        return render(request, 'ng/error_page.html', {
-    })
+def error(request):
+    return render(request, 'error_page.html')

@@ -91,7 +91,7 @@
           <div class="control_ico">
             <img src="{% static 'ng/img/bitmap-2.png' %}" style="margin: auto auto 40px; ">
           </div>
-          {% for score in user.score_set.all|slice:":10"|dictsortreversed:"score" %}
+          {% for score in user.score_set.all|dictsortreversed:"score"|slice:":10" %}
            <p class="col_3_p">{{ forloop.counter }} .{{ score.score }}</p>
            {% endfor %}
 
