@@ -54,5 +54,6 @@ urlpatterns = [
     ###DEBUG###
     #url(r'^test_score', views.test_score, name='test_score'),
     url(r'^infos', views.info, name='info'),
+    url(r'^error_page', views.test_error, name="error"),
 
 ]

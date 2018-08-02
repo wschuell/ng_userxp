@@ -695,3 +695,10 @@ def info(request):
             'form' : form,
             'q_filled' : u.q_filled,
     })
+
+
+@csrf_protect
+@login_required(login_url='/ng/login/')
+def test_error(request):
+        return render(request, 'ng/error_page.html', {
+    })

@@ -110,7 +110,7 @@ var lang = {"fr": {"btn_continue": "Continuer", "subtitle": "Explorer le langage
         );
         $('html').attr('lang',lang_str);
         if (lang_str == "en"){$("#lang").attr("src",'../static/ng/img/english-flag.png').attr("value", "en");};
-        if (lang_str == "it"){$("#lang").attr("src",'../static/ng/img/italian-flag.png').attr("value","it");};
+        //if (lang_str == "it"){$("#lang").attr("src",'../static/ng/img/italian-flag.png').attr("value","it");};
         if (lang_str == "fr"){$("#lang").attr("src",'../static/ng/img/french-flag.png').attr("value","fr");};
 
     };
@@ -133,12 +133,16 @@ function switch_language(lang){
     if (lang == "fr"){next_lang = "en";
                       $("#lang").attr("src",'../static/ng/img/english-flag.png').attr("value", "en");
                     };
-    if (lang == "en"){next_lang = "it";
-                      $("#lang").attr("src",'../static/ng/img/italian-flag.png').attr("value","it");
-                    };
-    if (lang == "it"){next_lang = "fr";
-                      $("#lang").attr("src",'../static/ng/img/french-flag.png').attr("value","fr");
-                    };
+  //  if (lang == "en"){next_lang = "it";
+    //                  $("#lang").attr("src",'../static/ng/img/italian-flag.png').attr("value","it");
+    //                };
+    //if (lang == "it"){next_lang = "fr";
+    //                  $("#lang").attr("src",'../static/ng/img/french-flag.png').attr("value","fr");
+    //                };
+
+    if (lang == "en"){next_lang = "fr";
+                        $("#lang").attr("src",'../static/ng/img/french-flag.png').attr("value","fr");
+                      };
     Cookies.set('NamingGameLang',next_lang);
     return next_lang;
 };
