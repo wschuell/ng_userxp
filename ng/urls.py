@@ -20,8 +20,8 @@ urlpatterns = [
      url(r'^(?P<xp_uuid>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})-speaker-$', views.result_speaker, name='results_speaker_base'),#ResultsView.as_view(), name='results'),
     url(r'^(?P<xp_uuid>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/vote/$', views.vote, name='vote'),
     url(r'^(?P<xp_uuid>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/continue/$', views.continue_userxp, name='continue'),
-    url(r'^accounts/login/$', django.contrib.auth.views.login,name='login_old'),
-    url(r'^logout/$', django.contrib.auth.views.logout, {'next_page': '/ng/login'}, name='logout'),
+    #url(r'^accounts/login/$', django.contrib.auth.views.login,name='login_old'),
+    #url(r'^logout/$', django.contrib.auth.views.logout, {'next_page': '/ng/login'}, name='logout'),
     #url(r'^login/$', views.login_view, name='login'),
     url(r'^login/$', views.get_name, name='login'),
 
