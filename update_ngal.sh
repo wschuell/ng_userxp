@@ -1,5 +1,6 @@
 # if not set NGALBRANCH and no file set to develop and write in config file
 # if not set and file get from file
+pip install cython
 if [ ! -d ../ng_userxp_deps/naminggamesal ]
 then
 	cd ..

@@ -172,7 +172,7 @@ LOGGING = {
         'mail_admins': {
             'level': 'ERROR',
             'class': 'django.utils.log.AdminEmailHandler',
-            'filters': ['special']
+            #'filters': ['special']
         },
         'file': {
             'level': 'INFO',
@@ -190,10 +190,9 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': False,
         },
-        'myproject.custom': {
+        'ng': {
             'handlers': ['console', 'mail_admins','file'],
             'level': 'INFO',
-            'filters': ['special']
         }
     }
 }
