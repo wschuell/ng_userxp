@@ -123,7 +123,7 @@ class Experiment(models.Model):
 
     def init_xp(self):
         db = ngal.ngdb.NamingGamesDB(db_type='psycopg2',conn_info="host='db' dbname='naminggames' user='naminggames' password='naminggames'")
-        self.xp = db.get_experiment(force_new=True,**json.loads(self.xp_config.xp_config))
+        self.xp = db.get_experiment(force_new=True,db_type='postgres',conn_info="host='db' dbname='naminggames' user='naminggames' password='naminggames'",**json.loads(self.xp_config.xp_config))
         self.xp_uuid = self.xp.uuid
         self.xp.init_poplist()
         self.xp._poplist.compress()
