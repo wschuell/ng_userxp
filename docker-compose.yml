@@ -21,6 +21,8 @@ services:
     build: .
     container_name: ng
     command: bash start_server.sh
+    tmpfs:
+      - /code/data/current_game_info
     volumes:
       - static-data:/static
       - .:/code

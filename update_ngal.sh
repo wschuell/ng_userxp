@@ -1,5 +1,15 @@
-# if not set NGALBRANCH and no file set to develop and write in config file
-# if not set and file get from file
+
+
+FILE=ngal_branch.txt
+if [ -f $FILE ]; then
+   NGALBRANCH=$(cat $FILE)
+else
+   NGALBRANCH=develop
+   echo $NGALBRANCH>$FILE
+fi
+
+echo "NGALBRANCH:"$NGALBRANCH
+
 pip install cython
 if [ ! -d ../ng_userxp_deps/naminggamesal ]
 then
@@ -14,6 +24,7 @@ then
 else
 	cd ../ng_userxp_deps/naminggamesal
 	git pull
+	git checkout $NGALBRANCH
 	python3 setup.py develop
 	cd /code
 fi;
