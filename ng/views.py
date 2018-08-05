@@ -426,6 +426,11 @@ def result_speaker_continue(request, xp_uuid, meaning, word):
     experiment.save_currentgame_json(currentgame_json)
     experiment.continue_xp()
     bool_succ = experiment.get_last_bool_succ()
+    #bool_newconv = experiment.get_last_bool_newconv()
+    #if bool_newconv:
+    #   experiment.increase_proba_naive()
+    #else:
+    #   experiment.increase_proba_naive()
     mh = experiment.get_last_mh()
     if mh is None:
         mh = 'none'
