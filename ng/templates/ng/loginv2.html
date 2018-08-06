@@ -64,23 +64,23 @@
            $("#id_name_cookie_id").val($("#username").html());
 
            $('#id_code').tooltip({
-             title : "Si vous n'avez pas de code, laissez ce champ vide.",
+             title : current_lang.tooltip_example,//"Si vous n'avez pas de code, laissez ce champ vide.",
              placement : "left",
              trigger : "hover focus",
            });
 
 
-           $('#it').click(function(event){
-               change_language(($('#it').attr('value')));
-               $('#id_code').attr('data-original-title', "ITALIAN");
-           });
+           // $('#it').click(function(event){
+           //     change_language(($('#it').attr('value')));
+           //     $('#id_code').attr('data-original-title', "ITALIAN");
+           // });
            $('#en').click(function(event){
                change_language(($('#en').attr('value')));
-               $('#id_code').attr('data-original-title', "If you don't have any code, leave this field empty.");
+               // $('#id_code').attr('data-original-title', "If you don't have any code, leave this field empty.");
            });
            $('#fr').click(function(event){
                change_language(($('#fr').attr('value')));
-               $('#id_code').attr('data-original-title', "Si vous n'avez pas de code, laissez ce champ vide.");
+               // $('#id_code').attr('data-original-title', "Si vous n'avez pas de code, laissez ce champ vide.");
 
            });
            set_language();

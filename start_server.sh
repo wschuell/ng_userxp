@@ -17,6 +17,10 @@ touch ng/admin_bis.py
 #   sleep 1
 # done &&
 
+cd ng
+python gen_json_string.py
+cd ..
+
 bash update_ngal.sh
 
 #echo $(python manage.py admin_generator ng '^exp')

@@ -75,6 +75,9 @@ dict_obj = {
     'label_q3':"Êtes-vous familier.ère avec les concepts évoqués plus haut ? ",
     'label_q4':"Avez-vous eu l'impression d'utiliser une certaine stratégie (ou plusieurs) lors de vos parties ?",
     'label_q5':"Si oui, pourriez-vous la ou les décrire brièvement ?",
+
+    #Tooltips
+    'tooltip_example':"Si vous n'avez pas de code, laissez ce champ vide.",
   },
 
   'en': {
@@ -151,6 +154,8 @@ dict_obj = {
     'label_q4':"Did you felt like you used a certain strategy (or several) during your games ?",
     'label_q5':"If it is a 'Yes', could you describe it briefly ?",
 
+    #Tooltips
+    'tooltip_example':"If you were not provided a token, leave empty.",
   },
   'it': {
 
@@ -226,6 +231,8 @@ dict_obj = {
             'label_q4':"Avez-vous eu l'impression d'utiliser une certaine stratégie (ou plusieurs) lors de vos parties ?",
             'label_q5':"Si oui, pourriez-vous la ou les décrire brièvement ?",
 
+    #Tooltips
+    'tooltip_example':"Si vous n'avez pas de code, laissez ce champ vide.",
   }
 };
 
