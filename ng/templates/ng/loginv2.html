@@ -1,0 +1,195 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <link type="text/css" rel="stylesheet" href="{% static 'ng/bootstrap-4.0.0-dist/css/bootstrap.min.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'ng/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}"/>
+
+    <link href="{% static 'ng/stylev2.css' %}" rel="stylesheet" type="text/css">
+    <!--JQuery-->
+    <script src="{% static 'ng/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'ng/popper.min.js' %}"></script>
+    <script src="{% static 'ng/bootstrap.min.js' %}"></script>
+    <script src="{% static 'ng/js.cookie.js' %}"></script>
+    <script src="{% static 'ng/script.js' %}"></script>
+    <script src="{% static 'ng/change_lang.js' %}"></script>
+    <script type="text/javascript">
+        var url_send_user_info = "{% url 'ng:send_user_info_base'  %}";
+        var url_newxp = "{% url 'ng:new_experiment'  %}";
+        var url_home = "{% url 'ng:home'  %}";
+
+        var sound_click = document.createElement('audio');
+        sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+        Cookies.set('NamingGameSound', true);
+
+        //uuid
+        function uuid()
+        {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                var r = Math.random()*16|0, v = c === 'x' ? r : (r&0x3|0x8);
+                return v.toString(16);
+            });
+        }
+
+        //user cookie
+        if (typeof Cookies.get('NamingGameUser') === 'undefined'){
+            var user_str = uuid();
+            $("#username").html(user_str);
+            Cookies.set('NamingGameUser',
+                user_str
+                );
+            };
+
+         //language
+        $(".info_lang").click(function(){
+           sound_click.play();
+           var language = $(this).val();
+           $('#lang').html(language);
+           $("#id_lang").val($("#lang").html());
+         });
+
+         $('#submit').click(function(){
+           sound_click.play();
+         });
+
+
+         $(document).ready(function(){
+
+           $('body').css('visibility', 'visible');
+
+           $("#id_name_cookie_id").val($("#username").html());
+
+           $('#id_code').tooltip({
+             title : "Si vous n'avez pas de code, laissez ce champ vide.",
+             placement : "left",
+             trigger : "hover focus",
+           });
+
+
+           $('#it').click(function(event){
+               change_language(($('#it').attr('value')));
+               $('#id_code').attr('data-original-title', "ITALIAN");
+           });
+           $('#en').click(function(event){
+               change_language(($('#en').attr('value')));
+               $('#id_code').attr('data-original-title', "If you don't have any code, leave this field empty.");
+           });
+           $('#fr').click(function(event){
+               change_language(($('#fr').attr('value')));
+               $('#id_code').attr('data-original-title', "Si vous n'avez pas de code, laissez ce champ vide.");
+
+           });
+           set_language();
+
+           });
+
+
+    </script>
+
+  </head>
+  <body class="login_page">
+    <div class="container">
+        <div class="col_1 col">
+          <div class="imag_center">
+            <img src="{% static 'ng/img/logo.png' %}">
+          </div>
+        </div>
+        <div class="col_2 col">
+
+          <h1 class="convers_font" style="padding:0px; margin-top:25px; margin-bottom:25px;" id="welcome">Le Naming Game !</h1>
+          <!-- Formulaire -->
+           <!--action="/action_page.php"-->
+          <form id="form" method="post">
+            <div class="form-group">
+
+                  <div class="row">
+                <div class="col-md-4"> </div>
+                <div class="col-md-4">
+                  <!--Choix Nom-->
+
+
+                <!--	<input type="username" class="form-control" id="username" value="Submit" required>-->
+        <!-- 				{% csrf_token %} -->
+
+              {% csrf_token %}
+              {{form.non_field_errors}}
+              <div class="fieldWrapper">
+              {{ form.name_cookie_id.errors }}
+              {{ form.name_cookie_id }}
+              </div>
+
+              <div class="fieldWrapper">
+                {{ form.your_name.errors }}
+                <label for="player-name" class="text_login" id="enter_player_name" style="display:block">Entrez votre nom ici :</label>
+                {{ form.your_name }}
+              </div>
+
+                  <div class="not_displayed" style= "visible:hidden; display:none">
+                    <span id="username"></span>
+                  </div>
+                </div>
+                <div class="col-md-4"> </div>
+              </div>
+              <div class="fieldWrapper">
+              {{ form.name_lang.errors }}
+              {{ form.name_lang }}
+              </div>
+                <!--Choix Langage-->
+                <label class="text_login" id="label_lang">Choisissez la langue du jeu :</label>
+
+              <div class="row" id="middle">
+                <div class="col-sm">
+                  <label class = "lang">
+                      <input type="radio"  name="lang" class="info_lang"  id="fr" value="fr"  checked/>
+                    <!--adresse img :https://cdn.pixabay.com/photo/2015/11/20/18/55/french-flag-1053711_960_720.png-->
+                    <img src="{% static 'ng/img/french-flag.png' %}"  class="lang" value="fr" for="fr" alt="french" >
+                  </label>
+                </div>
+
+                <div class="col-sm">
+                  <label class="lang">
+                      <input type="radio" class="lang" name="lang" class="info_lang" id="en" value="en"/>
+                    <!--adresse img :https://cdn.pixabay.com/photo/2012/04/23/16/15/flags-38754_960_720.png-->
+                    <img src="{% static 'ng/img/english-flag.png' %}" class="lang" value="en" for="en" alt="english" >
+                  </label>
+                </div>
+              <!--  <div class="col-sm">
+                  <label class="lang">
+                      <input type="radio" class="lang" name="lang" class="info_lang" id="it" value="it" />
+                    <img src="{% static 'ng/img/italian-flag.png' %}" class="lang" value="it" for = "it" alt="italian" >
+                  </label>
+                </div> -->
+              </div>
+
+              <div class="row">
+                <!--Code si pertinent-->
+                  <div class="fieldWrapper" style="margin : auto;">
+                      {{form.code.errors}}
+                      <label class="text_login" id="label_code">Si vous avez un code spécial, veuillez l'entrer ici :</label>
+                      {{form.code}}
+                  </div>
+              </div>
+
+
+              <div class="row" id="footer">
+                  <input type="submit" class="btn btn-default bt-lg" id="submit" value="Valider"/>
+              </div>
+            </div>
+          </form>
+
+
+        {% csrf_token %}
+
+        </div>
+        <div class="col_3 col">
+        <!--  <div class="control_ico">
+            <img src="{% static 'ng/img/bitmap.png' %}">
+          </div> -->
+        </div>
+    </div>
+  </body>
+</html>

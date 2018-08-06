@@ -50,14 +50,12 @@ body {
 #sound-off {
 	margin-top : 11px;
 	cursor : pointer;
-	display : none;
 	font-size: 37px;
 }
 
 #sound-on {
 	margin-top : 11px;
 	cursor : pointer;
-	display : inline;
 	font-size: 37px;
 }
 
@@ -90,10 +88,16 @@ body {
 /*Login Page*/
 
 
-.label {
+.label1 {
+	font-family : serif;
 	font-size : 20px;
 	padding : 55px 15px 15px;
+	color : white;
 
+}
+
+#id_code, #id_your_name {
+	color : black
 }
 
 .lang > input{ /* HIDE RADIO */
@@ -323,7 +327,7 @@ p {
 
 #tab {
 	display : block;
-	margin : 5% 5% 0%;
+	margin : 5% 2% 0%;
 	width : 100%;
 	table-layout : fixed;
 }
@@ -711,7 +715,7 @@ tr{
 #btn_no:hover {border : 4px solid #4098FD;}
 
 .btn-modal > p {
-	font-size : 16px;
+	font-size : 15px;
 }
 
 /*Historique*/
@@ -768,4 +772,23 @@ tr{
 
 #error_span {
 	font-size : 45px;
+}
+
+/*Info Page*/
+
+.text_info{
+	font-size: 20px;
+	color : white;
+	font-family: serif;
+	margin-bottom: : 30px;
+}
+
+#question_title {
+	margin : 50px auto 30px;
+	font-size : 36px;
+	text-align: center;
+}
+
+#info_text {
+	background-color: background-color : rgba(0,0,0,0.6);
 }

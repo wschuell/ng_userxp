@@ -20,17 +20,13 @@ var lang = $('html').attr('lang');
 
 
 
-var src_logo_speaker = "../static/img/logo_speaker_temp.png" ;
-var src_logo_hearer = "../static/img/logo_hearer_temp.png";
-
-
 //Tooltips Game
 if (lang == "fr"){
 //Historique
 $('#menu-h').tooltip({
 	title : "Cliquez ici pour voir l'historique",
 	placement : "bottom",
-	trigger: "manual",
+	trigger: "hover focus",
 });
 
 //Bouton info
@@ -102,7 +98,7 @@ $('#other-meaning').tooltip({
 	$('#menu-h').tooltip({
 		title : "Click to see past interactions",
 		placement : "bottom",
-		trigger: "manual",
+		trigger: "hover focus",
 	});
 
 	//Speaker Role
@@ -203,7 +199,7 @@ $('#other-meaning').tooltip({
 
 //Display Tooltips
 
-	$('#menu-h').tooltip('show');
+	//$('#menu-h').tooltip('show');
 
 	$('#menu-h').click(function(){
 		$('#menu-h').tooltip('hide')
@@ -389,7 +385,7 @@ if (context == "question" || context == "skipped") {
 				} else {
 					if (lang == 'fr'){
 					$('#other-meaning').tooltip({
-						title : "Voià ce que voulait dire votre interlocuteur. Vous vous en souviendrez pour la prochaine fois !",
+						title : "Voilà ce que voulait dire votre interlocuteur. Vous vous en souviendrez pour la prochaine fois !",
 						placement : "right",
 						trigger: "manual",
 					});

@@ -6,19 +6,21 @@
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
 
 	<!-- Bootstrap CSS -->
   <link type="text/css" rel="stylesheet" href="{% static 'ng/bootstrap-4.0.0-dist/css/bootstrap.min.css' %}"/>
   <link type="text/css" rel="stylesheet" href="{% static 'ng/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}"/>
 
 	<!--CSS-->
-	<link type="text/css" rel="stylesheet" href="{% static 'ng/ng.css' %}"/>
+  <link href="{% static 'ng/stylev2.css' %}" rel="stylesheet" type="text/css">
 
 	<!--JQuery-->
   <!--<script src="{% static 'ng/jquery-3.2.1.min.js' %}"></script>-->
 	<script src="{% static 'ng/jquery-3.3.1.min.js' %}"></script>
-	<script src="{% static 'ng/popper.min.js' %}"></script>
 	<script src="{% static 'ng/bootstrap.min.js' %}"></script>
+  <script src="{% static 'ng/popper.min.js' %}"></script>
 	<script src="{% static 'ng/js.cookie.js' %}"></script>
   <script src="{% static 'ng/change_lang.js' %}"></script>
 
@@ -26,24 +28,18 @@
  {% include "ng/matomo.html" %}
   </head>
 
-<body>
-  	<div class="error_div row">
-  		<div class="col-lg-2">
-  		<!--Menu-->
-  			<div class="menu" style="margin-right: auto; margin-left:auto; width:60%; max-width: 160px">
-  				<span class="glyphicon glyphicon-info-sign icon" id="info"></span>
-  				<span class="glyphicon glyphicon-volume-off icon" id="sound-off"></span>
-  				<span class="glyphicon glyphicon-volume-up icon" id="sound-on"></span>
-  				<span class="glyphicon glyphicon-home icon" id="home"></span>
-  			</div>
-  		</div>
-  		<div class="col-lg-10"></div>
-  	</div>
-  	<div class="error_div row">
-  		<div class="col-md-3"></div>
-  		<div class="col-xs-10 col-md-6">
+<body class="four_page">
+  <div class="container">
+
+      <div class="col_1 col">
+        <div class="imag_center">
+          <img src="{% static 'ng/img/logo.png' %}" id="home">
+        </div>
+      </div>
+
+  		<div class="col-xs-10 col-md-6" style="margin-left:100px;">
   			<div class = "row">
-  				<div id="error_text" class="col-xs-12">
+  				<div id="error_text" class="col-xs-12 text_content">
   					<span id="error_span">Oups !</span> Il semblerait qu'une erreur se soit produite ! Vous pouvez tenter de continuer ou revenir à l'accueil pour commencer une nouvelle partie.
   				</div>
   			</div>
@@ -56,40 +52,65 @@
   				</div>
   			</div>
   		</div>
-  		<div class="col-md-3"></div>
-  	</div>
-  	<div class="error_div row"></div>
+  		<div class="col_1 col"></div>
+      <img src="{% static 'ng/img/bitmap.png' %}"  id="sound-on" style="width: 24px;height: 21px;">
+      <img src="{% static  'ng/img/bitmap-sound-off.png' %}" id="sound-off" style=" width: 24px;height: 21px;">
 
+  </div>
 	<script text="text/javascript">
 	{% if experiment %}
 	var url_continue = "{% url 'ng:continue' experiment.xp_uuid %}";
 	{% endif %}
-$(document).ready(function() {
 
-  	$('body').css('visibility', 'visible');
+  var sound_click = document.createElement('audio');
 
-	//Menu
+  $(document).ready(function(){
+    $('body').css('visibility', 'visible');
 
-	//Sound
-	$('#sound-off').click(function(){
-		$('#sound-off').css('display','none');
-		$('#sound-on').css('display','inline');
-	});
-	$('#sound-on').click(function(){
-		$('#sound-on').css('display','none');
-		$('#sound-off').css('display','inline');
-	})
+  if (typeof Cookies.get('NamingGameSound') === 'undefined'){
+    Cookies.set('NamingGameSound', true);
+    sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+    $('#sound-on').css('display','none');
+    $('#sound-off').css('display','inline');
+ } else if (Cookies.get('NamingGameSound')) {
+    sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+    $('#sound-on').css('display','none');
+    $('#sound-off').css('display','inline');
+} else {
+   sound_click.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
+   $('#sound-off').css('display','none');
+   $('#sound-on').css('display','inline');
+}
+//Menu
+
+//Sound
+$('#sound-off').click(function(){
+  Cookies.set('NamingGameSound', false);
+  sound_click.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
+ $('#sound-off').css('display','none');
+ $('#sound-on').css('display','inline');
+});
+$('#sound-on').click(function(){
+  Cookies.set('NamingGameSound', true);
+  sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+  sound_click.play();
+ $('#sound-on').css('display','none');
+ $('#sound-off').css('display','inline');
+});
 
 	//Home
 	$('#home').click(function(){
+    sound_click.play();
 	 window.location.href = "/";
 	});
 
 	$('#btn_home').click(function(){
+    sound_click.play();
 	 window.location.href = "/";
 	});
 
 	$('#btn_continue').click(function(){
+    sound_click.play();
 	 window.location.href = url_continue;
 	});
 

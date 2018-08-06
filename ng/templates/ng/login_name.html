@@ -9,6 +9,8 @@
     <title id="window_title">Naming Game</title>
     <!-- Bootstrap CSS -->
     <link type="text/css" rel="stylesheet" href="{% static 'ng/bootstrap-4.0.0-dist/css/bootstrap.min.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'ng/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}"/>
+
   	<!--CSS-->
   	<link type="text/css" rel="stylesheet" href="{% static 'ng/ng.css' %}"/>
 
@@ -26,6 +28,10 @@
          var url_send_user_info = "{% url 'ng:send_user_info_base'  %}";
          var url_newxp = "{% url 'ng:new_experiment'  %}";
          var url_home = "{% url 'ng:home'  %}";
+
+         var sound_click = document.createElement('audio');
+         sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+         Cookies.set('NamingGameSound', true);
 
          //uuid
          function uuid()
@@ -47,33 +53,51 @@
 
           //language
          $(".info_lang").click(function(){
+            sound_click.play();
             var language = $(this).val();
-            print(language);
             $('#lang').html(language);
             $("#id_lang").val($("#lang").html());
           });
 
+          $('#submit').click(function(){
+            sound_click.play();
+          });
+
+
           $(document).ready(function(){
+
+            $('body').css('visibility', 'visible');
+
             $("#id_name_cookie_id").val($("#username").html());
+
+            $('#id_code').tooltip({
+              title : "",
+              placement : "left",
+              trigger : "hover focus",
+            });
+
 
             $('#it').click(function(event){
                 change_language(($('#it').attr('value')));
+                $('#id_code').attr('data-original-title', "ITALIAN");
             });
             $('#en').click(function(event){
                 change_language(($('#en').attr('value')));
+                $('#id_code').attr('data-original-title', "If you don't have any code, leave this field empty.");
             });
             $('#fr').click(function(event){
                 change_language(($('#fr').attr('value')));
+<<<<<<< HEAD
             });
                 set_language();
 
                 $('body').css('visibility', 'visible');
+=======
+                $('#id_code').attr('data-original-title', "Si vous n'avez pas de code, laissez ce champ vide.");
+>>>>>>> feature/new_templates
 
-            $('#id_code').tooltip({
-              title : "Si vous n'avez pas de code, laissez ce champ vide.",
-              placement : "left",
-              trigger : "hover",
-            })
+            });
+            set_language();
 
             });
 
@@ -89,7 +113,6 @@
   </head>
 <body>
 	<h1 class="pagetitle" style="padding:0px; margin-top:25px;" id="welcome">Le Naming Game !</h1>
-
 	<!-- Formulaire -->
 	 <!--action="/action_page.php"-->
 	<form id="form" method="post">
@@ -113,7 +136,7 @@
 
       <div class="fieldWrapper">
         {{ form.your_name.errors }}
-        <label for="player-name" class="label" id="enter_player_name" style="display:block">Entrez votre nom ici :</label>
+        <label for="player-name" class="label1" id="enter_player_name" style="display:block">Entrez votre nom ici :</label>
 				{{ form.your_name }}
       </div>
 
@@ -128,7 +151,7 @@
       {{ form.name_lang }}
       </div>
 				<!--Choix Langage-->
-				<label class="label" id="label_lang">Choisissez la langue du jeu :</label>
+				<label class="label1" id="label_lang">Choisissez la langue du jeu :</label>
 
 			<div class="row" id="middle">
         <div class="col-lg-2 visible-lg"> </div>
@@ -163,7 +186,7 @@
         <div class="col-md-4">
           <div class="fieldWrapper">
               {{form.code.errors}}
-              <label class="label" id="label_code" style= "font-size: 20px;">Si vous avez un code spécial, veuillez l'entrer ici :</label>
+              <label class="label1" id="label_code" style= "font-size: 20px;">Si vous avez un code spécial, veuillez l'entrer ici :</label>
               {{form.code}}
           </div>
       </div>

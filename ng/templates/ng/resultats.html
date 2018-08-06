@@ -1,0 +1,269 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang={{userNG.lang}}>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <link type="text/css" rel="stylesheet" href="{% static 'ng/bootstrap-4.0.0-dist/css/bootstrap.min.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'ng/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}"/>
+
+
+
+    <script src="{% static 'ng/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'ng/bootstrap.min.js' %}"></script>
+    <script src="{% static 'ng/popper.min.js' %}"></script>
+    <script src="{% static 'ng/change_lang.js' %}"></script>
+    <script src="{% static 'ng/js.cookie.js' %}"></script>
+    <link href="{% static 'ng/stylev2.css' %}" rel="stylesheet" type="text/css">
+    <title>NamingGame</title>
+  </head>
+  <body class="resultats_page">
+    <div class="container">
+        <div class="col_1 col">
+          <div class="imag_center">
+          <img src="{% static 'ng/img/logo.png' %}" id="home">
+        </div>
+        <div class="imag_center_two">
+          <img src="{% static 'ng/img/chat-min.png' %}">
+        </div>
+        <div class="imag_center_twot_tru">
+          <img src="{% static 'ng/img/user_groop.png' %}">
+        </div>
+
+        <img src="{% static 'ng/img/bitmap.png' %}" id="sound-on" style= "margin: 1px auto 4px; padding-left: 25px;">
+        <img src="{% static  'ng/img/bitmap-sound-off.png' %}" id="sound-off" style= "margin: 1px auto 4px; padding-left: 25px;">
+
+        </div>
+        <div class="col_2 col">
+          <h1 class="convers_font" id="results">RESULTATS</h1>
+          <h2 class="droop"><span id="texte_score">Score :</span> {{score}}</h2>
+          <div class="text_content_div" >
+            <p class="text_content_four" id="text_end" style="max-width:1000px;"></p>
+          </div>
+
+          <form>
+            <div class="row_inputs_file row_inputs_top" id="r1">
+              <div id="div1">
+              {% for m in m_list %}
+              <div class="result_img">
+              <label class="label_input_file">
+                <input name="result_checkbox" type="radio" hidden>
+                <span class="castom_input_file" disabled><img src="{% static 'ng/img/' %}kreyon_meaning{{m}}.png" id="meaning{{m}}" style="width:80px; height:80px"></span>
+              </label>
+            </div>
+              {% endfor %}
+            </div>
+            </div>
+            <div class="row_inputs_file row_inputs_file_three" id="r2">
+              <div id="div2">
+              {% for w in w_list1 %}
+              <label class="label_input_file_two label_input_right">
+                <input type="text" class="castom_input" value="{{w}}" id="word1_{{forloop.counter}}" readonly>
+              </label>
+              {% endfor %}
+            </div>
+            </div>
+            <div class="row_inputs_file_two" id="r3">
+              <div id="div3">
+              {% for w in w_list2 %}
+              <label class="label_input_file_two label_input_right">
+                <input type="text" class="castom_input" value="{{w}}" id="word2_{{forloop.counter}}" readonly>
+              </label>
+              {% endfor %}
+            </div>
+            </div>
+            <a href="/" class="btn trangle continue" id="continue">CONTINUER <span class="block"></span></a>
+          </form>
+        </div>
+        <div class="col_3 col">
+          <div class="control_ico" style="display:block;">
+            <img src="{% static 'ng/img/history.png' %}" id="menu-h">
+          </div>
+        </div>
+    </div>
+
+    <!--Historique-->
+    <div class="hide" id="hcontent">
+      <div id="popover-heading">
+        <div class='row' id='historyColNames'>
+          <div class='col-xs-4' >
+            <p style="font-size : 16px" id="history_objects">Objets</p>
+          </div>
+
+          <div class='col-xs-4' >
+            <p style="font-size : 16px" id="history_words">Mots</p>
+          </div>
+
+          <div class='col-xs-4' >
+            <p style="font-size : 16px" id="history_success">Succès</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="popover-body">
+
+        {% for past_int in experiment.pastinteraction_set.all|dictsortreversed:"time_id" %}
+        {% if past_int.role == "hearer"%}
+        <div "line_meaning">
+          <div class='row'>
+              <div class='col-xs-3' >
+                  <span ><img src="{% static 'ng/img/' %}kreyon_meaning{{ past_int.meaning }}.png" class="img-histo"></span>
+              </div>
+             <div class='col-xs-6' >
+               <span class="w-histo">{{ past_int.word }}</span>
+             </div>
+             <div class='col-xs-3' >
+             {% if past_int.bool_succ %}<span ><img class="img-responsive meaning img-histo" src="{% static 'ng/img/' %}feedback_success_temp.png"></span>{% endif %}
+            </div>
+        </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+    </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <script text="text/javascript">
+
+    $(document).ready(function(){
+
+    $('body').css('visibility', 'visible');
+
+    var sound_click = document.createElement('audio');
+    var music = document.createElement('audio');
+
+    if (typeof Cookies.get('NamingGameSound') === 'undefined'){
+        Cookies.set('NamingGameSound', true);
+        sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+        music.setAttribute('src', "{% static 'ng/sounds/263479__orangefreesounds__dreamy-melodic-synth-loop.wav' %}");
+
+     $('#sound-on').css('display','none');
+     $('#sound-off').css('display','inline');
+    } else if (Cookies.get('NamingGameSound')) {
+       sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+       music.setAttribute('src', "{% static 'ng/sounds/263479__orangefreesounds__dreamy-melodic-synth-loop.wav' %}");
+
+     $('#sound-on').css('display','none');
+     $('#sound-off').css('display','inline');
+    } else {
+      sound_click.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
+      music.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
+
+      $('#sound-off').css('display','none');
+      $('#sound-on').css('display','inline');
+    }
+
+    //Sound
+    $('#sound-off').click(function(){
+      Cookies.set('NamingGameSound', false);
+      sound_click.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
+      music.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
+     $('#sound-off').css('display','none');
+     $('#sound-on').css('display','inline');
+    });
+    $('#sound-on').click(function(){
+      Cookies.set('NamingGameSound', true);
+      sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+      music.setAttribute('src', "{% static 'ng/sounds/263479__orangefreesounds__dreamy-melodic-synth-loop.wav' %}");
+      sound_click.play();
+     $('#sound-on').css('display','none');
+     $('#sound-off').css('display','inline');
+    });
+    //Home
+    $('#home').click(function(){
+      sound_click.play();
+      $(this).prop('disable',true);
+      $("html").addClass("wait");
+      window.location.href='/';
+    });
+
+    $('.continue').click(function(){
+      sound_click.play();
+      $(this).prop('disable',true);
+      $("html").addClass("wait");
+      window.location.href='/';
+    });
+
+    //Display Game History
+    $("#menu-h").popover({
+      placement : 'bottom',
+      html : true,
+      content: function() {
+        return $('#popover-body').html();
+      },
+      title: function() {
+        return $('#popover-heading').html();
+      },
+    });
+
+    //Tooltips
+
+    var lang = $('html').attr('lang');
+
+    if (lang == "fr"){
+      $('#div1').tooltip({
+        title : "Objets",
+        placement : "left auto",
+        container:"#r1",
+        trigger: "manual",
+      });
+
+      $('#div2').tooltip({
+        title : "Mots les plus utilisés par objet <br> <p style='font-size:11px; padding-top:13px;'>(Premiers <br> Deuxièmes)</p>",
+        placement : "left auto",
+        html : true,
+        container:"#r2",
+        trigger: "manual",
+      });
+
+
+   } else if (lang == "en") {
+
+     $('#div1').tooltip({
+       title : "Objects",
+       placement : "left auto",
+       container:"#r1",
+       trigger: "manual",
+     });
+
+     $('#div2').tooltip({
+       title : "Most used ords per object  <br> <p style='font-size:11px; padding-top:13px;'>(Firsts <br> Seconds)</p>",
+       placement : "left bottom",
+       html : true,
+       container:"#r2",
+       trigger: "manual",
+     });
+
+
+   } else {
+
+     $('#div1').tooltip({
+       title : "ITALIAN",
+       placement : "left",
+       trigger: "manual",
+     });
+
+     $('#div2').tooltip({
+       title : "ITALIAN",
+       placement : "left",
+       trigger: "manual",
+     });
+
+
+   }
+    $('#div1').tooltip('show');
+    $('#div2').tooltip('show');
+
+    $('.castom_input_file , .castom_input').click(function(){
+      $('#div1').tooltip('toggle');
+      $('#div2').tooltip('toggle');
+    });
+
+    });
+    </script>
+
+  </body>
+</html>

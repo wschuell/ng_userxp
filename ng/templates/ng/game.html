@@ -19,8 +19,8 @@
   <!--JQuery-->
   <!--<script src="{% static 'ng/jquery-3.2.1.min.js' %}"></script>-->
   <script src="{% static 'ng/jquery-3.3.1.min.js' %}"></script>
-  <script src="{% static 'ng/popper.min.js' %}"></script>
   <script src="{% static 'ng/bootstrap.min.js' %}"></script>
+  <script src="{% static 'ng/popper.min.js' %}"></script>
   <script src="{% static 'ng/js.cookie.js' %}"></script>
   <script src="{% static 'ng/change_lang.js' %}"></script>
 
@@ -55,9 +55,9 @@
 	<div class="row">
 		<div class="col-lg-2">
 			<!--Menu-->
-			<div class="menu" style="margin-right: auto; margin-left:auto; width:60%; max-width: 160px">
-				<!-- Ajouter les liens pour rendre fonctionnel -->
-				<span class="glyphicon glyphicon-info-sign icon" id="info"></span>
+			<div class="menu" style="margin-right: auto; margin-left:auto; width:40%; max-width: 160px">
+				<!-- Ajouter les liens pour rendre fonctionnel
+				<span class="glyphicon glyphicon-info-sign icon" id="info"></span>-->
 				<span class="glyphicon glyphicon-volume-off icon" id="sound-off"></span>
 				<span class="glyphicon glyphicon-volume-up icon" id="sound-on"></span>
 				<span class="glyphicon glyphicon-home icon" id="home"></span>
@@ -155,10 +155,8 @@
         {% endif %}
       </p></div>
 			<div class="bubble bubble-f thought" id="you-meaning"  {% if context == "skipped" %} style= "float:left; display : none;" {% else %} style= "float:left" {% endif %}>
-      {% if context == "result" and role == "speaker" and last_ms != 'None' %}
+      {% if context == "result" and role == "speaker" %}
         <img id="meaning_{{last_ms}}" class="img-responsive meaning" src="{% static 'ng/img/' %}kreyon_meaning{{ last_ms }}.png" meaning_name="{{ last_ms }}">
-      {% elif context == "result" and role == "speaker" %}
-        <img id="meaning_{{last_ms}}" class="img-responsive meaning" src="{% static 'ng/img/' %}kreyon_meaningnone.png" meaning_name="{{ last_ms }}">
       {% elif context == "result" and role == "hearer" %}
         <img id="meaning_{{last_mh}}" class="img-responsive meaning" src="{% static 'ng/img/' %}kreyon_meaning{{ last_mh }}.png" meaning_name="{{ last_mh }}">
       {% endif %}
@@ -280,7 +278,7 @@ https://cdn.pixabay.com/photo/2013/07/12/13/51/thinking-147447_960_720.png
 
           <form action="{% url 'ng:continue' experiment.xp_uuid %}" method="post">
           {% csrf_token %}
-          <input id="button_next" class="btn" type="submit" value="" />
+          <input id="button_next" class="btn" type="submit" value="{% static 'ng/sounds/silence.wav' %}" />
             </form>
         </div>
         {% endif %}
@@ -363,7 +361,33 @@ https://cdn.pixabay.com/photo/2013/07/12/13/51/thinking-147447_960_720.png
 
    <script text="text/javascript">
 
-$(document).ready(function() {
+
+   $(document).ready(function(){
+
+    var sound_click = document.createElement('audio');
+    var music = document.createElement('audio');
+
+     $('body').css('visibility', 'visible');
+
+   if (typeof Cookies.get('NamingGameSound') === 'undefined'){
+     Cookies.set('NamingGameSound', true);
+     sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+     music.setAttribute('src', "{% static 'ng/sounds/204432__nhumphrey__spooky-alien-language-04.wav' %}");
+
+     $('#sound-on').css('display','none');
+     $('#sound-off').css('display','inline');
+  } else if (Cookies.get('NamingGameSound')) {
+     sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+     music.setAttribute('src', "{% static 'ng/sounds/204432__nhumphrey__spooky-alien-language-04.wav' %}");
+
+     $('#sound-on').css('display','none');
+     $('#sound-off').css('display','inline');
+ } else {
+    sound_click.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
+    music.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
+    $('#sound-off').css('display','none');
+    $('#sound-on').css('display','inline');
+ }
 
   $.ajaxPrefilter( function(options, originalOptions, jqXHR) {
     jqXHR.setRequestHeader('X-CSRF-Token', Cookies.get('csrftoken'));
@@ -376,10 +400,10 @@ $(document).ready(function() {
     $("html").removeClass("wait");
   });
 
-  	$('body').css('visibility', 'visible');
 
   //$("#word_speaker").hide();
   $("#button_next, #button_start").click(function(){
+    sound_click.play();
     $("#button_next, #button_start").addClass('disabled');
     $("html").addClass("wait");
     window.location.href = url_continue ;}
@@ -390,18 +414,26 @@ $(document).ready(function() {
 
    //Menu
 
+   //Menu
+
    //Sound
    $('#sound-off').click(function(){
-     $('#sound-off').css('display','none');
-     $('#sound-on').css('display','inline');
+     Cookies.set('NamingGameSound', false);
+     sound_click.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
+   	$('#sound-off').css('display','none');
+   	$('#sound-on').css('display','inline');
    });
    $('#sound-on').click(function(){
-     $('#sound-on').css('display','none');
-     $('#sound-off').css('display','inline');
+     Cookies.set('NamingGameSound', true);
+     sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+     sound_click.play();
+   	$('#sound-on').css('display','none');
+   	$('#sound-off').css('display','inline');
    });
-   //Home
+
    //Home
    $('#home').click(function(){
+     sound_click.play();
    	$("#myModal").modal({
    		keyboard : true,
    	});
@@ -429,6 +461,7 @@ $(document).ready(function() {
    });
 
    $('.m').click(function(){
+     sound_click.play();
      var mSelected = $(this).clone().removeClass('m').addClass('meaning');
      $('#you-meaning').css('visibility', 'visible').css('display','block');
      $('#you-meaning').html(mSelected);
@@ -457,6 +490,7 @@ $(document).ready(function() {
    });
 
    $('.w').click(function(){
+     sound_click.play();
      if('{{role}}' == "speaker"){
        var wSelected = $(this).text();
        $('#word1').text(wSelected);
@@ -477,6 +511,8 @@ $(document).ready(function() {
    });
 
    $("#continue.interact_hearer").click(function(event){
+     music.play();
+     sound_click.play();
      if($('.selected_m')[0] != undefined && !$("#continue").hasClass('disabled') ) {
        $("#continue").addClass('disabled');
       window.location.href=url_results_hearer_base + $(".selected_m").attr("meaning_name") + "/results_continue/"}
@@ -484,6 +520,8 @@ $(document).ready(function() {
    });
 
    $("#continue.interact_speaker").click( function (event) {
+     music.play();
+     sound_click.play();
      if($('.selected_m')[0] != undefined && $('.selected_w')[0] != undefined && !$("#continue").hasClass('disabled') ){
        $("#continue").addClass('disabled');
        window.location.href=url_results_speaker_base + $(".selected_m").attr("meaning_name") + "-" + $(".selected_w").attr("word_name") + "/results_continue/"}
@@ -492,32 +530,38 @@ $(document).ready(function() {
 
    //buttons
    $("#homebutton").click(function(){
+     sound_click.play();
      $("html").addClass("wait");
      window.location.href=url_home;
    });
 
    $("#logoutbutton").click(function(){
+     sound_click.play();
      $("html").addClass("wait");
      window.location.href=url_logout;
    });
 
    $("#new_xp_button").click(function(){
+     sound_click.play();
      $(this).prop('disable',true);
      $("html").addClass("wait");
      window.location.href='/choose_experiment';
    });
 
    $("#button_basic").click(function(){
+     sound_click.play();
      $(this).prop('disable',true);
      $("html").addClass("wait");
      window.location.href='/new_experiment/basic';
    });
    $("#button_normal").click(function(){
+     sound_click.play();
      $(this).prop('disable',true);
      $("html").addClass("wait");
      window.location.href='/new_experiment/normal';
    });
    $("#button_multi").click(function(){
+     sound_click.play();
      $(this).prop('disable',true);
      $("html").addClass("wait");
      window.location.href='/new_experiment/multiuser';

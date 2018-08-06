@@ -1,0 +1,206 @@
+{% load static %}
+<!doctype html>
+<html lang={{userNG.lang}}>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <link type="text/css" rel="stylesheet" href="{% static 'ng/bootstrap-4.0.0-dist/css/bootstrap.min.css' %}"/>
+  <link type="text/css" rel="stylesheet" href="{% static 'ng/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}"/>
+
+  <link href="{% static 'ng/stylev2.css' %}" rel="stylesheet" type="text/css">
+  <!--JQuery-->
+  <script src="{% static 'ng/jquery-3.3.1.min.js' %}"></script>
+  <script src="{% static 'ng/popper.min.js' %}"></script>
+  <script src="{% static 'ng/bootstrap.min.js' %}"></script>
+  <script src="{% static 'ng/js.cookie.js' %}"></script>
+  <script src="{% static 'ng/script.js' %}"></script>
+  <script src="{% static 'ng/change_lang.js' %}"></script>
+
+	<title id="window_title">Naming Game</title>
+</head>
+
+<body class="four_page">
+  <div class="container">
+      <div class="col_1 col">
+        <div class="imag_center">
+          <img src="{% static 'ng/img/logo.png' %}" id="home">
+        </div>
+      </div>
+      <div class="col_2 col">
+        <div>
+          <h1 class="convers_font" style="margin-right:10%;margin-left:20%">MERCI DE VOTRE PARTICIPATION !</h1>
+          <div class="text_content_div" >
+            <p class="text_content_four" style="text-align:center;font-size:18px;">
+            Ce jeu auquel vous venez de jouer est bien plus qu'un jeu.
+            C'est une simulation informatique qui modélise l'apparition et
+            l'évolution du vocabulaire d'une population. On parle aussi de modèle
+            computationnel multi-agent de l'émergence et de l'évolution
+            des conventions lexicales, autrement dit un Naming Game.</p>
+            <p class="text_content_four" style="text-align:center;font-size:18px;">
+              Celui-ci est un peu particulier puisqu'il vous permet de prendre la
+              place d'un de ses agents virtuels et de participer vous aussi à la
+              création de ces conventions lexicales. </p>
+
+            <p class=" text_content_four" style="text-align:center;font-size:18px;">Vous avez pu remarquer que vos choix ont eu une influence, ou pas, sur ceux des autres agents. Car dans ce jeu tout le mode est à égalité et vous n'êtes pas seul.e à pouvoir influer sur le jeu.</p>
+
+            <p class=" text_content_four" style="text-align:center;font-size:18px;">Le score et le tableau à la fin de chaque partie vous indiquent à quel point vous avez tous réussi à vous mettre d'accord. En 50 interactions seulement, c'est un exercice difficile qui comporte une certaine part de hasard. Mais le succès de chaque partie est loin d'être aléatoire. De très nombreuses stratégies sont possibles et permettent, à votre échelle, d'influencer significativement le résultat.
+              Nous nous penchons ici plus précisément sur la manière dont vous choisissez les objets lorsque c'est à votre tour de parler (on dit aussi que vous êtes le speaker).</p>
+
+            <p class=" text_content_four" style="text-align:center;font-size:18px;">Vous pouvez par exemple choisir complètement au hasard. On appelle cette stratégie une stratégie naïve. Vous pouvez aussi choisir ces objets en fonction de certains critères.
+              Une possibilité serait de parler toujours du même objet. Vous aurez ainsi de grandes chances pour que tout le monde partage le même mot pour cette objet, mais il y a également beaucoup de risques pour que les autres objets se retrouvent sans nom partagé par tous à la fin de la partie.</p>
+
+            <p  class=" text_content_four" style="text-align:center;font-size:18px;">Une autre stratégie consiste à parler uniquement ou presque des objets dont vous connaissez le nom pour augmenter vos chances que ce nom soit utilisé par le plus grand nombre de vos partenaires.</p>
+
+            <p class=" text_content_four" style="text-align:center;font-size:18px;">Bref, il y a énormément de stratégies et c'est justement ce qui nous intéresse dans le cadre de notre recherche. Afin de nous aidez, pourriez-vous remplir ce bref questionnaire ?</p>
+
+          </div>
+        </div>
+
+        {% if q_filled %}
+        <div class="row">
+            <button class="btn" id="btn_home">Revenir à l'Accueil</button>
+        </div>
+        {% else %}
+        <div class="row">
+          <h1 class="convers_font" style="margin-right:50%; margin-top:70px; font-size:30px; margin-bottom:10px;" id="question_title">Questionnaire :</h1>
+        </div>
+        <form id="form" method="post">
+        <div class="row form-group">
+          {% csrf_token %}
+
+            {{form.non_field_errors}}
+
+            <div class="fieldWrapper row" >
+              {{ form.q1.errors }}
+              <div class="row">
+              <label id="label_q1" class="text_login" style="float:left; display:block"> </label>
+              </div>
+              <div class="w-100"></div>
+              <div class="row">
+              <div style="font-size:16px; display:block; float:right;">{{ form.q1 }}</div>
+              </div>
+            </div>
+
+            <div class="fieldWrapper row">
+              {{ form.q2.errors }}
+              <div class="row">
+              <label id="label_q2" class="text_login" style="float:left; display:block">  </label>
+            </div>
+            <div class="w-100"></div>
+            <div class="row">
+              <div style="font-size:16px; display:block; float:right;">{{ form.q2 }}</div>
+            </div>
+            </div>
+
+            <div class="fieldWrapper row">
+              {{ form.q3.errors }}
+              <div class="row">
+              <label id="label_q3" class="text_login" style="float:left; display:block"> </label>
+            </div>
+            <div class="w-100"></div>
+            <div class="row">
+              <div style="font-size:16px; display:block;float:right; ">{{ form.q3 }}</div>
+            </div>
+            </div>
+
+            <div class="fieldWrapper row">
+              {{ form.q4.errors }}
+              <div class="row">
+              <label id="label_q4" class="text_login" style="float:left; display:block">  </label>
+            </div>
+            <div class="w-100"></div>
+            <div class="row">
+              <div style="font-size:16px; display:block;float:right; ">{{ form.q4 }}</div>
+            </div>
+            </div>
+
+            <div class="fieldWrapper row">
+              {{ form.q5.errors }}
+              <div class="row">
+              <label id="label_q5" class="text_login" style="float:left; display:block">  </label>
+            </div>
+            <div class="w-100"></div>
+            <div class="row">
+              {{ form.q5 }}
+            </div>
+            </div>
+
+            <div class="w-100"></div>
+
+
+            <input type="submit" class="btn btn-default bt-lg" id="submit" value="Valider"/>
+        </div>
+      </form>
+        {% endif %}
+      </div>
+      <div class="col_3 col">
+        <div class="control_ico">
+          <img src="{% static 'ng/img/bitmap.png' %}">
+        </div>
+      </div>
+      </div>
+  </div>
+  <!-- Optional JavaScript -->
+
+ <script text="text/javascript">
+
+
+ $(document).ready(function(){
+
+  var sound_click = document.createElement('audio');
+  var music = document.createElement('audio');
+
+   $('body').css('visibility', 'visible');
+
+ if (typeof Cookies.get('NamingGameSound') === 'undefined'){
+   Cookies.set('NamingGameSound', true);
+   sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+   music.setAttribute('src', "{% static 'ng/sounds/204432__nhumphrey__spooky-alien-language-04.wav' %}");
+
+   $('#sound-on').css('display','none');
+   $('#sound-off').css('display','inline');
+} else if (Cookies.get('NamingGameSound')) {
+   sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+   music.setAttribute('src', "{% static 'ng/sounds/204432__nhumphrey__spooky-alien-language-04.wav' %}");
+
+   $('#sound-on').css('display','none');
+   $('#sound-off').css('display','inline');
+} else {
+  sound_click.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
+  music.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
+  $('#sound-off').css('display','none');
+  $('#sound-on').css('display','inline');
+}
+
+
+ //Menu
+
+ //Sound
+ $('#sound-off').click(function(){
+   Cookies.set('NamingGameSound', false);
+   sound_click.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
+  $('#sound-off').css('display','none');
+  $('#sound-on').css('display','inline');
+ });
+ $('#sound-on').click(function(){
+   Cookies.set('NamingGameSound', true);
+   sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
+   sound_click.play();
+  $('#sound-on').css('display','none');
+  $('#sound-off').css('display','inline');
+ });
+
+
+
+ $("#homebutton").click(function(){
+   sound_click.play();
+   $("html").addClass("wait");
+   window.location.href=url_home;
+ });
+
+</script>
+</body>
+</html>

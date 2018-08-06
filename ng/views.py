@@ -25,7 +25,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import authenticate, login
-from .forms import NameForm
+from .forms import NameForm, QuestionForm
 
 def create_user(request,username='',name='',cookie_id='', lang='fr', code=''):
     user = User.objects.create_user(username=str(username),first_name=str(name),email=str(cookie_id),password=str(username))
@@ -53,11 +53,11 @@ def home(request):
     user = request.user
     u = UserNG.get(user=user)
     game_unlocked = u.tuto_played
-    if (u.nbr_played < 5):
+    if (u.nbr_played < 3):
         multi_unlocked = False
     else :
         multi_unlocked = True
-    return render(request, 'ng/home.html', {
+    return render(request, 'ng/index.html', {
     'game_unlocked' : game_unlocked,
     'multi_unlocked' : multi_unlocked,
     'user' : user,
@@ -102,7 +102,7 @@ def get_name(request):
     else:
         form = NameForm()
 
-    return render(request, 'ng/login_name.html', {'form': form})
+    return render(request, 'ng/loginv2.html', {'form': form})
 
 #@login_required#(login_url='/accounts/login/')
 class IndexView(LoginRequiredMixin, generic.ListView):
@@ -119,7 +119,7 @@ class IndexView(LoginRequiredMixin, generic.ListView):
 #Story view if user chooses tutorial
 @login_required(login_url='/ng/login/')
 def story(request) :
-	return render(request, 'ng/story.html', {'context':'story', 'userNG': UserNG.get(user=request.user)})
+	return render(request, 'ng/histoire.html', {'context':'story', 'userNG': UserNG.get(user=request.user)})
 
 
 class DetailView(LoginRequiredMixin, generic.DetailView):
@@ -220,7 +220,7 @@ def result_hearer(request, xp_uuid, meaning):
     past_interaction = PastInteraction(meaning=str(ms),word=w,bool_succ=bool_succ,time_id=experiment.interaction_counter,role='hearer',experiment=experiment)
     experiment.save()
     past_interaction.save()
-    return render(request, 'ng/game.html', {
+    return render(request, 'ng/conversation3.html', {
             'experiment': experiment,
             'bool_succ': bool_succ,
             'role':"hearer",
@@ -247,7 +247,7 @@ def result_speaker(request, xp_uuid, meaning, word):
     #        'experiment': experiment,
     #        'bool_succ': bool_succ,
     #    })
-    return render(request, 'ng/game.html', {
+    return render(request, 'ng/conversation2.html', {
             'experiment': experiment,
             'bool_succ': bool_succ,
             'role':"speaker",
@@ -326,7 +326,7 @@ def result_hearer_continue(request, xp_uuid, meaning):
     try:
         currentgame_json = experiment.get_currentgame_json()
     except:
-        return render(request, 'ng/game.html', {
+        return render(request, 'ng/conversation3.html', {
             'experiment': experiment,
             'context':"result",
         })
@@ -342,18 +342,21 @@ def result_hearer_continue(request, xp_uuid, meaning):
     ms = currentgame_json['ms']
     w = currentgame_json['w']
     experiment.save_currentgame_json(currentgame_json)
+    mh = str(currentgame_json['mh'])
+    if mh == "None":
+        mh='none'
     #experiment.add_word_to_user(w)
     experiment.continue_xp()
     bool_succ = experiment.get_last_bool_succ()
     past_interaction = PastInteraction(meaning=str(ms),word=w,meaning_h=str(meaning),bool_succ=bool_succ,time_id=experiment.interaction_counter,role='hearer',experiment=experiment)
     experiment.save()
     past_interaction.save()
-    return render(request, 'ng/game.html', {
+    return render(request, 'ng/conversation3.html', {
             'experiment': experiment,
             'context':"result",
             'role': "hearer",
             'word':w,
-            'last_mh': str(currentgame_json['mh']),
+            'last_mh': mh,
             'last_ms': ms,
             'bool_succ': bool_succ,
             'learn': learn,
@@ -416,7 +419,7 @@ def result_speaker_continue(request, xp_uuid, meaning, word):
     try:
         currentgame_json = experiment.get_currentgame_json()
     except:
-        return render(request, 'ng/game.html', {
+        return render(request, 'ng/conversation2.html', {
             'experiment': experiment,
             'context':"result",
         })
@@ -451,7 +454,7 @@ def result_speaker_continue(request, xp_uuid, meaning, word):
     #        'experiment': experiment,
     #        'bool_succ': bool_succ,
     #    })
-    return render(request, 'ng/game.html', {
+    return render(request, 'ng/conversation2.html', {
             'experiment': experiment,
             'context':"result",
             'role': "speaker",
@@ -479,10 +482,11 @@ def new_experiment(request,xp_cfg_name='normal'):
     #Test if the user can access this type of game and send them to the home page if not
     user = request.user
     u = UserNG.get(user=user)
-    if ((xp_cfg_name == "normal" and not u.tuto_played) or (xp_cfg_name == "multiuser" and u.nbr_played < 3)):
+    if (xp_cfg_name == "normal" and not u.tuto_played) :
         return HttpResponseRedirect('/')
     else :
         experiment = Experiment.get_new_xp(user=request.user,xp_cfg_name=xp_cfg_name)
+        experiment.before_info= not u.q_seen
         experiment.save()
         return continue_userxp(request,experiment.xp_uuid)
         # return render(request, 'ng/loading_xp.html', {
@@ -527,7 +531,7 @@ def continue_userxp(request, xp_uuid):
                 experiment.save()
                 #
                 bar_width = ((experiment.interaction_counter) / experiment.max_interaction )*100
-                return render(request, 'ng/game.html', {
+                return render(request, 'ng/conversation1.html', {
                     'experiment': experiment,
                     'textid': "not_involved",
                     'nb_skipped': nb_steps,
@@ -546,14 +550,16 @@ def continue_userxp(request, xp_uuid):
             hr_id = currentgame_json['hearer_id']
             # experiment.update_meanings()
             # experiment.update_words()
-            bar_width = ((experiment.interaction_counter) / experiment.max_interaction )*100
+            word_list = []
+            for w in experiment.words.all():
+                word_list.append(w)
             if sp_id == experiment.get_user_agent_uuid():
-                return render(request, 'ng/game.html', {
+                return render(request, 'ng/conversation2.html', {
                     'experiment': experiment,
                     'role':"speaker",
                     'context':"question",
-                    'bar_width':bar_width,
                     'dont_know': False,
+                    'words': word_list,
                     'user':request.user,
                     'userNG': UserNG.get(user=request.user),
                     })
@@ -567,12 +573,12 @@ def continue_userxp(request, xp_uuid):
                     dont_know = False
                 else :
                     dont_know = True
-                return render(request, 'ng/game.html', {
+                return render(request, 'ng/conversation3.html', {
                     'experiment': experiment,
                     'word': currentgame_json['w'],
                     'role':"hearer",
                     'context':"question",
-                    'bar_width':bar_width,
+                    'words': word_list,
                     'dont_know': dont_know,
                     'user':request.user,
                     'userNG': UserNG.get(user=request.user),
@@ -617,11 +623,14 @@ def score(request, xp_uuid):
 
     u = UserNG.get(user=request.user)
     if experiment.xp_config.xp_cfg_name == "normal" :
-        u.nbr_played =+ 1
+        u.nbr_played += 1
         u.save()
     elif experiment.xp_config.xp_cfg_name == "basic" and u.tuto_played == False :
         u.tuto_played = True
         u.save()
+    #Update xp_number
+    experiment.xp_number= u.nbr_played + 1
+    experiment.save()
     tab_results = experiment.get_result_tab()
     m_list = [elt for elt in tab_results.keys()]
     w_list1 = []
@@ -635,13 +644,14 @@ def score(request, xp_uuid):
             w_list1.append(l[0])
             w_list2.append('-')
         else :
-            sorted_tab= sorted(tab_results[elt].items(), key=lambda colonnes: colonnes[1])
+            sorted_tab = list(sorted(tab_results[elt].items(), key=lambda colonnes: colonnes[1]))
+            sorted_tab.reverse()
             w_list1.append(sorted_tab[0][0])
             w_list2.append(sorted_tab[1][0])
     #Test if score exists
     #if not, compute and store object
     #get value
-    return render(request, 'ng/story.html', {
+    return render(request, 'ng/resultats.html', {
             'experiment': experiment,
             'score':str(score_val),
             'context':"end",
@@ -652,3 +662,46 @@ def score(request, xp_uuid):
             'user':request.user,
             'userNG': UserNG.get(user=request.user),
             })
+
+@csrf_protect
+@login_required(login_url='/ng/login/')
+def info(request):
+    u = UserNG.get(user=request.user)
+    if u.nbr_played < 3 :
+        return HttpResponseRedirect('/')
+    else:
+        u.q_seen = True
+        u.save()
+        # if this is a POST request we need to process the form data
+        if request.method == 'POST':
+            # create a form instance and populate it with data from the request:
+            form = QuestionForm(request.POST)
+            # check whether it's valid:
+            if form.is_valid():
+                # process the data in form.cleaned_data as required
+                # ...
+                # redirect to a new URL:
+                u.q_filled = True
+                u.q1 = form.cleaned_data['q1']
+                u.q2 = form.cleaned_data['q2']
+                u.q3 = form.cleaned_data['q3']
+                u.q4 = form.cleaned_data['q4']
+                u.q5 = form.cleaned_data['q5']
+                u.save()
+                return HttpResponseRedirect('/')
+
+        # if a GET (or any other method) we'll create a blank form
+        else:
+            form = QuestionForm()
+
+        return render(request, 'ng/infosv2.html', {
+            'user':request.user,
+            'userNG': u,
+            'form' : form,
+            'q_filled' : u.q_filled,
+    })
+
+
+@csrf_protect
+def error(request):
+    return render(request, 'error_page.html')
