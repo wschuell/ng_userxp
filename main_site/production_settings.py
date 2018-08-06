@@ -176,12 +176,14 @@ LOGGING = {
         'mail_admins': {
             'level': 'ERROR',
             'class': 'django.utils.log.AdminEmailHandler',
+            'formatter': 'verbose',
             #'filters': ['special']
         },
         'file': {
             'level': 'INFO',
             'class': 'logging.FileHandler',
             'filename': './logs/ng.log',
+            'formatter': 'verbose'
         },
     },
     'loggers': {
