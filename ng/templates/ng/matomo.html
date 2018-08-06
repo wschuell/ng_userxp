@@ -1,4 +1,5 @@
- {% if user.userng.use_matomo %}
+ {% load static %}
+ {% if request.user.userng.use_matomo %}
 <!-- Matomo -->
 <script type="text/javascript">
   var _paq = _paq || [];
@@ -15,3 +16,4 @@
 </script>
 <!-- End Matomo Code -->
  {% endif %}
+<!-- Matomobis -->
