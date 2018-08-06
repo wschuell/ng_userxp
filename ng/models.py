@@ -55,7 +55,7 @@ class UserNG(models.Model):
     #Number of games played, used as condition for unlocking game modes
     tuto_played = models.BooleanField(default=False)
     nbr_played = models.IntegerField(default=0)
-    use_matomo = models.BooleanField(default=False)
+    use_matomo = models.BooleanField(default=True)
 
     #Has the user seen the informations displayed after 3 games ?
     q_seen = models.BooleanField(default=False)
