@@ -45,6 +45,7 @@ xp_cfg = {
     }
 }
 
+
 #extended User class
 class UserNG(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key = True)
@@ -54,6 +55,7 @@ class UserNG(models.Model):
     #Number of games played, used as condition for unlocking game modes
     tuto_played = models.BooleanField(default=False)
     nbr_played = models.IntegerField(default=0)
+    use_matomo = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username

@@ -67,7 +67,7 @@
             });
                 set_language();
 
-                $('body').css('visibility', 'visible');            
+                $('body').css('visibility', 'visible');
 
             $('#id_code').tooltip({
               title : "Si vous n'avez pas de code, laissez ce champ vide.",
@@ -85,6 +85,7 @@
     {{ form }}
     <input type="submit" value="Submit" />
 </form>-->
+ {% include "ng/matomo.html" %}
   </head>
 <body>
 	<h1 class="pagetitle" style="padding:0px; margin-top:25px;" id="welcome">Le Naming Game !</h1>
