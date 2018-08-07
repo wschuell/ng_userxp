@@ -78,6 +78,14 @@ dict_obj = {
 
     #Tooltips
     'tooltip_example':"Si vous n'avez pas de code, laissez ce champ vide.",
+    'results_1' : "Objets",
+    'results_2' : "Mots les plus utilisés par objet <br> <p style='font-size:11px; padding-top:13px;'>(Premiers <br> Deuxièmes)</p>",
+    'hearer_w' : "Vous entendez ce mot :",
+    'menu_h': "Cliquez ici pour voir l'historique",
+    'word_inter': "Le mot utilisé dans cette conversation",
+    'last_m_you' : "Ce à quoi vous pensiez",
+    'last_m_other' : "Ce à quoi votre coéquipier pensait",
+    'dont_know' : "Je ne sais pas encore ce que ce mot veux dire...",
   },
 
   'en': {
@@ -125,7 +133,7 @@ dict_obj = {
     'choice_words': 'Your turn to speak. <br> Choose the word you will use to talk about this object.',
     'history_objects':'Objects',
     'history_words':'Words',
-    'history_success':'Succes',
+    'history_success':'Success',
     'modal_title': 'Are you sure ?',
     'modal_body': 'If you quit the ongoing game, it won’t be saved. Do you still want to quit ?',
     'btn_yes': '<p>Yes, quit the game</p>',
@@ -156,6 +164,15 @@ dict_obj = {
 
     #Tooltips
     'tooltip_example':"If you were not provided a token, leave empty.",
+    'results_1' : "Objects",
+    'results_2' : "Most used words per object <br> <p style='font-size:11px; padding-top:13px;'>(Firsts <br> Seconds)</p>",
+    'hearer_w' : "You hear this word :",
+    'menu_h': "Click to see past interactions",
+    'word_inter': "The word used in this conversation",
+    'last_m_you' : "What you were thinking",
+    'last_m_other' :  "What your partner was thinking",
+    'dont_know' : "I don't know yet what this word means...",
+
   },
   'it': {
 
@@ -233,6 +250,13 @@ dict_obj = {
 
     #Tooltips
     'tooltip_example':"Si vous n'avez pas de code, laissez ce champ vide.",
+    'results_1' : "Objets",
+    'results_2' : "Mots les plus utilisés par objet <br> <p style='font-size:11px; padding-top:13px;'>(Premiers <br> Deuxièmes)</p>",
+    'hearer_w' : "Vous entendez ce mot :",
+    'menu_h': "Cliquez ici pour voir l'historique",
+    'word_inter': "Le mot utilisé dans cette conversation",
+    'last_m_you' : "Ce à quoi vous pensiez",
+    'last_m_other' : "Ce à quoi votre coéquipier pensait",
   }
 };
 

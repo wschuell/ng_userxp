@@ -152,26 +152,22 @@
    $(document).ready(function(){
 
     var sound_click = document.createElement('audio');
-    var music = document.createElement('audio');
 
      $('body').css('visibility', 'visible');
 
    if (typeof Cookies.get('NamingGameSound') === 'undefined'){
      Cookies.set('NamingGameSound', true);
      sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
-     music.setAttribute('src', "{% static 'ng/sounds/204432__nhumphrey__spooky-alien-language-04.wav' %}");
 
      $('#sound-on').css('display','none');
      $('#sound-off').css('display','inline');
   } else if (Cookies.get('NamingGameSound')) {
      sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
-     music.setAttribute('src', "{% static 'ng/sounds/204432__nhumphrey__spooky-alien-language-04.wav' %}");
 
      $('#sound-on').css('display','none');
      $('#sound-off').css('display','inline');
   } else {
     sound_click.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
-    music.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
     $('#sound-off').css('display','none');
     $('#sound-on').css('display','inline');
   }

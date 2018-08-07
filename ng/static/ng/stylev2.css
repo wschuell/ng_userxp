@@ -567,27 +567,26 @@ table {
 }
 
 .popover {
-	background-color : gray;
+	background-color : black;
 	max-height : 80vh;
 	max-width : 500px;
 	min-width : 250px;
-	border : 3px solid black;
+	border : 1px solid white;
 	overflow-y : auto;
 	overflow-x: hidden;
 }
 
 .popover .popover-title {
-	color : black;
+	color : white;
 	text-decoration : underline;
-	font-family : serif;
-	font-size : 16px;
+	font : 700 16px/1.3 'AvenirNext', sans-serif;
 	text-align : center;
-	background-color : gray;
+	background-color : #161616;
 }
 
 #historyColNames > p {
-	font-size : 16px;
-	color : black;
+	font: 700 16px/1.3 'AvenirNext', sans-serif;
+	color : white;
 	text-align : center;
 }
 
@@ -601,9 +600,9 @@ table {
 }
 
 .w-histo {
-	font-size : 20px;
+	font: 700 20px/1.3 'AvenirNext-Bold', sans-serif;
 	margin : auto;
-	padding-top : 13px;
+	padding-top : 15px;
 	text-align : center;
 }
 
@@ -631,9 +630,9 @@ table {
 #btn_no:hover {border : 4px solid #4098FD;}
 
 .btn-modal > p {
-	color : grey;
+	color : black;
 	letter-spacing: normal;
-	font: 700 14px/1.3 'AvenirNext-Bold', sans-serif;
+	font: 700 14px/1.3 'AvenirNext', sans-serif;
 }
 
 .modal-footer {align-items: normal;}

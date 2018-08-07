@@ -114,7 +114,7 @@
              <div class="row_inputs_file">
                <label class="label_input_file_two label_input">
                  <input type="radio" value="{{word}}" name="m" id="{{word}}" hidden>
-                 <div class="w word_text_speaker castom_input text_content" id="word_inter" word_name="{{ word }}">{{ word }}</div>
+                 <div class="word_text_speaker castom_input text_content" id="word_inter" word_name="{{ word }}">{{ word }}</div>
                </label>
                  </div>
              </td>
@@ -127,7 +127,7 @@
                  <td>
                  <label class="label_input_file">
                    <input name="select_radio" type="radio" id="meaning_{{ last_ms }}" value="{{ last_ms }}" hidden>
-                   <span class="castom_input_file" disabled><img id="last_ms_{{ last_ms }}" class="img-responsive m meaning_img" src="{% static 'ng/img/' %}kreyon_meaning{{ last_ms }}.png" meaning_name="last_ms_{{ last_ms }}"></span>
+                   <span class="castom_input_file" disabled><img id="last_ms_{{ last_ms }}" class="img-responsive meaning_img last_ms" src="{% static 'ng/img/' %}kreyon_meaning{{ last_ms }}.png" meaning_name="last_ms_{{ last_ms }}"></span>
                  </label>
                </td>
 
@@ -137,7 +137,7 @@
                <td>
                  <label class="label_input_file">
                    <input name="select_radio" type="radio" id="meaning_{{ last_mh }}" value="{{ last_mh }}" hidden>
-                   <span class="castom_input_file" disabled><img  id="last_mh_{{ last_mh }}" class="img-responsive m meaning_img" src="{% static 'ng/img/' %}kreyon_meaning{{ last_mh }}.png" meaning_name="last_mh_{{ last_mh }}"></span>
+                   <span class="castom_input_file" disabled><img  id="last_mh_{{ last_mh }}" class="img-responsive meaning_img last_mh" src="{% static 'ng/img/' %}kreyon_meaning{{ last_mh }}.png" meaning_name="last_mh_{{ last_mh }}"></span>
                  </label>
                </td>
 
@@ -261,26 +261,22 @@
          $(document).ready(function(){
 
           var sound_click = document.createElement('audio');
-          var music = document.createElement('audio');
 
            $('body').css('visibility', 'visible');
 
          if (typeof Cookies.get('NamingGameSound') === 'undefined'){
            Cookies.set('NamingGameSound', true);
            sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
-           music.setAttribute('src', "{% static 'ng/sounds/204432__nhumphrey__spooky-alien-language-04.wav' %}");
 
            $('#sound-on').css('display','none');
            $('#sound-off').css('display','inline');
         } else if (Cookies.get('NamingGameSound')) {
            sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
-           music.setAttribute('src', "{% static 'ng/sounds/204432__nhumphrey__spooky-alien-language-04.wav' %}");
 
            $('#sound-on').css('display','none');
            $('#sound-off').css('display','inline');
        } else {
           sound_click.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
-          music.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
           $('#sound-off').css('display','none');
           $('#sound-on').css('display','inline');
        }
@@ -339,128 +335,45 @@
          var lang = $('html').attr('lang');
          var context = $('#context').text();
 
-         if (lang == "fr"){
            if (context == "question"){
 
            $('#word').tooltip({
-         	   title : "Vous entendez ce mot :",
+         	   title : current_lang.hearer_w ,
          	   placement : "left",
          	   trigger: "hover focus",
            });
 
            $('#menu-h').tooltip({
-           	title : "Cliquez ici pour voir l'historique",
+           	title : current_lang.menu_h ,
            	placement : "bottom",
            	trigger: "hover focus",
            });
 
            $('#img_dont_know').tooltip({
-           	title : "Vous pouvez cliquer ici si c'est la première fois que vous entendez ce mot et que vous ne savez pas de quoi votre coéquipier parle.",
+           	title : current_lang.dont_know ,
            	placement : "right",
            	trigger: "hover focus",
            });
 
          } else {
            $('#word_inter').tooltip({
-            title : "Le mot utilisé dans cette conversation",
+            title : current_lang.word_inter ,
             placement : "bottom",
             trigger: "hover focus",
            });
 
-           $('#last_mh').tooltip({
-            title : "Ce à quoi vous pensiez",
+           $('.last_mh').tooltip({
+            title : current_lang.last_m_you ,
             placement : "left",
             trigger: "hover focus",
            });
 
-           $('#last_ms').tooltip({
-            title : "Ce à quoi votre coéquipier pensait",
+           $('.last_ms').tooltip({
+            title : current_lang.last_m_other ,
             placement : "right",
             trigger: "hover focus",
            });
          }
-
-        } else if (lang == "en") {
-          if (context == "question"){
-            $('#menu-h').tooltip({
-            	title : "Click to see past interactions",
-            	placement : "bottom",
-            	trigger: "hover focus",
-            });
-
-            $('#word').tooltip({
-          	   title : "You hear this word :",
-          	   placement : "left",
-          	   trigger: "hover focus",
-            });
-
-            $('#img_dont_know').tooltip({
-            	title : "You can click here if it is the first time you hear this word and you don't know what your partner is talking about.",
-            	placement : "right",
-            	trigger: "hover focus",
-            });
-
-          } else {
-            $('#word_inter').tooltip({
-             title : "The word used in this conversation",
-             placement : "bottom",
-             trigger: "hover focus",
-            });
-
-            $('#last_mh').tooltip({
-             title : "What you were thinking",
-             placement : "left",
-             trigger: "hover focus",
-            });
-
-            $('#last_ms').tooltip({
-             title : "What your partner was thinking",
-             placement : "right",
-             trigger: "hover focus",
-            });
-          }
-
-        } else if (lang == "it"){
-          if (context == "question"){
-          $('#menu-h').tooltip({
-            title : "ITALIAN",
-            placement : "bottom",
-            trigger: "hover focus",
-          });
-
-            $('#word').tooltip({
-          	   title : "ITALIAN",
-          	   placement : "top",
-          	   trigger: "hover focus",
-            });
-
-            $('#img_dont_know').tooltip({
-            	title : "ITALIAN",
-            	placement : "right",
-            	trigger: "hover focus",
-            });
-
-          } else {
-            $('#word_inter').tooltip({
-             title : "ITALIAN",
-             placement : "bottom",
-             trigger: "hover focus",
-            });
-
-            $('#last_mh').tooltip({
-             title : "ITALIAN",
-             placement : "left",
-             trigger: "hover focus",
-            });
-
-            $('#last_ms').tooltip({
-             title : "ITALIAN",
-             placement : "right",
-             trigger: "hover focus",
-            });
-          }
-
-        }
 
 
 
@@ -497,7 +410,6 @@
 
 
          $("#continue").click(function(event){
-           music.play();
            sound_click.play();
            if($('.selected_m')[0] != undefined && !$("#continue").hasClass('disabled') ) {
              $("#continue").addClass('disabled');
