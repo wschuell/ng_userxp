@@ -4,7 +4,7 @@ FILE=ngal_branch.txt
 if [ -f $FILE ]; then
    NGALBRANCH=$(cat $FILE)
 else
-   NGALBRANCH=develop
+   NGALBRANCH=nguser_xp
    echo $NGALBRANCH>$FILE
 fi
 

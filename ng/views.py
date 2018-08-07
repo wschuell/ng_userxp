@@ -659,6 +659,7 @@ def score(request, xp_uuid):
             'm_list': m_list,
             'w_list1': w_list1,
             'w_list2': w_list2,
+            'w_list':zip(w_list1,w_list2),
             'user':request.user,
             'userNG': UserNG.get(user=request.user),
             })

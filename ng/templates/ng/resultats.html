@@ -59,13 +59,15 @@
             </div>
             <div class="row_inputs_file row_inputs_file_three" id="r2">
               <div id="div2">
-              {% for w in w_list1 %}
+              {% for ww in w_list %}
               <label class="label_input_file_two label_input_right">
-                <input type="text" class="castom_input" value="{{w}}" id="word1_{{forloop.counter}}" readonly>
+                <textarea type="text" class="castom_input" style="height: 3.2em; resize:none;">{{ww.0}}
+{{ww.1}}</textarea>
+                <!-- <input type="text" class="castom_input" value="{{w}}" id="word1_{{forloop.counter}}" readonly> -->
               </label>
               {% endfor %}
             </div>
-            </div>
+            </div><!--
             <div class="row_inputs_file_two" id="r3">
               <div id="div3">
               {% for w in w_list2 %}
@@ -74,7 +76,7 @@
               </label>
               {% endfor %}
             </div>
-            </div>
+            </div> -->
             <a href="/" class="btn trangle continue" id="continue">CONTINUER <span class="block"></span></a>
           </form>
         </div>
