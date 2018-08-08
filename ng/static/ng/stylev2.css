@@ -453,6 +453,11 @@ html{
 
 /*Game Page */
 
+#you {
+	height: 68px;
+	width : 68px;
+}
+
 #img_dont_know, #last_mh_none, #last_ms_none {
 	height: 53px;
 	margin: auto;

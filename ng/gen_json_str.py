@@ -39,6 +39,7 @@ dict_obj = {
     'col_3':'Seconds mots préférés',
 
     #Game
+    'you' : "/static/ng/img/chat-min.png",
     'button_next': 'CONTINUER',
     'continue': 'CONTINUER',
     'conversations': 'CONVERSATION',
@@ -128,6 +129,7 @@ dict_obj = {
     'col_3':'Second Favorite Words',
 
     #Game
+    'you' : "/static/ng/img/chat_you.png",
     'button_next': 'CONTINUE',
     'continue': 'CONTINUE',
     'conversations': 'INTERACTION',
