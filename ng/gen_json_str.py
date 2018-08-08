@@ -42,7 +42,7 @@ dict_obj = {
     'button_next': 'CONTINUER',
     'continue': 'CONTINUER',
     'conversations': 'CONVERSATION',
-    'anhearer_text':"On essaye de communiquer avec vous.<br>Qe quoi vous parle-t-on ?",
+    'anhearer_text':"On essaye de communiquer avec vous.<br>De quoi vous parle-t-on ?",
     'anspeaker_text':"C’est à vous de prendre la parole.<br> Choissisez l’objet dont vous allez parler.",
     'anabs_text':'conversations ont eu lieu en votre absence',
     'choice_words': 'C’est à vous de prendre la parole.<br> Choissisez le mot que vous allez utiliser pour parler de cet objet.',
@@ -86,6 +86,10 @@ dict_obj = {
     'last_m_you' : "Ce à quoi vous pensiez",
     'last_m_other' : "Ce à quoi votre coéquipier pensait",
     'dont_know' : "Je ne sais pas encore ce que ce mot veux dire...",
+    'your_role_s' : "Vous parliez",
+    'your_role_h': "Vous écoutiez",
+    'other_role_s' : "Votre interlocuteur parlait",
+    'other_role_h' : "Votre interlocuteur vous écoutait",
   },
 
   'en': {
@@ -172,6 +176,10 @@ dict_obj = {
     'last_m_you' : "What you were thinking",
     'last_m_other' :  "What your partner was thinking",
     'dont_know' : "I don't know yet what this word means...",
+    'your_role_s' : "You spoke",
+    'your_role_h': "You listened",
+    'other_role_s' : "Your partner spoke",
+    'other_role_h' : "Your partner listened to you",
 
   },
   'it': {

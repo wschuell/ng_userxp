@@ -136,8 +136,8 @@
 
                <td>
                  <label class="label_input_file">
-                   <input name="select_radio" type="radio" id="meaning_{{ last_mh }}" value="{{ last_mh }}" hidden>
-                   <span class="castom_input_file" disabled><img  id="last_mh_{{ last_mh }}" class="img-responsive meaning_img last_mh" src="{% static 'ng/img/' %}kreyon_meaning{{ last_mh }}.png" meaning_name="last_mh_{{ last_mh }}"></span>
+                   <input name="select_radio"  type="radio" id="meaning_{{ last_mh }}" value="{{ last_mh }}" hidden>
+                   <span class="castom_input_file" {% if last_mh == "none" %} style="border : 2px solid white;" {% endif %} disabled><img  id="last_mh_{{ last_mh }}" class="img-responsive meaning_img last_mh" src="{% static 'ng/img/' %}kreyon_meaning{{ last_mh }}.png" meaning_name="last_mh_{{ last_mh }}"></span>
                  </label>
                </td>
 
@@ -158,13 +158,14 @@
               {% for m in experiment.meanings.all %}
               <label class="label_input_file">
                 <input name="select_radio" type="radio" id="m{{ m.meaning }}" value="m{{ m.meaning }}" hidden>
-                <span class="castom_input_file"><img id="meaning_{{ m.meaning }}" class="img-responsive m meaning_img" src="{% static 'ng/img/' %}kreyon_meaning{{ m.meaning }}.png" meaning_name="{{ m.meaning }}"></span>
+                <span class="castom_input_file" ><img id="meaning_{{ m.meaning }}" class="img-responsive m meaning_img" src="{% static 'ng/img/' %}kreyon_meaning{{ m.meaning }}.png" meaning_name="{{ m.meaning }}" ></span>
               </label>
               {% endfor %}
               {% if context == "question" and role == "hearer" and dont_know %}
+              <div class="separator"></div>
               <label class="label_input_file">
-                <input name="select_radio" type="radio" id="none" value="none" hidden>
-                <span class="castom_input_file"><img meaning_name="none" class="img-responsive m meaning_img" src="{% static 'ng/img/kreyon_meaningnone.png' %}" meaning_name="{{ m.meaning }}" id="img_dont_know"></span>
+                <input name="select_radio" type="radio" id="none" value="none"  hidden>
+                <span class="castom_input_file" style="border : 2px solid white;"><img meaning_name="none" class="img-responsive m meaning_img" src="{% static 'ng/img/kreyon_meaningnone.png' %}" meaning_name="{{ m.meaning }}" id="img_dont_know"></span>
               </label>
               {% endif %}
             </div>
@@ -370,6 +371,18 @@
 
            $('.last_ms').tooltip({
             title : current_lang.last_m_other ,
+            placement : "right",
+            trigger: "hover focus",
+           });
+
+           $('.role_s').tooltip({
+            title : current_lang.other_role_s ,
+            placement : "left",
+            trigger: "hover focus",
+           });
+
+           $('.role_h').tooltip({
+            title : current_lang.your_role_h ,
             placement : "right",
             trigger: "hover focus",
            });

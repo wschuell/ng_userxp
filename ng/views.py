@@ -715,15 +715,15 @@ def error(request):
 @login_required(login_url='/ng/login/')
 def test_score(request):
 
-    w_list1 = ["A", "B", "C", "D", "E", "F"]
-    w_list2 = ["G", "H", "-", "I", "-"]
+    w_list1 = ["A", "B"]#, "C", "D", "E", "F"]
+    w_list2 = ["G", "H"]#, "-", "I", "-"]
     #Test if score exists
     #if not, compute and store object
     #get value
     return render(request, 'ng/resultats.html', {
             'score': "350",
             'context':"end",
-            'm_list': [0,1,2,3,4],
+            'm_list': [0,1],#,2,3,4],
             'w_list1': w_list1 ,
             'w_list2': w_list2,
             'w_list':zip(w_list1,w_list2),

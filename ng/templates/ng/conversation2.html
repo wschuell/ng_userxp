@@ -128,7 +128,7 @@
               <td>
                 <label class="label_input_file">
                   <input name="select_radio" type="radio" id="meaning_{{ last_mh }}" value="{{ last_mh }}" hidden>
-                  <span class="castom_input_file" disabled><img  id="last_mh_{{ last_mh }}" class="img-responsive  meaning_img last_mh" src="{% static 'ng/img/' %}kreyon_meaning{{ last_mh }}.png" meaning_name="last_mh_{{ last_mh }}"></span>
+                  <span class="castom_input_file" {% if last_mh == "none" %} style="border : 2px solid white;" {% endif %} disabled><img  id="last_mh_{{ last_mh }}" class="img-responsive  meaning_img last_mh" src="{% static 'ng/img/' %}kreyon_meaning{{ last_mh }}.png" meaning_name="last_mh_{{ last_mh }}"></span>
                 </label>
               </td>
 
@@ -380,6 +380,18 @@
        $('.last_mh').tooltip({
         title : current_lang.last_m_other ,
         placement : "left",
+        trigger: "hover focus",
+       });
+
+       $('.role_s').tooltip({
+        title : current_lang.your_role_s ,
+        placement : "left",
+        trigger: "hover focus",
+       });
+
+       $('.role_h').tooltip({
+        title : current_lang.other_role_h ,
+        placement : "right",
         trigger: "hover focus",
        });
   }
