@@ -138,28 +138,12 @@ Une possibilité serait de parler toujours du même objet. Vous aurez ainsi de g
   		<div class="col-md-2"></div>
   	</div>
   	<div class="error_div row"></div>
-
+ <script src="{% static 'ng/sound.js' %}"></script>
 	<script text="text/javascript">
 
-  var sound_click = document.createElement('audio');
 
   $(document).ready(function(){
     $('body').css('visibility', 'visible');
-
-  if (typeof Cookies.get('NamingGameSound') === 'undefined'){
-    Cookies.set('NamingGameSound', true);
-    sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
-    $('#sound-on').css('display','none');
-    $('#sound-off').css('display','inline');
- } else if (Cookies.get('NamingGameSound')) {
-    sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
-    $('#sound-on').css('display','none');
-    $('#sound-off').css('display','inline');
-} else {
-   sound_click.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
-   $('#sound-off').css('display','none');
-   $('#sound-on').css('display','inline');
-}
 
 	//Menu
 

@@ -42,6 +42,7 @@ var current_lang = lang[current_lang_id];
           //Game
         $('#you').attr('src', current_lang.you);
         $('#continue').html(current_lang.continue);
+        $('#results').html(current_lang.results);
         $('#button_next').val(current_lang.continue);
         $('#history_name').html(current_lang.history_name);
         $('#conversations').html(current_lang.conversations);

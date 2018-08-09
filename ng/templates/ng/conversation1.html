@@ -44,24 +44,7 @@
     </div>
 
     <div class="container">
-        <div class="col_1 col">
-          <div class="imag_center">
-          <img src="{% static  'ng/img/n_ghome.png' %}" id="home" style="pointer:cursor;">
-
-        </div>
-        <div class="imag_center_two">
-          {% if userNG.lang == "fr" %}
-          <img src="{% static  'ng/img/chat-min.png' %}">
-          {% else %}
-          <img src="{% static  'ng/img/chat_you.png' %}">
-          {% endif %}
-        </div>
-        <div class="imag_center_twot_tru">
-          <img src="{% static  'ng/img/user_groop{}.png' %}">
-        </div>
-        <img src="{% static  'ng/img/soundon.png' %}" id="sound-on" style= "margin: 1px auto 4px; padding-left: 25px;">
-        <img src="{% static  'ng/img/soundoff.png' %}" id="sound-off" style= "margin: 1px auto 4px; padding-left: 25px;">
-        </div>
+       {% include "ng/col1.html" %}
         <div class="col_2 col">
           <div>
             <h1 class="convers_font" id="conversations">CONVERSATION</h1>
@@ -75,7 +58,7 @@
               </span>
             </div>
           </div>
-          <a href="#" class="btn trangle" id="button_next">CONTINUER <span class="block"></span></a>
+          <a href="" class="btn btn-d" id="continue">CONTINUER<span class="block"></span></a>
         </div>
         <div class="col_3 col">
           <div class="control_ico" style="display:block;">
@@ -149,32 +132,14 @@
       </div>
 
     <!-- Optional JavaScript -->
-
+ <script src="{% static 'ng/sound.js' %}"></script>
    <script text="text/javascript">
 
 
    $(document).ready(function(){
 
-    var sound_click = document.createElement('audio');
 
      $('body').css('visibility', 'visible');
-
-   if (typeof Cookies.get('NamingGameSound') === 'undefined'){
-     Cookies.set('NamingGameSound', true);
-     sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
-
-     $('#sound-on').css('display','none');
-     $('#sound-off').css('display','inline');
-  } else if (Cookies.get('NamingGameSound')) {
-     sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
-
-     $('#sound-on').css('display','none');
-     $('#sound-off').css('display','inline');
-  } else {
-    sound_click.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
-    $('#sound-off').css('display','none');
-    $('#sound-on').css('display','inline');
-  }
 
   $.ajaxPrefilter( function(options, originalOptions, jqXHR) {
     jqXHR.setRequestHeader('X-CSRF-Token', Cookies.get('csrftoken'));
@@ -197,21 +162,6 @@
 
 
    //Menu
-
-   //Sound
-   $('#sound-off').click(function(){
-     Cookies.set('NamingGameSound', false);
-     sound_click.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
-    $('#sound-off').css('display','none');
-    $('#sound-on').css('display','inline');
-   });
-   $('#sound-on').click(function(){
-     Cookies.set('NamingGameSound', true);
-     sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
-     sound_click.play();
-    $('#sound-on').css('display','none');
-    $('#sound-off').css('display','inline');
-   });
 
    //Home
    $('#home').click(function(){

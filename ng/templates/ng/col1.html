@@ -1,0 +1,25 @@
+ {% load static %}
+
+ <div class="col_1 col">
+          <div class="imag_center">
+          <img src="{% static  'ng/img/n_ghome.png' %}" id="home" style="pointer:cursor;width:50px;">
+
+        </div>
+        <div class="imag_center_two">
+          {% if userNG.lang == "fr" %}
+          <img src="{% static  'ng/img/chat-min.png' %}">
+          {% else %}
+          <img src="{% static  'ng/img/chat_you.png' %}">
+          {% endif %}
+        </div>
+        <div class="imag_center_twot_tru">
+          {% if experiment.size == 3 %}
+          <img src="{% static  'ng/img/user_groop.png' %}">
+          {% else %}
+          <img src="{% static  'ng/img/user_groop5.png' %}">
+          {% endif %}
+
+        </div>
+        <img src="{% static  'ng/img/soundon.png' %}" id="sound-on" style= "margin: 1px auto 4px; padding-left: 25px;">
+        <img src="{% static  'ng/img/soundoff.png' %}" id="sound-off" style= "margin: 1px auto 4px; padding-left: 25px;">
+        </div>
