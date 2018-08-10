@@ -6,11 +6,9 @@
 
         </div>
         <div class="imag_center_two">
-          {% if userNG.lang == "fr" %}
-          <img src="{% static  'ng/img/chat-min.png' %}">
-          {% else %}
-          <img src="{% static  'ng/img/chat_you.png' %}">
-          {% endif %}
+          <img id='you_fr' src="{% static  'ng/img/chat-min.png' %}" style="display: none">
+          <img id='you_en' src="{% static  'ng/img/chat_you.png' %}" style="width:68px">
+         
         </div>
         <div class="imag_center_twot_tru">
           {% if experiment.size == 3 %}

@@ -87,6 +87,15 @@ var current_lang = lang[current_lang_id];
 
         $('#id_code').attr('data-original-title',current_lang.tooltip_example);
 
+
+        if (lang_str == 'fr'){
+        $('#you_en').css('display','none');
+        $('#you_fr').css('display','inline');
+    } else {
+        $('#you_fr').css('display','none');
+        $('#you_en').css('display','inline');
+
+    }
         //console.log(lang_str);
 
 

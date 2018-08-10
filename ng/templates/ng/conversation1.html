@@ -50,7 +50,7 @@
             <h1 class="convers_font" id="conversations">CONVERSATION</h1>
             <h2 class="droop">{{ experiment.interaction_counter }} / {{ experiment.max_interaction }}</h2>
             <div>
-              <img class="hearing" src="{% static  'ng/img/bitmap-skipped.png' %}">
+              <img class="hearing" src="{% static  'ng/img/time.png' %}">
             </div>
             <div class="text_content_div">
               <span class="text_content">{{nb_skipped}} <span id="anabs_text" nb_skipped="{{nb_skipped}}">conversations ont eu lieu sans vous.
@@ -132,7 +132,7 @@
       </div>
 
     <!-- Optional JavaScript -->
- <script src="{% static 'ng/sound.js' %}"></script>
+ {% include 'ng/sound.html' %}
    <script text="text/javascript">
 
 

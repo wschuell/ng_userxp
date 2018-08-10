@@ -17,7 +17,7 @@
     <script src="{% static 'ng/js.cookie.js' %}"></script>
     <script src="{% static 'ng/script.js' %}"></script>
     <script src="{% static 'ng/change_lang.js' %}"></script>
-     <script src="{% static 'ng/sound.js' %}"></script>
+     {% include 'ng/sound.html' %}
     <script type="text/javascript">
         var url_send_user_info = "{% url 'ng:send_user_info_base'  %}";
         var url_newxp = "{% url 'ng:new_experiment'  %}";
