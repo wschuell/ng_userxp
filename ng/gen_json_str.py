@@ -1,25 +1,26 @@
 
 # coding: utf-8
 import json
+import sys
 
 dict_obj = {
   'fr':{
     #Global
 
     #Login
-    'welcome': 'Le Naming Game !',
+    'welcome': 'Naming Game',
     'enter_player_name': 'Entrez votre nom ici :',
-    'label_lang': 'Choisissez la langue du jeu :',
-    'label_code': 'Si vous avez un code spécial, entrez le ici :',
+    'label_lang': 'Choisissez votre langue:',
+    'label_code': 'Si on vous a indiqué un code spécifique, entrez le ici :',
     'submit':'Valider',
 
     #Home
-    'subtitle': 'Explorer le langage.',
+    'subtitle': 'Créer un nouveau langage.',
     'button_basic': 'TUTORIEL',
     'button_multi': 'INFORMATIONS',
     'button_normal': 'JEU',
-    'game_locked' : 'Terminer le Tutoriel pour débloquer',
-    'multi_locked' : 'Terminer le Jeu 3 fois pour débloquer',
+    'game_locked' : 'Gagner le Tutoriel',
+    'multi_locked' : 'Gagner le Jeu 3 fois',
 
     #Story End
     'story_pagetitle': 'HISTOIRE',
@@ -49,11 +50,11 @@ dict_obj = {
     'choice_words': 'C’est à vous de prendre la parole.<br> Choissisez le mot que vous allez utiliser pour parler de cet objet.',
     'history_objects':'Objets',
     'history_words':'Mots',
-    'history_success':'Succès',
+    'history_success':'',
     'modal_title': 'Êtes vous sûr.e ?',
-    'modal_body': 'Si vous quittez la partie en cours, celle-ci ne sera pas sauvegardée. Voulez-vous toujours quitter ?',
-    'btn_yes': '<p>Oui, quitter la partie</p>',
-    'btn_no': '<p>Non, continuer la partie</p>',
+    'modal_body': 'Si vous quittez la partie en cours, celle-ci ne sera pas sauvegardée.',
+    'btn_yes': '<p>Quitter la partie</p>',
+    'btn_no': '<p>Continuer la partie</p>',
 
     #Feedback
     'speaker_success': "Bravo, votre interlocuteur vous a compris !",
@@ -71,36 +72,69 @@ dict_obj = {
     #Info page
     'titre_info' : "",
     'info_text': "",
-    'label_q1':"Êtiez-vous déjà familier.ère avec le principe des Naming Games ? ",
+    'label_q1':"Aviez-vous déjà entendu parler des jeux de language ? ",
     'label_q2':"Aviez-vous déjà joué à un jeu de ce type ou participé à une expérience similaire auparavant ?",
-    'label_q3':"Êtes-vous familier.ère avec les concepts évoqués plus haut ? ",
+    'label_q3':"Avez-vous bien compris ce qui se passait au cours du jeu ? ",
     'label_q4':"Avez-vous eu l'impression d'utiliser une certaine stratégie (ou plusieurs) lors de vos parties ?",
     'label_q5':"Si oui, pourriez-vous la ou les décrire brièvement ?",
 
     #Tooltips
     'tooltip_example':"Si vous n'avez pas de code, laissez ce champ vide.",
     'results_1' : "Objets",
-    'results_2' : "Mots les plus utilisés par objet <br> <p style='font-size:11px; padding-top:13px;'>(Premiers <br> Deuxièmes)</p>",
+    'results_2' : "Mots les plus utilisés",
     'hearer_w' : "Vous entendez ce mot :",
-    'menu_h': "Cliquez ici pour voir l'historique",
+    'menu_h': "Afficher l'historique",
     'word_inter': "Le mot utilisé dans cette conversation",
     'last_m_you' : "Ce à quoi vous pensiez",
     'last_m_other' : "Ce à quoi votre coéquipier pensait",
-    'dont_know' : "Je ne sais pas encore ce que ce mot veux dire...",
+    'dont_know' : "Je ne sais pas",
     'your_role_s' : "Vous parliez",
     'your_role_h': "Vous écoutiez",
     'other_role_s' : "Votre interlocuteur parlait",
     'other_role_h' : "Votre interlocuteur vous écoutait",
+
+
+    'infos_txt':'''
+            <p class="text_content_four" style="text-align:center;font-size:18px;">
+           Ce jeu auquel vous venez de jouer est bien plus qu'un jeu.
+            C'est une simulation informatique qui modélise l'apparition et
+            l'évolution du vocabulaire d'une population. On parle aussi de modèle
+            computationnel multi-agent de l'émergence et de l'évolution
+            des conventions lexicales, autrement dit un Naming Game.</p>
+            <p class="text_content_four" style="text-align:center;font-size:18px;">
+              Celui-ci est un peu particulier puisqu'il vous permet de prendre la
+              place d'un de ses agents virtuels et de participer vous aussi à la
+              création de ces conventions lexicales. </p>
+
+            <p class=" text_content_four" style="text-align:center;font-size:18px;">Vous avez pu remarquer que vos choix ont eu une influence, ou pas, sur ceux des autres agents. Car dans ce jeu tout le mode est à égalité et vous n'êtes pas seul.e à pouvoir influer sur le jeu.</p>
+
+            <p class=" text_content_four" style="text-align:center;font-size:18px;">Le score et le tableau à la fin de chaque partie vous indiquent à quel point vous avez tous réussi à vous mettre d'accord. En 50 interactions seulement, c'est un exercice difficile qui comporte une certaine part de hasard. Mais le succès de chaque partie est loin d'être aléatoire. De très nombreuses stratégies sont possibles et permettent, à votre échelle, d'influencer significativement le résultat.
+              Nous nous penchons ici plus précisément sur la manière dont vous choisissez les objets lorsque c'est à votre tour de parler (on dit aussi que vous êtes le speaker).</p>
+
+            <p class=" text_content_four" style="text-align:center;font-size:18px;">Vous pouvez par exemple choisir complètement au hasard. On appelle cette stratégie une stratégie naïve. Vous pouvez aussi choisir ces objets en fonction de certains critères.
+              Une possibilité serait de parler toujours du même objet. Vous aurez ainsi de grandes chances pour que tout le monde partage le même mot pour cette objet, mais il y a également beaucoup de risques pour que les autres objets se retrouvent sans nom partagé par tous à la fin de la partie.</p>
+
+            <p  class=" text_content_four" style="text-align:center;font-size:18px;">Une autre stratégie consiste à parler uniquement ou presque des objets dont vous connaissez le nom pour augmenter vos chances que ce nom soit utilisé par le plus grand nombre de vos partenaires.</p>
+
+            <p class=" text_content_four" style="text-align:center;font-size:18px;">Bref, il y a énormément de stratégies et c'est justement ce qui nous intéresse dans le cadre de notre recherche.</p>
+''',
+
+'infos_title':'MERCI DE VOTRE PARTICIPATION',
+'infos_qu':'''
+ <p class=" text_content_four" style="text-align:center;font-size:18px;"> Afin de nous aidez, pourriez-vous remplir ce bref questionnaire ?</p>
+''',
+'question_title':'Questionnaire:',
+
   },
 
   'en': {
     #Global
 
     #Login
-    'welcome': 'The Naming Game!',
+    'welcome': 'The Naming Game',
     'enter_player_name': 'Enter your name here :',
-    'label_lang': 'Choose the game language :',
-    'label_code': 'If you have a special token, enter it here :',
+    'label_lang': 'Choose your language :',
+    'label_code': 'If you have been told to use a specific token, enter it here :',
     'submit' : "Submit",
 
     #Home
@@ -108,21 +142,21 @@ dict_obj = {
     'button_basic': 'TUTORIAL',
     'button_multi': 'INFORMATIONS',
     'button_normal': 'GAME',
-    'game_locked' : 'COMPLETE THE TUTORIAL TO UNLOCK',
-    'multi_locked' : 'COMPLETE THE GAME 3 TIMES TO UNLOCK ',
+    'game_locked' : 'WIN TUTORIAL TO UNLOCK',
+    'multi_locked' : 'WIN 3 GAMES TO UNLOCK',
 
     #Story End
     'story_pagetitle': 'Story',
     'results': 'RESULTS',
     'c1_1': ' You have been kidnapped by Aliens !',
-    'c1_2': 'Now, you are locked alone in a room of their huge spaceship. In the rooms next to yours, there are <span class="important">3 other individuals</span> also kidnapped by your abductors at the four corners of the galaxy.',
-    'c2_1':'To do so, you may only talk <span class="important">by pairs</span> thanks to a <span class="important">radio</span>, <span class="important">without knowing wich one of your companions in misery is on the other side</span>.',
+    'c1_2': 'You <img class="txt_img" src="/static/ng/img/chat.png"> are now locked alone in a room of their huge spaceship. In the neighboring rooms, there are <span class="important">3 other individuals</span> <img src="/static/ng/img/user_groop.png" class="txt_img" style="vertical-align:middle;"> also kidnapped by your abductors at the four corners of the galaxy.',
+    'c2_1':'To do so, you may only talk <span class="important">by pairs</span> thanks to a <span class="important">radio</span>, <span class="important">without knowing wich one of your fellow prisoners is on the other side</span>.',
     'c2_2':'One of you will say a word and the other will have to guess which object he is referring to.',
-    'c2_3':'Sometimes you will talk, sometimes you will guess and sometimes you won’t be in the conversation and you won’t know what was said.',
-    'text_end':'Once you managed to understand each other, you develop a spectacular escape plan. Your abductors don’t even see it coming until it’s too late. You steal a ship from them and one of your companions drive you back home with it.',
+    'c2_3':'Sometimes you will talk <img src="/static/ng/img/mic-512.png" class="txt_img" >, sometimes you will listen and guess <img class="txt_img" src="/static/ng/img/bitmap-1.png"> and sometimes you will wait <img src="/static/ng/img/time.png" class="txt_img" > while others are conversing. ',
+    'text_end':'Once you managed to understand each other, you come up with a spectacular escape plan. Your abductors don’t even see it coming until it’s too late. You steal a ship from them and one of your companions drives you back home with it.',
     'text_score':'Score :',
     'c1_3':'<span class="important">None of you is from the same planet or speak the same language</span> but you all want the same thing : escape and go back home.',
-    'c2_4':'But careful, you only have a <span class="important">limited number of conversations</span> to succed !',
+    'c2_4':'But careful, you only have a <span class="important">limited number of conversations</span> to succeed !',
 
     'col_1':'Objects',
     'col_2':'Favorite Words',
@@ -134,20 +168,20 @@ dict_obj = {
     'continue': 'CONTINUE',
     'conversations': 'INTERACTION',
     'anhearer_text':"Someone is trying to communicate with you.<br>What are they talking about ?",
-    'anspeaker_text':'Your turn to speak. <br> Choose the object you will talk about.',
+    'anspeaker_text':'Your turn to speak. <br> Pick the object you will talk about.',
     'anabs_text':'interactions happened without you being a part of it.',
-    'choice_words': 'Your turn to speak. <br> Choose the word you will use to talk about this object.',
+    'choice_words': 'Your turn to speak. <br> Pick the word you will use to refer to this object.',
     'history_objects':'Objects',
     'history_words':'Words',
-    'history_success':'Success',
+    'history_success':'',
     'modal_title': 'Are you sure ?',
-    'modal_body': 'If you quit the ongoing game, it won’t be saved. Do you still want to quit ?',
+    'modal_body': 'If you quit this page, the game won’t be saved. Do you still want to quit ?',
     'btn_yes': '<p>Yes, quit the game</p>',
     'btn_no': '<p>No, resume the game</p>',
 
     #Feedback
-    'speaker_success': "Well done, your partner understood you !",
-    'speaker_learn': "Your partner didn't know this word but they will remeber it next time !",
+    'speaker_success': "Well done, your partner understood !",
+    'speaker_learn': "Your partner didn't know this word but they will remember it next time !",
     'speaker_failure': "Oops, your partner thought you were talking about something else. They will remember it next time !",
     'hearer_success': "Well done, you understood your partner ! You will remember it next time !",
     'hearer_learn': "This is what your partner meant, you will remember it next time !",
@@ -155,33 +189,63 @@ dict_obj = {
 
 
         #Error Page
-    'error_text': "<span id='error_span'>Oops!</span> It seems that an error occured! You can try to resume your game or go back at home page an start a new one.",
-    'btn_home': "Go back to Home page",
+    'error_text': "<span id='error_span'>Oops!</span> It seems that an error occured. You can try to resume your game or go back to home page.",
+    'btn_home': "Home",
     'btn_continue': 'Resume the game',
 
     #Info page
     'titre_info' : "",
     'info_text': "",
-    'label_q1':"Were you already familiar with the Naming Games principle ? ",
-    'label_q2':"Have you already played such a game or been taking part into a similar experiment ?",
-    'label_q3':"Were you already familiar with the concepts evoked above ?",
-    'label_q4':"Did you felt like you used a certain strategy (or several) during your games ?",
+    'label_q1':"Were you already familiar with language games ? ",
+    'label_q2':"Have you already played such a game or participated to a similar experiment ?",
+    'label_q3':"Did you understand what was happening in the game ?",
+    'label_q4':"Did you use a certain strategy (or several) during your games ?",
     'label_q5':"If it is a 'Yes', could you describe it briefly ?",
 
     #Tooltips
     'tooltip_example':"If you were not provided a token, leave empty.",
     'results_1' : "Objects",
-    'results_2' : "Most used words per object <br> <p style='font-size:11px; padding-top:13px;'>(Firsts <br> Seconds)</p>",
-    'hearer_w' : "You hear this word :",
+    'results_2' : "Most used words per object",
+    'hearer_w' : "You heard this word",
     'menu_h': "Click to see past interactions",
     'word_inter': "The word used in this conversation",
     'last_m_you' : "What you were thinking",
-    'last_m_other' :  "What your partner was thinking",
-    'dont_know' : "I don't know yet what this word means...",
+    'last_m_other' :  "What your partner was referring to",
+    'dont_know' : "I don't know",
     'your_role_s' : "You spoke",
     'your_role_h': "You listened",
     'other_role_s' : "Your partner spoke",
-    'other_role_h' : "Your partner listened to you",
+    'other_role_h' : "Your partner listened",
+
+    'infos_txt':'''
+            <p class="text_content_four" style="text-align:center;font-size:18px;">
+           Ce jeu auquel vous venez de jouer est bien plus qu'un jeu.
+            C'est une simulation informatique qui modélise l'apparition et
+            l'évolution du vocabulaire d'une population. On parle aussi de modèle
+            computationnel multi-agent de l'émergence et de l'évolution
+            des conventions lexicales, autrement dit un Naming Game.</p>
+            <p class="text_content_four" style="text-align:center;font-size:18px;">
+              Celui-ci est un peu particulier puisqu'il vous permet de prendre la
+              place d'un de ses agents virtuels et de participer vous aussi à la
+              création de ces conventions lexicales. </p>
+
+            <p class=" text_content_four" style="text-align:center;font-size:18px;">Vous avez pu remarquer que vos choix ont eu une influence, ou pas, sur ceux des autres agents. Car dans ce jeu tout le mode est à égalité et vous n'êtes pas seul.e à pouvoir influer sur le jeu.</p>
+
+            <p class=" text_content_four" style="text-align:center;font-size:18px;">Le score et le tableau à la fin de chaque partie vous indiquent à quel point vous avez tous réussi à vous mettre d'accord. En 50 interactions seulement, c'est un exercice difficile qui comporte une certaine part de hasard. Mais le succès de chaque partie est loin d'être aléatoire. De très nombreuses stratégies sont possibles et permettent, à votre échelle, d'influencer significativement le résultat.
+              Nous nous penchons ici plus précisément sur la manière dont vous choisissez les objets lorsque c'est à votre tour de parler (on dit aussi que vous êtes le speaker).</p>
+
+            <p class=" text_content_four" style="text-align:center;font-size:18px;">Vous pouvez par exemple choisir complètement au hasard. On appelle cette stratégie une stratégie naïve. Vous pouvez aussi choisir ces objets en fonction de certains critères.
+              Une possibilité serait de parler toujours du même objet. Vous aurez ainsi de grandes chances pour que tout le monde partage le même mot pour cette objet, mais il y a également beaucoup de risques pour que les autres objets se retrouvent sans nom partagé par tous à la fin de la partie.</p>
+
+            <p  class=" text_content_four" style="text-align:center;font-size:18px;">Une autre stratégie consiste à parler uniquement ou presque des objets dont vous connaissez le nom pour augmenter vos chances que ce nom soit utilisé par le plus grand nombre de vos partenaires.</p>
+
+            <p class=" text_content_four" style="text-align:center;font-size:18px;">Bref, il y a énormément de stratégies et c'est justement ce qui nous intéresse dans le cadre de notre recherche. Afin de nous aidez, pourriez-vous remplir ce bref questionnaire ?</p>
+''',
+'infos_title':'THANK YOU FOR PARTICIPATING',
+'infos_qu':'''
+  Before ending the experiment, could you fill in this quick survey ?</p>
+''',
+'question_title':'Quick survey:',
 
   },
   'it': {
@@ -257,7 +321,30 @@ dict_obj = {
             'label_q3':"Êtes-vous familier.ère avec les concepts évoqués plus haut ? ",
             'label_q4':"Avez-vous eu l'impression d'utiliser une certaine stratégie (ou plusieurs) lors de vos parties ?",
             'label_q5':"Si oui, pourriez-vous la ou les décrire brièvement ?",
+    'infos_txt':'''
+            <p class="text_content_four" style="text-align:center;font-size:18px;">
+            BLAHCe jeu auquel vous venez de jouer est bien plus qu'un jeu.
+            C'est une simulation informatique qui modélise l'apparition et
+            l'évolution du vocabulaire d'une population. On parle aussi de modèle
+            computationnel multi-agent de l'émergence et de l'évolution
+            des conventions lexicales, autrement dit un Naming Game.</p>
+            <p class="text_content_four" style="text-align:center;font-size:18px;">
+              Celui-ci est un peu particulier puisqu'il vous permet de prendre la
+              place d'un de ses agents virtuels et de participer vous aussi à la
+              création de ces conventions lexicales. </p>
 
+            <p class=" text_content_four" style="text-align:center;font-size:18px;">Vous avez pu remarquer que vos choix ont eu une influence, ou pas, sur ceux des autres agents. Car dans ce jeu tout le mode est à égalité et vous n'êtes pas seul.e à pouvoir influer sur le jeu.</p>
+
+            <p class=" text_content_four" style="text-align:center;font-size:18px;">Le score et le tableau à la fin de chaque partie vous indiquent à quel point vous avez tous réussi à vous mettre d'accord. En 50 interactions seulement, c'est un exercice difficile qui comporte une certaine part de hasard. Mais le succès de chaque partie est loin d'être aléatoire. De très nombreuses stratégies sont possibles et permettent, à votre échelle, d'influencer significativement le résultat.
+              Nous nous penchons ici plus précisément sur la manière dont vous choisissez les objets lorsque c'est à votre tour de parler (on dit aussi que vous êtes le speaker).</p>
+
+            <p class=" text_content_four" style="text-align:center;font-size:18px;">Vous pouvez par exemple choisir complètement au hasard. On appelle cette stratégie une stratégie naïve. Vous pouvez aussi choisir ces objets en fonction de certains critères.
+              Une possibilité serait de parler toujours du même objet. Vous aurez ainsi de grandes chances pour que tout le monde partage le même mot pour cette objet, mais il y a également beaucoup de risques pour que les autres objets se retrouvent sans nom partagé par tous à la fin de la partie.</p>
+
+            <p  class=" text_content_four" style="text-align:center;font-size:18px;">Une autre stratégie consiste à parler uniquement ou presque des objets dont vous connaissez le nom pour augmenter vos chances que ce nom soit utilisé par le plus grand nombre de vos partenaires.</p>
+
+            <p class=" text_content_four" style="text-align:center;font-size:18px;">Bref, il y a énormément de stratégies et c'est justement ce qui nous intéresse dans le cadre de notre recherche. Afin de nous aidez, pourriez-vous remplir ce bref questionnaire ?</p>
+''',
     #Tooltips
     'tooltip_example':"Si vous n'avez pas de code, laissez ce champ vide.",
     'results_1' : "Objets",
@@ -296,3 +383,5 @@ s2 = split_str.join(splitted)
 
 with open('static/ng/change_lang.js','w') as f:
     f.write(s2)
+
+sys.exit(0)

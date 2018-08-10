@@ -568,10 +568,6 @@ table {
 
 /*Info Page*/
 
-.fieldWrapper {
-	display: block;
-}
-
 /*Historique*/
 
 #menu-h {
@@ -666,4 +662,9 @@ table {
   url('fonts/AvenirNext-Bold.svg#AvenirNext-Bold') format('svg');
   font-weight: normal;
   font-style: normal;
+}
+
+.txt_img{
+	height:2em;
+	vertical-align:bottom;
 }
