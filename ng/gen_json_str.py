@@ -12,12 +12,13 @@ dict_obj = {
     'enter_player_name': 'Entrez votre nom ici :',
     'label_lang': 'Choisissez votre langue:',
     'label_code': 'Si on vous a indiqué un code spécifique, entrez le ici :',
+    'consent_form':'consent form + cookies info',
     'submit':'Valider',
 
     #Home
-    'subtitle': 'Créer un nouveau langage.',
+    'subtitle': 'Créez un nouveau langage.',
     'button_basic': 'TUTORIEL',
-    'button_multi': 'INFORMATIONS',
+    'button_multi': 'BONUS',
     'button_normal': 'JEU',
     'game_locked' : 'Gagner le Tutoriel',
     'multi_locked' : 'Gagner le Jeu 3 fois',
@@ -26,7 +27,7 @@ dict_obj = {
     'story_pagetitle': 'HISTOIRE',
     'results': "RESULTATS",
     'c1_1': ' Vous avez été enlevé par des Extraterrestres !',
-    'c1_2': "Vous voilà enfermé seul dans une pièce de leur vaisseau. Dans les pièces d'à côté se trouvent <span class='important'>4 autres individus</span> que vos ravisseurs ont également enlevés aux quatre coins de la galaxie.",
+    'c1_2': 'Vous <img class="txt_img" src="/static/ng/img/chat.png"> voilà enfermé seul dans une pièce de leur vaisseau. Dans les pièces d\'à côté se trouvent <span class="important">3 autres individus</span> <img src="/static/ng/img/user_groop.png" class="txt_img" style="vertical-align:middle;"> que vos ravisseurs ont également enlevés aux quatre coins de la galaxie.',
     'c2_1':"Pour ce faire, vous ne pourrez parler que <span class='important'>deux par deux</span> grâce à une <span class='important'>radio</span>, <span class='important'>sans savoir lequel de vos camarades d'infortune est à l'autre bout</span>.",
     'c2_2':"L'un de vous proposera un mot et l'autre devra deviner l'objet auquel il fait référence.",
     'c2_3':"Parfois vous proposerez un mot, parfois vous devinerez l'objet et parfois encore vous ne ferez pas partie de la conversation et ne saurez pas ce qui s'y est dit.",
@@ -95,29 +96,34 @@ dict_obj = {
 
 
     'infos_txt':'''
-            <p class="text_content_four" style="text-align:center;font-size:18px;">
-           Ce jeu auquel vous venez de jouer est bien plus qu'un jeu.
-            C'est une simulation informatique qui modélise l'apparition et
-            l'évolution du vocabulaire d'une population. On parle aussi de modèle
-            computationnel multi-agent de l'émergence et de l'évolution
-            des conventions lexicales, autrement dit un Naming Game.</p>
-            <p class="text_content_four" style="text-align:center;font-size:18px;">
-              Celui-ci est un peu particulier puisqu'il vous permet de prendre la
-              place d'un de ses agents virtuels et de participer vous aussi à la
-              création de ces conventions lexicales. </p>
+    <p class="text_content_four" style="text-align:center;font-size:18px;">
+            Credentials + explanation game + links github and articles
+    ''',
 
-            <p class=" text_content_four" style="text-align:center;font-size:18px;">Vous avez pu remarquer que vos choix ont eu une influence, ou pas, sur ceux des autres agents. Car dans ce jeu tout le mode est à égalité et vous n'êtes pas seul.e à pouvoir influer sur le jeu.</p>
+#     '''
+#             <p class="text_content_four" style="text-align:center;font-size:18px;">
+#            Ce jeu auquel vous venez de jouer est bien plus qu'un jeu.
+#             C'est une simulation informatique qui modélise l'apparition et
+#             l'évolution du vocabulaire d'une population. On parle aussi de modèle
+#             computationnel multi-agent de l'émergence et de l'évolution
+#             des conventions lexicales, autrement dit un Naming Game.</p>
+#             <p class="text_content_four" style="text-align:center;font-size:18px;">
+#               Celui-ci est un peu particulier puisqu'il vous permet de prendre la
+#               place d'un de ses agents virtuels et de participer vous aussi à la
+#               création de ces conventions lexicales. </p>
 
-            <p class=" text_content_four" style="text-align:center;font-size:18px;">Le score et le tableau à la fin de chaque partie vous indiquent à quel point vous avez tous réussi à vous mettre d'accord. En 50 interactions seulement, c'est un exercice difficile qui comporte une certaine part de hasard. Mais le succès de chaque partie est loin d'être aléatoire. De très nombreuses stratégies sont possibles et permettent, à votre échelle, d'influencer significativement le résultat.
-              Nous nous penchons ici plus précisément sur la manière dont vous choisissez les objets lorsque c'est à votre tour de parler (on dit aussi que vous êtes le speaker).</p>
+#             <p class=" text_content_four" style="text-align:center;font-size:18px;">Vous avez pu remarquer que vos choix ont eu une influence, ou pas, sur ceux des autres agents. Car dans ce jeu tout le mode est à égalité et vous n'êtes pas seul.e à pouvoir influer sur le jeu.</p>
 
-            <p class=" text_content_four" style="text-align:center;font-size:18px;">Vous pouvez par exemple choisir complètement au hasard. On appelle cette stratégie une stratégie naïve. Vous pouvez aussi choisir ces objets en fonction de certains critères.
-              Une possibilité serait de parler toujours du même objet. Vous aurez ainsi de grandes chances pour que tout le monde partage le même mot pour cette objet, mais il y a également beaucoup de risques pour que les autres objets se retrouvent sans nom partagé par tous à la fin de la partie.</p>
+#             <p class=" text_content_four" style="text-align:center;font-size:18px;">Le score et le tableau à la fin de chaque partie vous indiquent à quel point vous avez tous réussi à vous mettre d'accord. En 50 interactions seulement, c'est un exercice difficile qui comporte une certaine part de hasard. Mais le succès de chaque partie est loin d'être aléatoire. De très nombreuses stratégies sont possibles et permettent, à votre échelle, d'influencer significativement le résultat.
+#               Nous nous penchons ici plus précisément sur la manière dont vous choisissez les objets lorsque c'est à votre tour de parler (on dit aussi que vous êtes le speaker).</p>
 
-            <p  class=" text_content_four" style="text-align:center;font-size:18px;">Une autre stratégie consiste à parler uniquement ou presque des objets dont vous connaissez le nom pour augmenter vos chances que ce nom soit utilisé par le plus grand nombre de vos partenaires.</p>
+#             <p class=" text_content_four" style="text-align:center;font-size:18px;">Vous pouvez par exemple choisir complètement au hasard. On appelle cette stratégie une stratégie naïve. Vous pouvez aussi choisir ces objets en fonction de certains critères.
+#               Une possibilité serait de parler toujours du même objet. Vous aurez ainsi de grandes chances pour que tout le monde partage le même mot pour cette objet, mais il y a également beaucoup de risques pour que les autres objets se retrouvent sans nom partagé par tous à la fin de la partie.</p>
 
-            <p class=" text_content_four" style="text-align:center;font-size:18px;">Bref, il y a énormément de stratégies et c'est justement ce qui nous intéresse dans le cadre de notre recherche.</p>
-''',
+#             <p  class=" text_content_four" style="text-align:center;font-size:18px;">Une autre stratégie consiste à parler uniquement ou presque des objets dont vous connaissez le nom pour augmenter vos chances que ce nom soit utilisé par le plus grand nombre de vos partenaires.</p>
+
+#             <p class=" text_content_four" style="text-align:center;font-size:18px;">Bref, il y a énormément de stratégies et c'est justement ce qui nous intéresse dans le cadre de notre recherche.</p>
+# ''',
 
 'infos_title':'MERCI DE VOTRE PARTICIPATION',
 'infos_qu':'''
@@ -136,11 +142,12 @@ dict_obj = {
     'label_lang': 'Choose your language :',
     'label_code': 'If you have been told to use a specific token, enter it here :',
     'submit' : "Submit",
+        'consent_form':'consent form + cookies info',
 
     #Home
-    'subtitle': 'Explore the language.',
+    'subtitle': 'Build a new language.',
     'button_basic': 'TUTORIAL',
-    'button_multi': 'INFORMATIONS',
+    'button_multi': 'BONUS',
     'button_normal': 'GAME',
     'game_locked' : 'WIN TUTORIAL TO UNLOCK',
     'multi_locked' : 'WIN 3 GAMES TO UNLOCK',
@@ -218,29 +225,34 @@ dict_obj = {
     'other_role_h' : "Your partner listened",
 
     'infos_txt':'''
-            <p class="text_content_four" style="text-align:center;font-size:18px;">
-           Ce jeu auquel vous venez de jouer est bien plus qu'un jeu.
-            C'est une simulation informatique qui modélise l'apparition et
-            l'évolution du vocabulaire d'une population. On parle aussi de modèle
-            computationnel multi-agent de l'émergence et de l'évolution
-            des conventions lexicales, autrement dit un Naming Game.</p>
-            <p class="text_content_four" style="text-align:center;font-size:18px;">
-              Celui-ci est un peu particulier puisqu'il vous permet de prendre la
-              place d'un de ses agents virtuels et de participer vous aussi à la
-              création de ces conventions lexicales. </p>
+    <p class="text_content_four" style="text-align:center;font-size:18px;">
+            Credentials + explanation game + links github and articles
+    ''',
 
-            <p class=" text_content_four" style="text-align:center;font-size:18px;">Vous avez pu remarquer que vos choix ont eu une influence, ou pas, sur ceux des autres agents. Car dans ce jeu tout le mode est à égalité et vous n'êtes pas seul.e à pouvoir influer sur le jeu.</p>
+#     'infos_txt':'''
+#             <p class="text_content_four" style="text-align:center;font-size:18px;">
+#            Ce jeu auquel vous venez de jouer est bien plus qu'un jeu.
+#             C'est une simulation informatique qui modélise l'apparition et
+#             l'évolution du vocabulaire d'une population. On parle aussi de modèle
+#             computationnel multi-agent de l'émergence et de l'évolution
+#             des conventions lexicales, autrement dit un Naming Game.</p>
+#             <p class="text_content_four" style="text-align:center;font-size:18px;">
+#               Celui-ci est un peu particulier puisqu'il vous permet de prendre la
+#               place d'un de ses agents virtuels et de participer vous aussi à la
+#               création de ces conventions lexicales. </p>
 
-            <p class=" text_content_four" style="text-align:center;font-size:18px;">Le score et le tableau à la fin de chaque partie vous indiquent à quel point vous avez tous réussi à vous mettre d'accord. En 50 interactions seulement, c'est un exercice difficile qui comporte une certaine part de hasard. Mais le succès de chaque partie est loin d'être aléatoire. De très nombreuses stratégies sont possibles et permettent, à votre échelle, d'influencer significativement le résultat.
-              Nous nous penchons ici plus précisément sur la manière dont vous choisissez les objets lorsque c'est à votre tour de parler (on dit aussi que vous êtes le speaker).</p>
+#             <p class=" text_content_four" style="text-align:center;font-size:18px;">Vous avez pu remarquer que vos choix ont eu une influence, ou pas, sur ceux des autres agents. Car dans ce jeu tout le mode est à égalité et vous n'êtes pas seul.e à pouvoir influer sur le jeu.</p>
 
-            <p class=" text_content_four" style="text-align:center;font-size:18px;">Vous pouvez par exemple choisir complètement au hasard. On appelle cette stratégie une stratégie naïve. Vous pouvez aussi choisir ces objets en fonction de certains critères.
-              Une possibilité serait de parler toujours du même objet. Vous aurez ainsi de grandes chances pour que tout le monde partage le même mot pour cette objet, mais il y a également beaucoup de risques pour que les autres objets se retrouvent sans nom partagé par tous à la fin de la partie.</p>
+#             <p class=" text_content_four" style="text-align:center;font-size:18px;">Le score et le tableau à la fin de chaque partie vous indiquent à quel point vous avez tous réussi à vous mettre d'accord. En 50 interactions seulement, c'est un exercice difficile qui comporte une certaine part de hasard. Mais le succès de chaque partie est loin d'être aléatoire. De très nombreuses stratégies sont possibles et permettent, à votre échelle, d'influencer significativement le résultat.
+#               Nous nous penchons ici plus précisément sur la manière dont vous choisissez les objets lorsque c'est à votre tour de parler (on dit aussi que vous êtes le speaker).</p>
 
-            <p  class=" text_content_four" style="text-align:center;font-size:18px;">Une autre stratégie consiste à parler uniquement ou presque des objets dont vous connaissez le nom pour augmenter vos chances que ce nom soit utilisé par le plus grand nombre de vos partenaires.</p>
+#             <p class=" text_content_four" style="text-align:center;font-size:18px;">Vous pouvez par exemple choisir complètement au hasard. On appelle cette stratégie une stratégie naïve. Vous pouvez aussi choisir ces objets en fonction de certains critères.
+#               Une possibilité serait de parler toujours du même objet. Vous aurez ainsi de grandes chances pour que tout le monde partage le même mot pour cette objet, mais il y a également beaucoup de risques pour que les autres objets se retrouvent sans nom partagé par tous à la fin de la partie.</p>
 
-            <p class=" text_content_four" style="text-align:center;font-size:18px;">Bref, il y a énormément de stratégies et c'est justement ce qui nous intéresse dans le cadre de notre recherche. Afin de nous aidez, pourriez-vous remplir ce bref questionnaire ?</p>
-''',
+#             <p  class=" text_content_four" style="text-align:center;font-size:18px;">Une autre stratégie consiste à parler uniquement ou presque des objets dont vous connaissez le nom pour augmenter vos chances que ce nom soit utilisé par le plus grand nombre de vos partenaires.</p>
+
+#             <p class=" text_content_four" style="text-align:center;font-size:18px;">Bref, il y a énormément de stratégies et c'est justement ce qui nous intéresse dans le cadre de notre recherche. Afin de nous aidez, pourriez-vous remplir ce bref questionnaire ?</p>
+# ''',
 'infos_title':'THANK YOU FOR PARTICIPATING',
 'infos_qu':'''
   Before ending the experiment, could you fill in this quick survey ?</p>
@@ -257,6 +269,7 @@ dict_obj = {
             'enter_player_name': 'Entrez votre nom ici :',
             'label_lang': 'Choisissez la langue du jeu :',
             'label_code': 'Si vous avez un code spécial, entrez le ici :',
+    'consent_form':'consent form + cookies info',
             'submit':'Valider',
 
             #Home
