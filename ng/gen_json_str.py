@@ -9,7 +9,7 @@ dict_obj = {
 
     #Login
     'welcome': 'Naming Game',
-    'enter_player_name': 'Entrez votre nom ici :',
+    'enter_player_name': 'Prolific ID :',
     'label_lang': 'Choisissez votre langue:',
     'label_code': 'Si on vous a indiqué un code spécifique, entrez le ici :',
     'consent_form':'consent form + cookies info',
@@ -138,7 +138,7 @@ dict_obj = {
 
     #Login
     'welcome': 'The Naming Game',
-    'enter_player_name': 'Enter your name here :',
+    'enter_player_name': 'Prolific ID :',
     'label_lang': 'Choose your language :',
     'label_code': 'If you have been told to use a specific token, enter it here :',
     'submit' : "Submit",

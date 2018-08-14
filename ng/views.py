@@ -27,6 +27,18 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import authenticate, login
 from .forms import NameForm, QuestionForm
 
+import os
+
+prolific_file = 'prolific.txt'
+if not os.path.exists(prolific_file):
+    with open(prolific_file,'w') as f:
+        f.write('/prolific')
+with open(prolific_file,'r') as f:
+    prolific_url = f.readline()
+    if prolific_url[-1] == '\n':
+        prolific_url = prolific_url[:-1]
+
+
 def create_user(request,username='',name='',cookie_id='', lang='fr', code=''):
     user = User.objects.create_user(username=str(username),first_name=str(name),email=str(cookie_id),password=str(username))
     user.save()
@@ -691,7 +703,7 @@ def info(request):
                 u.q4 = form.cleaned_data['q4']
                 u.q5 = form.cleaned_data['q5']
                 u.save()
-                return HttpResponseRedirect('/')
+                return HttpResponseRedirect(prolific_url)
 
         # if a GET (or any other method) we'll create a blank form
         else:
@@ -702,6 +714,7 @@ def info(request):
             'userNG': u,
             'form' : form,
             'q_filled' : u.q_filled,
+            'prolific_url':prolific_url
     })
 
 

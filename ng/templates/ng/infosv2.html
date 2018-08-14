@@ -44,7 +44,7 @@
 
         {% if q_filled %}
         <div class="row">
-            <button class="btn" id="continue">CONTINUE</button>
+            <button class="btn" id="prolific_button">PROLIFIC URL</button>
         </div>
         {% else %}
         <div class="row">
@@ -119,7 +119,7 @@
       </form>
         {% endif %}
       </div>
-      <div class="col_3 col"><!-- 
+      <div class="col_3 col"><!--
         <div class="control_ico">
           <img src="{% static 'ng/img/soundon.png' %}">
         </div> -->
@@ -144,7 +144,17 @@
    sound_click.play();
    $("html").addClass("wait");
    window.location.href=url_home;
- });}
+ });
+        {% if q_filled %}
+
+ $("#prolific_button").click(function(){
+   sound_click.play();
+   $("html").addClass("wait");
+   window.location.href="{{ prolific_url }}";
+ });
+
+        {% endif %}
+})
 
 </script>
 </body>

@@ -51,12 +51,12 @@ class UserNG(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key = True)
     lang = models.CharField(max_length=3, default="fr")
     #ID for certain types of Users
-    code = models.CharField(max_length=100, null=True, blank= True, default='')
+    code = models.CharField(max_length=100, null=True, blank= True, default='prolific')
     #Number of games played, used as condition for unlocking game modes
     tuto_played = models.BooleanField(default=False)
     nbr_played = models.IntegerField(default=0)
     use_matomo = models.BooleanField(default=True)
-    prolific_user = models.BooleanField(default=False)
+    prolific_user = models.BooleanField(default=True)
 
     #Has the user seen the informations displayed after 3 games ?
     q_seen = models.BooleanField(default=False)
