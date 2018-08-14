@@ -145,7 +145,7 @@ dict_obj = {
 
 'infos_title':'MERCI DE VOTRE PARTICIPATION',
 'infos_qu':'''
- <p class=" text_content_four" style="text-align:center;font-size:18px;"> Afin de nous aidez, pourriez-vous remplir ce bref questionnaire avant de finir l'expérience?</p>
+ <p class=" text_content_four" style="text-align:center;font-size:18px;"> Afin de nous aider, pourriez-vous remplir ce bref questionnaire avant de finir l'expérience?</p>
 ''',
 'question_title':'Questionnaire:',
 
