@@ -146,7 +146,7 @@ dict_obj = {
 
 'infos_title':'MERCI DE VOTRE PARTICIPATION',
 'infos_qu':'''
- <p class=" text_content_four" style="text-align:center;font-size:18px;"> Afin de nous aidez, pourriez-vous remplir ce bref questionnaire avant de finir ?</p>
+ <p class=" text_content_four" style="text-align:center;font-size:18px;"> Afin de nous aider, pourriez-vous remplir ce bref questionnaire avant de finir l'expérience?</p>
 ''',
 'question_title':'Questionnaire:',
 
@@ -171,6 +171,7 @@ dict_obj = {
                 </ul>
 <p>If you do not agree to all of these, simply close this window in your browser now.</p>
 ''',
+
     #Home
     'subtitle': 'Build a new language.',
     'button_basic': 'TUTORIAL',
@@ -269,6 +270,7 @@ dict_obj = {
 'infos_title':'THANK YOU FOR PARTICIPATING',
 'infos_qu':'''
    <p class=" text_content_four" style="text-align:center;font-size:18px;"> Before finishing the experiment, could you fill in this quick survey ?</p>
+
 ''',
 'question_title':'Quick survey:',
 
