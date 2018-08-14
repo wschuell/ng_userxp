@@ -49,7 +49,7 @@ xp_cfg = {
 #extended User class
 class UserNG(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key = True)
-    lang = models.CharField(max_length=3, default="fr")
+    lang = models.CharField(max_length=3, default="en")
     #ID for certain types of Users
     code = models.CharField(max_length=100, null=True, blank= True, default='prolific')
     #Number of games played, used as condition for unlocking game modes

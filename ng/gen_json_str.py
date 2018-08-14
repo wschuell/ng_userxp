@@ -12,7 +12,17 @@ dict_obj = {
     'enter_player_name': 'Prolific ID :',
     'label_lang': 'Choisissez votre langue:',
     'label_code': 'Si on vous a indiqué un code spécifique, entrez le ici :',
-    'consent_form':'consent form + cookies info',
+
+        'consent_form':'''<p>You’re about to start a short game where you will have to collectively build a lexicon with other individuals. Your answers will be recorded but will not be identifiable to you personally. The game will take about 20 minutes.
+</p>
+<ul>
+                    <li>You have read and understood the detailed information about the study.</li>
+                    <li>You agree that your anonymized data may be kept permanently in the archives of Inria and may be used by qualified researchers for teaching and research purposes</li>
+                    <li>You agree that your anonymized data may be made publicly available for general use, e.g., put on the world wide web.</li>
+                    <li>You consent to the use of cookies for this site.</li>
+                </ul>
+<p>If you do not agree to all of these, simply close this window in your browser now.</p>
+''',
     'submit':'Valider',
 
     #Home
@@ -96,8 +106,17 @@ dict_obj = {
 
 
     'infos_txt':'''
-    <p class="text_content_four" style="text-align:center;font-size:18px;">
-            Credentials + explanation game + links github and articles
+    <p class="text_content_four" style="text-align:left;font-size:18px;">
+    <p class="text_content_four" style="text-align:left;font-size:18px;">Ce jeu a été réalisé par William Schueller et Sandy Manolios, dans le cadre de recherches autour de l'évolution du langage.</p>
+    <p class="text_content_four" style="text-align:left;font-size:18px;">Les graphismes et le design ont été réalisés par Atlal Boudir.</p>
+    <p class="text_content_four" style="text-align:left;font-size:18px;">Si vous voulez en savoir plus, vous pouvez trouver dans les liens ci-dessous différentes ressources:
+<ul style="text-align:left;margin-bottom:4em;">
+<li> <a href="http://github.com/wschuell/ng_userxp">Le code opensource</a> servant à générer le site </li>
+<li> Une liste de liens vers <a href="http://github.com/wschuell/notebooks_cogsci2018">articles et posters</a> sur le travail théorique associé au jeu </li>
+<li> Un lien pour <a href="http://naming-game.space">continuer à jouer</a> en dehors du cadre de l'expérience sur la plateforme Prolific</li>
+</ul>
+    </p>
+            </p>
     ''',
 
 #     '''
@@ -127,7 +146,7 @@ dict_obj = {
 
 'infos_title':'MERCI DE VOTRE PARTICIPATION',
 'infos_qu':'''
- <p class=" text_content_four" style="text-align:center;font-size:18px;"> Afin de nous aidez, pourriez-vous remplir ce bref questionnaire ?</p>
+ <p class=" text_content_four" style="text-align:center;font-size:18px;"> Afin de nous aidez, pourriez-vous remplir ce bref questionnaire avant de finir ?</p>
 ''',
 'question_title':'Questionnaire:',
 
@@ -142,8 +161,16 @@ dict_obj = {
     'label_lang': 'Choose your language :',
     'label_code': 'If you have been told to use a specific token, enter it here :',
     'submit' : "Submit",
-        'consent_form':'consent form + cookies info',
-
+        'consent_form':'''<p>You’re about to start a short game where you will have to collectively build a lexicon with other individuals. Your answers will be recorded but will not be identifiable to you personally. The game will take about 20 minutes.
+</p>
+<ul>
+                    <li>You have read and understood the detailed information about the study.</li>
+                    <li>You agree that your anonymized data may be kept permanently in the archives of Inria and may be used by qualified researchers for teaching and research purposes</li>
+                    <li>You agree that your anonymized data may be made publicly available for general use, e.g., put on the world wide web.</li>
+                    <li>You consent to the use of cookies for this site.</li>
+                </ul>
+<p>If you do not agree to all of these, simply close this window in your browser now.</p>
+''',
     #Home
     'subtitle': 'Build a new language.',
     'button_basic': 'TUTORIAL',
@@ -225,37 +252,23 @@ dict_obj = {
     'other_role_h' : "Your partner listened",
 
     'infos_txt':'''
-    <p class="text_content_four" style="text-align:center;font-size:18px;">
-            Credentials + explanation game + links github and articles
+    <p class="text_content_four" style="text-align:left;font-size:18px;">
+    <p class="text_content_four" style="text-align:left;font-size:18px;">This game was written by William Schueller and Sandy Manolios, to collect data as a scientific experiment on language evolution.</p>
+    <p class="text_content_four" style="text-align:left;font-size:18px;">Graphics and design are the work of Atlal Boudir.</p>
+    <p class="text_content_four" style="text-align:left;font-size:18px;">If you want to go further, you can find below a set of links to various resources:
+<ul style="text-align:left;margin-bottom:4em;">
+<li> <a href="http://github.com/wschuell/ng_userxp">The opensource code</a> used to generate the website </li>
+<li> A set of links to <a href="http://github.com/wschuell/notebooks_cogsci2018">articles and explanatory posters and notebooks</a> on the theoretical work behind the game </li>
+<li> A link to <a href="http://naming-game.space">continue playing</a> outside of the Prolific experiment.</li>
+</ul>
+    </p>
+            </p>
     ''',
 
-#     'infos_txt':'''
-#             <p class="text_content_four" style="text-align:center;font-size:18px;">
-#            Ce jeu auquel vous venez de jouer est bien plus qu'un jeu.
-#             C'est une simulation informatique qui modélise l'apparition et
-#             l'évolution du vocabulaire d'une population. On parle aussi de modèle
-#             computationnel multi-agent de l'émergence et de l'évolution
-#             des conventions lexicales, autrement dit un Naming Game.</p>
-#             <p class="text_content_four" style="text-align:center;font-size:18px;">
-#               Celui-ci est un peu particulier puisqu'il vous permet de prendre la
-#               place d'un de ses agents virtuels et de participer vous aussi à la
-#               création de ces conventions lexicales. </p>
 
-#             <p class=" text_content_four" style="text-align:center;font-size:18px;">Vous avez pu remarquer que vos choix ont eu une influence, ou pas, sur ceux des autres agents. Car dans ce jeu tout le mode est à égalité et vous n'êtes pas seul.e à pouvoir influer sur le jeu.</p>
-
-#             <p class=" text_content_four" style="text-align:center;font-size:18px;">Le score et le tableau à la fin de chaque partie vous indiquent à quel point vous avez tous réussi à vous mettre d'accord. En 50 interactions seulement, c'est un exercice difficile qui comporte une certaine part de hasard. Mais le succès de chaque partie est loin d'être aléatoire. De très nombreuses stratégies sont possibles et permettent, à votre échelle, d'influencer significativement le résultat.
-#               Nous nous penchons ici plus précisément sur la manière dont vous choisissez les objets lorsque c'est à votre tour de parler (on dit aussi que vous êtes le speaker).</p>
-
-#             <p class=" text_content_four" style="text-align:center;font-size:18px;">Vous pouvez par exemple choisir complètement au hasard. On appelle cette stratégie une stratégie naïve. Vous pouvez aussi choisir ces objets en fonction de certains critères.
-#               Une possibilité serait de parler toujours du même objet. Vous aurez ainsi de grandes chances pour que tout le monde partage le même mot pour cette objet, mais il y a également beaucoup de risques pour que les autres objets se retrouvent sans nom partagé par tous à la fin de la partie.</p>
-
-#             <p  class=" text_content_four" style="text-align:center;font-size:18px;">Une autre stratégie consiste à parler uniquement ou presque des objets dont vous connaissez le nom pour augmenter vos chances que ce nom soit utilisé par le plus grand nombre de vos partenaires.</p>
-
-#             <p class=" text_content_four" style="text-align:center;font-size:18px;">Bref, il y a énormément de stratégies et c'est justement ce qui nous intéresse dans le cadre de notre recherche. Afin de nous aidez, pourriez-vous remplir ce bref questionnaire ?</p>
-# ''',
 'infos_title':'THANK YOU FOR PARTICIPATING',
 'infos_qu':'''
-  Before ending the experiment, could you fill in this quick survey ?</p>
+   <p class=" text_content_four" style="text-align:center;font-size:18px;"> Before finishing the experiment, could you fill in this quick survey ?</p>
 ''',
 'question_title':'Quick survey:',
 
@@ -269,7 +282,16 @@ dict_obj = {
             'enter_player_name': 'Entrez votre nom ici :',
             'label_lang': 'Choisissez la langue du jeu :',
             'label_code': 'Si vous avez un code spécial, entrez le ici :',
-    'consent_form':'consent form + cookies info',
+        'consent_form':'''<p>You’re about to start a short game where you will have to collectively build a lexicon with other individuals. Your answers will be recorded but will not be identifiable to you personally. The game will take about 20 minutes.
+</p>
+<ul>
+                    <li>You have read and understood the detailed information about the study.</li>
+                    <li>You agree that your anonymized data may be kept permanently in the archives of Inria and may be used by qualified researchers for teaching and research purposes</li>
+                    <li>You agree that your anonymized data may be made publicly available for general use, e.g., put on the world wide web.</li>
+                    <li>You consent to the use of cookies for this site.</li>
+                </ul>
+<p>If you do not agree to all of these, simply close this window in your browser now.</p>
+''',
             'submit':'Valider',
 
             #Home
@@ -335,29 +357,18 @@ dict_obj = {
             'label_q4':"Avez-vous eu l'impression d'utiliser une certaine stratégie (ou plusieurs) lors de vos parties ?",
             'label_q5':"Si oui, pourriez-vous la ou les décrire brièvement ?",
     'infos_txt':'''
-            <p class="text_content_four" style="text-align:center;font-size:18px;">
-            BLAHCe jeu auquel vous venez de jouer est bien plus qu'un jeu.
-            C'est une simulation informatique qui modélise l'apparition et
-            l'évolution du vocabulaire d'une population. On parle aussi de modèle
-            computationnel multi-agent de l'émergence et de l'évolution
-            des conventions lexicales, autrement dit un Naming Game.</p>
-            <p class="text_content_four" style="text-align:center;font-size:18px;">
-              Celui-ci est un peu particulier puisqu'il vous permet de prendre la
-              place d'un de ses agents virtuels et de participer vous aussi à la
-              création de ces conventions lexicales. </p>
-
-            <p class=" text_content_four" style="text-align:center;font-size:18px;">Vous avez pu remarquer que vos choix ont eu une influence, ou pas, sur ceux des autres agents. Car dans ce jeu tout le mode est à égalité et vous n'êtes pas seul.e à pouvoir influer sur le jeu.</p>
-
-            <p class=" text_content_four" style="text-align:center;font-size:18px;">Le score et le tableau à la fin de chaque partie vous indiquent à quel point vous avez tous réussi à vous mettre d'accord. En 50 interactions seulement, c'est un exercice difficile qui comporte une certaine part de hasard. Mais le succès de chaque partie est loin d'être aléatoire. De très nombreuses stratégies sont possibles et permettent, à votre échelle, d'influencer significativement le résultat.
-              Nous nous penchons ici plus précisément sur la manière dont vous choisissez les objets lorsque c'est à votre tour de parler (on dit aussi que vous êtes le speaker).</p>
-
-            <p class=" text_content_four" style="text-align:center;font-size:18px;">Vous pouvez par exemple choisir complètement au hasard. On appelle cette stratégie une stratégie naïve. Vous pouvez aussi choisir ces objets en fonction de certains critères.
-              Une possibilité serait de parler toujours du même objet. Vous aurez ainsi de grandes chances pour que tout le monde partage le même mot pour cette objet, mais il y a également beaucoup de risques pour que les autres objets se retrouvent sans nom partagé par tous à la fin de la partie.</p>
-
-            <p  class=" text_content_four" style="text-align:center;font-size:18px;">Une autre stratégie consiste à parler uniquement ou presque des objets dont vous connaissez le nom pour augmenter vos chances que ce nom soit utilisé par le plus grand nombre de vos partenaires.</p>
-
-            <p class=" text_content_four" style="text-align:center;font-size:18px;">Bref, il y a énormément de stratégies et c'est justement ce qui nous intéresse dans le cadre de notre recherche. Afin de nous aidez, pourriez-vous remplir ce bref questionnaire ?</p>
-''',
+    <p class="text_content_four" style="text-align:left;font-size:18px;">
+    <p class="text_content_four" style="text-align:left;font-size:18px;">Ce jeu a été réalisé par William Schueller et Sandy Manolios, dans le cadre de recherches autour de l'évolution du langage.</p>
+    <p class="text_content_four" style="text-align:left;font-size:18px;">Les graphismes et le design ont été réalisés par Atlal Boudir.</p>
+    <p class="text_content_four" style="text-align:left;font-size:18px;">Si vous voulez en savoir plus, vous pouvez trouver dans les liens ci-dessous différentes ressources:
+<ul style="text-align:left;margin-bottom:4em;">
+<li> <a href="http://github.com/wschuell/ng_userxp">Le code opensource</a> servant à générer le site </li>
+<li> Une liste de liens vers <a href="http://github.com/wschuell/notebooks_cogsci2018">articles et posters</a> sur le travail théorique associé au jeu </li>
+<li> Un lien pour <a href="http://naming-game.space">continuer à jouer</a> en dehors du cadre de l'expérience sur la plateforme Prolific</li>
+</ul>
+    </p>
+            </p>
+    ''',
     #Tooltips
     'tooltip_example':"Si vous n'avez pas de code, laissez ce champ vide.",
     'results_1' : "Objets",
