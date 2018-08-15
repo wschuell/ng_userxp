@@ -5,9 +5,14 @@ import django
 
 from . import views
 
+from django.views.generic.base import RedirectView
+
+favicon_view = RedirectView.as_view(url='/static/ng/img/favicon.ico', permanent=True)
+
 
 app_name = 'ng'
 urlpatterns = [
+    url(r'^favicon\.ico$', favicon_view),
     #url(r'^index/$', views.IndexView.as_view(), name='index'),
     url(r'^new_experiment/$', views.new_experiment, name='new_experiment'),
     #url(r'^choose_experiment/$', views.choose_experiment, name='choose_experiment'),
