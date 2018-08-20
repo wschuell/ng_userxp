@@ -17,9 +17,7 @@ touch ng/admin_bis.py
 #   sleep 1
 # done &&
 
-cd ng
-python gen_json_str.py || (cd .. && exit 1)
-cd ..
+(cd ng && python gen_json_str.py) || exit 1
 
 bash update_ngal.sh
 
