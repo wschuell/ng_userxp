@@ -12,15 +12,15 @@ dict_obj = {
     'enter_player_name': 'Entrez votre nom ici :',
     'label_lang': 'Choisissez votre langue:',
     'label_code': 'Si on vous a indiqué un code spécifique, entrez le ici :',
-        'consent_form':'''<p>You’re about to start a short game where you will have to collectively build a lexicon with other individuals. Your answers will be recorded but will not be identifiable to you personally. The game will take about 20 minutes.
+        'consent_form':'''<p>Vous allez jouer à un court jeu lors duquel vous aurez à construire collectivement un lexique avec d'autres individus. Vos réponses seront enregistrées mais resteront anonymes. Ce jeu durera environ 20 minutes.
 </p>
 <ul>
-                    <li>You have read and understood the detailed information about the study.</li>
-                    <li>You agree that your anonymized data may be kept permanently in the archives of Inria and may be used by qualified researchers for teaching and research purposes</li>
-                    <li>You agree that your anonymized data may be made publicly available for general use, e.g., put on the world wide web.</li>
-                    <li>You consent to the use of cookies for this site.</li>
+                    <li>Vous avez lu et compris les informations détaillées sur cette recherche.</li>
+                    <li>Vous acceptez que vos données annonymisées pourraient être gardées de manière permanente dans les archives d'Inria et pourraient être utilisées par des chercheurs qualifiés dans des buts d'enseignement ou de recherche.</li>
+                    <li>Vous acceptez que vos données annonymisées pourraient devenir publiquement accessibles pour des usages divers, e.g., diffusées sur internet.</li>
+                    <li>Vous consentez à l'usage de cookies sur ce site.</li>
                 </ul>
-<p>If you do not agree to all of these, simply close this window in your browser now.</p>
+<p>Si vous ne consentez pas à tout cela, fermez simplement la fenêtre dans votre navigateur.</p>
 ''',
     'submit':'Valider',
 
@@ -73,6 +73,7 @@ dict_obj = {
     'hearer_success': "Bravo, vous avez compris votre interlocuteur ! Vous vous en souviendrez pour la prochaine fois !",
     'hearer_learn': "Voilà ce que votre coéquipier voulait dire, vous vous en souviendrez pour la prochaine fois !",
     'hearer_failure': "Oups, votre interlocuteur voulait parler d'autre chose. Vous vous en souviendrez pour la prochaine fois !",
+    'tuto_hearer': "(Cliquez sur l'horloge <img src='/static/ng/img/history.png' class='txt_img'> en haut à gauche pour voir ce que vos interlocuteurs voulaient dire lorsque vous écoutiez <img src='/static/ng/img/bitmap-1.png' class='txt_img'> lors des conversations précédentes.)",
 
     #Error Page
     'error_text': "<span id='error_span'>Oups !</span> Il semblerait qu'une erreur se soit produite ! Vous pouvez tenter de continuer ou revenir à l'accueil pour commencer une nouvelle partie.",
@@ -220,6 +221,7 @@ dict_obj = {
     'hearer_success': "Well done, you understood your partner ! You will remember it next time !",
     'hearer_learn': "This is what your partner meant, you will remember it next time !",
     'hearer_failure': "Oops, your partner meant something else. You will remember it next time !",
+    'tuto_hearer': "(Click on the time clock <img src='/static/ng/img/history.png' class='txt_img'> on the upper right corner to see what your interlocutors meant when you listened <img src='/static/ng/img/bitmap-1.png' class='txt_img'> for the previous interactions.)",
 
 
         #Error Page
