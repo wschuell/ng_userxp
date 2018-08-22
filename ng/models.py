@@ -69,7 +69,7 @@ class UserNG(models.Model):
     q2 =  models.BooleanField(default=False)
     q3 =  models.BooleanField(default=False)
     q4 =  models.BooleanField(default=False)
-    q5 = models.CharField(max_length=100, null=True, blank= True, default='')
+    q5 = models.CharField(max_length=5000, null=True, blank= True, default='')
 
     def __str__(self):
         return self.user.username

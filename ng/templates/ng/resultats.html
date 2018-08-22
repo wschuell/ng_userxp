@@ -21,10 +21,12 @@
     <title>NamingGame</title>
   </head>
   <body class="resultats_page">
+    <div class="not_displayed" style= "visible:hidden; display:none">
+      <span id="nbr_played">{{nbr_played}}</span>
+    </div>
     <div class="container">
-
        {% include "ng/col1.html" %}
-        <div class="col_2 col" style="margin-right: 30px;">
+        <div class="col_2 col">
           <h1 class="convers_font" id="results">RESULTATS</h1>
           <h2 class="droop"><span id="texte_score">Score :</span> {{score}}</h2>
           <div class="text_content_div" >
@@ -32,9 +34,30 @@
           </div>
 
           <form>
-            <div class="row_inputs_file row_inputs_top" id="r1">
-              <div id="div1">
-              {% for m in m_list %}
+
+            <div class="row">
+                {% for mww in mww_list %}
+                <div class"col" style="margin:auto;">
+                  <div class="row_inputs_file row_inputs_top " id="r1">
+                    <div class="result_img">
+                      <label class="label_input_file">
+                        <input name="result_checkbox" type="radio" hidden>
+                        <span class="castom_input_file" disabled><img class="div1" src="{% static 'ng/img/' %}kreyon_meaning{{mww.0}}.png" id="meaning{{mww.0}}" style="width:80px; height:80px"></span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="row"><img src="{% static 'ng/img/arrow_down.png' %}" style="margin:auto; width:20px; height:20px; margin-top:30px"></div>
+                  <div class="row_inputs_file row_inputs_file_three" id="r2" style="margin-top:15px">
+                    <label class="label_input_file_two label_input_right">
+                      <textarea type="text" class="castom_input div2" style="height: 3.2em; resize:none;" disabled>{{mww.1}}
+{{mww.2}}</textarea>
+                  </div>
+              </div>
+
+                {% endfor %}
+                </div>
+          <!--    <div id="div1">
+            {% for m in m_list %}
               <div class="result_img">
               <label class="label_input_file">
                 <input name="result_checkbox" type="radio" hidden>
@@ -50,11 +73,11 @@
               <label class="label_input_file_two label_input_right">
                 <textarea type="text" class="castom_input" style="height: 3.2em; resize:none;" disabled>{{ww.0}}
 {{ww.1}}</textarea>
-                <!-- <input type="text" class="castom_input" value="{{w}}" id="word1_{{forloop.counter}}" readonly> -->
-              </label>
+                 <input type="text" class="castom_input" value="{{w}}" id="word1_{{forloop.counter}}" readonly> -->
+              <!--</label>
               {% endfor %}
             </div>
-            </div><!--
+            </div> --><!--
             <div class="row_inputs_file_two" id="r3">
               <div id="div3">
               {% for w in w_list2 %}
@@ -154,29 +177,29 @@
 
     var lang = $('html').attr('lang');
 
-      $('#div1').tooltip({
+      $('.div1').tooltip({
         title : current_lang.results_1,
         placement : "left auto",
         container:"#r1",
-        trigger: "manual",
+        trigger: "hover focus",
       });
 
-      $('#div2').tooltip({
+      $('.div2').tooltip({
         title : current_lang.results_2,
         placement : "left auto",
         html : true,
         container:"#r2",
-        trigger: "manual",
+        trigger: "hover focus",
       });
 
 
-    $('#div1').tooltip('show');
-    $('#div2').tooltip('show');
+    //$('.div1').tooltip('show');
+    //$('.div2').tooltip('show');
 
-    $('.castom_input_file , .castom_input').click(function(){
-      $('#div1').tooltip('toggle');
-      $('#div2').tooltip('toggle');
-    });
+    //$('.castom_input_file , .castom_input').click(function(){
+      //$('.div1').tooltip('toggle');
+      //$('.div2').tooltip('toggle');
+    //});
 
     });
     </script>
