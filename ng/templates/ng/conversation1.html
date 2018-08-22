@@ -45,7 +45,7 @@
 
     <div class="container">
        {% include "ng/col1.html" %}
-        <div class="col_2 col">
+        <div class="col_2 col" style="margin-right: 30px;">
           <div>
             <h1 class="convers_font" id="conversations">CONVERSATION</h1>
             <h2 class="droop">{{ experiment.interaction_counter }} / {{ experiment.max_interaction }}</h2>
@@ -60,8 +60,8 @@
           </div>
           <a href="" class="btn btn-d" id="continue">CONTINUER<span class="block"></span></a>
         </div>
-        <div class="col_3 col">
-          <div class="control_ico" style="display:block;">
+        <div class="col_3 col" style="margin-top: 50px;margin-bottom: 100px;">
+          <div class="control_ico" style="display:block;margin: auto;">
             <img src="{% static  'ng/img/history.png' %}" id="menu-h">
             <!--<span class="glyphicon glyphicon-volume-off icon" id="sound-off" style="font-size:30px"></span> -->
 

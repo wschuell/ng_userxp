@@ -39,6 +39,7 @@ html{
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	margin: auto;
 	margin-right: 7px;
 }
 .control_ico img:not(:last-child){
@@ -234,7 +235,7 @@ html{
 }
 /*---5 page---*/
 .five{
-	background-image: url("img/star_milky_way.png");
+	background-image: url("img/star_milky_way.jpg");
 	background-size: cover;
 	margin: 0;
 }
@@ -571,8 +572,9 @@ table {
 /*Historique*/
 
 #menu-h {
-	width: 85px;
+	width: 115px;
 	padding-right: 10px;
+	margin :auto;
 }
 
 .popover {

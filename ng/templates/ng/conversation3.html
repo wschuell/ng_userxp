@@ -44,7 +44,7 @@
 
     <div class="container">
        {% include "ng/col1.html" %}
-        <div class="col_2 col">
+        <div class="col_2 col" style="margin-right: 30px;">
           <h1 class="convers_font" id="conversations">CONVERSATION</h1>
           {% if context == "result" %}
           <h2 class="droop">{{ experiment.interaction_counter| add:-1 }} / {{ experiment.max_interaction }}</h2>
@@ -90,6 +90,9 @@
                   {% else %}
                   <span class="text_content" id='hearer_failure'></span>
                {% endif %}
+               {% endif %}
+               {% if experiment.max_interaction == 10 %}
+               <span class="text_content" id='tuto_hearer' style="font-size:15px;"></span>
                {% endif %}
                   </div>
                   <table style="margin:auto;">
@@ -172,8 +175,8 @@
             {% endif %}
           </form>
         </div>
-        <div class="col_3 col">
-          <div class="control_ico" style="display:block;">
+        <div class="col_3 col" style="margin-top: 50px;margin-bottom: 100px;">
+          <div class="control_ico" style="display:block;margin: auto;">
             <img src="{% static  'ng/img/history.png' %}" id="menu-h">
           </div>
         </div>
