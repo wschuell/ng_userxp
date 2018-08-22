@@ -523,7 +523,11 @@ def continue_userxp(request, xp_uuid):
                 nb_steps += 1
             raise IOError('Not skipping more than 1000 steps at a time')
         except Exception as e:
-            if str(e) == 'User intervention needed' or str(e) == 'Not skipping more than 1000 steps at a time' or str(e) == 'Max interaction reached':
+            if not len(experiment.pastinteraction_set.all()):
+                experiment.interaction_counter = 1
+                experiment.save()
+                return continue_userxp(request=request,xp_uuid=xp_uuid)
+            elif str(e) == 'User intervention needed' or str(e) == 'Not skipping more than 1000 steps at a time' or str(e) == 'Max interaction reached':
                 experiment.last_role = 'skipped'
                 experiment.last_nb_skipped = nb_steps
                 experiment.last_ms = None
