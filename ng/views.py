@@ -486,7 +486,7 @@ def new_experiment(request,xp_cfg_name='normal'):
         return HttpResponseRedirect('/')
     else :
         experiment = Experiment.get_new_xp(user=request.user,xp_cfg_name=xp_cfg_name)
-        experiment.before_info= not u.q_seen
+        experiment.before_info = not u.q_seen
         experiment.save()
         return continue_userxp(request,experiment.xp_uuid)
         # return render(request, 'ng/loading_xp.html', {
@@ -624,8 +624,9 @@ def score(request, xp_uuid):
         score.save()
 
     u = UserNG.get(user=request.user)
+    experiment.update_complete()
     if experiment.xp_config.xp_cfg_name == "normal" :
-        u.nbr_played += 1
+        u.update_nbr_played()
         u.save()
     elif experiment.xp_config.xp_cfg_name == "basic" and u.tuto_played == False :
         u.tuto_played = True

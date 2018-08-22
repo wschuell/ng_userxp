@@ -83,6 +83,10 @@ class UserNG(models.Model):
             user_ng.save()
         return user_ng
 
+    def update_nbr_played(self):
+        self.nbr_played = len(self.user.objects.filter(xp_config__xp_cfg_name="normal",user=self.user,is_complete=True))
+        self.save()
+
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created :
@@ -357,12 +361,10 @@ class Experiment(models.Model):
     #     for agent in player_agents:
     #         agent.add_to_xp(None,rm_from_xpobj=False)
 
-    #Had the experiment been completed ? (For the admin interface)
-    def is_complete(self):
-    	completed = (self.max_interaction <= self.interaction_counter)
-    	return completed
-    is_complete.boolean = True
-
+    #Has the experiment been completed ? (For the admin interface)
+    def update_complete(self):
+        self.is_complete = (self.interaction_counter >= self.max_interaction)
+        self.save()
 
 class Agent(models.Model):
     xp = models.ForeignKey(Experiment, on_delete=models.CASCADE, blank=True, null=True)
