@@ -134,7 +134,9 @@ html{
 	margin-top: 49px;
 }
 .label_input_right{
-	margin-right: 20px;
+	/*margin-right: 20px;*/
+	margin-right: 8px;
+	margin-left: 8px;
 }
 .row_inputs_file_two {
     display: flex;
@@ -316,7 +318,7 @@ html{
 .resultats_page .label_input_file {
     flex: 0 0 148px;
     max-width: 148px;
-		margin-right: 20px;
+		/*margin-right: 20px;*/
 }
 .resultats_page .row_inputs_top {
     margin-top: 75px;

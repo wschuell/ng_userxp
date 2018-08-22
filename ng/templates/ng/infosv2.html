@@ -27,7 +27,7 @@
   <div class="container">
       <div class="col_1 col">
         <div class="imag_center">
-          <img src="{% static 'ng/img/n_ghome.png' %}" id="homebutton">
+          <img src="{% static 'ng/img/n_ghome.png' %}" class="homebutton">
         </div>
       </div>
       <div class="col_2 col">
@@ -44,7 +44,7 @@
 
         {% if q_filled %}
         <div class="row">
-            <button class="btn" id="continue">CONTINUE</button>
+            <button class="btn homebutton">CONTINUE</button>
         </div>
         {% else %}
         <div class="row">
@@ -133,6 +133,7 @@
 
  $(document).ready(function(){
 
+   $('html').removeClass("wait");
 
    $('body').css('visibility', 'visible');
 
@@ -140,11 +141,11 @@
  //Menu
 
 
- $("#homebutton").click(function(){
+ $(".homebutton").click(function(){
    sound_click.play();
    $("html").addClass("wait");
-   window.location.href=url_home;
- });}
+   window.location.href="/";
+ });})
 
 </script>
 </body>
