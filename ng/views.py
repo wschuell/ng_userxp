@@ -486,7 +486,7 @@ def new_experiment(request,xp_cfg_name='normal'):
         return HttpResponseRedirect('/')
     else :
         experiment = Experiment.get_new_xp(user=request.user,xp_cfg_name=xp_cfg_name)
-        experiment.before_info= not u.q_seen
+        experiment.before_info = not u.q_seen
         experiment.save()
         return continue_userxp(request,experiment.xp_uuid)
         # return render(request, 'ng/loading_xp.html', {
@@ -523,7 +523,11 @@ def continue_userxp(request, xp_uuid):
                 nb_steps += 1
             raise IOError('Not skipping more than 1000 steps at a time')
         except Exception as e:
-            if str(e) == 'User intervention needed' or str(e) == 'Not skipping more than 1000 steps at a time' or str(e) == 'Max interaction reached':
+            if not len(experiment.pastinteraction_set.all()):
+                experiment.interaction_counter = 1
+                experiment.save()
+                return continue_userxp(request=request,xp_uuid=xp_uuid)
+            elif str(e) == 'User intervention needed' or str(e) == 'Not skipping more than 1000 steps at a time' or str(e) == 'Max interaction reached':
                 experiment.last_role = 'skipped'
                 experiment.last_nb_skipped = nb_steps
                 experiment.last_ms = None
@@ -624,8 +628,9 @@ def score(request, xp_uuid):
         score.save()
 
     u = UserNG.get(user=request.user)
+    experiment.update_complete()
     if experiment.xp_config.xp_cfg_name == "normal" :
-        u.nbr_played += 1
+        u.update_nbr_played()
         u.save()
     elif experiment.xp_config.xp_cfg_name == "basic" and u.tuto_played == False :
         u.tuto_played = True
