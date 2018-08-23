@@ -103,6 +103,12 @@ dict_obj = {
     'your_role_h': "Vous écoutiez",
     'other_role_s' : "Votre interlocuteur parlait",
     'other_role_h' : "Votre interlocuteur vous écoutait",
+    'best_score' : "Meilleurs Scores",
+    'you' : "C'est vous !",
+    'lang' : "Langue du jeu",
+    'logout' : "Déconnexion",
+    'groop_3' : "Vous êtes 3",
+    'groop_4' : "Vous êtes 4",
 
 
     'infos_txt':'''
@@ -252,6 +258,13 @@ dict_obj = {
     'your_role_h': "You listened",
     'other_role_s' : "Your partner spoke",
     'other_role_h' : "Your partner listened",
+    'best_score' : "Best Scores",
+    'you' : "That's you !",
+    'lang' : "Game language",
+    'logout' : "Logout",
+    'groop_3' : "You are 3",
+    'groop_4' : "You are 4",
+
 
     'infos_txt':'''
     <p class="text_content_four" style="text-align:left;font-size:18px;">

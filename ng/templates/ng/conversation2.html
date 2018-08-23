@@ -127,12 +127,14 @@
               <span class="text_content" id='choice_words' style="display:none;">c’est à vous de parler.
               <br> choissisez le mot que vous allez utiliser pour parler de cet objet.</span>
             </div>
-            <div class="row_inputs_file row_inputs_top">
+            <div class="row_inputs_file row_inputs_top row">
               {% for m in experiment.meanings.all %}
+              <div class="col" style="max-width:100px">
               <label class="label_input_file">
                 <input name="select_radio" type="radio" id="m{{ m.meaning }}" value="m{{ m.meaning }}" hidden>
                 <span class="castom_input_file"><img id="meaning_{{ m.meaning }}" class="img-responsive m meaning_img" src="{% static 'ng/img/' %}kreyon_meaning{{ m.meaning }}.png" meaning_name="{{ m.meaning }}"></span>
               </label>
+            </div>
               {% endfor %}
 
             </div>
@@ -408,6 +410,26 @@
        sound_click.play();
        $("html").addClass("wait");
        window.location.href=url_home;
+     });
+
+     //Tooltips
+
+     $('#home').tooltip({
+       title : current_lang.btn_home,
+       placement : "right auto",
+       trigger: "hover focus",
+     });
+
+     $('#groop_3').tooltip({
+       title : current_lang.groop_3,
+       placement : "right auto",
+       trigger: "hover focus",
+     });
+
+     $('#groop_5').tooltip({
+       title : current_lang.groop_5,
+       placement : "right auto",
+       trigger: "hover focus",
      });
 
     });

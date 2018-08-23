@@ -75,7 +75,7 @@
 
         </div>
         <div class="col_3 col col_4">
-          <div class="control_ico">
+          <div class="control_ico" id="best_scores">
             <img src="{% static 'ng/img/bitmap-2.png' %}" style="margin: auto auto 40px; ">
           </div>
           {% for score in user.score_set.all|dictsortreversed:"score"|slice:":10" %}
@@ -117,7 +117,30 @@
      			window.location.href='/infos';
  		});
 
+    //Tooltips
+    $('#best_scores').tooltip({
+      title : '',
+      placement : "top",
+      trigger: "hover focus",
+    });
 
+    $('.mic').tooltip({
+      title : '',
+      placement : "left auto",
+      trigger: "hover focus",
+    });
+
+    $('#lang').tooltip({
+      title : '',
+      placement : "right auto",
+      trigger: "hover focus",
+    });
+
+    $('#logoutbutton').tooltip({
+      title : '',
+      placement : "right auto",
+      trigger: "hover focus",
+    });
 
  	</script>
 

@@ -105,7 +105,7 @@
              <div class="row_inputs_file">
                <label class="label_input_file_two label_input">
                  <input type="radio" value="{{word}}" name="m" id="{{word}}" hidden>
-                 <div class="word_text_speaker castom_input text_content" id="word_inter" word_name="{{ word }}">{{ word }}</div>
+                 <div class="w word_text_speaker castom_input text_content" id="word_inter" word_name="{{ word }}">{{ word }}</div>
                </label>
                  </div>
              </td>
@@ -145,12 +145,14 @@
             <span class="text_content castom_input" id="word"> {{word}} </span>
           </div>
           <form>
-            <div class="row_inputs_file row_inputs_top">
+            <div class="row_inputs_file row_inputs_top row">
               {% for m in experiment.meanings.all %}
+              <div class="col" style="max-width:100px">
               <label class="label_input_file">
                 <input name="select_radio" type="radio" id="m{{ m.meaning }}" value="m{{ m.meaning }}" hidden>
                 <span class="castom_input_file" ><img id="meaning_{{ m.meaning }}" class="img-responsive m meaning_img" src="{% static 'ng/img/' %}kreyon_meaning{{ m.meaning }}.png" meaning_name="{{ m.meaning }}" ></span>
               </label>
+            </div>
               {% endfor %}
               {% if context == "question" and role == "hearer" and dont_know %}
               <div class="separator"></div>
@@ -396,7 +398,25 @@
            $("html").addClass("wait");
            window.location.href=url_home;
          });
+         //Tooltips
 
+         $('#home').tooltip({
+           title : current_lang.btn_home,
+           placement : "right auto",
+           trigger: "hover focus",
+         });
+
+         $('#groop_3').tooltip({
+           title : current_lang.groop_3,
+           placement : "right auto",
+           trigger: "hover focus",
+         });
+
+         $('#groop_5').tooltip({
+           title : current_lang.groop_5,
+           placement : "right auto",
+           trigger: "hover focus",
+         });
       });
         </script>
 

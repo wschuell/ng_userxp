@@ -8,16 +8,16 @@
         <div class="imag_center_two">
           <img id='you_fr' src="{% static  'ng/img/chat-min.png' %}" style="display: none">
           <img id='you_en' src="{% static  'ng/img/chat_you.png' %}" style="width:68px">
-         
+
         </div>
         <div class="imag_center_twot_tru">
           {% if experiment.size == 3 %}
-          <img src="{% static  'ng/img/user_groop.png' %}">
+          <img id="groop_3" src="{% static  'ng/img/user_groop.png' %}">
           {% else %}
-          <img src="{% static  'ng/img/user_groop5.png' %}">
+          <img id="groop_5" src="{% static  'ng/img/user_groop5.png' %}">
           {% endif %}
 
-        </div><!-- 
+        </div><!--
         <img src="{% static  'ng/img/soundon.png' %}" id="sound-on" style= "margin: 1px auto 4px; padding-left: 25px;">
         <img src="{% static  'ng/img/soundoff.png' %}" id="sound-off" style= "margin: 1px auto 4px; padding-left: 25px;"> -->
         </div>
