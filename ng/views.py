@@ -649,7 +649,7 @@ def score(request, xp_uuid):
         elif len(tab_results[elt].items()) == 1 :
             l = [c for c,v in tab_results[elt].items()]
             w_list1.append(l[0])
-            w_list2.append('-')
+            w_list2.append(' ')
         else :
             sorted_tab = list(sorted(tab_results[elt].items(), key=lambda colonnes: colonnes[1]))
             sorted_tab.reverse()
@@ -724,7 +724,7 @@ def error(request):
 def test_score(request):
 
     w_list1 = ["A", "B", "C", "D", "E", "F"]
-    w_list2 = ["G", "H", "-", "I", "-"]
+    w_list2 = ["G", "H", " ", "I", " "]
     #Test if score exists
     #if not, compute and store object
     #get value

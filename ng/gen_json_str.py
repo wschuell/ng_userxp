@@ -108,7 +108,7 @@ dict_obj = {
     'lang' : "Langue du jeu",
     'logout' : "Déconnexion",
     'groop_3' : "Vous êtes 3",
-    'groop_4' : "Vous êtes 4",
+    'groop_5' : "Vous êtes 5",
 
 
     'infos_txt':'''
@@ -263,7 +263,7 @@ dict_obj = {
     'lang' : "Game language",
     'logout' : "Logout",
     'groop_3' : "You are 3",
-    'groop_4' : "You are 4",
+    'groop_5' : "You are 5",
 
 
     'infos_txt':'''
