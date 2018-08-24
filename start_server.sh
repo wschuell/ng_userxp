@@ -1,4 +1,4 @@
-
+echo 0 > init_done.status
 
 echo 'NG_USERXP_DEV_MODE:'$NG_USERXP_DEV_MODE
 
@@ -17,9 +17,7 @@ touch ng/admin_bis.py
 #   sleep 1
 # done &&
 
-cd ng
-python gen_json_str.py || (cd .. && exit 1)
-cd ..
+(cd ng && python gen_json_str.py) || exit 1
 
 bash update_ngal.sh
 
@@ -34,6 +32,8 @@ python manage.py migrate ng &&
 python manage.py collectstatic --noinput &&
 
 echo "import check_users; exit();" | python manage.py shell &&
+
+echo 1 > init_done.status
 
 if [ $NG_USERXP_DEV_MODE -eq 0 ]
 then

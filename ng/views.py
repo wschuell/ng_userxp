@@ -11,6 +11,7 @@ from django.template import loader
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 
+from django.conf import settings
 
 from django.contrib.auth.models import User
 
@@ -57,6 +58,7 @@ def login_view(request):
     username = 'oug'
     return render(request, 'ng/login.html', {
             'username': username,
+            'use_matomo': settings.MATOMO_USAGE,
         })
 
 @csrf_protect
@@ -74,6 +76,7 @@ def home(request):
     'multi_unlocked' : multi_unlocked,
     'user' : user,
     'userNG': u,
+            'use_matomo': settings.MATOMO_USAGE,
     })
 
 def create_and_login(request,username=None,name='',cookie_id=None, lang='fr', code=''):
@@ -88,9 +91,6 @@ def create_and_login(request,username=None,name='',cookie_id=None, lang='fr', co
         u.save()
     else :
         login_user(request,username)
-    #print("in login")
-    #request.session["user"] = user
-    #return render(request,'ng/index.html',{})
 
 @csrf_protect
 def get_name(request):
@@ -114,7 +114,8 @@ def get_name(request):
     else:
         form = NameForm()
 
-    return render(request, 'ng/loginv2.html', {'form': form})
+    return render(request, 'ng/loginv2.html', {'form': form,
+            'use_matomo': settings.MATOMO_USAGE,})
 
 #@login_required#(login_url='/accounts/login/')
 class IndexView(LoginRequiredMixin, generic.ListView):
@@ -131,7 +132,8 @@ class IndexView(LoginRequiredMixin, generic.ListView):
 #Story view if user chooses tutorial
 @login_required(login_url='/ng/login/')
 def story(request) :
-	return render(request, 'ng/histoire.html', {'context':'story', 'userNG': UserNG.get(user=request.user)})
+	return render(request, 'ng/histoire.html', {'context':'story',
+            'use_matomo': settings.MATOMO_USAGE, 'userNG': UserNG.get(user=request.user)})
 
 
 class DetailView(LoginRequiredMixin, generic.DetailView):
@@ -161,6 +163,7 @@ def vote(request, question_id):
         # Redisplay the question voting form.
         return render(request, 'ng/detail.html', {
             'question': question,
+            'use_matomo': settings.MATOMO_USAGE,
             'error_message': "You didn't select a choice.",
         })
     else:
@@ -179,6 +182,7 @@ def testdet(request, xp_uuid):
         raise ValueError("wrong user")
     return render(request, 'ng/detail.html', {
             'experiment': experiment,
+            'use_matomo': settings.MATOMO_USAGE,
             'error_message': "You didn't select a choice.",
         })
 
@@ -194,6 +198,7 @@ def continue_xp(request, xp_uuid):
     experiment.save()
     return render(request, 'ng/detail.html', {
             'experiment': experiment,
+            'use_matomo': settings.MATOMO_USAGE,
             'error_message': "You didn't select a choice.",
         })
 
@@ -207,6 +212,7 @@ def result_srtheo(request, xp_uuid):
     experiment.save()
     return render(request, 'ng/results.html', {
             'experiment': experiment,
+            'use_matomo': settings.MATOMO_USAGE,
             'error_message': "You didn't select a choice.",
         })
 
@@ -235,6 +241,7 @@ def result_hearer(request, xp_uuid, meaning):
     return render(request, 'ng/conversation3.html', {
             'experiment': experiment,
             'bool_succ': bool_succ,
+            'use_matomo': settings.MATOMO_USAGE,
             'role':"hearer",
             'context':"result"
         })
@@ -255,14 +262,11 @@ def result_speaker(request, xp_uuid, meaning, word):
     past_interaction = PastInteraction(meaning=str(ms),word=w,bool_succ=bool_succ,time_id=experiment.interaction_counter,role='speaker',experiment=experiment)
     experiment.save()
     past_interaction.save()
-    #return render(request, 'ng/results_new.html', {
-    #        'experiment': experiment,
-    #        'bool_succ': bool_succ,
-    #    })
     return render(request, 'ng/conversation2.html', {
             'experiment': experiment,
             'bool_succ': bool_succ,
             'role':"speaker",
+            'use_matomo': settings.MATOMO_USAGE,
             'context':"result"
 
         })
@@ -288,6 +292,7 @@ def result_inner(request, xp_uuid, bool_succ):
             'mh':past_int.meaning_h,
             'role':past_int.role,
             'username':request.user.username,
+            'use_matomo': settings.MATOMO_USAGE,
             'context' : "result",
         })
 
@@ -306,6 +311,7 @@ def result_hearer_json(request, xp_uuid, meaning):
             'bool_succ': experiment.last_bool_succ,
             'role':"hearer",
             'context':"result",
+            'use_matomo': settings.MATOMO_USAGE,
             'ms':experiment.last_ms,
         })
     if meaning == 'none':
@@ -326,6 +332,7 @@ def result_hearer_json(request, xp_uuid, meaning):
             'bool_succ': bool_succ,
             'role':"hearer",
             'context':"result",
+            'use_matomo': settings.MATOMO_USAGE,
             'ms':ms,
         })
 
@@ -341,6 +348,7 @@ def result_hearer_continue(request, xp_uuid, meaning):
         return render(request, 'ng/conversation3.html', {
             'experiment': experiment,
             'context':"result",
+            'use_matomo': settings.MATOMO_USAGE,
         })
     if meaning == 'none':
         currentgame_json.update({'mh':None})
@@ -374,6 +382,7 @@ def result_hearer_continue(request, xp_uuid, meaning):
             'learn': learn,
             'user':request.user,
             'userNG': UserNG.get(user=request.user),
+            'use_matomo': settings.MATOMO_USAGE,
 
         })
 
@@ -391,6 +400,7 @@ def result_speaker_json(request, xp_uuid, meaning, word):
             'bool_succ': experiment.last_bool_succ,
             'role':"speaker",
             'context':"result",
+            'use_matomo': settings.MATOMO_USAGE,
         })
     ms = int(meaning)
     w = word
@@ -408,11 +418,7 @@ def result_speaker_json(request, xp_uuid, meaning, word):
     past_interaction.save()
     # if experiment.xp_config.xp_cfg_name == 'multiuser':
     #     experiment.exchange_agent(1, 2)
-    experiment.save()
-    #return render(request, 'ng/results_new.html', {
-    #        'experiment': experiment,
-    #        'bool_succ': bool_succ,
-    #    })
+    experiment.save
     return render(request, 'ng/result.json', {
             'experiment': experiment,
             'bool_succ': bool_succ,
@@ -420,6 +426,7 @@ def result_speaker_json(request, xp_uuid, meaning, word):
             'context':"result",
             'user':request.user,
             'userNG': UserNG.get(user=request.user),
+            'use_matomo': settings.MATOMO_USAGE,
         })
 
 @csrf_protect
@@ -433,6 +440,7 @@ def result_speaker_continue(request, xp_uuid, meaning, word):
     except:
         return render(request, 'ng/conversation2.html', {
             'experiment': experiment,
+            'use_matomo': settings.MATOMO_USAGE,
             'context':"result",
         })
     ms = int(meaning)
@@ -462,10 +470,6 @@ def result_speaker_continue(request, xp_uuid, meaning, word):
     # if experiment.xp_config.xp_cfg_name == 'multiuser':
     #     experiment.exchange_agent(1, 2)
     experiment.save()
-    #return render(request, 'ng/results_new.html', {
-    #        'experiment': experiment,
-    #        'bool_succ': bool_succ,
-    #    })
     return render(request, 'ng/conversation2.html', {
             'experiment': experiment,
             'context':"result",
@@ -477,6 +481,7 @@ def result_speaker_continue(request, xp_uuid, meaning, word):
             'learn': learn,
             'user':request.user,
             'userNG': UserNG.get(user=request.user),
+            'use_matomo': settings.MATOMO_USAGE,
         })
 
 
@@ -485,7 +490,8 @@ def result_speaker_continue(request, xp_uuid, meaning, word):
 @login_required(login_url='/ng/login/')
 def choose_experiment(request,xp_cfg_name='normal'):
     return render(request, 'ng/global.html', {
-            'context':"choose_xp"
+            'context':"choose_xp",
+            'use_matomo': settings.MATOMO_USAGE,
         })
 
 @csrf_protect
@@ -498,12 +504,9 @@ def new_experiment(request,xp_cfg_name='normal'):
         return HttpResponseRedirect('/')
     else :
         experiment = Experiment.get_new_xp(user=request.user,xp_cfg_name=xp_cfg_name)
-        experiment.before_info= not u.q_seen
+        experiment.before_info = not u.q_seen
         experiment.save()
         return continue_userxp(request,experiment.xp_uuid)
-        # return render(request, 'ng/loading_xp.html', {
-        #     'experiment': experiment,
-        # })
 
 @csrf_protect
 @login_required(login_url='/ng/login/')
@@ -512,6 +515,7 @@ def test(request):
     experiment.save()
     return render(request, 'ng/test.html', {
             'experiment': experiment,
+            'use_matomo': settings.MATOMO_USAGE,
         })
 
 @csrf_protect
@@ -535,7 +539,11 @@ def continue_userxp(request, xp_uuid):
                 nb_steps += 1
             raise IOError('Not skipping more than 1000 steps at a time')
         except Exception as e:
-            if str(e) == 'User intervention needed' or str(e) == 'Not skipping more than 1000 steps at a time' or str(e) == 'Max interaction reached':
+            if not len(experiment.pastinteraction_set.all()):
+                experiment.interaction_counter = 1
+                experiment.save()
+                return continue_userxp(request=request,xp_uuid=xp_uuid)
+            elif str(e) == 'User intervention needed' or str(e) == 'Not skipping more than 1000 steps at a time' or str(e) == 'Max interaction reached':
                 experiment.last_role = 'skipped'
                 experiment.last_nb_skipped = nb_steps
                 experiment.last_ms = None
@@ -552,6 +560,7 @@ def continue_userxp(request, xp_uuid):
                     'context': 'skipped',
                     'bar_width':bar_width,
                     'user':request.user,
+            'use_matomo': settings.MATOMO_USAGE,
                     'userNG': UserNG.get(user=request.user),
 
                        })
@@ -575,6 +584,7 @@ def continue_userxp(request, xp_uuid):
                     'dont_know': False,
                     'words': word_list,
                     'user':request.user,
+            'use_matomo': settings.MATOMO_USAGE,
                     'userNG': UserNG.get(user=request.user),
                     })
             elif hr_id == experiment.get_user_agent_uuid():
@@ -595,6 +605,7 @@ def continue_userxp(request, xp_uuid):
                     'words': word_list,
                     'dont_know': dont_know,
                     'user':request.user,
+            'use_matomo': settings.MATOMO_USAGE,
                     'userNG': UserNG.get(user=request.user),
                     })
             else:
@@ -611,6 +622,7 @@ def exp_resume(request, xp_uuid):
     if request.user != experiment.user:
         raise ValueError("wrong user")
     return render(request, 'ng/global.html', {
+            'use_matomo': settings.MATOMO_USAGE,
             'experiment': experiment,
             'context':"resume",
             })
@@ -636,8 +648,9 @@ def score(request, xp_uuid):
         score.save()
 
     u = UserNG.get(user=request.user)
+    experiment.update_complete()
     if experiment.xp_config.xp_cfg_name == "normal" :
-        u.nbr_played += 1
+        u.update_nbr_played()
         u.save()
     elif experiment.xp_config.xp_cfg_name == "basic" and u.tuto_played == False :
         u.tuto_played = True
@@ -656,7 +669,7 @@ def score(request, xp_uuid):
         elif len(tab_results[elt].items()) == 1 :
             l = [c for c,v in tab_results[elt].items()]
             w_list1.append(l[0])
-            w_list2.append('-')
+            w_list2.append(' ')
         else :
             sorted_tab = list(sorted(tab_results[elt].items(), key=lambda colonnes: colonnes[1]))
             sorted_tab.reverse()
@@ -674,8 +687,12 @@ def score(request, xp_uuid):
             'w_list1': w_list1,
             'w_list2': w_list2,
             'w_list':zip(w_list1,w_list2),
+            'mww_list': zip(m_list,w_list1,w_list2),
+            'use_matomo': settings.MATOMO_USAGE,
             'user':request.user,
             'userNG': UserNG.get(user=request.user),
+            #### DEBUG:
+            'nbr_played': u.nbr_played,
             })
 
 @csrf_protect
@@ -686,6 +703,7 @@ def info(request):
         return HttpResponseRedirect('/')
     else:
         u.q_seen = True
+        u.q_seen_at = now()
         u.save()
         # if this is a POST request we need to process the form data
         if request.method == 'POST':
@@ -713,6 +731,7 @@ def info(request):
             'user':request.user,
             'userNG': u,
             'form' : form,
+            'use_matomo': settings.MATOMO_USAGE,
             'q_filled' : u.q_filled,
             'prolific_url':prolific_url
     })
@@ -720,7 +739,8 @@ def info(request):
 
 @csrf_protect
 def error(request):
-    return render(request, 'error_page.html')
+    return render(request, 'error_page.html',{
+            'use_matomo': settings.MATOMO_USAGE,})
 
 ### # DEBUG:
 
@@ -728,18 +748,20 @@ def error(request):
 @login_required(login_url='/ng/login/')
 def test_score(request):
 
-    w_list1 = ["A", "B"]#, "C", "D", "E", "F"]
-    w_list2 = ["G", "H"]#, "-", "I", "-"]
+    w_list1 = ["A", "B", "C", "D", "E", "F"]
+    w_list2 = ["G", "H", " ", "I", " "]
     #Test if score exists
     #if not, compute and store object
     #get value
     return render(request, 'ng/resultats.html', {
+            'use_matomo': settings.MATOMO_USAGE,
             'score': "350",
             'context':"end",
-            'm_list': [0,1],#,2,3,4],
+            'm_list': [0,1,2,3,4],
             'w_list1': w_list1 ,
             'w_list2': w_list2,
             'w_list':zip(w_list1,w_list2),
+            'mww_list': zip([0,1,2,3,4],w_list1,w_list2),
             'user':request.user,
             'userNG': UserNG.get(user=request.user),
             })
@@ -774,5 +796,6 @@ def test_info(request):
             'user':request.user,
             'userNG': u,
             'form' : form,
+            'use_matomo': settings.MATOMO_USAGE,
             'q_filled' : u.q_filled,
     })

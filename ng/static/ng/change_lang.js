@@ -68,7 +68,7 @@ var current_lang = lang[current_lang_id];
         $('#hearer_success').html(current_lang.hearer_success);
         $('#hearer_learn').html(current_lang.hearer_learn);
         $('#hearer_failure').html(current_lang.hearer_failure);
-
+        $('#tuto_hearer').html(current_lang.tuto_hearer);
 
         //Error Page
 
@@ -79,6 +79,7 @@ var current_lang = lang[current_lang_id];
         //Info Page
         $('#infos_txt').html(current_lang.infos_txt);
         $('#infos_qu').html(current_lang.infos_qu);
+        $('#infos_title').html(current_lang.infos_title);
         $('#question_title').html(current_lang.question_title);
 
 
@@ -91,7 +92,10 @@ var current_lang = lang[current_lang_id];
         //Tooltips
 
         $('#id_code').attr('data-original-title',current_lang.tooltip_example);
-
+        $('#best_scores').attr('data-original-title',current_lang.best_score);
+        $('.mic').attr('data-original-title',current_lang.you);
+        $('#lang').attr('data-original-title',current_lang.lang);
+        $('#logoutbutton').attr('data-original-title',current_lang.logout);
 
         if (lang_str == 'fr'){
         $('#you_en').css('display','none');

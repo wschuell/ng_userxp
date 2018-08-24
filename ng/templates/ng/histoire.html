@@ -60,7 +60,7 @@
           </div>
           <a href="#" class="btn continue">CONTINUER <span class="block"></span></a>
         </div>
-        <div class="col_3 col"><!-- 
+        <div class="col_3 col"><!--
           <div class="control_ico" style="display:block;">
             <img src="{% static 'ng/img/soundon.png' %}" class="icon" id="sound-on" style="margin-left: 8px;">
             <img src="{% static  'ng/img/soundoff.png' %}" id="sound-off">
@@ -117,7 +117,25 @@
             window.location.href='/new_experiment/basic';
         }
     });
+    //Tooltips
 
+    $('#home').tooltip({
+      title : current_lang.btn_home,
+      placement : "right auto",
+      trigger: "hover focus",
+    });
+
+    $('#groop_3').tooltip({
+      title : current_lang.groop_3,
+      placement : "right auto",
+      trigger: "hover focus",
+    });
+
+    $('#groop_5').tooltip({
+      title : current_lang.groop_5,
+      placement : "right auto",
+      trigger: "hover focus",
+    });
   });
   </script>
 

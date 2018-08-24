@@ -45,7 +45,7 @@
 
     <div class="container">
        {% include "ng/col1.html" %}
-        <div class="col_2 col">
+        <div class="col_2 col" style="margin-right: 30px;">
             <h1 class="convers_font" id="conversations">CONVERSATION</h1>
             {% if context == "result" %}
             <h2 class="droop">{{ experiment.interaction_counter| add:-1 }} / {{ experiment.max_interaction }}</h2>
@@ -90,7 +90,7 @@
             <div class="row_inputs_file">
               <label class="label_input_file_two label_input">
                 <input type="radio" value="{{word}}" name="m" id="{{word}}" hidden>
-                <div class=" word_text_speaker castom_input text_content" id="word_inter" word_name="{{ word }}">{{ word }}</div>
+                <div class="w word_text_speaker castom_input text_content" id="word_inter" style="border:none;font-size:25px;" word_name="{{ word }}">{{ word }}</div>
               </label>
                 </div>
           </td>
@@ -103,7 +103,7 @@
                 <td>
                 <label class="label_input_file">
                   <input name="select_radio" type="radio" id="meaning_{{ last_ms }}" value="{{ last_ms }}" hidden>
-                  <span class="castom_input_file" disabled><img id="last_ms_{{ last_ms }}" class="img-responsive  meaning_img last_ms" src="{% static 'ng/img/' %}kreyon_meaning{{ last_ms }}.png" meaning_name="last_ms_{{ last_ms }}"></span>
+                  <span class="castom_input_file" style="width: 70px;" disabled><img id="last_ms_{{ last_ms }}" class="img-responsive  meaning_img last_ms" src="{% static 'ng/img/' %}kreyon_meaning{{ last_ms }}.png" meaning_name="last_ms_{{ last_ms }}"></span>
                 </label>
               </td>
 
@@ -113,7 +113,8 @@
               <td>
                 <label class="label_input_file">
                   <input name="select_radio" type="radio" id="meaning_{{ last_mh }}" value="{{ last_mh }}" hidden>
-                  <span class="castom_input_file" {% if last_mh == "none" %} style="border : 2px solid white;" {% endif %} disabled><img  id="last_mh_{{ last_mh }}" class="img-responsive  meaning_img last_mh" src="{% static 'ng/img/' %}kreyon_meaning{{ last_mh }}.png" meaning_name="last_mh_{{ last_mh }}"></span>
+                  <!--{% if last_mh == "none" %} style="border : 2px solid white;" {% endif %}-->
+                  <span class="castom_input_file" style="width: 70px;"  disabled><img  id="last_mh_{{ last_mh }}" class="img-responsive  meaning_img last_mh" src="{% static 'ng/img/' %}kreyon_meaning{{ last_mh }}.png" meaning_name="last_mh_{{ last_mh }}"></span>
                 </label>
               </td>
 
@@ -127,12 +128,14 @@
               <span class="text_content" id='choice_words' style="display:none;">c’est à vous de parler.
               <br> choissisez le mot que vous allez utiliser pour parler de cet objet.</span>
             </div>
-            <div class="row_inputs_file row_inputs_top">
+            <div class="row_inputs_file row_inputs_top row">
               {% for m in experiment.meanings.all %}
+              <div class="col" style="max-width:100px">
               <label class="label_input_file">
                 <input name="select_radio" type="radio" id="m{{ m.meaning }}" value="m{{ m.meaning }}" hidden>
-                <span class="castom_input_file"><img id="meaning_{{ m.meaning }}" class="img-responsive m meaning_img" src="{% static 'ng/img/' %}kreyon_meaning{{ m.meaning }}.png" meaning_name="{{ m.meaning }}"></span>
+                <span class="castom_input_file" style="background-color: #efefef;"><img id="meaning_{{ m.meaning }}" class="img-responsive m meaning_img" src="{% static 'ng/img/' %}kreyon_meaning{{ m.meaning }}.png" meaning_name="{{ m.meaning }}"></span>
               </label>
+            </div>
               {% endfor %}
 
             </div>
@@ -184,8 +187,8 @@
             {% endif %}
             </form>
         </div>
-        <div class="col_3 col">
-          <div class="control_ico" style="display:block;">
+        <div class="col_3 col" style="margin-top: 50px;margin-bottom: 100px;">
+          <div class="control_ico" style="display:block;margin: auto;">
             <img src="{% static  'ng/img/history.png' %}" id="menu-h">
           </div>
         </div>
@@ -408,6 +411,26 @@
        sound_click.play();
        $("html").addClass("wait");
        window.location.href=url_home;
+     });
+
+     //Tooltips
+
+     $('#home').tooltip({
+       title : current_lang.btn_home,
+       placement : "right auto",
+       trigger: "hover focus",
+     });
+
+     $('#groop_3').tooltip({
+       title : current_lang.groop_3,
+       placement : "right auto",
+       trigger: "hover focus",
+     });
+
+     $('#groop_5').tooltip({
+       title : current_lang.groop_5,
+       placement : "right auto",
+       trigger: "hover focus",
      });
 
     });

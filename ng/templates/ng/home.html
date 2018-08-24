@@ -164,6 +164,24 @@
     			window.location.href='/infos';
 		});
 
+    //Tooltips
+    $('.div1').tooltip({
+      title : current_lang.best_scores,
+      placement : "right auto",
+      trigger: "hover focus",
+    });
+
+    $('.div2').tooltip({
+      title : current_lang.you,
+      placement : "left auto",
+      trigger: "hover focus",
+    });
+
+    $('#lang').tooltip({
+      title : current_lang.lang,
+      placement : "right auto",
+      trigger: "hover focus",
+    });
 
 
 	</script>

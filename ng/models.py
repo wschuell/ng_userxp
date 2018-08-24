@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 
+from django.utils.timezone import now
+
 import naminggamesal as ngal
 
 # Create your models here.
@@ -13,6 +15,7 @@ import naminggamesal as ngal
 import json
 import pickle
 import random
+import datetime
 
 xp_cfg = {
     "step": 1,
@@ -45,6 +48,7 @@ xp_cfg = {
     }
 }
 
+null_date = None
 
 #extended User class
 class UserNG(models.Model):
@@ -57,9 +61,12 @@ class UserNG(models.Model):
     nbr_played = models.IntegerField(default=0)
     use_matomo = models.BooleanField(default=True)
     prolific_user = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     #Has the user seen the informations displayed after 3 games ?
     q_seen = models.BooleanField(default=False)
+    q_seen_at = models.DateTimeField(blank=True,null=True,default=null_date)
 
     #Has the user already filled the form ?
     q_filled = models.BooleanField(default=False)
@@ -69,7 +76,7 @@ class UserNG(models.Model):
     q2 =  models.BooleanField(default=False)
     q3 =  models.BooleanField(default=False)
     q4 =  models.BooleanField(default=False)
-    q5 = models.CharField(max_length=100, null=True, blank= True, default='')
+    q5 = models.TextField(null=True, blank= True, default='')
 
     def __str__(self):
         return self.user.username
@@ -82,6 +89,10 @@ class UserNG(models.Model):
             user_ng = cls.objects.create(user=user)
             user_ng.save()
         return user_ng
+
+    def update_nbr_played(self):
+        self.nbr_played = len(self.user.objects.filter(xp_config__xp_cfg_name="normal",user=self.user,is_complete=True))
+        self.save()
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
@@ -130,6 +141,9 @@ class Experiment(models.Model):
     last_bool_succ = models.BooleanField(default=False)
     last_nb_skipped = models.IntegerField(default=0)
     size = models.IntegerField(default=1)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    completed_at = models.DateTimeField(blank=True,null=True,default=null_date)
 
     #Has the player seen the informations on the experiment before this game ?
     before_info = models.BooleanField(default=False)
@@ -357,12 +371,10 @@ class Experiment(models.Model):
     #     for agent in player_agents:
     #         agent.add_to_xp(None,rm_from_xpobj=False)
 
-    #Had the experiment been completed ? (For the admin interface)
-    def is_complete(self):
-    	completed = (self.max_interaction <= self.interaction_counter)
-    	return completed
-    is_complete.boolean = True
-
+    #Has the experiment been completed ? (For the admin interface)
+    def update_complete(self):
+        self.is_complete = (self.interaction_counter >= self.max_interaction)
+        self.save()
 
 class Agent(models.Model):
     xp = models.ForeignKey(Experiment, on_delete=models.CASCADE, blank=True, null=True)

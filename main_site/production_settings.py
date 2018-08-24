@@ -23,6 +23,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 #SECRET_KEY = '66*1bsp6-cpqvibx&dpnru)h5v_hk^t)y9(z7a&2ohv=uxs=y*'
 from .secretkey import SECRET_KEY
 
+if not os.path.exists('matomo_usage.txt'):
+    with open('matomo_usage.txt','w') as f:
+        f.write('1')
+
+with open('matomo_usage.txt','r') as f:
+    MATOMO_USAGE = bool(int(f.read()))
+
+
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 

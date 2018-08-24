@@ -98,7 +98,7 @@ $( document ).ready(function() {
   //buttons
   $("#homebutton").click(function(){
     $("html").addClass("wait");
-    window.location.href=url_home;
+    window.location.href="/";
   });
 
   $("#logoutbutton").click(function(){

@@ -1,8 +1,6 @@
 #!/bin/bash
 
-cd ng
-python gen_json_str.py || (cd .. && exit 1)
-cd ..
+(cd ng && python gen_json_str.py) || exit 1
 
 git pull
 python manage.py makemigrations &&
