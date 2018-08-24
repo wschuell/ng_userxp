@@ -15,6 +15,7 @@ import naminggamesal as ngal
 import json
 import pickle
 import random
+import datetime
 
 xp_cfg = {
     "step": 1,
@@ -47,6 +48,7 @@ xp_cfg = {
     }
 }
 
+null_date = None
 
 #extended User class
 class UserNG(models.Model):
@@ -64,7 +66,7 @@ class UserNG(models.Model):
 
     #Has the user seen the informations displayed after 3 games ?
     q_seen = models.BooleanField(default=False)
-    q_seen_at = models.DateTimeField(blank=True)
+    q_seen_at = models.DateTimeField(blank=True,null=True,default=null_date)
 
     #Has the user already filled the form ?
     q_filled = models.BooleanField(default=False)
@@ -141,7 +143,7 @@ class Experiment(models.Model):
     size = models.IntegerField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    completed_at = models.DateTimeField(blank=True)
+    completed_at = models.DateTimeField(blank=True,null=True,default=null_date)
 
     #Has the player seen the informations on the experiment before this game ?
     before_info = models.BooleanField(default=False)
