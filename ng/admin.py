@@ -61,7 +61,7 @@ class ExperimentAdmin(admin.ModelAdmin):
 	'user',
 	'user_agent_uuid',
 	'xp_config',
-	#'is_complete',
+	'is_complete',
 	'max_interaction',
 	'interaction_counter',
 	'words',

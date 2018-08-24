@@ -105,7 +105,7 @@
              <div class="row_inputs_file">
                <label class="label_input_file_two label_input">
                  <input type="radio" value="{{word}}" name="m" id="{{word}}" hidden>
-                 <div class="w word_text_speaker castom_input text_content" id="word_inter" word_name="{{ word }}">{{ word }}</div>
+                 <div class="w word_text_speaker castom_input text_content" id="word_inter" word_name="{{ word }}" style="border:none;font-size:25px;">{{ word }}</div>
                </label>
                  </div>
              </td>
@@ -118,7 +118,7 @@
                  <td>
                  <label class="label_input_file">
                    <input name="select_radio" type="radio" id="meaning_{{ last_ms }}" value="{{ last_ms }}" hidden>
-                   <span class="castom_input_file" disabled><img id="last_ms_{{ last_ms }}" class="img-responsive meaning_img last_ms" src="{% static 'ng/img/' %}kreyon_meaning{{ last_ms }}.png" meaning_name="last_ms_{{ last_ms }}"></span>
+                   <span class="castom_input_file" style="width: 70px;" disabled><img id="last_ms_{{ last_ms }}" class="img-responsive meaning_img last_ms" src="{% static 'ng/img/' %}kreyon_meaning{{ last_ms }}.png" meaning_name="last_ms_{{ last_ms }}"></span>
                  </label>
                </td>
 
@@ -127,8 +127,8 @@
 
                <td>
                  <label class="label_input_file">
-                   <input name="select_radio"  type="radio" id="meaning_{{ last_mh }}" value="{{ last_mh }}" hidden>
-                   <span class="castom_input_file" {% if last_mh == "none" %} style="border : 2px solid white;" {% endif %} disabled><img  id="last_mh_{{ last_mh }}" class="img-responsive meaning_img last_mh" src="{% static 'ng/img/' %}kreyon_meaning{{ last_mh }}.png" meaning_name="last_mh_{{ last_mh }}"></span>
+                   <!--{% if last_mh == "none" %} style="border : 2px solid white;" {% endif %}-->
+                   <span class="castom_input_file" style="width: 70px;"  disabled><img  id="last_mh_{{ last_mh }}" class="img-responsive  meaning_img last_mh" src="{% static 'ng/img/' %}kreyon_meaning{{ last_mh }}.png" meaning_name="last_mh_{{ last_mh }}"></span>
                  </label>
                </td>
 
@@ -150,7 +150,7 @@
               <div class="col" style="max-width:100px">
               <label class="label_input_file">
                 <input name="select_radio" type="radio" id="m{{ m.meaning }}" value="m{{ m.meaning }}" hidden>
-                <span class="castom_input_file" ><img id="meaning_{{ m.meaning }}" class="img-responsive m meaning_img" src="{% static 'ng/img/' %}kreyon_meaning{{ m.meaning }}.png" meaning_name="{{ m.meaning }}" ></span>
+                <span class="castom_input_file" style="background-color: #efefef;"><img id="meaning_{{ m.meaning }}" class="img-responsive m meaning_img" src="{% static 'ng/img/' %}kreyon_meaning{{ m.meaning }}.png" meaning_name="{{ m.meaning }}" ></span>
               </label>
             </div>
               {% endfor %}
@@ -158,7 +158,7 @@
               <div class="separator"></div>
               <label class="label_input_file">
                 <input name="select_radio" type="radio" id="none" value="none"  hidden>
-                <span class="castom_input_file" style="border : 2px solid white;"><img meaning_name="none" class="img-responsive m meaning_img" src="{% static 'ng/img/kreyon_meaningnone.png' %}" meaning_name="{{ m.meaning }}" id="img_dont_know"></span>
+                <span class="castom_input_file" style="background-color: #efefef;padding-top:2px; border:solid 2px black"><img meaning_name="none" class="img-responsive m meaning_img" src="{% static 'ng/img/kreyon_meaningnone_black.png' %}" meaning_name="{{ m.meaning }}" id="img_dont_know"></span>
               </label>
               {% endif %}
             </div>
@@ -417,7 +417,6 @@
            placement : "right auto",
            trigger: "hover focus",
          });
-
 
       });
         </script>
