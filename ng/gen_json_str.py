@@ -13,10 +13,10 @@ dict_obj = {
     'label_lang': 'Choisissez votre langue:',
     'label_code': 'Si on vous a indiqué un code spécifique, entrez le ici :',
         'consent_form':'''<p>Vous allez jouer à un court jeu lors duquel vous aurez à construire collectivement un lexique avec d'autres individus. Vos réponses seront enregistrées mais resteront anonymes. Ce jeu durera environ 20 minutes.
-</p>
+</p><p style = "margin-top:1.5em;margin-bottom:1.5em;"><b>Avant d'accepter de participer à l'expérience, veuillez <a href="/static/ng/pdf/consent_form_fr.pdf" target="_blank">cliquez ici</a> pour lire les informations détaillées concernant l'expérience.</b>
 <ul>
                     <li>Vous avez lu et compris les informations détaillées sur cette recherche.</li>
-                    <li>Vous acceptez que vos données annonymisées pourraient être gardées de manière permanente dans les archives d'Inria et pourraient être utilisées par des chercheurs qualifiés dans des buts d'enseignement ou de recherche.</li>
+                    <li>Vous acceptez que vos données annonymisées pourraient être gardées jusqu'à 5 ans dans les archives d'Inria et pourraient être utilisées par des chercheurs qualifiés dans des buts d'enseignement ou de recherche.</li>
                     <li>Vous acceptez que vos données annonymisées pourraient devenir publiquement accessibles pour des usages divers, e.g., diffusées sur internet.</li>
                     <li>Vous consentez à l'usage de cookies sur ce site.</li>
                 </ul>
@@ -174,7 +174,7 @@ dict_obj = {
 <p>
 <ul>
                     <li>You have read and understood the detailed information about the study.</li>
-                    <li>You agree that your anonymized data may be kept permanently in the archives of Inria and may be used by qualified researchers for teaching and research purposes</li>
+                    <li>You agree that your anonymized data may be kept for up to 5 years in the archives of Inria and may be used by qualified researchers for teaching and research purposes</li>
                     <li>You agree that your anonymized data may be made publicly available for general use, e.g., put on the world wide web.</li>
                     <li>You consent to the use of cookies for this site.</li>
                 </ul>
