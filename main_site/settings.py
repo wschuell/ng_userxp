@@ -41,6 +41,17 @@ else:
     with open("allowed_hosts.txt",'w') as f:
         f.write(json.dumps(ALLOWED_HOSTS))
 
+
+if not os.path.exists('matomo_usage.txt'):
+    with open('matomo_usage.txt','w') as f:
+        f.write('1')
+
+with open('matomo_usage.txt','r') as f:
+    MATOMO_USAGE = bool(int(f.read()))
+
+
+
+
 # Application definition
 
 INSTALLED_APPS = [
