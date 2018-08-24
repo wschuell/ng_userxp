@@ -169,12 +169,16 @@ dict_obj = {
     'submit' : "Submit",
         'consent_form':'''<p>You’re about to start a short game where you will have to collectively build a lexicon with other individuals. Your answers will be recorded but will not be identifiable to you personally. The game will take about 20 minutes.
 </p>
+<p style = "margin-top:1.5em;margin-bottom:1.5em;"><b>Before consenting to participate, please <a href="/static/ng/pdf/consent_form.pdf" target="_blank">click here</a> to read more detailed information about the study.</b>
+</p>
+<p>
 <ul>
                     <li>You have read and understood the detailed information about the study.</li>
                     <li>You agree that your anonymized data may be kept permanently in the archives of Inria and may be used by qualified researchers for teaching and research purposes</li>
                     <li>You agree that your anonymized data may be made publicly available for general use, e.g., put on the world wide web.</li>
                     <li>You consent to the use of cookies for this site.</li>
                 </ul>
+</p>
 <p>If you do not agree to all of these, simply close this window in your browser now.</p>
 ''',
 
@@ -321,6 +325,7 @@ dict_obj = {
             'label_code': 'Si vous avez un code spécial, entrez le ici :',
         'consent_form':'''<p>You’re about to start a short game where you will have to collectively build a lexicon with other individuals. Your answers will be recorded but will not be identifiable to you personally. The game will take about 20 minutes.
 </p>
+<b>Before consenting to participate, please <a href="onlineinfo.pdf" target="_blank">click here</a> to read more detailed information about the study.</b>
 <ul>
                     <li>You have read and understood the detailed information about the study.</li>
                     <li>You agree that your anonymized data may be kept permanently in the archives of Inria and may be used by qualified researchers for teaching and research purposes</li>

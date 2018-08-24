@@ -1,5 +1,5 @@
  {% load static %}
- {% if request.user.userng.use_matomo %}
+ {% if use_matomo and request.user.userng.use_matomo %}
 <!-- Matomo -->
 <script type="text/javascript">
   var _paq = _paq || [];

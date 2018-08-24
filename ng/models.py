@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 
+from django.utils.timezone import now
+
 import naminggamesal as ngal
 
 # Create your models here.
@@ -57,9 +59,12 @@ class UserNG(models.Model):
     nbr_played = models.IntegerField(default=0)
     use_matomo = models.BooleanField(default=True)
     prolific_user = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     #Has the user seen the informations displayed after 3 games ?
     q_seen = models.BooleanField(default=False)
+    q_seen_at = models.DateTimeField(blank=True)
 
     #Has the user already filled the form ?
     q_filled = models.BooleanField(default=False)
@@ -134,6 +139,9 @@ class Experiment(models.Model):
     last_bool_succ = models.BooleanField(default=False)
     last_nb_skipped = models.IntegerField(default=0)
     size = models.IntegerField(default=1)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    completed_at = models.DateTimeField(blank=True)
 
     #Has the player seen the informations on the experiment before this game ?
     before_info = models.BooleanField(default=False)
