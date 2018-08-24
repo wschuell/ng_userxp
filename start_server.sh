@@ -1,4 +1,4 @@
-
+echo 0 > init_done.status
 
 echo 'NG_USERXP_DEV_MODE:'$NG_USERXP_DEV_MODE
 
@@ -32,6 +32,8 @@ python manage.py migrate ng &&
 python manage.py collectstatic --noinput &&
 
 echo "import check_users; exit();" | python manage.py shell &&
+
+echo 1 > init_done.status
 
 if [ $NG_USERXP_DEV_MODE -eq 0 ]
 then
