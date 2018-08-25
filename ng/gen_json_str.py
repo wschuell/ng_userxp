@@ -9,7 +9,7 @@ dict_obj = {
 
     #Login
     'welcome': 'Naming Game',
-    'enter_player_name': 'Prolific ID :',,
+    'enter_player_name': 'Prolific ID :',
     'label_lang': '',#'Choisissez votre langue:',
     'label_code': 'Si on vous a indiqué un code spécifique, entrez le ici :',
         'consent_form':'''<p>Vous allez jouer à un court jeu lors duquel vous aurez à construire collectivement un lexique avec d'autres individus. Vos réponses seront enregistrées mais resteront anonymes. Ce jeu durera environ 20 minutes.
