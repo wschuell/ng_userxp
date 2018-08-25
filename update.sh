@@ -1,8 +1,9 @@
 #!/bin/bash
 
+git pull
+
 (cd ng && python gen_json_str.py) || exit 1
 
-git pull
 python manage.py makemigrations &&
 python manage.py makemigrations auth &&
 python manage.py makemigrations ng &&
