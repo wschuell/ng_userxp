@@ -90,6 +90,7 @@ var current_lang = lang[current_lang_id];
         $('#label_q3').html(current_lang.label_q3);
         $('#label_q4').html(current_lang.label_q4);
         $('#label_q5').html(current_lang.label_q5);
+        $('#label_q6').html(current_lang.label_q6);
 
         //Tooltips
 

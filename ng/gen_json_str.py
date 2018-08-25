@@ -12,15 +12,15 @@ dict_obj = {
     'enter_player_name': 'Entrez votre nom ici :',
     'label_lang': '',#'Choisissez votre langue:',
     'label_code': 'Si on vous a indiqué un code spécifique, entrez le ici :',
-        'consent_form':'''<p>Vous allez jouer à un court jeu lors duquel vous aurez à construire collectivement un lexique avec d'autres individus. Vos réponses seront enregistrées mais resteront anonymes. Ce jeu durera environ 20 minutes.
+        'consent_form':'''<p>Vous allez participer à une expérience sous la forme d'un jeu en ligne, où vous aurez à construire collectivement un langage avec d'autres individus. Vos réponses seront enregistrées mais resteront anonymes. Ce jeu durera environ 20 minutes.
 </p><p style = "margin-top:1.5em;margin-bottom:1.5em;"><b>Avant d'accepter de participer à l'expérience, veuillez <a href="/static/ng/pdf/consent_form_fr.pdf" target="_blank">cliquez ici</a> pour lire les informations détaillées concernant l'expérience.</b>
 <ul>
                     <li>Vous avez lu et compris les informations détaillées sur cette recherche.</li>
-                    <li>Vous acceptez que vos données annonymisées pourraient être gardées jusqu'à 5 ans dans les archives d'Inria et pourraient être utilisées par des chercheurs qualifiés dans des buts d'enseignement ou de recherche.</li>
-                    <li>Vous acceptez que vos données annonymisées pourraient devenir publiquement accessibles pour des usages divers, e.g., diffusées sur internet.</li>
+                    <li>Vous acceptez que vos données anonymisées d'utilisation du jeu soient gardées jusqu'à 5 ans dans les archives d'Inria et peuvent être utilisées par des chercheurs qualifiés à des fins d'enseignement ou de recherche.</li>
+                    <li>Vous acceptez que vos données anonymisées d'utilisation du jeu peuvent devenir publiquement accessibles pour des usages divers, par exemple diffusées sur internet.</li>
                     <li>Vous consentez à l'usage de cookies sur ce site.</li>
                 </ul>
-<p>Si vous ne consentez pas à tout cela, fermez simplement la fenêtre dans votre navigateur.</p>
+<p>Si vous ne consentez pas à l'ensemble de ces points, vous pouvez fermer la fenêtre de votre navigateur.</p>
 ''',
     'submit':'Valider',
 
@@ -29,8 +29,8 @@ dict_obj = {
     'button_basic': 'TUTORIEL',
     'button_multi': 'BONUS',
     'button_normal': 'JEU',
-    'game_locked' : 'Gagner le Tutoriel',
-    'multi_locked' : 'Gagner le Jeu 3 fois',
+    'game_locked' : 'Gagnez le Tutoriel',
+    'multi_locked' : 'Gagnez le Jeu 3 fois',
 
     #Story End
     'story_pagetitle': 'HISTOIRE',
@@ -41,9 +41,9 @@ dict_obj = {
     'c2_2':'L\'un de vous proposera un mot <img src="/static/ng/img/mic-512.png" class="txt_img" > et l\'autre devra deviner l\'objet auquel il fait référence. <img class="txt_img" src="/static/ng/img/bitmap-1.png">',
     'c2_3':'Parfois vous proposerez un mot, parfois vous devinerez l\'objet et parfois encore vous écouterez patiemment votre radio <img src="/static/ng/img/time.png" class="txt_img" > dans l\'attente d\'un signal, pendant que d\'autres joueurs communiquent.',
     'text_end':"Après avoir réussi à vous comprendre, vous mettez au point un plan d'évasion spectaculaire. Vos ravisseurs ne voient rien venir avant qu'il ne soit trop tard. Vous leur volez un vaisseau qu'un de vos camarades pilote pour vous ramener tous paisiblement chez vous.",
-    'text_end_lost':'Malheureusement, vos gardiens se rendent compte de votre intention d\'arriver à communiquer avant que vous ne réussissiez à vous comprendre. Ils vous séparent aux 4 coins du vaisseau-prison, et vous vous retrouvez avec de nouveaux voisins de cellule.',
-    'text_end_tuto':'Votre gardien est agacé des sons bizarres qui proviennent de votre cellule, et décide vous envoyez dans une autre partie du vaisseau, où par chance il y a plus d\'objets et de voisins de cellule.',
-    'text_score':'Vous avez atteint un niveau de compréhension de : ',
+    'text_end_lost':'Malheureusement, vos gardiens se rendent compte de votre intention d\'arriver à communiquer avant que vous ne réussissiez à vous comprendre. Ils vous séparent aux quatre coins du vaisseau-prison, et vous vous retrouvez avec de nouveaux voisins de cellule.',
+    'text_end_tuto':'Votre gardien est agacé des sons incompréhensibles qui proviennent de votre cellule, et décide de vous enfermer dans une autre partie du vaisseau, où par chance vous vous retrouvez avec plus d\'objets et de voisins de cellule.',
+    'text_score':'Vous et vos voisins de cellule avez atteint un niveau de compréhension de : ',
     'c1_3':'<span class="important">Aucun de vous ne parle la même langue</span> mais vous voulez tous vous échapper pour pouvoir rentrer chez vous.',
     'c2_4':"Mais attention, vous n'avez à vous tous qu'un <span class='important'>nombre limité de conversations</span> pour réussir !",
     'c2_5':'À tout moment, vous pouvez consulter ce que vous avez appris des autres joueurs en cliquant sur l\'horloge <img src="/static/ng/img/history.png" class="txt_img" >.',
@@ -58,13 +58,13 @@ dict_obj = {
     'continue': 'CONTINUER',
     'conversations': 'CONVERSATION',
     'anhearer_text':"On essaye de communiquer avec vous.<br>De quoi vous parle-t-on ?",
-    'anspeaker_text':"C’est à vous de prendre la parole.<br> Choissisez l’objet dont vous allez parler.",
+    'anspeaker_text':"C’est à vous de prendre la parole.<br> Choisissez l’objet dont vous allez parler.",
     'anabs_text':'conversations ont eu lieu en votre absence',
-    'choice_words': 'C’est à vous de prendre la parole.<br> Choissisez le mot que vous allez utiliser pour parler de cet objet.',
+    'choice_words': 'C’est à vous de prendre la parole.<br> Choisissez le mot que vous allez utiliser pour parler de cet objet.',
     'history_objects':'Objets',
     'history_words':'Mots',
     'history_success':'',
-    'modal_title': 'Êtes vous sûr.e ?',
+    'modal_title': 'Êtes vous sûr(e) ?',
     'modal_body': 'Si vous quittez la partie en cours, celle-ci ne sera pas sauvegardée.',
     'btn_yes': '<p>Quitter la partie</p>',
     'btn_no': '<p>Continuer la partie</p>',
@@ -86,11 +86,12 @@ dict_obj = {
     #Info page
     'titre_info' : "",
     'info_text': "",
-    'label_q1':"Aviez-vous déjà entendu parler des jeux de language ? ",
-    'label_q2':"Aviez-vous déjà joué à un jeu de ce type ou participé à une expérience similaire auparavant ?",
-    'label_q3':"Avez-vous bien compris ce qui se passait au cours du jeu ? ",
+    'label_q1':"Avez-vous compris ce qui se passait au cours du jeu ? ",
+    'label_q2':"Pensiez-vous n'interagir qu'avec un seul interlocuteur ? ",
+    'label_q3':"Aviez-vous déjà entendu parler des jeux de language ou d'autres expériences de communication similaires ? ",
     'label_q4':"Avez-vous eu l'impression d'utiliser une certaine stratégie (ou plusieurs) lors de vos parties ?",
     'label_q5':"Si oui, pourriez-vous la ou les décrire brièvement ?",
+    'label_q6':"Vous pouvez laisser ici toute remarque ou message qui vous semblerait pertinent, ou dont vous voudriez simplement nous faire part :",
 
     #Tooltips
     'tooltip_example':"Si vous n'avez pas de code, laissez ce champ vide.",
@@ -202,9 +203,9 @@ dict_obj = {
     'c2_2':'One of you will say a word  <img src="/static/ng/img/mic-512.png" class="txt_img" > and the other will have to guess which object they are referring to. <img class="txt_img" src="/static/ng/img/bitmap-1.png">',
     'c2_3':'Sometimes you will talk, sometimes you will listen and guess and sometimes you will keep listening to your radio <img src="/static/ng/img/time.png" class="txt_img" > waiting for a signal, while others are conversing. ',
     'text_end':'Once you manage to understand each other, you come up with a cunning plan to escape. Your abductors don’t even see it coming until it’s too late. You steal a ship from them and one of your companions drives you back home with it.',
-    'text_end_lost':'Sadly, your abductors realize that you are trying to communicate before you reach an acceptable level of understanding. They split you between different parts of the prison ship, with new cell neighbors.',
-    'text_end_tuto':'Your prison guard gets bored by the many strange sounds that are coming from your cell, and decide to send you to another, luckily with more neighbors and more objects.',
-    'text_score':'You reached an understanding level of : ',
+    'text_end_lost':'Sadly, your abductors realize that you and your neighbors are trying to communicate before you reach an acceptable level of understanding. They split all of you you between different parts of the prison ship, with new cell neighbors.',
+    'text_end_tuto':'Your prison guard gets bored by the many strange sounds that are coming from your cell, and decides to transfer you to another part of the ship, luckily with more neighbors and more objects.',
+    'text_score':'You and your fellow prisoners reached an understanding level of : ',
     'c1_3':'<span class="important">None of you is from the same planet or speaks the same language</span> but you all want the same thing : escape and go back home.',
     'c2_4':'Be careful, you only have a <span class="important">limited number of conversations</span> to succeed !',
     'c2_5':'At any moment, you can have a look at what you learned from the other players by clicking on the clock <img src="/static/ng/img/history.png" class="txt_img" >.',
@@ -226,7 +227,7 @@ dict_obj = {
     'history_words':'Words',
     'history_success':'',
     'modal_title': 'Are you sure ?',
-    'modal_body': 'If you quit this page, the game won’t be saved. Do you still want to quit ?',
+    'modal_body': 'If you leave this page, the game won’t be saved. Do you want to quit ?',
     'btn_yes': '<p>Yes, quit the game</p>',
     'btn_no': '<p>No, resume the game</p>',
 
@@ -248,11 +249,12 @@ dict_obj = {
     #Info page
     'titre_info' : "",
     'info_text': "",
-    'label_q1':"Were you already familiar with language games ? ",
-    'label_q2':"Have you already played such a game or participated to a similar experiment ?",
-    'label_q3':"Did you understand what was happening in the game ?",
+    'label_q1':"Did you understand what was happening in the game ?",
+    'label_q2':"Did you think that you were interacting with only one individual ?",
+    'label_q3':"Were you already familiar with communication games or similar experiments ? ",
     'label_q4':"Did you use a certain strategy (or several) during your games ?",
     'label_q5':"If it is a 'Yes', could you describe it briefly ?",
+    'label_q6':"You can leave here any remark or message that could be relevant or that you would just like to share with us :",
 
     #Tooltips
     'tooltip_example':"If you were not provided a token, leave empty.",

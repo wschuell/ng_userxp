@@ -78,6 +78,7 @@ class UserNG(models.Model):
     q3 =  models.BooleanField(default=False)
     q4 =  models.BooleanField(default=False)
     q5 = models.TextField(null=True, blank= True, default='')
+    q6 = models.TextField(null=True, blank= True, default='')
 
     def __str__(self):
         return self.user.username
