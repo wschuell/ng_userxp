@@ -328,7 +328,7 @@ dict_obj = {
 
 
 
-json_str = '\nvar lang = '+json.dumps(dict_obj)+';\n'
+json_str = '\nvar langdict = '+json.dumps(dict_obj)+';\n'
 
 #print(json_str)
 print('Generating lang.js')
@@ -338,18 +338,18 @@ with open('static/ng/lang.js','w') as f:
 
 
 
-with open('static/ng/change_lang.js','r') as f:
-    s1 = f.read()
+# with open('static/ng/change_lang.js','r') as f:
+#     s1 = f.read()
 
-split_str = '//LANG GETS DECLARED HERE, this line is used in the python script generating it'
+# split_str = '//LANG GETS DECLARED HERE, this line is used in the python script generating it'
 
-splitted = s1.split(split_str)
-assert len(splitted) >= 3
-splitted[1] = json_str
-s2 = split_str.join(splitted)
+# splitted = s1.split(split_str)
+# assert len(splitted) >= 3
+# splitted[1] = json_str
+# s2 = split_str.join(splitted)
 
 
-with open('static/ng/change_lang.js','w') as f:
-    f.write(s2)
+# with open('static/ng/change_lang.js','w') as f:
+#     f.write(s2)
 
 sys.exit(0)
