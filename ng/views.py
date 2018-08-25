@@ -633,6 +633,8 @@ def score(request, xp_uuid):
         srtheo = experiment.xp.graph(method="srtheo")._Y[0][-1]
         score_val = int(srtheo * experiment.meanings.count() * 100)#.all().count()?
         score = Score(experiment=experiment,score=score_val,user=request.user)
+        if score > 0.65 * experiment.xp_config.score_max:
+            experiment.game_won = True
         score.save()
 
     u = UserNG.get(user=request.user)
@@ -644,7 +646,7 @@ def score(request, xp_uuid):
         u.tuto_played = True
         u.save()
     #Update xp_number
-    experiment.xp_number= u.nbr_played + 1
+    experiment.xp_number = u.nbr_played + 1
     experiment.save()
     tab_results = experiment.get_result_tab()
     m_list = [elt for elt in tab_results.keys()]
@@ -669,6 +671,7 @@ def score(request, xp_uuid):
     return render(request, 'ng/resultats.html', {
             'experiment': experiment,
             'score':str(score_val),
+            'score_pct':str(int(score_val*100./experiment.xp_config.score_max)),
             'context':"end",
             'tab_results': tab_results,
             'm_list': m_list,
@@ -687,7 +690,7 @@ def score(request, xp_uuid):
 @login_required(login_url='/ng/login/')
 def info(request):
     u = UserNG.get(user=request.user)
-    if u.nbr_played < 3 :
+    if u.nbr_won < 3 :
         return HttpResponseRedirect('/')
     else:
         u.q_seen = True

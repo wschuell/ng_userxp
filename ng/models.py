@@ -59,6 +59,7 @@ class UserNG(models.Model):
     #Number of games played, used as condition for unlocking game modes
     tuto_played = models.BooleanField(default=False)
     nbr_played = models.IntegerField(default=0)
+    nbr_won = models.IntegerField(default=0)
     use_matomo = models.BooleanField(default=True)
     prolific_user = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -91,7 +92,8 @@ class UserNG(models.Model):
         return user_ng
 
     def update_nbr_played(self):
-        self.nbr_played = len(self.user.objects.filter(xp_config__xp_cfg_name="normal",user=self.user,is_complete=True))
+        self.nbr_played = len(Experiment.objects.filter(xp_config__xp_cfg_name="normal",user=self.user,is_complete=True))
+        self.nbr_won = len(Experiment.objects.filter(xp_config__xp_cfg_name="normal",user=self.user,game_won=True))
         self.save()
 
 @receiver(post_save, sender=User)
@@ -121,6 +123,7 @@ class Meaning(models.Model):
 class XpConfig(models.Model):
     xp_config = models.CharField(max_length=2000,unique=True)
     xp_cfg_name = models.CharField(max_length=200,null=True,blank=True)
+    score_max = models.IntegerField(default=500)
     def __str__(self):
         return self.xp_config
 
@@ -144,6 +147,7 @@ class Experiment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     completed_at = models.DateTimeField(blank=True,null=True,default=null_date)
+    game_won = models.BooleanField(default=False)
 
     #Has the player seen the informations on the experiment before this game ?
     before_info = models.BooleanField(default=False)
@@ -215,7 +219,7 @@ class Experiment(models.Model):
         if xpcfg_list:
             xp_conf_model = xpcfg_list.first()
         else:
-            xp_conf_model = XpConfig(xp_config=xp_cfg_json,xp_cfg_name=xp_cfg_name)
+            xp_conf_model = XpConfig(xp_config=xp_cfg_json,xp_cfg_name=xp_cfg_name,score_max=100*xp_cfg["pop_cfg"]["env_cfg"]["M"])
             xp_conf_model.save()
         xp = Experiment(xp_config=xp_conf_model,user=user,max_interaction=max_inter,size=size)
         xp.init_xp()
