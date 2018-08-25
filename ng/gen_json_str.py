@@ -41,8 +41,8 @@ dict_obj = {
     'c1_1': ' Vous avez été enlevé par des Extraterrestres !',
     'c1_2': 'Vous <img class="txt_img" src="/static/ng/img/chat.png"> voilà enfermé seul dans une pièce de leur vaisseau. Dans les pièces d\'à côté se trouvent <span class="important">3 autres individus</span> <img src="/static/ng/img/user_groop.png" class="txt_img" style="vertical-align:middle;"> que vos ravisseurs ont également enlevés aux quatre coins de la galaxie.',
     'c2_1':"Pour ce faire, vous ne pourrez parler que <span class='important'>deux par deux</span> grâce à une <span class='important'>radio</span>, <span class='important'>sans savoir lequel de vos camarades d'infortune est à l'autre bout</span>.",
-    'c2_2':"L'un de vous proposera un mot et l'autre devra deviner l'objet auquel il fait référence.",
-    'c2_3':"Parfois vous proposerez un mot, parfois vous devinerez l'objet et parfois encore vous ne ferez pas partie de la conversation et ne saurez pas ce qui s'y est dit.",
+    'c2_2':'L\'un de vous proposera un mot <img src="/static/ng/img/mic-512.png" class="txt_img" > et l\'autre devra deviner l\'objet auquel il fait référence. <img class="txt_img" src="/static/ng/img/bitmap-1.png">',
+    'c2_3':'Parfois vous proposerez un mot, parfois vous devinerez l\'objet et parfois encore vous écouterez patiemment votre radio <img src="/static/ng/img/time.png" class="txt_img" > dans l\'attente d\'un signal, pendant que d\'autres joueurs communiquent.',
     'text_end':"Après avoir réussi à vous comprendre, vous mettez au point un plan d'évasion spectaculaire. Vos ravisseurs ne voient rien venir avant qu'il ne soit trop tard. Vous leur volez un vaisseau qu'un de vos camarades pilote pour vous ramener tous paisiblement chez vous.",
     'text_score':'Score :',
     'c1_3':'<span class="important">Aucun de vous ne parle la même langue</span> mais vous voulez tous vous échapper pour pouvoir rentrer chez vous.',
@@ -77,7 +77,7 @@ dict_obj = {
     'hearer_success': "Bravo, vous avez compris votre interlocuteur ! Vous vous en souviendrez pour la prochaine fois !",
     'hearer_learn': "Voilà ce que votre coéquipier voulait dire, vous vous en souviendrez pour la prochaine fois !",
     'hearer_failure': "Oups, votre interlocuteur voulait parler d'autre chose. Vous vous en souviendrez pour la prochaine fois !",
-    'tuto_hearer': "(Cliquez sur l'horloge <img src='/static/ng/img/history.png' class='txt_img'> en haut à gauche pour voir ce que vos interlocuteurs voulaient dire lorsque vous écoutiez <img src='/static/ng/img/bitmap-1.png' class='txt_img'> lors des conversations précédentes.)",
+    'tuto_hearer': "Cliquez sur l'horloge <img src='/static/ng/img/history.png' class='txt_img'> en haut à gauche pour consulter ce que vous avez appris de vos interlocuteurs lors des conversations précédentes.",
 
     #Error Page
     'error_text': "<span id='error_span'>Oups !</span> Il semblerait qu'une erreur se soit produite ! Vous pouvez tenter de continuer ou revenir à l'accueil pour commencer une nouvelle partie.",
@@ -203,13 +203,13 @@ dict_obj = {
     'c1_1': ' You have been kidnapped by Aliens !',
     'c1_2': 'You <img class="txt_img" src="/static/ng/img/chat.png"> are now locked alone in a room of their huge spaceship. In the neighboring rooms, there are <span class="important">3 other individuals</span> <img src="/static/ng/img/user_groop.png" class="txt_img" style="vertical-align:middle;"> also kidnapped by your abductors at the four corners of the galaxy.',
     'c2_1':'To do so, you may only talk <span class="important">by pairs</span> thanks to a <span class="important">radio</span>, <span class="important">without knowing wich one of your fellow prisoners is on the other side</span>.',
-    'c2_2':'One of you will say a word and the other will have to guess which object they are referring to.',
-    'c2_3':'Sometimes you will talk <img src="/static/ng/img/mic-512.png" class="txt_img" >, sometimes you will listen and guess <img class="txt_img" src="/static/ng/img/bitmap-1.png"> and sometimes you will listen but hear nothing <img src="/static/ng/img/time.png" class="txt_img" > while others are conversing. ',
-    'text_end':'Once you managed to understand each other, you come up with a spectacular escape plan. Your abductors don’t even see it coming until it’s too late. You steal a ship from them and one of your companions drives you back home with it.',
+    'c2_2':'One of you will say a word  <img src="/static/ng/img/mic-512.png" class="txt_img" > and the other will have to guess which object they are referring to. <img class="txt_img" src="/static/ng/img/bitmap-1.png">',
+    'c2_3':'Sometimes you will talk, sometimes you will listen and guess and sometimes you will keep listening to your radio <img src="/static/ng/img/time.png" class="txt_img" > waiting for a signal, while others are conversing. ',
+    'text_end':'Once you managed to understand each other, you come up with a cunning plan to escape. Your abductors don’t even see it coming until it’s too late. You steal a ship from them and one of your companions drives you back home with it.',
     'text_score':'Score :',
     'c1_3':'<span class="important">None of you is from the same planet or speaks the same language</span> but you all want the same thing : escape and go back home.',
     'c2_4':'Be careful, you only have a <span class="important">limited number of conversations</span> to succeed !',
-    'c2_5':'At any moment, you can have a look at what you learned from the others by clicking on the clock <img src="/static/ng/img/history.png" class="txt_img" >.',
+    'c2_5':'At any moment, you can have a look at what you learned from the other players by clicking on the clock <img src="/static/ng/img/history.png" class="txt_img" >.',
 
     'col_1':'Objects',
     'col_2':'Favorite Words',
@@ -239,7 +239,7 @@ dict_obj = {
     'hearer_success': "Well done, you understood your partner ! You will remember it next time !",
     'hearer_learn': "This is what your partner meant, you will remember it next time !",
     'hearer_failure': "Oops, your partner meant something else. You will remember it next time !",
-    'tuto_hearer': "(Click on the time clock <img src='/static/ng/img/history.png' class='txt_img'> on the upper right corner to see what your interlocutors meant when you listened <img src='/static/ng/img/bitmap-1.png' class='txt_img'> for the previous interactions.)",
+    'tuto_hearer': "Click on the clock <img src='/static/ng/img/history.png' class='txt_img'> in the upper right corner to see what you learned from the other players in the previous interactions.",
 
 
         #Error Page
@@ -300,7 +300,7 @@ dict_obj = {
 ''',
 'question_title':'Quick survey:',
 
-  },
+}
 };
 
 
