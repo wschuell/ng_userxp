@@ -392,8 +392,8 @@ html{
 
 .lang {
 	/*display: inline-block;*/
-	width : 160px;
-	height: 115px;
+	width : 80px;
+	height: 67px;
 }
 
 .lang > input{ /* HIDE RADIO */
@@ -405,7 +405,7 @@ html{
   border:2px solid transparent;
 }
 .lang > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
-  border:4px solid white;
+  border:1px solid white;
 }
 
 .text_login {
