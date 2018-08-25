@@ -312,12 +312,11 @@ dict_obj = {
 
 
 json_str = '\nvar lang = '+json.dumps(dict_obj)+';\n'
-json_str_b = '\nvar lang_b = '+json.dumps(dict_obj)+';\n'
 
 print(json_str)
 
 with open('static/ng/lang.js','w') as f:
-    f.write(json_str_b)
+    f.write(json_str)
 
 
 
