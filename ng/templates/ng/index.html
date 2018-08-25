@@ -58,6 +58,11 @@
             <div>
               <img class="mic" src="{% static 'ng/img/chat.png' %}" >
             </div>
+            <div class="text_content_div" id="block1">
+              <p class="text_content_four"><span id="c1_1_prolific"> Your Prolific ID is:</span> <b>{{ userNG.user.first_name }}</b></p>
+              <p class="text_content_four" id="c1_2_prolific"> If this is not correct, please logout and re-login with your correct Prolific ID.</p>
+
+            </div>
             <a href="#" class="btn five_btm" id="button_basic" style="margin-bottom:42px;">TUTORIEL</a>
             <br>
             {% if game_unlocked %}

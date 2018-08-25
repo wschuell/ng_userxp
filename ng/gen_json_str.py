@@ -31,6 +31,9 @@ dict_obj = {
     'button_normal': 'JEU',
     'game_locked' : 'Gagner le Tutoriel',
     'multi_locked' : 'Gagner le Jeu 3 fois',
+            'c1_1_prolific': 'Votre Prolific ID est: ',
+            'c1_2_prolific': 'Si votre Prolific ID est erroné, veuillez vous déconnecter et reconnecter avec votre Prolific ID.',
+
 
     #Story End
     'story_pagetitle': 'HISTOIRE',
@@ -44,6 +47,7 @@ dict_obj = {
     'text_score':'Score :',
     'c1_3':'<span class="important">Aucun de vous ne parle la même langue</span> mais vous voulez tous vous échapper pour pouvoir rentrer chez vous.',
     'c2_4':"Mais attention, vous n'avez à vous tous qu'un <span class='important'>nombre limité de conversations</span> pour réussir !",
+    'c2_5':'À tout moment, vous pouvez consulter ce que vous avez appris des autres joueurs en cliquant sur l\'horloge <img src="/static/ng/img/history.png" class="txt_img" >.',
 
     'col_1':'Objets',
     'col_2':'Mots Préférés',
@@ -189,6 +193,9 @@ dict_obj = {
     'button_normal': 'GAME',
     'game_locked' : 'WIN TUTORIAL TO UNLOCK',
     'multi_locked' : 'WIN 3 GAMES TO UNLOCK',
+            'c1_1_prolific': 'Votre Prolific ID est: ',
+            'c1_2_prolific': 'Si votre Prolific ID est erroné, veuillez vous déconnecter et reconnecter avec votre Prolific ID.',
+
 
     #Story End
     'story_pagetitle': 'Story',
@@ -196,12 +203,13 @@ dict_obj = {
     'c1_1': ' You have been kidnapped by Aliens !',
     'c1_2': 'You <img class="txt_img" src="/static/ng/img/chat.png"> are now locked alone in a room of their huge spaceship. In the neighboring rooms, there are <span class="important">3 other individuals</span> <img src="/static/ng/img/user_groop.png" class="txt_img" style="vertical-align:middle;"> also kidnapped by your abductors at the four corners of the galaxy.',
     'c2_1':'To do so, you may only talk <span class="important">by pairs</span> thanks to a <span class="important">radio</span>, <span class="important">without knowing wich one of your fellow prisoners is on the other side</span>.',
-    'c2_2':'One of you will say a word and the other will have to guess which object he is referring to.',
-    'c2_3':'Sometimes you will talk <img src="/static/ng/img/mic-512.png" class="txt_img" >, sometimes you will listen and guess <img class="txt_img" src="/static/ng/img/bitmap-1.png"> and sometimes you will wait <img src="/static/ng/img/time.png" class="txt_img" > while others are conversing. ',
+    'c2_2':'One of you will say a word and the other will have to guess which object they are referring to.',
+    'c2_3':'Sometimes you will talk <img src="/static/ng/img/mic-512.png" class="txt_img" >, sometimes you will listen and guess <img class="txt_img" src="/static/ng/img/bitmap-1.png"> and sometimes you will listen but hear nothing <img src="/static/ng/img/time.png" class="txt_img" > while others are conversing. ',
     'text_end':'Once you managed to understand each other, you come up with a spectacular escape plan. Your abductors don’t even see it coming until it’s too late. You steal a ship from them and one of your companions drives you back home with it.',
     'text_score':'Score :',
-    'c1_3':'<span class="important">None of you is from the same planet or speak the same language</span> but you all want the same thing : escape and go back home.',
-    'c2_4':'But careful, you only have a <span class="important">limited number of conversations</span> to succeed !',
+    'c1_3':'<span class="important">None of you is from the same planet or speaks the same language</span> but you all want the same thing : escape and go back home.',
+    'c2_4':'Be careful, you only have a <span class="important">limited number of conversations</span> to succeed !',
+    'c2_5':'At any moment, you can have a look at what you learned from the others by clicking on the clock <img src="/static/ng/img/history.png" class="txt_img" >.',
 
     'col_1':'Objects',
     'col_2':'Favorite Words',
@@ -322,6 +330,8 @@ dict_obj = {
             'button_normal': 'JEU',
             'game_locked' : 'Terminer le Tutoriel pour débloquer',
             'multi_locked' : 'Terminer le Jeu 3 fois pour débloquer',
+            'c1_1_prolific': 'Votre Prolific ID est: ',
+            'c1_2_prolific': 'Si votre Prolific ID est erroné, veuillez vous déconnecter et reconnecter avec votre Prolific ID.',
 
             #Story End
             'story_pagetitle': 'HISTOIRE',
