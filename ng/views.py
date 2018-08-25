@@ -633,7 +633,7 @@ def score(request, xp_uuid):
         srtheo = experiment.xp.graph(method="srtheo")._Y[0][-1]
         score_val = int(srtheo * experiment.meanings.count() * 100)#.all().count()?
         score = Score(experiment=experiment,score=score_val,user=request.user)
-        if score > 0.65 * experiment.xp_config.score_max:
+        if srtheo > 0.65 :
             experiment.game_won = True
         score.save()
 
@@ -671,7 +671,7 @@ def score(request, xp_uuid):
     return render(request, 'ng/resultats.html', {
             'experiment': experiment,
             'score':str(score_val),
-            'score_pct':str(int(score_val*100./experiment.xp_config.score_max)),
+            'score_pct':str(int(score_val*1./experiment.meanings.count())),
             'context':"end",
             'tab_results': tab_results,
             'm_list': m_list,
