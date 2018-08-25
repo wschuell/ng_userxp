@@ -286,7 +286,7 @@ class Experiment(models.Model):
         if self.user_agent_uuid == '':
             xp = self.get_xp()
             ag = xp._poplist.get_last()._agentlist[0]
-            print(ag._id)
+            #print(ag._id)
             self.user_agent_uuid = ag._id
         self.save()
         return self.user_agent_uuid
@@ -302,7 +302,7 @@ class Experiment(models.Model):
     def update_words(self):
         xp = self.get_xp()
         ag = xp._poplist.get_last()._agentlist[0]
-        print(ag._id)
+        #print(ag._id)
         w_list = sorted(ag._vocabulary.get_accessible_words())
         #self.words.clear()
         for w in w_list:
@@ -320,7 +320,7 @@ class Experiment(models.Model):
     def update_meanings(self):
         xp = self.get_xp()
         ag = xp._poplist.get_last()._agentlist[0]
-        print(ag._id)
+        #print(ag._id)
         m_list = sorted(ag._vocabulary.get_accessible_meanings())
 
         str1 = str(self.meanings)

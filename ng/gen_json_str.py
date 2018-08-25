@@ -8,7 +8,7 @@ dict_obj = {
     #Global
 
     #Login
-    'welcome': 'Naming Game',
+    'welcome': 'Le Naming Game',
     'enter_player_name': 'Entrez votre nom ici :',
     'label_lang': '',#'Choisissez votre langue:',
     'label_code': 'Si on vous a indiqué un code spécifique, entrez le ici :',
@@ -204,7 +204,7 @@ dict_obj = {
     'text_end':'Once you manage to understand each other, you come up with a cunning plan to escape. Your abductors don’t even see it coming until it’s too late. You steal a ship from them and one of your companions drives you back home with it.',
     'text_end_lost':'Sadly, your abductors realize that you are trying to communicate before you reach an acceptable level of understanding. They split you between different parts of the prison ship, with new cell neighbors.',
     'text_end_tuto':'Your prison guard gets bored by the many strange sounds that are coming from your cell, and decide to send you to another, luckily with more neighbors and more objects.',
-    'text_score':'You reached an understanding level of: ',
+    'text_score':'You reached an understanding level of : ',
     'c1_3':'<span class="important">None of you is from the same planet or speaks the same language</span> but you all want the same thing : escape and go back home.',
     'c2_4':'Be careful, you only have a <span class="important">limited number of conversations</span> to succeed !',
     'c2_5':'At any moment, you can have a look at what you learned from the other players by clicking on the clock <img src="/static/ng/img/history.png" class="txt_img" >.',
