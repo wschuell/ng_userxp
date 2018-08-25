@@ -40,7 +40,7 @@ with open(prolific_file,'r') as f:
         prolific_url = prolific_url[:-1]
 
 
-def create_user(request,username='',name='',cookie_id='', lang='fr', code=''):
+def create_user(request,username='',name='',cookie_id='', lang='en', code=''):
     user = User.objects.create_user(username=str(username),first_name=str(name),email=str(cookie_id),password=str(username))
     user.save()
     #Extended model of User
