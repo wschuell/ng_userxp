@@ -21,17 +21,24 @@
     <title>NamingGame</title>
   </head>
   <body class="resultats_page">
-    <div class="not_displayed" style= "visible:hidden; display:none">
+    <div class="not_displayed" style="visible:hidden; display:none">
       <span id="nbr_played">{{nbr_played}}</span>
     </div>
     <div class="container">
        {% include "ng/col1.html" %}
         <div class="col_2 col">
           <h1 class="convers_font" id="results">RESULTATS</h1>
-          <h2 class="droop"><span id="texte_score">Score :</span> {{score}}</h2>
           <div class="text_content_div" >
+            {% if experiment.xp_config.xp_cfg_name == "basic" %}
+            <p class="text_content_four" id="text_end_tuto" style="max-width:1000px;"></p>
+            {% elif experiment.game_won %}
             <p class="text_content_four" id="text_end" style="max-width:1000px;"></p>
+            {% else %}
+            <p class="text_content_four" id="text_end_lost" style="max-width:1000px;"></p>
+            {% endif %}
+
           </div>
+          <h2 class="droop"><span id="texte_score">Score :</span> {{score_pct}} % </h2>
 
           <form>
 

@@ -19,6 +19,7 @@ models_list = [
 	models.Role,
 	models.PastInteraction,
 	models.Agent,
+	models.UserNG,
 ]
 
 
@@ -34,22 +35,23 @@ from django.contrib.auth.models import User
 from .admin_bis import *
 
 class MeaningAdmin(admin.ModelAdmin):
-	readonly_fields=('meaning', 'meaning')
+	readonly_fields = ('meaning', 'meaning')
 
 class WordAdmin(admin.ModelAdmin):
-	readonly_fields=('word', 'word')
+	readonly_fields = ('word', 'word')
 
 class ScoreAdmin(admin.ModelAdmin):
-	readonly_fields=(
+	readonly_fields = (
 	'user',
 	'experiment',
 	'score'
 	)
-	list_display=('user', 'score')
+	list_display = ('user', 'score')
 
 class UserNGInline(admin.StackedInline):
 	model = models.UserNG
 	can_delete = False
+	list_display = ('nbr_won','nbr_played')
 
 class UserAdmin(BaseUserAdmin):
 	inlines = (UserNGInline, )
@@ -78,12 +80,24 @@ class ExperimentAdmin(admin.ModelAdmin):
 	'last_mh',
 	'size',
 	)
-	list_display = ('user', 'xp_uuid', 'before_info', 'is_complete', 'max_interaction',)
+	list_display = ('user', 'created_at', 'xp_uuid', 'before_info', 'is_complete', 'max_interaction','game_won',)
 	list_filter = ('user', 'max_interaction')
+
+class NewUserAdmin(admin.ModelAdmin):
+
+	readonly_fields=(
+
+	)
+	exclude = (
+
+	)
+	list_display = ('first_name', 'created_at', 'updated_at', 'code', 'tuto_played', 'nbr_won', 'nbr_played', 'q_seen', 'q_filled','prolific_user','use_matomo')
+	list_filter = ('user',)
 
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
+admin.site.register(models.UserNG, NewUserAdmin)
 admin.site.register(models.Experiment, ExperimentAdmin)
 admin.site.register(models.Score, ScoreAdmin)
 admin.site.register(models.Meaning, MeaningAdmin)

@@ -39,7 +39,15 @@ var current_lang = lang[current_lang_id];
         $('#c2_4').html(current_lang.c2_4);
         $('#c2_5').html(current_lang.c2_5);
         $('#text_end').html(current_lang.text_end);
+<<<<<<< HEAD
         $('#text_score').html(current_lang.text_score);
+=======
+        $('#text_end_tuto').html(current_lang.text_end_tuto);
+        $('#text_end_lost').html(current_lang.text_end_lost);
+        $('#texte_score').html(current_lang.text_score);
+        $('#c1_3').html(current_lang.c1_3);
+        $('#c2_4').html(current_lang.c2_4);
+>>>>>>> develop
         $('#col_1').html(current_lang.col_1);
         $('#col_2').html(current_lang.col_2);
         $('#col_3').html(current_lang.col_3);
