@@ -9,28 +9,29 @@ class NameForm(forms.Form):
 
 class QuestionForm(forms.Form):
     CHOICES = ((True,'Yes / Oui'), (False,'No / Non'))
-    q1 =forms.TypedChoiceField(
+    q1 = forms.TypedChoiceField(
         label="",
         required=True,
         widget=forms.RadioSelect,
         choices= CHOICES,
     )
-    q2 =forms.TypedChoiceField(
+    q2 = forms.TypedChoiceField(
         label="",
         required=True,
         widget=forms.RadioSelect,
         choices= CHOICES,
     )
-    q3 =forms.TypedChoiceField(
+    q3 = forms.TypedChoiceField(
         label="",
         required=True,
         widget=forms.RadioSelect,
         choices= CHOICES,
     )
-    q4 =forms.TypedChoiceField(
+    q4 = forms.TypedChoiceField(
         label="",
         required=True,
         widget=forms.RadioSelect,
         choices= CHOICES,
     )
     q5 = forms.CharField(label="",required=False,widget=forms.Textarea)
+    q6 = forms.CharField(label="",required=False,widget=forms.Textarea)

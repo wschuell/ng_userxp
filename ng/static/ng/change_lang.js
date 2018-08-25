@@ -1,13 +1,10 @@
-//LANG GETS DECLARED HERE, this line is used in the python script generating it
-
-//LANG GETS DECLARED HERE, this line is used in the python script generating it
 
 var current_lang_id = 'en';
-var current_lang = lang[current_lang_id];
+var current_lang = langdict[current_lang_id];
 
     function change_language(lang_str){
         current_lang_id = lang_str;
-        current_lang = lang[lang_str];
+        current_lang = langdict[lang_str];
 
         $('#welcome').html(current_lang.welcome);
         $('#enter_player_name').html(current_lang.enter_player_name);
@@ -95,6 +92,7 @@ var current_lang = lang[current_lang_id];
         $('#label_q3').html(current_lang.label_q3);
         $('#label_q4').html(current_lang.label_q4);
         $('#label_q5').html(current_lang.label_q5);
+        $('#label_q6').html(current_lang.label_q6);
 
         //Tooltips
 
@@ -199,3 +197,4 @@ $(document).ready(function(){
 
     set_language();
 });
+

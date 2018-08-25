@@ -33,6 +33,7 @@
 
   });
             </script>
+    <script src="{% static 'ng/lang.js' %}"></script>
              <script src="{% static 'ng/change_lang.js' %}"></script>
  {% include "ng/matomo.html" %}
 
@@ -80,6 +81,7 @@
 
         </div>
         <div class="col_3 col col_4">
+          <div style="display:none;">
           <div class="control_ico" id="best_scores">
             <img src="{% static 'ng/img/bitmap-2.png' %}" style="margin: auto auto 40px; ">
           </div>
@@ -87,7 +89,7 @@
            <p class="col_3_p">{{ forloop.counter }} .{{ score.score }}</p>
            {% endfor %}
 
-        </div>
+        </div></div>
     </div>
  {% include 'ng/sound.html' %}
     <script>
