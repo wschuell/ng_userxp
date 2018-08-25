@@ -38,8 +38,8 @@ dict_obj = {
     'c1_1': ' Vous avez été enlevé par des Extraterrestres !',
     'c1_2': 'Vous <img class="txt_img" src="/static/ng/img/chat.png"> voilà enfermé seul dans une pièce de leur vaisseau. Dans les pièces d\'à côté se trouvent <span class="important">3 autres individus</span> <img src="/static/ng/img/user_groop.png" class="txt_img" style="vertical-align:middle;"> que vos ravisseurs ont également enlevés aux quatre coins de la galaxie.',
     'c2_1':"Pour ce faire, vous ne pourrez parler que <span class='important'>deux par deux</span> grâce à une <span class='important'>radio</span>, <span class='important'>sans savoir lequel de vos camarades d'infortune est à l'autre bout</span>.",
-    'c2_2':"L'un de vous proposera un mot et l'autre devra deviner l'objet auquel il fait référence.",
-    'c2_3':"Parfois vous proposerez un mot, parfois vous devinerez l'objet et parfois encore vous ne ferez pas partie de la conversation et ne saurez pas ce qui s'y est dit.",
+    'c2_2':'L\'un de vous proposera un mot <img src="/static/ng/img/mic-512.png" class="txt_img" > et l\'autre devra deviner l\'objet auquel il fait référence. <img class="txt_img" src="/static/ng/img/bitmap-1.png">',
+    'c2_3':'Parfois vous proposerez un mot, parfois vous devinerez l\'objet et parfois encore vous écouterez patiemment votre radio <img src="/static/ng/img/time.png" class="txt_img" > dans l\'attente d\'un signal, pendant que d\'autres joueurs communiquent.',
     'text_end':"Après avoir réussi à vous comprendre, vous mettez au point un plan d'évasion spectaculaire. Vos ravisseurs ne voient rien venir avant qu'il ne soit trop tard. Vous leur volez un vaisseau qu'un de vos camarades pilote pour vous ramener tous paisiblement chez vous.",
     'text_score':'Score :',
     'c1_3':'<span class="important">Aucun de vous ne parle la même langue</span> mais vous voulez tous vous échapper pour pouvoir rentrer chez vous.',
@@ -74,7 +74,7 @@ dict_obj = {
     'hearer_success': "Bravo, vous avez compris votre interlocuteur ! Vous vous en souviendrez pour la prochaine fois !",
     'hearer_learn': "Voilà ce que votre coéquipier voulait dire, vous vous en souviendrez pour la prochaine fois !",
     'hearer_failure': "Oups, votre interlocuteur voulait parler d'autre chose. Vous vous en souviendrez pour la prochaine fois !",
-    'tuto_hearer': "(Cliquez sur l'horloge <img src='/static/ng/img/history.png' class='txt_img'> en haut à gauche pour voir ce que vos interlocuteurs voulaient dire lorsque vous écoutiez <img src='/static/ng/img/bitmap-1.png' class='txt_img'> lors des conversations précédentes.)",
+    'tuto_hearer': "Cliquez sur l'horloge <img src='/static/ng/img/history.png' class='txt_img'> en haut à gauche pour consulter ce que vous avez appris de vos interlocuteurs lors des conversations précédentes.",
 
     #Error Page
     'error_text': "<span id='error_span'>Oups !</span> Il semblerait qu'une erreur se soit produite ! Vous pouvez tenter de continuer ou revenir à l'accueil pour commencer une nouvelle partie.",
@@ -197,13 +197,13 @@ dict_obj = {
     'c1_1': ' You have been kidnapped by Aliens !',
     'c1_2': 'You <img class="txt_img" src="/static/ng/img/chat.png"> are now locked alone in a room of their huge spaceship. In the neighboring rooms, there are <span class="important">3 other individuals</span> <img src="/static/ng/img/user_groop.png" class="txt_img" style="vertical-align:middle;"> also kidnapped by your abductors at the four corners of the galaxy.',
     'c2_1':'To do so, you may only talk <span class="important">by pairs</span> thanks to a <span class="important">radio</span>, <span class="important">without knowing wich one of your fellow prisoners is on the other side</span>.',
-    'c2_2':'One of you will say a word and the other will have to guess which object they are referring to.',
-    'c2_3':'Sometimes you will talk <img src="/static/ng/img/mic-512.png" class="txt_img" >, sometimes you will listen and guess <img class="txt_img" src="/static/ng/img/bitmap-1.png"> and sometimes you will listen but hear nothing <img src="/static/ng/img/time.png" class="txt_img" > while others are conversing. ',
-    'text_end':'Once you managed to understand each other, you come up with a spectacular escape plan. Your abductors don’t even see it coming until it’s too late. You steal a ship from them and one of your companions drives you back home with it.',
+    'c2_2':'One of you will say a word  <img src="/static/ng/img/mic-512.png" class="txt_img" > and the other will have to guess which object they are referring to. <img class="txt_img" src="/static/ng/img/bitmap-1.png">',
+    'c2_3':'Sometimes you will talk, sometimes you will listen and guess and sometimes you will keep listening to your radio <img src="/static/ng/img/time.png" class="txt_img" > waiting for a signal, while others are conversing. ',
+    'text_end':'Once you managed to understand each other, you come up with a cunning plan to escape. Your abductors don’t even see it coming until it’s too late. You steal a ship from them and one of your companions drives you back home with it.',
     'text_score':'Score :',
     'c1_3':'<span class="important">None of you is from the same planet or speaks the same language</span> but you all want the same thing : escape and go back home.',
     'c2_4':'Be careful, you only have a <span class="important">limited number of conversations</span> to succeed !',
-    'c2_5':'At any moment, you can have a look at what you learned from the others by clicking on the clock <img src="/static/ng/img/history.png" class="txt_img" >.',
+    'c2_5':'At any moment, you can have a look at what you learned from the other players by clicking on the clock <img src="/static/ng/img/history.png" class="txt_img" >.',
 
     'col_1':'Objects',
     'col_2':'Favorite Words',
@@ -233,7 +233,7 @@ dict_obj = {
     'hearer_success': "Well done, you understood your partner ! You will remember it next time !",
     'hearer_learn': "This is what your partner meant, you will remember it next time !",
     'hearer_failure': "Oops, your partner meant something else. You will remember it next time !",
-    'tuto_hearer': "(Click on the time clock <img src='/static/ng/img/history.png' class='txt_img'> on the upper right corner to see what your interlocutors meant when you listened <img src='/static/ng/img/bitmap-1.png' class='txt_img'> for the previous interactions.)",
+    'tuto_hearer': "Click on the clock <img src='/static/ng/img/history.png' class='txt_img'> in the upper right corner to see what you learned from the other players in the previous interactions.",
 
 
         #Error Page
@@ -315,113 +315,6 @@ dict_obj = {
 ''',
 'question_title':'Quick survey:',
 
-  },
-  'it': {
-
-            #Global
-
-            #Login
-            'welcome': 'Le Naming Game !',
-            'enter_player_name': 'Entrez votre nom ici :',
-            'label_lang': 'Choisissez la langue du jeu :',
-            'label_code': 'Si vous avez un code spécial, entrez le ici :',
-        'consent_form':'''<p>You’re about to start a short game where you will have to collectively build a lexicon with other individuals. Your answers will be recorded but will not be identifiable to you personally. The game will take about 20 minutes.
-</p>
-<b>Before consenting to participate, please <a href="onlineinfo.pdf" target="_blank">click here</a> to read more detailed information about the study.</b>
-<ul>
-                    <li>You have read and understood the detailed information about the study.</li>
-                    <li>You agree that your anonymized data may be kept permanently in the archives of Inria and may be used by qualified researchers for teaching and research purposes</li>
-                    <li>You agree that your anonymized data may be made publicly available for general use, e.g., put on the world wide web.</li>
-                    <li>You consent to the use of cookies for this site.</li>
-                </ul>
-<p>If you do not agree to all of these, simply close this window in your browser now.</p>
-''',
-            'submit':'Valider',
-
-            #Home
-            'subtitle': 'Explorer le langage.',
-            'button_basic': 'TUTORIEL',
-            'button_multi': 'INFORMATIONS',
-            'button_normal': 'JEU',
-            'game_locked' : 'Terminer le Tutoriel pour débloquer',
-            'multi_locked' : 'Terminer le Jeu 3 fois pour débloquer',
-
-            #Story End
-            'story_pagetitle': 'HISTOIRE',
-            'results': "RESULTATS",
-            'c1_1': ' Vous avez été enlevé par des Extraterrestres !',
-            'c1_2': "Vous voilà enfermé seul dans une pièce de leur vaisseau. Dans les pièces d'à côté se trouvent <span class='important'>4 autres individus</span> que vos ravisseurs ont également enlevés aux quatre coins de la galaxie.",
-            'c2_1':"Pour ce faire, vous ne pourrez parler que <span class='important'>deux par deux</span> grâce à une <span class='important'>radio</span>, <span class='important'>sans savoir lequel de vos camarades d'infortune est à l'autre bout</span>.",
-            'c2_2':"L'un de vous proposera un mot et l'autre devra deviner l'objet auquel il fait référence.",
-            'c2_3':"Parfois vous proposerez un mot, parfois vous devinerez l'objet et parfois encore vous ne ferez pas partie de la conversation et ne saurez pas ce qui s'y est dit.",
-            'text_end':"Après avoir réussi à vous comprendre, vous mettez au point un plan d'évasion spectaculaire. Vos ravisseurs ne voient rien venir avant qu'il ne soit trop tard. Vous leur volez un vaisseau qu'un de vos camarades pilote pour vous ramener tous paisiblement chez vous.",
-            'text_score':'Score :',
-            'c1_3':'<span class="important">Aucun de vous ne parle la même langue</span> mais vous voulez tous vous échapper pour pouvoir rentrer chez vous.',
-            'c2_4':"Mais attention, vous n'avez à vous tous qu'un <span class='important'>nombre limité de conversations</span> pour réussir !",
-
-            'col_1':'Objets',
-            'col_2':'Mots Préférés',
-            'col_3':'Seconds mots préférés',
-
-            #Game
-            'button_next': 'CONTINUER',
-            'continue': 'CONTINUER',
-            'conversations': 'CONVERSATION',
-            'anhearer_text':"on essaye de communiquer avec vous.<br>de quoi vous parle-t-on ?",
-            'anspeaker_text':"c’est à vous de prendre la parole.<br> choissisez l’objet dont vous allez parler.",
-            'anabs_text':'conversation a eu lieu en votre absence',
-            'choice_words': 'c’est à vous de prendre la parole.<br> choissisez le mot que vous allez utiliser pour parler de cet objet.',
-            'history_objects':'Objets',
-            'history_words':'Mots',
-            'history_success':'Succès',
-            'modal_title': 'Êtes vous sûr.e ?',
-            'modal_body': 'Si vous quittez la partie en cours, celle-ci ne sera pas sauvegardée. Voulez-vous toujours quitter ?',
-            'btn_yes': '<p>Oui, quitter la partie</p>',
-            'btn_no': '<p>Non, continuer la partie</p>',
-
-            #Feedback
-            'speaker_success': "Bravo, votre interlocuteur vous a compris !",
-            'speaker_learn': "Votre coéquipier ne connaissait pas ce mot mais il s'en souviendra pour la prochaine fois !",
-            'speaker_failure': "Oups, votre interlocuteur pensait que vous parliez d'autre chose. Il s'en souviendra pour la prochaine fois !",
-            'hearer_success': "Bravo, vous avez compris votre interlocuteur ! Vous vous en souviendrez pour la prochaine fois !",
-            'hearer_learn': "Voilà ce que votre coéquipier voulait dire, vous vous en souviendrez pour la prochaine fois !",
-            'hearer_failure': "Oups, votre interlocuteur voulait parler d'autre chose. Vous vous en souviendrez pour la prochaine fois !",
-
-            #Error Page
-            'error_text': "<span id='error_span'>Oups !</span> Il semblerait qu'une erreur se soit produite ! Vous pouvez tenter de continuer ou revenir à l'accueil pour commencer une nouvelle partie.",
-            'btn_home': "Revenir à l'Accueil",
-            'btn_continue': 'Continuer',
-
-            #Info page
-            'titre_info' : "",
-            'info_text': "",
-            'label_q1':"Êtiez-vous déjà familier.ère avec le principe des Naming Games ? ",
-            'label_q2':"Aviez-vous déjà joué à un jeu de ce type ou participé à une expérience similaire auparavant ?",
-            'label_q3':"Êtes-vous familier.ère avec les concepts évoqués plus haut ? ",
-            'label_q4':"Avez-vous eu l'impression d'utiliser une certaine stratégie (ou plusieurs) lors de vos parties ?",
-            'label_q5':"Si oui, pourriez-vous la ou les décrire brièvement ?",
-    'infos_txt':'''
-    <p class="text_content_four" style="text-align:left;font-size:18px;">
-    <p class="text_content_four" style="text-align:left;font-size:18px;">Ce jeu a été réalisé par William Schueller et Sandy Manolios, dans le cadre de recherches autour de l'évolution du langage.</p>
-    <p class="text_content_four" style="text-align:left;font-size:18px;">Les graphismes et le design ont été réalisés par Atlal Boudir.</p>
-    <p class="text_content_four" style="text-align:left;font-size:18px;">Si vous voulez en savoir plus, vous pouvez trouver dans les liens ci-dessous différentes ressources:
-<ul style="text-align:left;margin-bottom:4em;">
-<li> <a href="http://github.com/wschuell/ng_userxp">Le code opensource</a> servant à générer le site </li>
-<li> Une liste de liens vers <a href="http://github.com/wschuell/notebooks_cogsci2018">articles et posters</a> sur le travail théorique associé au jeu </li>
-<li> Un lien pour <a href="http://naming-game.space">continuer à jouer</a> en dehors du cadre de l'expérience sur la plateforme Prolific</li>
-</ul>
-    </p>
-            </p>
-    ''',
-    #Tooltips
-    'tooltip_example':"Si vous n'avez pas de code, laissez ce champ vide.",
-    'results_1' : "Objets",
-    'results_2' : "Mots les plus utilisés par objet <br> <p style='font-size:11px; padding-top:13px;'>(Premiers <br> Deuxièmes)</p>",
-    'hearer_w' : "Vous entendez ce mot :",
-    'menu_h': "Cliquez ici pour voir l'historique",
-    'word_inter': "Le mot utilisé dans cette conversation",
-    'last_m_you' : "Ce à quoi vous pensiez",
-    'last_m_other' : "Ce à quoi votre coéquipier pensait",
   }
 };
 
