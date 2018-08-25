@@ -1,6 +1,6 @@
 #!/bin/bash
 
-git pull
+git pull || exit 1
 
 (cd ng && python gen_json_str.py) || exit 1
 
