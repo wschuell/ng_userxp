@@ -28,7 +28,19 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import authenticate, login
 from .forms import NameForm, QuestionForm
 
-def create_user(request,username='',name='',cookie_id='', lang='fr', code=''):
+import os
+
+prolific_file = 'prolific.txt'
+if not os.path.exists(prolific_file):
+    with open(prolific_file,'w') as f:
+        f.write('/prolific')
+with open(prolific_file,'r') as f:
+    prolific_url = f.readline()
+    if prolific_url[-1] == '\n':
+        prolific_url = prolific_url[:-1]
+
+
+def create_user(request,username='',name='',cookie_id='', lang='en', code=''):
     user = User.objects.create_user(username=str(username),first_name=str(name),email=str(cookie_id),password=str(username))
     user.save()
     #Extended model of User
