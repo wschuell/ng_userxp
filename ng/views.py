@@ -40,7 +40,7 @@ with open(prolific_file,'r') as f:
         prolific_url = prolific_url[:-1]
 
 
-def create_user(request,username='',name='',cookie_id='', lang='en', code=''):
+def create_user(request,username='',name='',cookie_id='', code=''):
     user = User.objects.create_user(username=str(username),first_name=str(name),email=str(cookie_id),password=str(username))
     user.save()
     #Extended model of User
@@ -67,7 +67,7 @@ def home(request):
     user = request.user
     u = UserNG.get(user=user)
     game_unlocked = u.tuto_played
-    if (u.nbr_played < 3):
+    if (u.nbr_won < 3):
         multi_unlocked = False
     else :
         multi_unlocked = True
@@ -79,14 +79,13 @@ def home(request):
             'use_matomo': settings.MATOMO_USAGE,
     })
 
-def create_and_login(request,username=None,name='',cookie_id=None, lang='fr', code=''):
+def create_and_login(request,username=None,name='',cookie_id=None, lang='en', code=''):
     if username is None:
         username = name+str(cookie_id)
     if not User.objects.filter(username=username).exists():
         create_user(request,username,name=name,cookie_id=cookie_id)
         login_user(request,username)
         u = UserNG.get(user=request.user)
-        u.lang = lang
         u.code = code
         u.save()
     else :

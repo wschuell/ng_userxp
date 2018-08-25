@@ -9,8 +9,8 @@ dict_obj = {
 
     #Login
     'welcome': 'Naming Game',
-    'enter_player_name': 'Prolific ID :',
-    'label_lang': 'Choisissez votre langue:',
+    'enter_player_name': 'Prolific ID :',,
+    'label_lang': '',#'Choisissez votre langue:',
     'label_code': 'Si on vous a indiqué un code spécifique, entrez le ici :',
         'consent_form':'''<p>Vous allez jouer à un court jeu lors duquel vous aurez à construire collectivement un lexique avec d'autres individus. Vos réponses seront enregistrées mais resteront anonymes. Ce jeu durera environ 20 minutes.
 </p><p style = "margin-top:1.5em;margin-bottom:1.5em;"><b>Avant d'accepter de participer à l'expérience, veuillez <a href="/static/ng/pdf/consent_form_prolific_fr.pdf" target="_blank">cliquez ici</a> pour lire les informations détaillées concernant l'expérience.</b>
@@ -170,7 +170,7 @@ dict_obj = {
     #Login
     'welcome': 'The Naming Game',
     'enter_player_name': 'Prolific ID :',
-    'label_lang': 'Choose your language :',
+    'label_lang': '',#'Choose your language :',
     'label_code': 'If you have been told to use a specific token, enter it here :',
     'submit' : "Submit",
         'consent_form':'''<p>You’re about to start a short game where you will have to collectively build a lexicon with other individuals. Your answers will be recorded but will not be identifiable to you personally. The game will take about 20 minutes.
