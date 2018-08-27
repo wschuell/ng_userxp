@@ -77,6 +77,7 @@ html{
 }
 .selected_w, .selected_m {
     box-shadow: 0 0 3pt 2pt #fff;
+		background-color: white;
 }
 
 .w {
