@@ -151,7 +151,7 @@
               <div class="col" style="max-width:100px">
               <label class="label_input_file">
                 <input name="select_radio" type="radio" id="m{{ m.meaning }}" value="m{{ m.meaning }}" hidden>
-                <span class="castom_input_file responsive_input" ><img id="meaning_{{ m.meaning }}" class="img-responsive m meaning_img" src="{% static 'ng/img/' %}kreyon_meaning{{ m.meaning }}.png" meaning_name="{{ m.meaning }}" ></span>
+                <span class="castom_input_file in responsive_input " meaning_name="{{ m.meaning }}" ><img id="meaning_{{ m.meaning }}" class="img-responsive m meaning_img" src="{% static 'ng/img/' %}kreyon_meaning{{ m.meaning }}.png" meaning_name="{{ m.meaning }}" ></span>
               </label>
             </div>
               {% endfor %}
@@ -159,7 +159,7 @@
               <div class="separator"></div>
               <label class="label_input_file">
                 <input name="select_radio" type="radio" id="none" value="none"  hidden>
-                <span class="castom_input_file responsive_input" style=";padding-top:2px; border:solid 2px black"><img meaning_name="none" class="img-responsive m meaning_img" src="{% static 'ng/img/kreyon_meaningnone_black.png' %}" meaning_name="{{ m.meaning }}" id="img_dont_know"></span>
+                <span class="castom_input_file dont_know in responsive_input " meaning_name="none"><img meaning_name="none" class="img-responsive m meaning_img" src="{% static 'ng/img/kreyon_meaningnone_black.png' %}" id="img_dont_know"></span>
               </label>
               {% endif %}
             </div>
@@ -365,7 +365,8 @@
            },
          });
 
-         $('.m').click(function(){
+//Remettre à .m si choix de l utilisateur ne s envoie pas
+         $('.in').click(function(){
            sound_click.play();
            if (! $('html').hasClass('wait')) {
              if(! $(this).hasClass('selected_m')) {
