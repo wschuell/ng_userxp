@@ -590,8 +590,9 @@ def continue_userxp(request, xp_uuid):
                 w_list = []
                 pi_l = experiment.pastinteraction_set.all()
                 for past_int in pi_l :
-                    w = past_int.word
-                    w_list.append(w)
+                    if past_int.role != "skipped" :
+                        w = past_int.word
+                        w_list.append(w)
                 if currentgame_json['w'] in w_list :
                     dont_know = False
                 else :
