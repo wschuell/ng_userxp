@@ -16,6 +16,7 @@ import json
 import pickle
 import random
 import datetime
+import copy
 
 xp_cfg = {
     "step": 1,
@@ -49,6 +50,7 @@ xp_cfg = {
 }
 
 null_date = None
+MEANING_LIST = list(range(13))
 
 #extended User class
 class UserNG(models.Model):
@@ -125,6 +127,16 @@ class Meaning(models.Model):
     meaning = models.CharField(max_length=100,unique=True)
     def __str__(self):
         return self.meaning
+
+    @classmethod
+    def get_mlist(cls,M=None,avoid_if_possible=[]):
+        m_l = copy.deepcopy(MEANING_LIST)
+        for m_av in avoid_if_possible:
+            if (M is None or len(m_l) > M) and m_av in m_l:
+                m_l.remove(m_av)
+        random.shuffle(m_l)
+        return m_l[:M]
+
 
 class XpConfig(models.Model):
     xp_config = models.CharField(max_length=2000,unique=True)
@@ -210,14 +222,18 @@ class Experiment(models.Model):
             max_inter = 10
         elif xp_cfg_name == "normal":
             size = 5
+            M = 5
             xp_cfg["pop_cfg"]["nbagent"] = size
-            xp_cfg["pop_cfg"]["env_cfg"]["M"] = 5
+            xp_cfg["pop_cfg"]["env_cfg"]["M"] = M
+            xp_cfg["pop_cfg"]["env_cfg"]["m_list"] = Meaning.get_mlist(M=M,avoid_if_possible=[0,1])
             xp_cfg["pop_cfg"]["env_cfg"]["W"] = 6
             max_inter = 50
         elif xp_cfg_name == "multiuser":
             size = 1
+            M = 5
             xp_cfg["pop_cfg"]["nbagent"] = size
-            xp_cfg["pop_cfg"]["env_cfg"]["M"] = 5
+            xp_cfg["pop_cfg"]["env_cfg"]["M"] = M
+            xp_cfg["pop_cfg"]["env_cfg"]["m_list"] = Meaning.get_mlist(M=M,avoid_if_possible=[0,1])
             xp_cfg["pop_cfg"]["env_cfg"]["W"] = 6
             max_inter = 50
         xp_cfg_json = json.dumps(xp_cfg)
