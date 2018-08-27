@@ -1,5 +1,11 @@
-Django==2.0.8
+numpy
+scipy
 matplotlib
+psycopg2-binary
+codecov
+coverage
+Django==2.0.8
+django-dbbackup
 gunicorn
 pytest
 pytest-cov
