@@ -590,8 +590,9 @@ def continue_userxp(request, xp_uuid):
                 w_list = []
                 pi_l = experiment.pastinteraction_set.all()
                 for past_int in pi_l :
-                    w = past_int.word
-                    w_list.append(w)
+                    if past_int.role != "skipped" :
+                        w = past_int.word
+                        w_list.append(w)
                 if currentgame_json['w'] in w_list :
                     dont_know = False
                 else :
@@ -741,64 +742,63 @@ def info(request):
 
 @csrf_protect
 def error(request):
-    return render(request, 'error_page.html',{
+    return render(request, 'ng/error_page.html',{
             'use_matomo': settings.MATOMO_USAGE,})
 
-### # DEBUG:
-
-@csrf_protect
-@login_required(login_url='/ng/login/')
-def test_score(request):
-
-    w_list1 = ["A", "B", "C", "D", "E", "F"]
-    w_list2 = ["G", "H", " ", "I", " "]
-    #Test if score exists
-    #if not, compute and store object
-    #get value
-    return render(request, 'ng/resultats.html', {
-            'use_matomo': settings.MATOMO_USAGE,
-            'score': "350",
-            'context':"end",
-            'm_list': [0,1,2,3,4],
-            'w_list1': w_list1 ,
-            'w_list2': w_list2,
-            'w_list':zip(w_list1,w_list2),
-            'mww_list': zip([0,1,2,3,4],w_list1,w_list2),
-            'user':request.user,
-            'userNG': UserNG.get(user=request.user),
-            })
-
-@csrf_protect
-@login_required(login_url='/ng/login/')
-def test_info(request):
-
-        # if this is a POST request we need to process the form data
-        if request.method == 'POST':
-            # create a form instance and populate it with data from the request:
-            form = QuestionForm(request.POST)
-            # check whether it's valid:
-            if form.is_valid():
-                # process the data in form.cleaned_data as required
-                # ...
-                # redirect to a new URL:
-                u.q_filled = True
-                u.q1 = form.cleaned_data['q1']
-                u.q2 = form.cleaned_data['q2']
-                u.q3 = form.cleaned_data['q3']
-                u.q4 = form.cleaned_data['q4']
-                u.q5 = form.cleaned_data['q5']
-                u.q6 = form.cleaned_data['q6']
-                u.save()
-                return HttpResponseRedirect('/')
-
-        # if a GET (or any other method) we'll create a blank form
-        else:
-            form = QuestionForm()
-
-        return render(request, 'ng/infosv2.html', {
-            'user':request.user,
-            'userNG': u,
-            'form' : form,
-            'use_matomo': settings.MATOMO_USAGE,
-            'q_filled' : u.q_filled,
-    })
+# ### # DEBUG:
+# @csrf_protect
+# @login_required(login_url='/ng/login/')
+# def test_score(request):
+#
+#     w_list1 = ["A", "B", "C", "D", "E", "F"]
+#     w_list2 = ["G", "H", " ", "I", " "]
+#     #Test if score exists
+#     #if not, compute and store object
+#     #get value
+#     return render(request, 'ng/resultats.html', {
+#             'use_matomo': settings.MATOMO_USAGE,
+#             'score': "350",
+#             'context':"end",
+#             'm_list': [0,1,2,3,4],
+#             'w_list1': w_list1 ,
+#             'w_list2': w_list2,
+#             'w_list':zip(w_list1,w_list2),
+#             'mww_list': zip([0,1,2,3,4],w_list1,w_list2),
+#             'user':request.user,
+#             'userNG': UserNG.get(user=request.user),
+#             })
+#
+# @csrf_protect
+# @login_required(login_url='/ng/login/')
+# def test_info(request):
+#
+#         # if this is a POST request we need to process the form data
+#         if request.method == 'POST':
+#             # create a form instance and populate it with data from the request:
+#             form = QuestionForm(request.POST)
+#             # check whether it's valid:
+#             if form.is_valid():
+#                 # process the data in form.cleaned_data as required
+#                 # ...
+#                 # redirect to a new URL:
+#                 u.q_filled = True
+#                 u.q1 = form.cleaned_data['q1']
+#                 u.q2 = form.cleaned_data['q2']
+#                 u.q3 = form.cleaned_data['q3']
+#                 u.q4 = form.cleaned_data['q4']
+#                 u.q5 = form.cleaned_data['q5']
+#                 u.q6 = form.cleaned_data['q6']
+#                 u.save()
+#                 return HttpResponseRedirect('/')
+#
+#         # if a GET (or any other method) we'll create a blank form
+#         else:
+#             form = QuestionForm()
+#
+#         return render(request, 'ng/infosv2.html', {
+#             'user':request.user,
+#             'userNG': u,
+#             'form' : form,
+#             'use_matomo': settings.MATOMO_USAGE,
+#             'q_filled' : u.q_filled,
+#     })

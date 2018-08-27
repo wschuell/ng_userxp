@@ -77,10 +77,19 @@ html{
 }
 .selected_w, .selected_m {
     box-shadow: 0 0 3pt 2pt #fff;
+		background-color: white !important;
+		color: black;
+		border : none;
 }
 
 .w {
 	padding-top:5px;
+}
+
+.w:hover{
+	cursor: pointer;
+	background-color: white;
+	color : black;
 }
 
 .castom_input > input {
@@ -108,6 +117,7 @@ html{
 .label_input_file{
 	flex: 0 0 83px;
     max-width: 83px;
+		margin-top:20px;
 }
 /*.label_input_file input:checked + .castom_input_file{
 	border: 4px solid #4098FD;
@@ -314,7 +324,16 @@ html{
 .resultats_page .castom_input_file{
 	width: 80px;
 	height: 80px;
+
 }
+
+.resultats_page .castom_input{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+}
+
 .resultats_page .label_input_file {
     flex: 0 0 148px;
     max-width: 148px;
@@ -330,6 +349,7 @@ html{
 .resultats_page .btn {
     margin-top: 18vh;
 }
+
 
 @media (max-width: 992px) {
 	.control_ico {
@@ -462,13 +482,30 @@ html{
 }
 
 #img_dont_know, #last_mh_none, #last_ms_none {
-	height: 53px;
+	height: 100%;
 	margin: auto;
 	margin-top: 1px;
 	padding-left: 14px;
 	padding-right: 14px;
 	padding-bottom: 2px;
 }
+
+.dont_know {
+	width: 86px;
+	height: 86px;
+	border:solid 2px black;
+	background: #505050;
+	margin-top: -12px}
+
+.dont_know:hover{
+	background-color: white;
+	cursor: pointer;
+}
+
+/* .dont_know > .selected_m {
+	box-shadow: 0 0 3pt 2pt #fff;
+	background-color: white !important;
+} */
 
 .smiley {
 	width: 150px;
@@ -500,11 +537,16 @@ table {
 }
 
 .separator {
+	width: 55px;
+}
+
+.responsive_input{
+	background-color: #cccccc;
+}
+
+.responsive_input:hover {
 	background-color: white;
-	width: 2px;
-	height : 60px;
-	margin-left: 20px;
-	margin-right: 20px;
+	cursor: pointer;
 }
 
 /*Results Page*/
@@ -546,8 +588,14 @@ table {
  	padding-left: : 30px;
 	max-width: 500px;
  }
+
+ .tooltip.right > .tooltip-inner {
+	 	margin-left: 25px;
+ }
+
  .tooltip.left {
  	padding-right: 30px;
+	margin-right: 25px;
  }
  .tooltip.bottom  {
  	padding-top: 18px;
@@ -577,6 +625,7 @@ table {
 	width: 115px;
 	padding-right: 10px;
 	margin :auto;
+	cursor: pointer;
 }
 
 .popover {

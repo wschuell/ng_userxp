@@ -57,8 +57,8 @@
                   <div class="row"><img src="{% static 'ng/img/arrow_down.png' %}" style="margin:auto; width:20px; height:20px; margin-top:30px"></div>
                   <div class="row_inputs_file row_inputs_file_three" id="r2" style="margin-top:15px">
                     <label class="label_input_file_two label_input_right">
-                      <textarea type="text" class="castom_input div2" style="height: 3.2em; resize:none;" disabled>{{mww.1}}
-{{mww.2}}</textarea>
+                      <div type="text" class="castom_input div2" style="height: 3.2em; resize:none;" disabled> <div>{{mww.1}}</div>
+                      {% if mww.2 != " " %}<div>{{mww.2}}</div> {% endif %} </div>
                   </div>
               </div>
 

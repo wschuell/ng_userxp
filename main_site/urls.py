@@ -21,3 +21,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('ng.urls')),
 ]
+
+handler400 = "ng.views.error"
+handler403 = "ng.views.error"
+handler404 = "ng.views.error"
+handler500 = "ng.views.error"

@@ -40,16 +40,15 @@
   </head>
   <body class="five">
     <div class="container">
-        <div class="col_1 col">
-          <div>
-            <img src="{% static 'ng/img/logo.png' %}" id="btn_home" class= "icon" style="margin-top: 215px; margin-bottom: 60px">
-<!--             <br>
-            <img src="{% static 'ng/img/soundon.png' %}" class="icon" id="sound-on" style="margin-left: 8px; width: 24px;height: 21px;">
-            <img src="{% static 'ng/img/soundoff.png' %}" class="icon" id="sound-off" style="margin-left: 8px; width: 24px;height: 21px;"> -->
-            <br>
-            <span class="icon"><img src="{% static 'ng/img/french-flag.png' %}" id="lang" value="fr" class="icon"></span>
-            <br>
-            <span class="glyphicon glyphicon-off icon" id= "logoutbutton" style="margin-left: 8px;"></span>
+        <div class="col_1 col" style="margin-top: 215px">
+          <div class="row">
+            <div class="col" style="margin-right : 20px; margin-left : 20px;"><img src="{% static 'ng/img/logo.png' %}" id="btn_home" class= "icon" style="margin-bottom: 60px"></div>
+            <div class="w-100 d-none d-md-block"></div>
+
+            <div class="col" style="margin-right : 20px; margin-left : 20px;"><span class="icon"><img src="{% static 'ng/img/french-flag.png' %}" id="lang" value="fr" class="icon"></span></div>
+            <div class="w-100 d-none d-md-block"></div>
+
+            <div class="col" style="margin-right : 20px; margin-left : 20px;"><span class="glyphicon glyphicon-off icon" id= "logoutbutton" style="margin-left: 8px;"></span></div>
           </div>
         </div>
         <div class="col_2 col">
@@ -133,21 +132,22 @@
 
     $('.mic').tooltip({
       title : '',
-      placement : "left auto",
+      placement : "left",
       trigger: "hover focus",
     });
 
     $('#lang').tooltip({
       title : '',
-      placement : "right auto",
+      placement : "right",
       trigger: "hover focus",
     });
 
     $('#logoutbutton').tooltip({
       title : '',
-      placement : "right auto",
+      placement : "right",
       trigger: "hover focus",
     });
+
 
  	</script>
 

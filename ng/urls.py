@@ -38,7 +38,6 @@ urlpatterns = [
     url(r'^(?P<xp_uuid>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})-hearer-(?P<meaning>[0-9a-z]+)/results_continue/$', views.result_hearer_continue, name='results_hearer_continue'),#ResultsView.as_view(), name='results'),
      url(r'^(?P<xp_uuid>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})-speaker-(?P<meaning>[0-9a-z]+)-(?P<word>[0-9a-z]+)/results_continue/$', views.result_speaker_continue, name='results_speaker_continue'),#ResultsView.as_view(), name='results'),
 
-
     url(r'^results_inner/(?P<xp_uuid>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/(?P<bool_succ>(True|False))/$', views.result_inner, name='results_inner'),#ResultsView.as_view(), name='results'),
     url(r'^results_inner/(?P<xp_uuid>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/$', views.result_inner, name='results_inner_base'),#ResultsView.as_view(), name='results'),
      url(r'^(?P<xp_uuid>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})-speaker-(?P<meaning>[0-9a-z]+)-(?P<word>[0-9a-z]+)/results_json/$', views.result_speaker_json, name='results_speaker_json'),#ResultsView.as_view(), name='results'),
@@ -58,11 +57,12 @@ urlpatterns = [
 	url(r'^(?P<xp_uuid>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/results', views.score, name='results'),
     url(r'^infos', views.info, name='info'),
 
-    ###DEBUG###
-    url(r'^test_score', views.test_score, name='test_score'),
-    url(r'^test_infos', views.test_info, name='test_info'),
-    url(r'^error', views.error, name="error"),
+    # ###DEBUG###
+    #
+    # url(r'^test_score', views.test_score, name='test_score'),
+    # url(r'^test_infos', views.test_info, name='test_info'),
+    # url(r'^error', views.error, name="error"),
 ]
 
-handler404 = views.error
-handler500 = views.error
+handler404 = "ng.views.error"
+handler500 = "ng.views.error"
