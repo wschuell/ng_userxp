@@ -741,7 +741,7 @@ def info(request):
 
 @csrf_protect
 def error(request):
-    return render(request, 'error_page.html',{
+    return render(request, 'ng/error_page.html',{
             'use_matomo': settings.MATOMO_USAGE,})
 
 # ### # DEBUG:
