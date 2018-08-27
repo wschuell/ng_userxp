@@ -482,7 +482,7 @@ html{
 }
 
 #img_dont_know, #last_mh_none, #last_ms_none {
-	height: 53px;
+	height: 100%;
 	margin: auto;
 	margin-top: 1px;
 	padding-left: 14px;
@@ -493,7 +493,6 @@ html{
 .dont_know {
 	width: 86px;
 	height: 86px;
-	padding-top:10px;
 	border:solid 2px black;
 	background: #505050;
 	margin-top: -12px}
