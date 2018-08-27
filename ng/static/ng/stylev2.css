@@ -86,6 +86,12 @@ html{
 	padding-top:5px;
 }
 
+.w:hover{
+	cursor: pointer;
+	background-color: white;
+	color : black;
+}
+
 .castom_input > input {
 		visibility: hidden;
   	position: absolute;
