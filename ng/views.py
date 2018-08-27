@@ -745,7 +745,7 @@ def error(request):
             'use_matomo': settings.MATOMO_USAGE,})
 
 ### # DEBUG:
-
+"""
 @csrf_protect
 @login_required(login_url='/ng/login/')
 def test_score(request):
@@ -801,4 +801,4 @@ def test_info(request):
             'form' : form,
             'use_matomo': settings.MATOMO_USAGE,
             'q_filled' : u.q_filled,
-    })
+    }) """
