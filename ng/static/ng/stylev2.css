@@ -507,6 +507,15 @@ table {
 	margin-right: 20px;
 }
 
+.responsive_input{
+	background-color: #cccccc;
+}
+
+.responsive_input:hover {
+	background-color: white;
+	cursor: pointer;
+}
+
 /*Results Page*/
 
 .result_img {
@@ -577,6 +586,7 @@ table {
 	width: 115px;
 	padding-right: 10px;
 	margin :auto;
+	cursor: pointer;
 }
 
 .popover {
