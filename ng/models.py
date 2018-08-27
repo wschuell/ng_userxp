@@ -16,6 +16,7 @@ import json
 import pickle
 import random
 import datetime
+import copy
 
 xp_cfg = {
     "step": 1,
@@ -49,7 +50,7 @@ xp_cfg = {
 }
 
 null_date = None
-MEANING_LIST = list(range(5))
+MEANING_LIST = list(range(13))
 
 #extended User class
 class UserNG(models.Model):
@@ -131,7 +132,7 @@ class Meaning(models.Model):
     def get_mlist(cls,M=None,avoid_if_possible=[]):
         m_l = copy.deepcopy(MEANING_LIST)
         for m_av in avoid_if_possible:
-            if (M is None or len(m_all) > M) and m_av in m_l:
+            if (M is None or len(m_l) > M) and m_av in m_l:
                 m_l.remove(m_av)
         random.shuffle(m_l)
         return m_l[:M]
