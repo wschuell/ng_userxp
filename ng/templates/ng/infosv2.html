@@ -17,6 +17,7 @@
   <script src="{% static 'ng/bootstrap.min.js' %}"></script>
   <script src="{% static 'ng/js.cookie.js' %}"></script>
   <script src="{% static 'ng/script.js' %}"></script>
+    <script src="{% static 'ng/lang.js' %}"></script>
   <script src="{% static 'ng/change_lang.js' %}"></script>
 
 	<title id="window_title">Naming Game</title>
@@ -108,6 +109,17 @@
             <div class="w-100"></div>
             <div class="row">
               {{ form.q5 }}
+            </div>
+            </div>
+
+            <div class="fieldWrapper row">
+              {{ form.q6.errors }}
+              <div class="row">
+              <label id="label_q6" class="text_login" style="float:left; display:block">  </label>
+            </div>
+            <div class="w-100"></div>
+            <div class="row">
+              {{ form.q6 }}
             </div>
             </div>
 
