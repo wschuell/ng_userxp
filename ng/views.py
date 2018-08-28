@@ -74,6 +74,7 @@ def home(request):
     return render(request, 'ng/index.html', {
     'game_unlocked' : game_unlocked,
     'multi_unlocked' : multi_unlocked,
+    'nbr_remaining_games' : 3-u.nbr_won,
     'user' : user,
     'userNG': u,
             'use_matomo': settings.MATOMO_USAGE,
@@ -667,7 +668,7 @@ def score(request, xp_uuid):
     for elt in m_list:
         if len(tab_results[elt].items()) == 0 :
             w_list1.append('?')
-            w_list2.append('?')
+            w_list2.append(' ')
         elif len(tab_results[elt].items()) == 1 :
             l = [c for c,v in tab_results[elt].items()]
             w_list1.append(l[0])
@@ -691,6 +692,7 @@ def score(request, xp_uuid):
             'w_list2': w_list2,
             'w_list':zip(w_list1,w_list2),
             'mww_list': zip(m_list,w_list1,w_list2),
+            'won': experiment.game_won,
             'use_matomo': settings.MATOMO_USAGE,
             'user':request.user,
             'userNG': UserNG.get(user=request.user),

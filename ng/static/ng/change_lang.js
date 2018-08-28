@@ -20,7 +20,8 @@ var current_lang = langdict[current_lang_id];
         $('#comment_avatar').html(current_lang.comment_avatar);
         $('#subtitle').html(current_lang.subtitle);
         $('#game_locked' ).html(current_lang.game_locked);
-        $('#multi_locked').html(current_lang.multi_locked);
+        $('#multi_lockedp1').html(current_lang.multi_lockedp1);
+        $('#multi_lockedp2').html(current_lang.multi_lockedp2);
 
           //Story End
         $('#story_pagetitle').html(current_lang.story_pagetitle);
@@ -36,6 +37,8 @@ var current_lang = langdict[current_lang_id];
         $('#texte_score').html(current_lang.text_score);
         $('#c1_3').html(current_lang.c1_3);
         $('#c2_4').html(current_lang.c2_4);
+        $('#game_won').html(current_lang.game_won);
+        $('#game_lost').html(current_lang.game_lost);
         $('#col_1').html(current_lang.col_1);
         $('#col_2').html(current_lang.col_2);
         $('#col_3').html(current_lang.col_3);
@@ -192,4 +195,3 @@ $(document).ready(function(){
 
     set_language();
 });
-

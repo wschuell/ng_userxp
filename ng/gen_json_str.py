@@ -30,7 +30,8 @@ dict_obj = {
     'button_multi': 'BONUS',
     'button_normal': 'JEU',
     'game_locked' : 'Gagnez le Tutoriel',
-    'multi_locked' : 'Gagnez le Jeu 3 fois',
+    'multi_lockedp1' : 'Gagnez le Jeu encore ',
+    'multi_lockedp2' : ' fois',
 
     #Story End
     'story_pagetitle': 'HISTOIRE',
@@ -47,6 +48,9 @@ dict_obj = {
     'c1_3':'<span class="important">Aucun de vous ne parle la même langue</span> mais vous voulez tous vous échapper pour pouvoir rentrer chez vous.',
     'c2_4':"Mais attention, vous n'avez à vous tous qu'un <span class='important'>nombre limité de conversations</span> pour réussir !",
     'c2_5':'À tout moment, vous pouvez consulter ce que vous avez appris des autres joueurs en cliquant sur l\'horloge <img src="/static/ng/img/history.png" class="txt_img" >.',
+
+    'game_won' : "Félicitations, vous avez gagné la partie !",
+    'game_lost' : "Dommage, vous ferez mieux la prochaine fois !",
 
     'col_1':'Objets',
     'col_2':'Mots Préférés',
@@ -192,7 +196,8 @@ dict_obj = {
     'button_multi': 'BONUS',
     'button_normal': 'GAME',
     'game_locked' : 'WIN TUTORIAL TO UNLOCK',
-    'multi_locked' : 'WIN 3 GAMES TO UNLOCK',
+    'multi_lockedp1' : 'WIN ',
+    'multi_lockedp2' : ' MORE GAMES TO UNLOCK',
 
     #Story End
     'story_pagetitle': 'Story',
@@ -209,6 +214,9 @@ dict_obj = {
     'c1_3':'<span class="important">None of you is from the same planet or speaks the same language</span> but you all want the same thing : escape and go back home.',
     'c2_4':'Be careful, you only have a <span class="important">limited number of conversations</span> to succeed !',
     'c2_5':'At any moment, you can have a look at what you learned from the other players by clicking on the clock <img src="/static/ng/img/history.png" class="txt_img" >.',
+
+    'game_won' : "Congratulations, you won the game !",
+    'game_lost' : "Too bad, You'll do better next time !",
 
     'col_1':'Objects',
     'col_2':'Favorite Words',

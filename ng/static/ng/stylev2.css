@@ -474,6 +474,20 @@ html{
 	cursor: pointer;
 }
 
+
+/*Story Page */
+
+.won_lose_text {
+	font: 400 25px/1 sans-serif;
+	text-align: center;
+	margin: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+	margin-top: 90px;
+	margin-bottom: -30px;
+}
+
+
 /*Game Page */
 
 #you {

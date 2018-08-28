@@ -63,7 +63,15 @@
               </div>
 
                 {% endfor %}
-                </div>
+            </div>
+
+            <div class="row">
+              {% if won %}
+                <span id="game_won" class="won_lose_text"></span>
+              {% else %}
+              <span id="game_lost" class="won_lose_text"></span>
+              {% endif %}
+            </div>
           <!--    <div id="div1">
             {% for m in m_list %}
               <div class="result_img">

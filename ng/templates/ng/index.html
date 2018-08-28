@@ -69,7 +69,7 @@
             {% if multi_unlocked %}
             <a  href="#" class="btn" id="button_multi" style="margin-top: 0px;margin-bottom:42px;"></a>
             {% else %}
-            <a  href="#" class="btn second-btn disabled" id="multi_locked">TERMINEZ LE JEU 3 FOIS POUR DEBLOQUER</a>
+            <a  href="#" class="btn second-btn disabled" id="multi_locked"><p id="multi_lockedp1" style="display:inline;">TERMINEZ LE JEU</p> {{nbr_remaining_games}} <p id="multi_lockedp2" style="display:inline;"> FOIS POUR DEBLOQUER</p></a>
             {% endif %}
           </div>
 
