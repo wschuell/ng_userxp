@@ -142,7 +142,25 @@
             </div>
             <form >
               <div class="speaker-words" style="visibility: hidden;">
+              {% for w in experiment.words.all %}
+              {% if forloop.first %}
               <div class="row_inputs_file">
+              {% elif forloop.counter0|divisibleby:2 %}
+              </div>
+              <div class="row_inputs_file_two">
+              {% endif %}
+              {% if forloop.counter0|divisibleby:2 %}
+                <label class="label_input_file_two label_input_right">
+              {% else %}
+                <label class="label_input_file_two">
+              {% endif %}
+                  <input type="radio" value="{{ w }}" name="m" id="{{ w }}" hidden>
+                  <div class="w word_text_speaker castom_input" id="word_{{ w }}" word_name="{{ w }}">{{ w }}</div>
+                </label>
+                {% if forloop.last %}
+              </div>
+              {% endif %}
+              {% endfor %}<!--
                 <label class="label_input_file_two label_input_right">
                   <input type="radio" value="{{words.0}}" name="m" id="{{words.0}}" hidden>
                   <div class="w word_text_speaker castom_input" id="word_{{ words.0 }}" word_name="{{ words.0 }}">{{ words.0 }}</div>
@@ -171,7 +189,7 @@
                   <input type="radio" value="{{words.5}}" name="m" id="{{words.5}}" hidden>
                   <div class="w word_text_speaker castom_input" id="word_{{ words.5 }}" word_name="{{ words.5 }}">{{ words.5 }}</div>
                 </label>
-              </div>
+              </div> -->
             </div>
             {% endif %}
             {% if context == "question" %}
