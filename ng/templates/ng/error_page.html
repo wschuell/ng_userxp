@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!doctype html>
 <html lang={{ userNG.lang }}>
 
@@ -41,15 +42,15 @@
   		<div class="col-xs-10 col-md-6" style="margin-left:100px;">
   			<div class = "row">
   				<div id="error_text" class="col-xs-12 text_content">
-  					<span id="error_span">Oups !</span> Il semblerait qu'une erreur se soit produite ! Vous pouvez tenter de continuer ou revenir à l'accueil pour commencer une nouvelle partie.
+  					<span id="error_span">{% trans "Oops !" %}</span> {% trans "It seems that an error occured." %}
   				</div>
   			</div>
   			<div class="row">
   				<!-- <div class="col-xs-6"> -->
-  					<button class="btn" id="btn_home" style=''>Revenir à l'Accueil</button>
+  					<button class="btn" id="btn_home" style=''>{% trans "Home" %}</button>
   				<!-- </div> -->
 <!--   				<div class="col-xs-6">
-  					<button class="btn" id="btn_continue" {% if not experiment %}disabled{% endif %}>Continuer</button>
+  					<button class="btn" id="btn_continue" {% if not experiment %}disabled{% endif %}>{% trans "Resume the game" %}</button>
   				</div> -->
   			</div>
   		</div>

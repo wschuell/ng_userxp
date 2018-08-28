@@ -1,10 +1,15 @@
 #!/bin/bash
 
-git pull || exit 1
+if [ "$1" != "nogit" ]
+then
+	git pull || exit 1
+fi;
 
 (cd ng && python gen_json_str.py) || exit 1
 
-(python manage.py makemigrations &&
+(django-admin compilemessages &&
+
+python manage.py makemigrations &&
 python manage.py makemigrations auth &&
 python manage.py makemigrations ng &&
 python manage.py migrate auth &&

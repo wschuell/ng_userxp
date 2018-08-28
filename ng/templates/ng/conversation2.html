@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!doctype html>
 <html lang={{userNG.lang}}>
 
@@ -72,12 +73,12 @@
             {% if context == "result" %}
             <div class="text_content_div">
               {% if bool_succ %}
-              <span class="text_content" id='speaker_success'></span>
+              <span class="text_content" id='speaker_success'>{% trans "Well done, your partner understood !" %}</span>
               {% else %}
                  {% if learn  %}
-                 <span class="text_content" id='speaker_learn'></span>
+                 <span class="text_content" id='speaker_learn'>{% trans "Your partner didn't know this word but they will remember it next time !" %}</span>
                  {% else %}
-                 <span class="text_content" id='speaker_failure'></span>
+                 <span class="text_content" id='speaker_failure'>{% trans "Oops, your partner thought you were talking about something else. They will remember it next time !" %}</span>
               {% endif %}
               {% endif %}
                  </div>
@@ -124,10 +125,8 @@
             {% endif %}
             {% if context == "question" %}
             <div class="text_content_div">
-              <span class="text_content" id='anspeaker_text'>c’est à vous de parler.
-              <br> choissisez l’objet que vous allez désigner.</span>
-              <span class="text_content" id='choice_words' style="display:none;">c’est à vous de parler.
-              <br> choissisez le mot que vous allez utiliser pour parler de cet objet.</span>
+              <span class="text_content" id='anspeaker_text'>{% trans "Your turn to speak." %} <br> {% trans "Pick the object you will talk about." %}</span>
+              <span class="text_content" id='choice_words' style="display:none;">{% trans "Your turn to speak." %} <br> {% trans "Pick the word you will use to refer to this object." %}</span>
             </div>
             <div class="row_inputs_file row_inputs_top row">
               {% for m in experiment.meanings.all %}
@@ -175,14 +174,14 @@
             </div>
             {% endif %}
             {% if context == "question" %}
-              <a href="" class="btn btn-d" id="continue">CONTINUER <span class="block"></span></a>
+              <a href="" class="btn btn-d" id="continue">{% trans "CONTINUE" %} <span class="block"></span></a>
             {% elif context == "result" %}
             <div id="button_next_div">
                 <!--<button id="button_next">Next</button>-->
 
               <form action="{% url 'ng:continue' experiment.xp_uuid %}" method="post">
               {% csrf_token %}
-              <input id="button_next" class="btn" type="submit" value="{% static 'ng/sounds/silence.wav' %}" />
+              <input id="button_next" class="btn" type="submit" value="{% trans "CONTINUE" %}" />
                 </form>
             </div>
             {% endif %}
@@ -196,67 +195,8 @@
     </div>
 
     <!--Historique-->
-    <div class="hide" id="hcontent">
-      <div id="popover-heading">
-        <div class='row' id='historyColNames'>
-          <div class='col-xs-4' >
-            <p style="font-size : 16px" id="history_objects">Objets</p>
-          </div>
-
-          <div class='col-xs-4' >
-            <p style="font-size : 16px" id="history_words">Mots</p>
-          </div>
-
-          <div class='col-xs-4' >
-            <p style="font-size : 16px" id="history_success">Succès</p>
-          </div>
-        </div>
-      </div>
-
-      <div id="popover-body">
-
-        {% for past_int in experiment.pastinteraction_set.all|dictsortreversed:"time_id" %}
-        {% if past_int.role == "hearer"%}
-        <div "line_meaning">
-          <div class='row'>
-              <div class='col-xs-3' >
-                  <span ><img src="{% static 'ng/img/' %}kreyon_meaning{{ past_int.meaning }}.png" class="img-histo"></span>
-              </div>
-             <div class='col-xs-6' >
-               <span class="w-histo">{{ past_int.word }}</span>
-             </div>
-             <div class='col-xs-3' >
-             {% if past_int.bool_succ %}<span ><img class="img-responsive meaning img-histo" src="{% static 'ng/img/' %}feedback_success_temp.png"></span>{% endif %}
-            </div>
-        </div>
-        </div>
-        {% endif %}
-        {% endfor %}
-
-    </div>
-    </div>
-
-    <!-- Modal -->
-    	<div class="modal fade" id="myModal" role="dialog">
-     		<div class="modal-dialog">
-
-       		 <!-- Modal content-->
-        			<div class="modal-content">
-         				 <div class="modal-header">
-            				<h4 class="modal_title" style = "color:black; text-align:center; margin:auto; font-size:35px;" id="modal_title">Êtes-vous sûr.e ?</h4>
-  					<button type="button" class="close" data-dismiss="modal">&times;</button>
-          			</div>
-          			<div class="modal-body">
-            				<p style="font-size:20px;" id="modal_body">Si vous quittez la partie en cours, celle-ci ne sera pas sauvegardée. Voulez-vous toujours quitter ?</p>
-          			</div>
-          			<div class="modal-footer">
-  					<a  href="/" type="button" class="btn btn-modal" id="btn_yes"><p>Oui, quitter la partie</p></a>
-            				<button type="button" class="btn btn-modal" id="btn_no" data-dismiss="modal"><p>Non, continuer la partie<p></button>
-          			</div>
-        			</div>
-
-     	 	</div>
-    	</div>
+{% include 'ng/pastinteractions.html' %}
+{% include 'ng/modal.html' %}
 
       <!-- Optional JavaScript -->
  {% include 'ng/sound.html' %}
@@ -414,25 +354,9 @@
        window.location.href=url_home;
      });
 
-     //Tooltips
 
-     $('#home').tooltip({
-       title : current_lang.btn_home,
-       placement : "right auto",
-       trigger: "hover focus",
-     });
-
-     $('#groop_3').tooltip({
-       title : current_lang.groop_3,
-       placement : "right auto",
-       trigger: "hover focus",
-     });
-
-     $('#groop_5').tooltip({
-       title : current_lang.groop_5,
-       placement : "right auto",
-       trigger: "hover focus",
-     });
+   //Tooltips
+ {% include 'ng/tooltips.js' %}
 
     });
     </script>

@@ -1,0 +1,41 @@
+{% load static %}
+{% load i18n %}
+
+    <div class="hide" id="hcontent">
+      <div id="popover-heading">
+        <div class='row' id='historyColNames'>
+          <div class='col-xs-4' >
+            <p style="font-size : 16px" id="history_objects">{% trans "Objects" %}</p>
+          </div>
+
+          <div class='col-xs-4' >
+            <p style="font-size : 16px" id="history_words">{% trans "Words" %}</p>
+          </div>
+
+          <div class='col-xs-4' >
+            <p style="font-size : 16px" id="history_success"></p>
+          </div>
+        </div>
+      </div>
+
+      <div id="popover-body">
+
+        {% for past_int in experiment.pastinteraction_set.all|dictsortreversed:"time_id" %}
+        {% if past_int.role == "hearer"%}
+        <div "line_meaning">
+          <div class='row'>
+              <div class='col-xs-3' >
+                  <span ><img src="{% static 'ng/img/' %}kreyon_meaning{{ past_int.meaning }}.png" class="img-histo"></span>
+              </div>
+             <div class='col-xs-6' >
+               <span class="w-histo">{{ past_int.word }}</span>
+             </div>
+             <div class='col-xs-3' >
+             {% if past_int.bool_succ %}<span ><img class="img-responsive meaning img-histo" src="{% static 'ng/img/' %}feedback_success_temp.png"></span>{% endif %}
+            </div>
+        </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+    </div>

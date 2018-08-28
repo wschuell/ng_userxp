@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!doctype html>
 <html lang={{userNG.lang}}>
 
@@ -33,9 +34,21 @@
       </div>
       <div class="col_2 col">
         <div>
-          <h1 class="convers_font" id="infos_title" style="margin-right:10%;margin-left:20%">MERCI DE VOTRE PARTICIPATION !</h1>
+          <h1 class="convers_font" id="infos_title" style="margin-right:10%;margin-left:20%">{% trans "THANK YOU FOR PARTICIPATING" %}</h1>
           <div class="text_content_div">
           <div id="infos_txt">
+    <p class="text_content_four" style="text-align:left;font-size:18px;">
+    <p class="text_content_four" style="text-align:left;font-size:18px;">{% trans "This game was written by William Schueller and Sandy Manolios, to collect data as a scientific experiment on language evolution." %}</p>
+    <p class="text_content_four" style="text-align:left;font-size:18px;">{% trans "Graphics and design are the work of Atlal Boudir." %}</p>
+    <p class="text_content_four" style="text-align:left;font-size:18px;">{% trans "If you want to go further, you can find below a set of links to various resources:" %}
+<ul style="text-align:left;margin-bottom:4em;">
+<li> <a href="http://github.com/wschuell/ng_userxp">{% trans "The opensource code" %}</a> {% trans "used to generate the website" %} </li>
+<li> {% trans "A set of links to" %} <a href="http://github.com/wschuell/notebooks_cogsci2018">{% trans "articles and explanatory posters and notebooks" %}</a> {% trans "on the theoretical work behind the game" %} </li>
+<li> {% trans "A link to" %} <a href="http://naming-game.space">{% trans "continue playing" %}</a> {% trans "outside of the Prolific experiment." %}</li>
+</ul>
+    </p>
+            </p>
+    
           </div>
         {% if not q_filled %}
           <p class=" text_content_four" style="text-align:center;font-size:18px;" id="infos_qu"></p>
@@ -45,11 +58,11 @@
 
         {% if q_filled %}
         <div class="row">
-            <button class="btn homebutton">CONTINUE</button>
+            <button class="btn homebutton">{% trans "CONTINUE" %}</button>
         </div>
         {% else %}
         <div class="row">
-          <h1 class="convers_font" style="margin-right:50%; margin-top:70px; font-size:30px; margin-bottom:10px;" id="question_title">Questionnaire :</h1>
+          <h1 class="convers_font" style="margin-right:50%; margin-top:70px; font-size:30px; margin-bottom:10px;" id="question_title">{% trans "Questionnaire :" %}</h1>
         </div>
         <form id="form" method="post">
         <div class="row form-group">
@@ -60,7 +73,7 @@
             <div class="fieldWrapper row" >
               {{ form.q1.errors }}
               <div class="row">
-              <label id="label_q1" class="text_login" style="float:left; display:block"> </label>
+              <label id="label_q1" class="text_login" style="float:left; display:block">{% trans "Did you understand what was happening in the game ?" %}</label>
               </div>
               <div class="w-100"></div>
               <div class="row">
@@ -71,7 +84,7 @@
             <div class="fieldWrapper row">
               {{ form.q2.errors }}
               <div class="row">
-              <label id="label_q2" class="text_login" style="float:left; display:block">  </label>
+              <label id="label_q2" class="text_login" style="float:left; display:block">{% trans "Did you think that you were interacting with only one individual ?" %}</label>
             </div>
             <div class="w-100"></div>
             <div class="row">
@@ -82,7 +95,7 @@
             <div class="fieldWrapper row">
               {{ form.q3.errors }}
               <div class="row">
-              <label id="label_q3" class="text_login" style="float:left; display:block"> </label>
+              <label id="label_q3" class="text_login" style="float:left; display:block">{% trans "Were you already familiar with communication games or similar experiments ? " %}</label>
             </div>
             <div class="w-100"></div>
             <div class="row">
@@ -93,7 +106,7 @@
             <div class="fieldWrapper row">
               {{ form.q4.errors }}
               <div class="row">
-              <label id="label_q4" class="text_login" style="float:left; display:block">  </label>
+              <label id="label_q4" class="text_login" style="float:left; display:block">{% trans "Did you use a certain strategy (or several) during your games ?" %}</label>
             </div>
             <div class="w-100"></div>
             <div class="row">
@@ -104,7 +117,7 @@
             <div class="fieldWrapper row">
               {{ form.q5.errors }}
               <div class="row">
-              <label id="label_q5" class="text_login" style="float:left; display:block">  </label>
+              <label id="label_q5" class="text_login" style="float:left; display:block">{% trans "If it is a 'Yes', could you describe it briefly ?" %}</label>
             </div>
             <div class="w-100"></div>
             <div class="row">
@@ -115,7 +128,7 @@
             <div class="fieldWrapper row">
               {{ form.q6.errors }}
               <div class="row">
-              <label id="label_q6" class="text_login" style="float:left; display:block">  </label>
+              <label id="label_q6" class="text_login" style="float:left; display:block">{% trans "You can leave here any remark or message that could be relevant or that you would just like to share with us :" %}</label>
             </div>
             <div class="w-100"></div>
             <div class="row">

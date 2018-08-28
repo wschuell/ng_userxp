@@ -193,5 +193,5 @@ $(document).ready(function(){
 
 
 
-    set_language();
+    // set_language();
 });

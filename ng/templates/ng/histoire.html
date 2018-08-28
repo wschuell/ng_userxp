@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang={{userNG.lang}}>
   <head>
@@ -32,35 +33,25 @@
         </div>
         <div class="col_2 col">
           <div>
-            <h1 class="convers_font" id='story_pagetitle'>HISTOIRE</h1>
+            <h1 class="convers_font" id='story_pagetitle'>{% trans "STORY" %}</h1>
             <div class="text_content_div" id="block1">
               <p class="text_content_four" id="c1_1">
-              Vous avez été enlevé par des Extraterrestres !</p>
+              {% trans " You have been kidnapped by aliens !" %}</p>
               <p class="text_content_four" id="c1_2">
-                Vous voilà enfermé seul dans une pièce de leur vaisseau. Dans les
-                 pièces d'à côté se trouvent <span class='important'>4 autres
-                   individus</span> que vos ravisseurs ont également enlevés aux
-                   quatre coins de la galaxie.</p>
-              <p class="text_content_four" id="c1_3"><span class="important">Aucun de vous
-                ne parle la même langue</span> mais vous voulez tous vous échapper
-                pour pouvoir rentrer chez vous.</p>
+                {% trans "You" %} <img class="txt_img" src="/static/ng/img/chat.png"> {% trans "are now locked alone in a room of their huge spaceship. In the neighboring rooms, there are three other individuals" %} </span> <img src="/static/ng/img/user_groop.png" class="txt_img" style="vertical-align:middle;"> {% trans "also kidnapped by your abductors from different parts of the galaxy." %}</p>
+              <p class="text_content_four" id="c1_3">{% trans "None of you is from the same planet or speaks the same language but you all want the same thing : escape and go back home." %}</p>
             </div>
             <div class="text_content_div" id="block2" style="display:none;">
               <p class="text_content_four" id="c2_1">
-              Pour ce faire, vous ne pourrez parler que deux par deux grâce à une radio,
-              sans savoir lequel de vos camarades d'infortune est à l'autre bout.</p>
+              {% trans "To do so, you may only talk by pairs thanks to a radio, without knowing wich one of your fellow prisoners is on the other side" %}</p>
               <p class="text_content_four" id="c2_2">
-                L'un de vous proposera un mot et l'autre devra deviner l'objet auquel
-                il fait référence.</p>
-              <p class="text_content_four" id="c2_3">Parfois vous proposerez un mot, parfois
-                vous devinerez l'objet et parfois encore vous ne ferez pas partie
-                de la conversation et ne saurez pas ce qui s'y est dit.</p>
-              <p class="text_four" id="c2_4">Mais attention, vous n'avez à vous tous qu'un
-                <span class='important'>nombre limité de conversations</span> pour réussir !</p>
-              <p class="text_content_four" id="c2_5"></p>
+                {% trans "One of you will say a word" %} <img src="/static/ng/img/mic-512.png" class="txt_img" > {% trans "and the other will have to guess which object they are referring to." %}" <img class="txt_img" src="/static/ng/img/bitmap-1.png"></p>
+              <p class="text_content_four" id="c2_3">{%trans "Sometimes you will talk, sometimes you will listen and guess and sometimes you will keep listening to your radio" %} <img src="/static/ng/img/time.png" class="txt_img" > {% trans "waiting for a signal, while others are conversing." %} </p>
+              <p class="text_four" id="c2_4">{% trans "Be careful, you only have a limited number of conversations to succeed !" %}</p>
+              <p class="text_content_four" id="c2_5">{% trans "At any moment, you can have a look at what you learned from the other players by clicking on the clock" %} <img src="/static/ng/img/history.png" class="txt_img" >.</p>
             </div>
           </div>
-          <a href="#" class="btn continue" id="continue">CONTINUER <span class="block"></span></a>
+          <a href="#" class="btn continue" id="continue">{% trans "CONTINUE" %} <span class="block"></span></a>
         </div>
         <div class="col_3 col"><!--
           <div class="control_ico" style="display:block;">
@@ -69,27 +60,8 @@
           </div> -->
         </div>
     </div>
-    <!-- Modal -->
-     	<div class="modal fade" id="myModal" role="dialog">
-       		<div class="modal-dialog">
 
-         		 <!-- Modal content-->
-          			<div class="modal-content">
-           				 <div class="modal-header">
-              				<h4 class="modal_title" style="color:black; text-align:center; margin:auto; font-size:35px;" id="modal_title">Êtes-vous sûr.e ?</h4>
-    					<button type="button" class="close" data-dismiss="modal">&times;</button>
-            			</div>
-            			<div class="modal-body">
-              				<p style="font-size:20px;" id="modal_body">Si vous quittez la partie en cours, celle-ci ne sera pas sauvegardée et vos données ne pourront pas être utilisées. Voulez-vous toujours quitter ?</p>
-            			</div>
-            			<div class="modal-footer">
-    					<a  href="/" type="button" class="btn btn-modal" id="btn_yes"><p>Oui, quitter la partie</p></a>
-              				<button type="button" class="btn btn-modal" id="btn_no" data-dismiss="modal"><p>Non, continuer la partie</p></button>
-            			</div>
-          			</div>
-
-       	 	</div>
-      	</div>
+ {% include 'ng/modal.html' %}
     <!-- Optional JavaScript -->
  {% include 'ng/sound.html' %}
   <script text="text/javascript">
@@ -120,24 +92,7 @@
         }
     });
     //Tooltips
-
-    $('#home').tooltip({
-      title : current_lang.btn_home,
-      placement : "right auto",
-      trigger: "hover focus",
-    });
-
-    $('#groop_3').tooltip({
-      title : current_lang.groop_3,
-      placement : "right auto",
-      trigger: "hover focus",
-    });
-
-    $('#groop_5').tooltip({
-      title : current_lang.groop_5,
-      placement : "right auto",
-      trigger: "hover focus",
-    });
+ {% include 'ng/tooltips.js' %}
   });
   </script>
 

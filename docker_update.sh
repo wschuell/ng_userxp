@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker exec -it ng /code/update.sh
+docker exec -it ng /code/update.sh $1

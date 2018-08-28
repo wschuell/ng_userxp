@@ -26,6 +26,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import authenticate, login
+from django.utils.translation import ugettext
+
 from .forms import NameForm, QuestionForm
 
 import os
@@ -86,7 +88,7 @@ def create_and_login(request,username=None,name='',cookie_id=None, lang='en', co
     if not User.objects.filter(username=username).exists():
         create_user(request,username,name=name,cookie_id=cookie_id)
         login_user(request,username)
-        u = UserNG.get(user=request.user)
+        u = UserNG.get(user=request.user,lang=lang)
         u.code = code
         u.save()
     else :

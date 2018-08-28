@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -100,7 +101,7 @@
         </div>
         <div class="col_2 col">
 
-          <h1 class="convers_font" style="padding:0px; margin-top:25px; margin-bottom:25px;" id="welcome">Le Naming Game !</h1>
+          <h1 class="convers_font" style="padding:0px; margin-top:25px; margin-bottom:25px;" id="welcome">{% trans "The Naming Game" %}</h1>
           <!-- Formulaire -->
            <!--action="/action_page.php"-->
           <form id="form" method="post">
@@ -124,7 +125,7 @@
 
               <div class="fieldWrapper">
                 {{ form.your_name.errors }}
-                <label for="player-name" class="text_login" id="enter_player_name" style="display:block">Entrez votre nom ici :</label>
+                <label for="player-name" class="text_login" id="enter_player_name" style="display:block">{% trans "Enter your name here :" %}</label>
                 {{ form.your_name }}
               </div>
 
@@ -139,7 +140,7 @@
               {{ form.name_lang }}
               </div>
                 <!--Choix Langage-->
-                <label class="text_login" id="label_lang">Choisissez la langue du jeu :</label>
+                <label class="text_login" id="label_lang"></label>
 
               <div class="row" id="middle">
                 <div class="col-sm">
@@ -169,20 +170,33 @@
                 <!--Code si pertinent-->
                   <div class="fieldWrapper" style="margin : auto;">
                       {{form.code.errors}}
-                      <label class="text_login" id="label_code">Si vous avez un code spécial, veuillez l'entrer ici :</label>
+                      <label class="text_login" id="label_code">{% trans "If you have been told to use a specific token, enter it here :" %}</label>
                       {{form.code}}
                   </div>
               </div>
               <div class="row">
                 <!--Code si pertinent-->
                   <div class="fieldWrapper" style="margin : auto;">
-                      <label class="text_login" id="consent_form", style="text-align:left;"></label>
+                      <label class="text_login" id="consent_form", style="text-align:left;"><p>{% trans "You’re about to start a short game where you will have to collectively build a lexicon with other individuals. Your answers will be recorded but will not be identifiable to you personally. The game will take about 20 minutes." %}
+</p>
+<p style = "margin-top:1.5em;margin-bottom:1.5em;"><b>{% trans "Before consenting to participate, please" %} <a href="/static/ng/pdf/{% trans "consent_form.pdf" %}" target="_blank">{% trans "click here" %}</a> {% trans "to read more detailed information about the study." %}</b>
+</p>
+<p>
+<ul>
+                    <li>{% trans "You have read and understood the detailed information about the study.</li>
+                    <li>{% trans "You agree that your anonymized data may be kept for up to 5 years in the archives of Inria and may be used by qualified researchers for teaching and research purposes" %}</li>
+                    <li>{% trans "You agree that your anonymized data may be made publicly available for general use, e.g., put on the world wide web." %}</li>
+                    <li>{% trans "You consent to the use of cookies for this site." %}</li>
+                </ul>
+</p>
+<p>{% trans "If you do not agree to all of these, simply close this window in your browser now." %}</p>
+</label>
                   </div>
               </div>
 
 
               <div class="row" id="footer">
-                  <input type="submit" class="btn btn-default bt-lg" id="submit" value="Valider"/>
+                  <input type="submit" class="btn btn-default bt-lg" id="submit" value="{% trans "Submit" %}"/>
               </div>
             </div>
           </form>
