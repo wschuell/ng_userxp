@@ -743,14 +743,10 @@ def info(request):
 
 @csrf_protect
 def error(request):
-    try :
-        experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
-        o = True
-    except :
-        o = False
+    experiment = None
     return render(request, 'ng/error_page.html',{
             'use_matomo': settings.MATOMO_USAGE,
-            "ongoing_experiment": o,
+            "ongoing_experiment": experiment,
             })
 
 # ### # DEBUG:

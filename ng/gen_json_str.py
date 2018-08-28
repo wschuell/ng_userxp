@@ -36,8 +36,8 @@ dict_obj = {
     #Story End
     'story_pagetitle': 'HISTOIRE',
     'results': "RESULTATS",
-    'c1_1': ' Vous avez été enlevé par des Extraterrestres !',
-    'c1_2': 'Vous <img class="txt_img" src="/static/ng/img/chat.png"> voilà enfermé seul dans une pièce de leur vaisseau. Dans les pièces d\'à côté se trouvent<span class="important"> trois autres individus</span> <img src="/static/ng/img/user_groop.png" class="txt_img" style="vertical-align:middle;"> que vos ravisseurs ont également enlevés aux quatre coins de la galaxie.',
+    'c1_1': ' Vous avez été enlevé(e) par des Extraterrestres !',
+    'c1_2': 'Vous <img class="txt_img" src="/static/ng/img/chat.png"> voilà seul(e) dans une geôle de leur vaisseau. Dans les pièces d\'à côté se trouvent<span class="important"> trois autres individus</span> <img src="/static/ng/img/user_groop.png" class="txt_img" style="vertical-align:middle;"> que vos ravisseurs ont également enlevés aux quatre coins de la galaxie.',
     'c2_1':"Pour ce faire, vous ne pourrez parler que <span class='important'>deux par deux</span> grâce à une <span class='important'>radio</span>, <span class='important'>sans savoir lequel de vos camarades d'infortune est à l'autre bout</span>.",
     'c2_2':'L\'un de vous proposera un mot <img src="/static/ng/img/mic-512.png" class="txt_img" > et l\'autre devra deviner l\'objet auquel il fait référence. <img class="txt_img" src="/static/ng/img/bitmap-1.png">',
     'c2_3':'Parfois vous proposerez un mot, parfois vous devinerez l\'objet et parfois encore vous écouterez patiemment votre radio <img src="/static/ng/img/time.png" class="txt_img" > dans l\'attente d\'un signal, pendant que d\'autres joueurs communiquent.',
@@ -83,7 +83,7 @@ dict_obj = {
     'tuto_hearer': "Cliquez sur l'horloge <img src='/static/ng/img/history.png' class='txt_img'> en haut à gauche pour consulter ce que vous avez appris de vos interlocuteurs lors des conversations précédentes.",
 
     #Error Page
-    'error_text': "<span id='error_span'>Oups !</span> Il semblerait qu'une erreur se soit produite ! Vous pouvez tenter de continuer ou revenir à l'accueil pour commencer une nouvelle partie.",
+    'error_text': "<span id='error_span'>Oups !</span> Il semblerait qu'une erreur se soit produite !",
     'btn_home': "Revenir à l'Accueil",
     'btn_continue': 'Continuer',
 
@@ -250,7 +250,7 @@ dict_obj = {
 
 
         #Error Page
-    'error_text': "<span id='error_span'>Oops!</span> It seems that an error occured. You can try to resume your game or go back to home page.",
+    'error_text': "<span id='error_span'>Oops!</span> It seems that an error occured.",
     'btn_home': "Home",
     'btn_continue': 'Resume the game',
 
