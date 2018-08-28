@@ -214,34 +214,35 @@ class Experiment(models.Model):
 
     @classmethod
     def get_new_xp(cls,user,xp_cfg_name="normal"):
+        xp_cfg_temp = copy.deepcopy(xp_cfg)
         if xp_cfg_name == "basic":
             size = 3
-            xp_cfg["pop_cfg"]["nbagent"] = 3
-            xp_cfg["pop_cfg"]["env_cfg"]["M"] = 2
-            xp_cfg["pop_cfg"]["env_cfg"]["W"] = 6
+            xp_cfg_temp["pop_cfg"]["nbagent"] = 3
+            xp_cfg_temp["pop_cfg"]["env_cfg"]["M"] = 2
+            xp_cfg_temp["pop_cfg"]["env_cfg"]["W"] = 6
             max_inter = 10
         elif xp_cfg_name == "normal":
             size = 5
             M = 5
-            xp_cfg["pop_cfg"]["nbagent"] = size
-            xp_cfg["pop_cfg"]["env_cfg"]["M"] = M
-            xp_cfg["pop_cfg"]["env_cfg"]["m_list"] = Meaning.get_mlist(M=M,avoid_if_possible=[0,1])
-            xp_cfg["pop_cfg"]["env_cfg"]["W"] = 6
+            xp_cfg_temp["pop_cfg"]["nbagent"] = size
+            xp_cfg_temp["pop_cfg"]["env_cfg"]["M"] = M
+            xp_cfg_temp["pop_cfg"]["env_cfg"]["m_list"] = Meaning.get_mlist(M=M,avoid_if_possible=[0,1])
+            xp_cfg_temp["pop_cfg"]["env_cfg"]["W"] = 6
             max_inter = 50
         elif xp_cfg_name == "multiuser":
             size = 1
             M = 5
-            xp_cfg["pop_cfg"]["nbagent"] = size
-            xp_cfg["pop_cfg"]["env_cfg"]["M"] = M
-            xp_cfg["pop_cfg"]["env_cfg"]["m_list"] = Meaning.get_mlist(M=M,avoid_if_possible=[0,1])
-            xp_cfg["pop_cfg"]["env_cfg"]["W"] = 6
+            xp_cfg_temp["pop_cfg"]["nbagent"] = size
+            xp_cfg_temp["pop_cfg"]["env_cfg"]["M"] = M
+            xp_cfg_temp["pop_cfg"]["env_cfg"]["m_list"] = Meaning.get_mlist(M=M,avoid_if_possible=[0,1])
+            xp_cfg_temp["pop_cfg"]["env_cfg"]["W"] = 6
             max_inter = 50
-        xp_cfg_json = json.dumps(xp_cfg)
+        xp_cfg_json = json.dumps(xp_cfg_temp)
         xpcfg_list = XpConfig.objects.filter(xp_config=xp_cfg_json)
         if xpcfg_list:
             xp_conf_model = xpcfg_list.first()
         else:
-            xp_conf_model = XpConfig(xp_config=xp_cfg_json,xp_cfg_name=xp_cfg_name,score_max=100*xp_cfg["pop_cfg"]["env_cfg"]["M"])
+            xp_conf_model = XpConfig(xp_config=xp_cfg_json,xp_cfg_name=xp_cfg_name,score_max=100*xp_cfg_temp["pop_cfg"]["env_cfg"]["M"])
             xp_conf_model.save()
         xp = Experiment(xp_config=xp_conf_model,user=user,max_interaction=max_inter,size=size)
         xp.init_xp()

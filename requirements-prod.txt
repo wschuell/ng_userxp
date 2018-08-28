@@ -1,7 +1,7 @@
 numpy
 scipy
 matplotlib
-psycopg2-binary
+psycopg2
 codecov
 coverage
 Django==2.0.8
