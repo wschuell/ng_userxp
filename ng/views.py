@@ -62,7 +62,7 @@ def login_view(request):
         })
 
 @csrf_protect
-@login_required(login_url='/ng/login')
+@login_required(login_url='/login')
 def home(request):
     user = request.user
     u = UserNG.get(user=user)
@@ -108,7 +108,7 @@ def get_name(request):
             lang = form.cleaned_data['lang']
             code = form.cleaned_data['code']
             create_and_login(request=request,name=name,cookie_id=cookie_id, lang=lang, code=code)
-            return HttpResponseRedirect('/ng/')
+            return HttpResponseRedirect('/')
 
     # if a GET (or any other method) we'll create a blank form
     else:
@@ -119,7 +119,7 @@ def get_name(request):
 
 #@login_required#(login_url='/accounts/login/')
 class IndexView(LoginRequiredMixin, generic.ListView):
-    login_url = '/ng/login/'
+    login_url = '/login/'
     redirect_field_name = 'redirect_to'
     template_name = 'ng/index.html'
     context_object_name = 'latest_experiment_list'
@@ -130,14 +130,14 @@ class IndexView(LoginRequiredMixin, generic.ListView):
 
 
 #Story view if user chooses tutorial
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def story(request) :
 	return render(request, 'ng/histoire.html', {'context':'story',
             'use_matomo': settings.MATOMO_USAGE, 'userNG': UserNG.get(user=request.user)})
 
 
 class DetailView(LoginRequiredMixin, generic.DetailView):
-    login_url = '/ng/login/'
+    login_url = '/login/'
     redirect_field_name = 'redirect_to'
     model = Experiment
     template_name = 'ng/detail.html'
@@ -146,7 +146,7 @@ class DetailView(LoginRequiredMixin, generic.DetailView):
 
 
 class ResultsView(LoginRequiredMixin, generic.DetailView):
-    login_url = '/ng/accounts/login/'
+    login_url = '/accounts/login/'
     redirect_field_name = 'redirect_to'
     model = Experiment
     template_name = 'ng/results.html'
@@ -154,7 +154,7 @@ class ResultsView(LoginRequiredMixin, generic.DetailView):
 
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     try:
@@ -175,7 +175,7 @@ def vote(request, question_id):
         return HttpResponseRedirect(reverse('ng:results', args=(question.id,)))
 
 
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def testdet(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     if request.user != experiment.user:
@@ -187,7 +187,7 @@ def testdet(request, xp_uuid):
         })
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def continue_xp(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     if request.user != experiment.user:
@@ -203,7 +203,7 @@ def continue_xp(request, xp_uuid):
         })
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def result_srtheo(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     if request.user != experiment.user:
@@ -220,7 +220,7 @@ def result_srtheo(request, xp_uuid):
 
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def result_hearer(request, xp_uuid, meaning):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     if request.user != experiment.user:
@@ -247,7 +247,7 @@ def result_hearer(request, xp_uuid, meaning):
         })
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def result_speaker(request, xp_uuid, meaning, word):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     if request.user != experiment.user:
@@ -273,12 +273,12 @@ def result_speaker(request, xp_uuid, meaning, word):
 
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def none(request):
     return None
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def result_inner(request, xp_uuid, bool_succ):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     if request.user != experiment.user:
@@ -298,7 +298,7 @@ def result_inner(request, xp_uuid, bool_succ):
 
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def result_hearer_json(request, xp_uuid, meaning):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     if request.user != experiment.user:
@@ -337,7 +337,7 @@ def result_hearer_json(request, xp_uuid, meaning):
         })
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def result_hearer_continue(request, xp_uuid, meaning):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     if request.user != experiment.user:
@@ -387,7 +387,7 @@ def result_hearer_continue(request, xp_uuid, meaning):
         })
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def result_speaker_json(request, xp_uuid, meaning, word):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     if request.user != experiment.user:
@@ -430,7 +430,7 @@ def result_speaker_json(request, xp_uuid, meaning, word):
         })
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def result_speaker_continue(request, xp_uuid, meaning, word):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     if request.user != experiment.user:
@@ -487,7 +487,7 @@ def result_speaker_continue(request, xp_uuid, meaning, word):
 
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def choose_experiment(request,xp_cfg_name='normal'):
     return render(request, 'ng/global.html', {
             'context':"choose_xp",
@@ -495,7 +495,7 @@ def choose_experiment(request,xp_cfg_name='normal'):
         })
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def new_experiment(request,xp_cfg_name='normal'):
     #Test if the user can access this type of game and send them to the home page if not
     user = request.user
@@ -509,7 +509,7 @@ def new_experiment(request,xp_cfg_name='normal'):
         return continue_userxp(request,experiment.xp_uuid)
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def test(request):
     experiment = Experiment.get_new_xp()
     experiment.save()
@@ -519,7 +519,7 @@ def test(request):
         })
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def continue_userxp(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     if request.user != experiment.user:
@@ -617,7 +617,7 @@ def continue_userxp(request, xp_uuid):
 
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def exp_resume(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     if request.user != experiment.user:
@@ -631,7 +631,7 @@ def exp_resume(request, xp_uuid):
 
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def score(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     if request.user != experiment.user:
@@ -701,7 +701,7 @@ def score(request, xp_uuid):
             })
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def info(request):
     u = UserNG.get(user=request.user)
     if u.nbr_won < 3 :
@@ -751,7 +751,7 @@ def error(request):
 
 # ### # DEBUG:
 # @csrf_protect
-# @login_required(login_url='/ng/login/')
+# @login_required(login_url='/login/')
 # def test_score(request):
 #
 #     w_list1 = ["A", "B", "C", "D", "E", "F"]
@@ -773,7 +773,7 @@ def error(request):
 #             })
 #
 # @csrf_protect
-# @login_required(login_url='/ng/login/')
+# @login_required(login_url='/login/')
 # def test_info(request):
 #
 #         # if this is a POST request we need to process the form data

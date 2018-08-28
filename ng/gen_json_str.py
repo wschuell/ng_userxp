@@ -15,7 +15,7 @@ dict_obj = {
         'consent_form':'''<p>Vous allez participer à une expérience sous la forme d'un jeu en ligne, où vous aurez à construire collectivement un langage avec d'autres individus. Vos réponses seront enregistrées mais resteront anonymes. Ce jeu durera environ 20 minutes.
 </p><p style = "margin-top:1.5em;margin-bottom:1.5em;"><b>Avant d'accepter de participer à l'expérience, veuillez <a href="/static/ng/pdf/consent_form_fr.pdf" target="_blank">cliquez ici</a> pour lire les informations détaillées concernant l'expérience.</b>
 <ul>
-                    <li>Vous avez lu et compris les informations détaillées sur cette recherche.</li>
+                    <li>Vous avez lu et compris les informations détaillées de cette expérience.</li>
                     <li>Vous acceptez que vos données anonymisées d'utilisation du jeu soient gardées jusqu'à 5 ans dans les archives d'Inria et peuvent être utilisées par des chercheurs qualifiés à des fins d'enseignement ou de recherche.</li>
                     <li>Vous acceptez que vos données anonymisées d'utilisation du jeu peuvent devenir publiquement accessibles pour des usages divers, par exemple diffusées sur internet.</li>
                     <li>Vous consentez à l'usage de cookies sur ce site.</li>
@@ -29,8 +29,8 @@ dict_obj = {
     'button_basic': 'TUTORIEL',
     'button_multi': 'BONUS',
     'button_normal': 'JEU',
-    'game_locked' : 'Gagnez le Tutoriel',
-    'multi_lockedp1' : 'Gagnez le Jeu encore ',
+    'game_locked' : 'Finissez le Tutoriel',
+    'multi_lockedp1' : 'Gagnez le Jeu ',
     'multi_lockedp2' : ' fois',
 
     #Story End
@@ -195,14 +195,14 @@ dict_obj = {
     'button_basic': 'TUTORIAL',
     'button_multi': 'BONUS',
     'button_normal': 'GAME',
-    'game_locked' : 'WIN TUTORIAL TO UNLOCK',
+    'game_locked' : 'FINISH TUTORIAL TO UNLOCK',
     'multi_lockedp1' : 'WIN ',
-    'multi_lockedp2' : ' MORE GAMES TO UNLOCK',
+    'multi_lockedp2' : ' GAMES TO UNLOCK',
 
     #Story End
     'story_pagetitle': 'Story',
     'results': 'RESULTS',
-    'c1_1': ' You have been kidnapped by Aliens !',
+    'c1_1': ' You have been kidnapped by aliens !',
     'c1_2': 'You <img class="txt_img" src="/static/ng/img/chat.png"> are now locked alone in a room of their huge spaceship. In the neighboring rooms, there are<span class="important"> three other individuals</span> <img src="/static/ng/img/user_groop.png" class="txt_img" style="vertical-align:middle;"> also kidnapped by your abductors from different parts of the galaxy.',
     'c2_1':'To do so, you may only talk <span class="important">by pairs</span> thanks to a <span class="important">radio</span>, <span class="important">without knowing wich one of your fellow prisoners is on the other side</span>.',
     'c2_2':'One of you will say a word  <img src="/static/ng/img/mic-512.png" class="txt_img" > and the other will have to guess which object they are referring to. <img class="txt_img" src="/static/ng/img/bitmap-1.png">',

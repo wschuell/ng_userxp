@@ -19,11 +19,11 @@ touch ng/admin_bis.py
 
 (cd ng && python gen_json_str.py) || exit 1
 
-bash update_ngal.sh
+bash update_ngal.sh installonly || exit 1
 
 #echo $(python manage.py admin_generator ng '^exp')
 #python manage.py admin_generator ng >> ng/admin_bis.py &&
-python manage.py makemigrations &&
+(python manage.py makemigrations &&
 python manage.py makemigrations auth &&
 python manage.py makemigrations ng &&
 python manage.py migrate auth &&
@@ -31,7 +31,7 @@ python manage.py migrate &&
 python manage.py migrate ng &&
 python manage.py collectstatic --noinput &&
 
-echo "import check_users; exit();" | python manage.py shell &&
+echo "import check_users; exit();" | python manage.py shell ) || exit 1
 
 echo 1 > init_done.status
 
