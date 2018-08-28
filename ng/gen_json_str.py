@@ -37,7 +37,7 @@ dict_obj = {
     'story_pagetitle': 'HISTOIRE',
     'results': "RESULTATS",
     'c1_1': ' Vous avez été enlevé(e) par des Extraterrestres !',
-    'c1_2': 'Vous <img class="txt_img" src="/static/ng/img/chat.png"> voilà seul(e) dans une geôle de leur vaisseau. Dans les pièces d\'à côté se trouvent<span class="important"> trois autres individus</span> <img src="/static/ng/img/user_groop.png" class="txt_img" style="vertical-align:middle;"> que vos ravisseurs ont également enlevés aux quatre coins de la galaxie.',
+    'c1_2': 'Vous <img class="txt_img" src="/static/ng/img/chat.png"> voilà seul(e) dans une geôle de leur vaisseau. Dans les pièces d\'à côté se trouvent<span class="important"> trois autres individus</span> <img src="/static/ng/img/user_groop.png" class="txt_img" style="vertical-align:middle;"> que vos ravisseurs ont également enlevés à d\'autres endroits de la galaxie.',
     'c2_1':"Pour ce faire, vous ne pourrez parler que <span class='important'>deux par deux</span> grâce à une <span class='important'>radio</span>, <span class='important'>sans savoir lequel de vos camarades d'infortune est à l'autre bout</span>.",
     'c2_2':'L\'un de vous proposera un mot <img src="/static/ng/img/mic-512.png" class="txt_img" > et l\'autre devra deviner l\'objet auquel il fait référence. <img class="txt_img" src="/static/ng/img/bitmap-1.png">',
     'c2_3':'Parfois vous proposerez un mot, parfois vous devinerez l\'objet et parfois encore vous écouterez patiemment votre radio <img src="/static/ng/img/time.png" class="txt_img" > dans l\'attente d\'un signal, pendant que d\'autres joueurs communiquent.',
@@ -121,11 +121,11 @@ dict_obj = {
 
     'infos_txt':'''
     <p class="text_content_four" style="text-align:left;font-size:18px;">
-    <p class="text_content_four" style="text-align:left;font-size:18px;">Ce jeu a été réalisé par William Schueller et Sandy Manolios, dans le cadre de recherches autour de l'évolution du langage.</p>
+    <p class="text_content_four" style="text-align:left;font-size:18px;">Ce jeu a été réalisé par William Schueller et Sandy Manolios, dans le cadre de recherches sur l'évolution du langage.</p>
     <p class="text_content_four" style="text-align:left;font-size:18px;">Les graphismes et le design ont été réalisés par Atlal Boudir.</p>
     <p class="text_content_four" style="text-align:left;font-size:18px;">Si vous voulez en savoir plus, vous pouvez trouver dans les liens ci-dessous différentes ressources:
 <ul style="text-align:left;margin-bottom:4em;">
-<li> <a href="http://github.com/wschuell/ng_userxp">Le code opensource</a> servant à générer le site </li>
+<li> <a href="http://github.com/wschuell/ng_userxp">Le code opensource</a> ayant servi à générer le site </li>
 <li> Une liste de liens vers <a href="http://github.com/wschuell/notebooks_cogsci2018">articles et posters</a> sur le travail théorique associé au jeu </li>
 <li> Un lien pour <a href="http://naming-game.space">continuer à jouer</a> en dehors du cadre de l'expérience sur la plateforme Prolific</li>
 </ul>
