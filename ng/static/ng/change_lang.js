@@ -153,7 +153,7 @@ function set_language(){
         var html_lang = Cookies.get('NamingGameLang');
         $('html').attr('lang',html_lang);
     };
-    change_language(html_lang);
+    //change_language(html_lang);
     //$('#flag_'+html_lang).trigger("click");
 };
 
@@ -193,5 +193,5 @@ $(document).ready(function(){
 
 
 
-    // set_language();
+    set_language();
 });

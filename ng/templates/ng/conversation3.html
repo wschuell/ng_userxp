@@ -231,50 +231,50 @@
            if (context == "question"){
 
            $('#word').tooltip({
-         	   title : {% trans "You heard this word" %} ,//current_lang.hearer_w ,
+         	   title : "{% trans "You heard this word" %}" ,//current_lang.hearer_w ,
          	   placement : "left",
          	   trigger: "hover focus",
            });
 
            $('#menu-h').tooltip({
-           	title : {% trans "Click to see past interactions" %} ,//current_lang.menu_h ,
+           	title : "{% trans "Click to see past interactions" %}" ,//current_lang.menu_h ,
            	placement : "bottom",
            	trigger: "hover focus",
            });
 
            $('#img_dont_know').tooltip({
-           	title : {% trans "I don't know" %} ,//current_lang.dont_know ,
+           	title : "{% trans "I don't know" %}" ,//current_lang.dont_know ,
            	placement : "right",
            	trigger: "hover focus",
            });
 
          } else {
            $('#word_inter').tooltip({
-            title : {% trans "The word used in this conversation" %} ,//current_lang.word_inter ,
+            title : "{% trans "The word used in this conversation" %}" ,//current_lang.word_inter ,
             placement : "bottom",
             trigger: "hover focus",
            });
 
            $('.last_mh').tooltip({
-            title : {% trans "What you were thinking" %} ,//current_lang.last_m_you ,
+            title : "{% trans "What you were thinking" %}" ,//current_lang.last_m_you ,
             placement : "left",
             trigger: "hover focus",
            });
 
            $('.last_ms').tooltip({
-            title : {% trans "What your partner was referring to" %} ,//current_lang.last_m_other ,
+            title : "{% trans "What your partner was referring to" %}" ,//current_lang.last_m_other ,
             placement : "right",
             trigger: "hover focus",
            });
 
            $('.role_s').tooltip({
-            title : {% trans "Your partner spoke" %} ,//current_lang.other_role_s ,
+            title : "{% trans "Your partner spoke" %}" ,//current_lang.other_role_s ,
             placement : "left",
             trigger: "hover focus",
            });
 
            $('.role_h').tooltip({
-            title : {% trans "You listened" %} ,//current_lang.your_role_h ,
+            title : "{% trans "You listened" %}" ,//current_lang.your_role_h ,
             placement : "right",
             trigger: "hover focus",
            });
