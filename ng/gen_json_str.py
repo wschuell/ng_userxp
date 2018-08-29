@@ -101,7 +101,7 @@ dict_obj = {
     'tooltip_example':"Si vous n'avez pas de code, laissez ce champ vide.",
     'results_1' : "Objets",
     'results_2' : "Mots les plus utilisés",
-    'hearer_w' : "Vous entendez ce mot :",
+    'hearer_w' : "Vous entendez ce mot",
     'menu_h': "Afficher l'historique",
     'word_inter': "Le mot utilisé dans cette conversation",
     'last_m_you' : "Ce à quoi vous pensiez",
