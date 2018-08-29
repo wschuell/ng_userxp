@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404, render
 from django.http import Http404
 
 # Create your views here.
-from django.template import loader
+from django.template import loader,RequestContext
 
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
@@ -747,10 +747,15 @@ def info(request):
 @csrf_protect
 def error(request):
     experiment = None
-    return render(request, 'ng/error_page.html',{
-            'use_matomo': settings.MATOMO_USAGE,
-            "ongoing_experiment": experiment,
-            })
+    ctxt_dict = {
+             'use_matomo': settings.MATOMO_USAGE,
+             "ongoing_experiment": experiment,
+             }
+    # return HttpResponseNotFound(render_to_string(request, 'ng/error_page.html',ctxt_dict))
+    response = render(request,'ng/error_page.html', ctxt_dict,)
+    response.status_code = 404
+    return response
+
 
 # ### # DEBUG:
 # @csrf_protect

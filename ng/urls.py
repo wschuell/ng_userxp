@@ -63,6 +63,3 @@ urlpatterns = [
     # url(r'^test_infos', views.test_info, name='test_info'),
     # url(r'^error', views.error, name="error"),
 ]
-
-handler404 = "ng.views.error"
-handler500 = "ng.views.error"

@@ -207,6 +207,11 @@ class Experiment(models.Model):
     #         xp_obj = self.get_xp()
     #         self.size = xp_obj._poplist.get_last().get_size()
 
+    def delete(self):
+        xp = self.get_xp()
+        xp.clean_all()
+        models.Model.delete(self)
+
     def get_xp(self):
         if not hasattr(self,'xp'):
             db = ngal.ngdb.NamingGamesDB(db_type='psycopg2',conn_info="host='db' dbname='naminggames' user='naminggames' password='naminggames'")
@@ -238,6 +243,9 @@ class Experiment(models.Model):
             xp_cfg_temp["pop_cfg"]["env_cfg"]["m_list"] = Meaning.get_mlist(M=M,avoid_if_possible=[0,1])
             xp_cfg_temp["pop_cfg"]["env_cfg"]["W"] = 6
             max_inter = 50
+        if UserNG.objects.get(user=user).code == 'locust_test':
+            xp_cfg_temp["pop_cfg"]["env_cfg"]["w_list"] = ['locust_'+str(i) for i in range(xp_cfg_temp["pop_cfg"]["env_cfg"]["W"])]
+
         xp_cfg_json = json.dumps(xp_cfg_temp)
         xpcfg_list = XpConfig.objects.filter(xp_config=xp_cfg_json)
         if xpcfg_list:
@@ -462,11 +470,3 @@ class Score(models.Model):
     score = models.IntegerField()
     user = models.ForeignKey(User, on_delete=models.PROTECT)
 
-# A compléter
-class Results(models.Model):
-    pass
-
-
-class CookieId(models.Model):
-    value = models.CharField(max_length=50)
-    users = models.ManyToManyField(User,related_name='users')
