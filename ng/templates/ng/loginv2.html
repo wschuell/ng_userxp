@@ -169,15 +169,16 @@
               <div class="row" id="middle">
                 <div class="col-sm">
                   <label class = "lang">
-                      <input type="radio"  name="lang" class="info_lang"  id="fr" value="fr"  />
+                      <input type="radio"  name="lang" class="info_lang"  id="fr" value="fr" {% if request.LANGUAGE_CODE|slice:":2" == "fr" %} checked {% endif %} />
                     <!--adresse img :https://cdn.pixabay.com/photo/2015/11/20/18/55/french-flag-1053711_960_720.png-->
                     <img src="{% static 'ng/img/french-flag.png' %}"  class="lang" value="fr" for="fr" alt="french" >
                   </label>
                 </div>
-
                 <div class="col-sm">
                   <label class="lang">
-                      <input type="radio" class="lang" name="lang" class="info_lang" id="en" value="en" />
+                      <input type="radio" class="lang" name="lang" class="info_lang" id="en" value="en" {% if request.LANGUAGE_CODE|slice:":2" != "fr" %} checked {% endif %}/>
+                    
+                    
                     <!--adresse img :https://cdn.pixabay.com/photo/2012/04/23/16/15/flags-38754_960_720.png-->
                     <img src="{% static 'ng/img/english-flag.png' %}" class="lang" value="en" for="en" alt="english" >
                   </label>
