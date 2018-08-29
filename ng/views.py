@@ -773,38 +773,39 @@ def error(request):
 #             'user':request.user,
 #             'userNG': UserNG.get(user=request.user),
 #             })
-#
-# @csrf_protect
-# @login_required(login_url='/login/')
-# def test_info(request):
-#
-#         # if this is a POST request we need to process the form data
-#         if request.method == 'POST':
-#             # create a form instance and populate it with data from the request:
-#             form = QuestionForm(request.POST)
-#             # check whether it's valid:
-#             if form.is_valid():
-#                 # process the data in form.cleaned_data as required
-#                 # ...
-#                 # redirect to a new URL:
-#                 u.q_filled = True
-#                 u.q1 = form.cleaned_data['q1']
-#                 u.q2 = form.cleaned_data['q2']
-#                 u.q3 = form.cleaned_data['q3']
-#                 u.q4 = form.cleaned_data['q4']
-#                 u.q5 = form.cleaned_data['q5']
-#                 u.q6 = form.cleaned_data['q6']
-#                 u.save()
-#                 return HttpResponseRedirect('/')
-#
-#         # if a GET (or any other method) we'll create a blank form
-#         else:
-#             form = QuestionForm()
-#
-#         return render(request, 'ng/infosv2.html', {
-#             'user':request.user,
-#             'userNG': u,
-#             'form' : form,
-#             'use_matomo': settings.MATOMO_USAGE,
-#             'q_filled' : u.q_filled,
-#     })
+
+@csrf_protect
+@login_required(login_url='/login/')
+def test_info(request):
+    u = UserNG.objects.get(user=request.user)
+        # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = QuestionForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            u.q_filled = True
+            u.q0 = form.cleaned_data['q0']
+            u.q1 = form.cleaned_data['q1']
+            u.q2 = form.cleaned_data['q2']
+            u.q3 = form.cleaned_data['q3']
+            u.q4 = form.cleaned_data['q4']
+            u.q5 = form.cleaned_data['q5']
+            u.q6 = form.cleaned_data['q6']
+            u.save()
+            return HttpResponseRedirect('/')
+
+        # if a GET (or any other method) we'll create a blank form
+    else:
+        form = QuestionForm()
+
+    return render(request, 'ng/infosv2.html', {
+            'user':request.user,
+            'userNG': u,
+            'form' : form,
+            'use_matomo': settings.MATOMO_USAGE,
+            'q_filled' : u.q_filled,
+    })

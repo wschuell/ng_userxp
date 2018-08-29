@@ -71,6 +71,16 @@
             {{form.non_field_errors}}
 
             <div class="fieldWrapper row" >
+              {{ form.q0.errors }}
+              <div class="row">
+              <label id="label_q0" class="text_login" style="float:left; display:block">{% trans "How did you feel while playing this game ?" %}</label>
+              </div>
+              <div class="w-100"></div>
+              <div class="row">
+              <div style="font-size:16px; display:block; float:right;">{{ form.q0 }}</div>
+              </div>
+            </div>
+            <div class="fieldWrapper row" >
               {{ form.q1.errors }}
               <div class="row">
               <label id="label_q1" class="text_login" style="float:left; display:block">{% trans "Did you understand what was happening in the game ?" %}</label>

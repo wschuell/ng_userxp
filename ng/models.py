@@ -75,6 +75,7 @@ class UserNG(models.Model):
     q_filled = models.BooleanField(default=False)
 
     #Questions
+    q0 =  models.IntegerField(default=-2)
     q1 =  models.BooleanField(default=False)
     q2 =  models.BooleanField(default=False)
     q3 =  models.BooleanField(default=False)
