@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-29 02:24+0200\n"
+"POT-Creation-Date: 2018-08-29 08:51+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -328,9 +328,11 @@ msgstr ""
 "de communication similaires ?"
 
 #: templates/ng/infosv2.html:119
-msgid "Did you use a certain strategy (or several) during your games ?"
+#, fuzzy
+#| msgid "Did you use a certain strategy (or several) during your games ?"
+msgid "Did you use a particular strategy (or several) during your games ?"
 msgstr ""
-"Avez-vous eu l'impression d'utiliser une certaine stratégie (ou plusieurs) "
+"Avez-vous eu l'impression d'utiliser une stratégie particulière (ou plusieurs) "
 "lors de vos parties ?"
 
 #: templates/ng/infosv2.html:130

@@ -93,7 +93,7 @@ dict_obj = {
     'label_q1':"Avez-vous compris ce qui se passait au cours du jeu ? ",
     'label_q2':"Pensiez-vous n'interagir qu'avec un seul interlocuteur ? ",
     'label_q3':"Aviez-vous déjà entendu parler des jeux de language ou d'autres expériences de communication similaires ? ",
-    'label_q4':"Avez-vous eu l'impression d'utiliser une certaine stratégie (ou plusieurs) lors de vos parties ?",
+    'label_q4':"Avez-vous eu l'impression d'utiliser une stratégie particulière (ou plusieurs) lors de vos parties ?",
     'label_q5':"Si oui, pourriez-vous la ou les décrire brièvement ?",
     'label_q6':"Vous pouvez laisser ici toute remarque ou message qui vous semblerait pertinent, ou dont vous voudriez simplement nous faire part :",
 
@@ -260,7 +260,7 @@ dict_obj = {
     'label_q1':"Did you understand what was happening in the game ?",
     'label_q2':"Did you think that you were interacting with only one individual ?",
     'label_q3':"Were you already familiar with communication games or similar experiments ? ",
-    'label_q4':"Did you use a certain strategy (or several) during your games ?",
+    'label_q4':"Did you use a particular strategy (or several) during your games ?",
     'label_q5':"If it is a 'Yes', could you describe it briefly ?",
     'label_q6':"You can leave here any remark or message that could be relevant or that you would just like to share with us :",
 
