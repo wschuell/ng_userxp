@@ -105,6 +105,17 @@
            <!--action="/action_page.php"-->
           <form id="form" method="post">
             <div class="form-group">
+              <div class="row">
+                <!--Code si pertinent-->
+                  <div class="fieldWrapper" style="margin : auto;">
+                      <label class="text_login" id="consent_form", style="text-align:left;"></label>
+                  </div>
+              </div>
+
+
+              <div class="row" id="footer">
+                  <input type="submit" class="btn btn-default bt-lg" id="submit" value="Valider"/>
+              </div>
 
                   <div class="row">
                 <div class="col-md-4"> </div>
@@ -112,8 +123,8 @@
                   <!--Choix Nom-->
 
 
-                <!--	<input type="username" class="form-control" id="username" value="Submit" required>-->
-        <!-- 				{% csrf_token %} -->
+                <!--  <input type="username" class="form-control" id="username" value="Submit" required>-->
+        <!--        {% csrf_token %} -->
 
               {% csrf_token %}
               {{form.non_field_errors}}
@@ -172,17 +183,6 @@
                       <label class="text_login" id="label_code">Si vous avez un code spécial, veuillez l'entrer ici :</label>
                       {{form.code}}
                   </div>
-              </div>
-              <div class="row">
-                <!--Code si pertinent-->
-                  <div class="fieldWrapper" style="margin : auto;">
-                      <label class="text_login" id="consent_form", style="text-align:left;"></label>
-                  </div>
-              </div>
-
-
-              <div class="row" id="footer">
-                  <input type="submit" class="btn btn-default bt-lg" id="submit" value="Valider"/>
               </div>
             </div>
           </form>
