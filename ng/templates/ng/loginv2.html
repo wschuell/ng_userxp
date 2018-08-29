@@ -64,7 +64,7 @@
            $("#id_name_cookie_id").val($("#username").html());
 
            $('#id_code').tooltip({
-             title : current_lang.tooltip_example,//"Si vous n'avez pas de code, laissez ce champ vide.",
+             title : "{% trans "If you were not provided a token, leave empty." %}",//"Si vous n'avez pas de code, laissez ce champ vide.",
              placement : "left",
              trigger : "hover focus",
            });

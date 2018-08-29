@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-29 11:26+0200\n"
+"POT-Creation-Date: 2018-08-29 11:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,7 +52,7 @@ msgstr "conversations ont eu lieu en votre absence."
 
 #: templates/ng/conversation1.html:64 templates/ng/conversation2.html:177
 #: templates/ng/conversation2.html:184 templates/ng/conversation3.html:155
-#: templates/ng/conversation3.html:162 templates/ng/histoire.html:54
+#: templates/ng/conversation3.html:162 templates/ng/histoire.html:53
 #: templates/ng/infosv2.html:61
 msgid "CONTINUE"
 msgstr "CONTINUER"
@@ -87,6 +87,34 @@ msgstr "Choisissez l’objet dont vous allez parler."
 #: templates/ng/conversation2.html:129
 msgid "Pick the word you will use to refer to this object."
 msgstr "Choisissez le mot que vous allez utiliser pour parler de cet objet."
+
+#: templates/ng/conversation2.html:254 templates/ng/conversation3.html:234
+msgid "You heard this word"
+msgstr "Vous entendez ce mot"
+
+#: templates/ng/conversation2.html:260 templates/ng/conversation3.html:240
+msgid "Click to see past interactions"
+msgstr "Afficher l'historique"
+
+#: templates/ng/conversation2.html:266 templates/ng/conversation3.html:253
+msgid "The word used in this conversation"
+msgstr "Le mot utilisé dans cette conversation"
+
+#: templates/ng/conversation2.html:272 templates/ng/conversation3.html:259
+msgid "What you were thinking"
+msgstr "Ce à quoi vous pensiez"
+
+#: templates/ng/conversation2.html:278 templates/ng/conversation3.html:265
+msgid "What your partner was referring to"
+msgstr "Ce à quoi votre coéquipier pensait"
+
+#: templates/ng/conversation2.html:284
+msgid "You spoke"
+msgstr "Vous parliez"
+
+#: templates/ng/conversation2.html:290
+msgid "Your partner listened"
+msgstr "Votre interlocuteur vous écoutait"
 
 #: templates/ng/conversation3.html:76
 msgid ""
@@ -126,6 +154,18 @@ msgstr "On essaye de communiquer avec vous."
 msgid "What are they talking about ?"
 msgstr "De quoi vous parle-t-on ?"
 
+#: templates/ng/conversation3.html:246
+msgid "I don't know"
+msgstr "Je ne sais pas"
+
+#: templates/ng/conversation3.html:271
+msgid "Your partner spoke"
+msgstr "Votre interlocuteur parlait"
+
+#: templates/ng/conversation3.html:277
+msgid "You listened"
+msgstr "Vous écoutiez"
+
 #: templates/ng/error_page.html:45
 msgid "Oops !"
 msgstr "Oups !"
@@ -134,7 +174,7 @@ msgstr "Oups !"
 msgid "It seems that an error occured."
 msgstr "Il semblerait qu'une erreur se soit produite."
 
-#: templates/ng/error_page.html:50
+#: templates/ng/error_page.html:50 templates/ng/tooltips.js:6
 msgid "Home"
 msgstr "Page d'accueil"
 
@@ -150,11 +190,11 @@ msgstr "HISTOIRE"
 msgid "You have been kidnapped by aliens !"
 msgstr "Vous avez été enlevé(e) par des extraterrestres !"
 
-#: templates/ng/histoire.html:39
+#: templates/ng/histoire.html:40
 msgid "You"
 msgstr "Vous"
 
-#: templates/ng/histoire.html:41
+#: templates/ng/histoire.html:40
 msgid ""
 "are now locked alone in a room of their huge spaceship. In the neighboring "
 "rooms, there are three other individuals"
@@ -162,12 +202,12 @@ msgstr ""
 "voilà seul(e) dans une geôle de leur vaisseau. Dans les pièces d'à côté se "
 "trouvent trois autres individus"
 
-#: templates/ng/histoire.html:41
+#: templates/ng/histoire.html:40
 msgid "also kidnapped by your abductors from different parts of the galaxy."
 msgstr ""
 " que vos ravisseurs ont également enlevés à d'autres endroits de la galaxie."
 
-#: templates/ng/histoire.html:42
+#: templates/ng/histoire.html:41
 msgid ""
 "None of you is from the same planet or speaks the same language but you all "
 "want the same thing : escape and go back home."
@@ -175,7 +215,7 @@ msgstr ""
 "Aucun de vous ne parle la même langue mais vous voulez tous vous échapper "
 "pour pouvoir rentrer chez vous."
 
-#: templates/ng/histoire.html:46
+#: templates/ng/histoire.html:45
 msgid ""
 "To do so, you may only talk by pairs thanks to a radio, without knowing wich "
 "one of your fellow prisoners is on the other side"
@@ -183,15 +223,15 @@ msgstr ""
 "Pour ce faire, vous ne pourrez parler que deux par deux grâce à une radio, "
 "sans savoir lequel de vos camarades d'infortune est à l'autre bout."
 
-#: templates/ng/histoire.html:48
+#: templates/ng/histoire.html:47
 msgid "One of you will say a word"
 msgstr "L'un de vous proposera un mot"
 
-#: templates/ng/histoire.html:48
+#: templates/ng/histoire.html:47
 msgid "and the other will have to guess which object they are referring to"
 msgstr "et l'autre devra deviner l'objet auquel il fait référence"
 
-#: templates/ng/histoire.html:49
+#: templates/ng/histoire.html:48
 msgid ""
 "Sometimes you will talk, sometimes you will listen and guess and sometimes "
 "you will keep listening to your radio"
@@ -199,18 +239,18 @@ msgstr ""
 "Parfois vous proposerez un mot, parfois vous écouterez et devrez deviner "
 "l'objet et parfois encore vous écouterez patiemment votre radio"
 
-#: templates/ng/histoire.html:49
+#: templates/ng/histoire.html:48
 msgid "waiting for a signal, while others are conversing."
 msgstr "dans l'attente d'un signal, pendant que d'autres joueurs communiquent."
 
-#: templates/ng/histoire.html:50
+#: templates/ng/histoire.html:49
 msgid ""
 "Be careful, you only have a limited number of conversations to succeed !"
 msgstr ""
 "Mais attention, vous n'avez à vous tous qu'un nombre limité de conversations "
 "pour réussir !"
 
-#: templates/ng/histoire.html:51
+#: templates/ng/histoire.html:50
 msgid ""
 "At any moment, you can have a look at what you learned from the other "
 "players by clicking on the clock"
@@ -245,6 +285,18 @@ msgstr "GAGNEZ "
 #: templates/ng/index.html:76
 msgid "GAMES TO UNLOCK"
 msgstr "FOIS POUR DÉBLOQUER"
+
+#: templates/ng/index.html:127
+msgid "Best Scores"
+msgstr "Meilleurs Scores"
+
+#: templates/ng/index.html:139
+msgid "Change language"
+msgstr "Changer langue"
+
+#: templates/ng/index.html:145
+msgid "Logout"
+msgstr "Déconnexion"
 
 #: templates/ng/infosv2.html:37
 msgid "THANK YOU FOR PARTICIPATING"
@@ -348,6 +400,10 @@ msgid ""
 msgstr ""
 "Vous pouvez laisser ici toute remarque ou message qui vous semblerait "
 "pertinent, ou dont vous voudriez simplement nous faire part :"
+
+#: templates/ng/loginv2.html:67
+msgid "If you were not provided a token, leave empty."
+msgstr "Si vous n'avez pas de code, laissez ce champ vide."
 
 #: templates/ng/loginv2.html:104
 msgid "The Naming Game"
@@ -502,3 +558,11 @@ msgstr "Félicitations, vous avez gagné la partie !"
 #: templates/ng/resultats.html:74
 msgid "You'll do better next time !"
 msgstr "Dommage, vous ferez mieux la prochaine fois !"
+
+#: templates/ng/tooltips.js:12
+msgid "You are 3"
+msgstr "Vous êtes 3"
+
+#: templates/ng/tooltips.js:18
+msgid "You are 5"
+msgstr "Vous êtes 5"

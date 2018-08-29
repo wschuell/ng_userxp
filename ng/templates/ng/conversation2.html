@@ -251,43 +251,43 @@
 
        if (context == "question"){
        $('#word').tooltip({
-         title : current_lang.hearer_w ,
+         title : "{% trans "You heard this word" %}" ,
          placement : "top",
          trigger: "hover focus",
        });
 
        $('#menu-h').tooltip({
-        title : current_lang.menu_h ,
+        title : "{% trans "Click to see past interactions" %}" ,//current_lang.menu_h ,
         placement : "bottom",
         trigger: "hover focus",
        });
      } else {
        $('#word_inter').tooltip({
-        title : current_lang.word_inter ,
+        title : "{% trans "The word used in this conversation" %}" ,//current_lang.word_inter ,
         placement : "bottom",
         trigger: "hover focus",
        });
 
        $('.last_ms').tooltip({
-        title : current_lang.last_m_you ,
+        title : "{% trans "What you were thinking" %}" ,//current_lang.last_m_you ,
         placement : "right",
         trigger: "hover focus",
        });
 
        $('.last_mh').tooltip({
-        title : current_lang.last_m_other ,
+        title : "{% trans "What your partner was referring to" %}" ,//current_lang.last_m_other ,
         placement : "left",
         trigger: "hover focus",
        });
 
        $('.role_s').tooltip({
-        title : current_lang.your_role_s ,
+        title : "{% trans "You spoke" %}" ,//current_lang.your_role_s ,
         placement : "left",
         trigger: "hover focus",
        });
 
        $('.role_h').tooltip({
-        title : current_lang.other_role_h ,
+        title : "{% trans "Your partner listened" %}" ,//current_lang.other_role_h ,
         placement : "right",
         trigger: "hover focus",
        });
