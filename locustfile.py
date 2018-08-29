@@ -23,6 +23,7 @@ class UserBehavior(TaskSet):
     def on_start(self):
         """ on_start is called when a Locust start before any task is scheduled """
         self.login()
+        self.tuto_played = False
 
     def login(self):
         response = self.client.get('/logout/')
@@ -43,26 +44,34 @@ class UserBehavior(TaskSet):
 
     @task(1)
     def xp_basic(self):
+        self.tuto_played = True
         return self.xp(xp_type="basic")
 
     @task(1)
     def xp_normal(self):
-        return self.xp(xp_type="normal")
-        
+        if self.tuto_played:
+            return self.xp(xp_type="normal")
+
     def xp(self,xp_type):
         response = self.client.get("/new_experiment/"+xp_type)
-        url_continue = get_js_strvar(response=response,var="url_continue")
-        url_hr = get_js_strvar(response=response,var="url_results_hearer_base")+'0/'
-        url_sp = get_js_strvar(response=response,var="url_results_speaker_base")+'0-locust0/'
+        m = None
+        try:
+            url_continue = get_js_strvar(response=response,var="url_continue")
+        except:
+            raise ValueError(response.content)
+        url_hr = get_js_strvar(response=response,var="url_results_hearer_base")
+        url_sp = get_js_strvar(response=response,var="url_results_speaker_base")
         page = get_page_type(response)
         while page != "final_results":
+            if m is None and page != 'skipped':
+                m = str(response.content).split("meaning_name=\"")[1].split('"')[0]
             time.sleep(0.1)
             if page == 'speaker':
-                self.client.get(url_sp)
+                self.client.get(url_sp+m+'-locust0/results/')
                 time.sleep(0.1)
                 response = self.client.get(url_continue)
             elif page == 'hearer':
-                self.client.get(url_hr)
+                self.client.get(url_hr+m+'/results/')
                 time.sleep(0.1)
                 response = self.client.get(url_continue)
             elif page == 'skipped':
