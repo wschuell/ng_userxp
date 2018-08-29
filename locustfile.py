@@ -1,5 +1,23 @@
-from locust import HttpLocust, TaskSet, task
 import random
+import time
+from locust import HttpLocust, TaskSet, task
+
+def get_js_strvar(response,var):
+    return str(response.content).split("var " + var + " = \"")[1].split('"')[0]
+
+def get_page_type(response):
+    http_str = str(response.content)
+    try:
+        role = http_str.split("<span id=\"role\">")[1].split('</span>')[0]
+        if role == "":
+            return "skipped"
+        else:
+            return role
+    except:
+        nb_played = http_str.split("<span id=\"nbr_played\">")[1].split('</span>')[0]
+        print(http_str.split("<span id=\"texte_score\">")[1].split('</h2>')[0])
+        return"final_results"
+
 
 class UserBehavior(TaskSet):
     def on_start(self):
@@ -24,8 +42,32 @@ class UserBehavior(TaskSet):
         self.client.get("/story")
 
     @task(1)
-    def index(self):
-        self.client.get("/new_experiment/basic")
+    def xp_basic(self):
+        return self.xp(xp_type="basic")
+
+    @task(1)
+    def xp_normal(self):
+        return self.xp(xp_type="normal")
+        
+    def xp(self,xp_type):
+        response = self.client.get("/new_experiment/"+xp_type)
+        url_continue = get_js_strvar(response=response,var="url_continue")
+        url_hr = get_js_strvar(response=response,var="url_results_hearer_base")+'0/'
+        url_sp = get_js_strvar(response=response,var="url_results_speaker_base")+'0-locust0/'
+        page = get_page_type(response)
+        while page != "final_results":
+            time.sleep(0.1)
+            if page == 'speaker':
+                self.client.get(url_sp)
+                time.sleep(0.1)
+                response = self.client.get(url_continue)
+            elif page == 'hearer':
+                self.client.get(url_hr)
+                time.sleep(0.1)
+                response = self.client.get(url_continue)
+            elif page == 'skipped':
+                response = self.client.get(url_continue)
+            page = get_page_type(response)
 
 class WebsiteUser(HttpLocust):
     task_set = UserBehavior

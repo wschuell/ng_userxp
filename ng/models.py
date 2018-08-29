@@ -244,7 +244,7 @@ class Experiment(models.Model):
             xp_cfg_temp["pop_cfg"]["env_cfg"]["W"] = 6
             max_inter = 50
         if UserNG.objects.get(user=user).code == 'locust_test':
-            xp_cfg_temp["pop_cfg"]["env_cfg"]["w_list"] = ['locust_'+str(i) for i in range(xp_cfg_temp["pop_cfg"]["env_cfg"]["W"])]
+            xp_cfg_temp["pop_cfg"]["env_cfg"]["w_list"] = ['locust'+str(i) for i in range(xp_cfg_temp["pop_cfg"]["env_cfg"]["W"])]
 
         xp_cfg_json = json.dumps(xp_cfg_temp)
         xpcfg_list = XpConfig.objects.filter(xp_config=xp_cfg_json)
