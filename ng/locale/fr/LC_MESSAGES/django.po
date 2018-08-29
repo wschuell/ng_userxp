@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-29 08:51+0200\n"
+"POT-Creation-Date: 2018-08-29 11:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -146,13 +146,11 @@ msgstr "Reprendre la partie"
 msgid "STORY"
 msgstr "HISTOIRE"
 
-#: templates/ng/histoire.html:39
-#, fuzzy
-#| msgid "You have been kidnapped by aliens !"
-msgid " You have been kidnapped by aliens !"
-msgstr "Vous avez été enlevé(e) par des Extraterrestres !"
+#: templates/ng/histoire.html:38
+msgid "You have been kidnapped by aliens !"
+msgstr "Vous avez été enlevé(e) par des extraterrestres !"
 
-#: templates/ng/histoire.html:41
+#: templates/ng/histoire.html:39
 msgid "You"
 msgstr "Vous"
 
@@ -190,8 +188,8 @@ msgid "One of you will say a word"
 msgstr "L'un de vous proposera un mot"
 
 #: templates/ng/histoire.html:48
-msgid "and the other will have to guess which object they are referring to."
-msgstr "et l'autre devra deviner l'objet auquel il fait référence."
+msgid "and the other will have to guess which object they are referring to"
+msgstr "et l'autre devra deviner l'objet auquel il fait référence"
 
 #: templates/ng/histoire.html:49
 msgid ""
@@ -304,42 +302,46 @@ msgstr "continuer à jouer"
 msgid "outside of the Prolific experiment."
 msgstr "en dehors du cadre de l'expérience sur la plateforme Prolific"
 
-#: templates/ng/infosv2.html:65
+#: templates/ng/infosv2.html:64
+msgid "Before finishing the experiment, could you fill in this quick survey ?"
+msgstr ""
+"Afin de nous aider, pourriez-vous remplir ce bref questionnaire avant de "
+"finir l'expérience?"
+
+#: templates/ng/infosv2.html:67
 msgid "Quick survey :"
 msgstr "Questionnaire :"
 
-#: templates/ng/infosv2.html:76
+#: templates/ng/infosv2.html:78
 msgid "How did you feel while playing this game ?"
 msgstr "Quel a été votre ressenti du jeu?"
 
-#: templates/ng/infosv2.html:86
+#: templates/ng/infosv2.html:89
 msgid "Did you understand what was happening in the game ?"
 msgstr "Avez-vous compris ce qui se passait au cours du jeu ?"
 
-#: templates/ng/infosv2.html:97
+#: templates/ng/infosv2.html:100
 msgid "Did you think that you were interacting with only one individual ?"
 msgstr "Pensiez-vous n'interagir qu'avec un seul interlocuteur ?"
 
-#: templates/ng/infosv2.html:108
+#: templates/ng/infosv2.html:111
 msgid ""
 "Were you already familiar with communication games or similar experiments ? "
 msgstr ""
 "Aviez-vous déjà entendu parler des jeux de language ou d'autres expériences "
 "de communication similaires ?"
 
-#: templates/ng/infosv2.html:119
-#, fuzzy
-#| msgid "Did you use a certain strategy (or several) during your games ?"
+#: templates/ng/infosv2.html:122
 msgid "Did you use a particular strategy (or several) during your games ?"
 msgstr ""
-"Avez-vous eu l'impression d'utiliser une stratégie particulière (ou plusieurs) "
-"lors de vos parties ?"
+"Avez-vous eu l'impression d'utiliser une stratégie particulière (ou "
+"plusieurs) lors de vos parties ?"
 
-#: templates/ng/infosv2.html:130
+#: templates/ng/infosv2.html:133
 msgid "If it is a 'Yes', could you describe it briefly ?"
 msgstr "Si oui, pourriez-vous la ou les décrire brièvement ?"
 
-#: templates/ng/infosv2.html:141
+#: templates/ng/infosv2.html:144
 msgid ""
 "You can leave here any remark or message that could be relevant or that you "
 "would just like to share with us :"
@@ -387,8 +389,6 @@ msgid "to read more detailed information about the study."
 msgstr "pour lire les informations détaillées concernant l'expérience."
 
 #: templates/ng/loginv2.html:186
-#, fuzzy
-#| msgid "to read more detailed information about the study."
 msgid "You have read and understood the detailed information about the study."
 msgstr ""
 "Vous avez lu et compris les informations détaillées de cette expérience."
@@ -495,10 +495,10 @@ msgid "You and your fellow prisoners reached an understanding level of : "
 msgstr ""
 "Vous et vos voisins de cellule avez atteint un niveau de compréhension de : "
 
-#: templates/ng/resultats.html:71
+#: templates/ng/resultats.html:72
 msgid "Congratulations, you won the game !"
 msgstr "Félicitations, vous avez gagné la partie !"
 
-#: templates/ng/resultats.html:73
+#: templates/ng/resultats.html:74
 msgid "You'll do better next time !"
 msgstr "Dommage, vous ferez mieux la prochaine fois !"

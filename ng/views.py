@@ -88,8 +88,9 @@ def create_and_login(request,username=None,name='',cookie_id=None, lang='en', co
     if not User.objects.filter(username=username).exists():
         create_user(request,username,name=name,cookie_id=cookie_id)
         login_user(request,username)
-        u = UserNG.get(user=request.user,lang=lang)
+        u = UserNG.get(user=request.user)
         u.code = code
+        u.lang = lang
         u.save()
     else :
         login_user(request,username)

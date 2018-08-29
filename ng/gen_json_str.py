@@ -29,9 +29,9 @@ dict_obj = {
     'button_basic': 'TUTORIEL',
     'button_multi': 'BONUS',
     'button_normal': 'JEU',
-    'game_locked' : 'Finissez le Tutoriel',
-    'multi_lockedp1' : 'Gagnez le Jeu ',
-    'multi_lockedp2' : ' fois',
+    'game_locked' : 'FINISSEZ LE TUTORIEL',
+    'multi_lockedp1' : 'GAGNEZ ',
+    'multi_lockedp2' : ' FOIS POUR DEBLOQUER',
 
     #Story End
     'story_pagetitle': 'HISTOIRE',

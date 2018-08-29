@@ -61,6 +61,8 @@
             <button class="btn homebutton">{% trans "CONTINUE" %}</button>
         </div>
         {% else %}
+          <p class=" text_content_four" style="text-align:center;font-size:18px;">{% trans "Before finishing the experiment, could you fill in this quick survey ?"%}</p>
+
         <div class="row">
           <h1 class="convers_font" style="margin-right:50%; margin-top:70px; font-size:30px; margin-bottom:10px;" id="question_title">{% trans "Quick survey :" %}</h1>
         </div>
@@ -80,6 +82,7 @@
               <div style="font-size:16px; display:block; float:right;">{{ form.q0 }}</div>
               </div>
             </div>
+            <br>
             <div class="fieldWrapper row" >
               {{ form.q1.errors }}
               <div class="row">
