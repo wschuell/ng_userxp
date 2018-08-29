@@ -27,7 +27,7 @@ urlpatterns = [
     url(r'^(?P<xp_uuid>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/vote/$', views.vote, name='vote'),
     url(r'^(?P<xp_uuid>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/continue/$', views.continue_userxp, name='continue'),
     #url(r'^accounts/login/$', django.contrib.auth.views.login,name='login_old'),
-    url(r'^logout/$', django.contrib.auth.views.logout, {'next_page': '/ng/login'}, name='logout'),
+    url(r'^logout/$', django.contrib.auth.views.logout, {'next_page': '/login'}, name='logout'),
     #url(r'^login/$', views.login_view, name='login'),
     url(r'^login/$', views.get_name, name='login'),
 
@@ -63,6 +63,3 @@ urlpatterns = [
     # url(r'^test_infos', views.test_info, name='test_info'),
     # url(r'^error', views.error, name="error"),
 ]
-
-handler404 = "ng.views.error"
-handler500 = "ng.views.error"

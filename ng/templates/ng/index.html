@@ -1,5 +1,6 @@
 <!doctype html>
 {% load static %}
+{% load i18n %}
 {% csrf_token %}
 <html lang={{userNG.lang}}>
   <head>
@@ -54,27 +55,32 @@
         <div class="col_2 col">
           <div>
             <h1 class="naiming">NAMING<i class="game">GAME</i></h1>
-            <h2 class="droop_five" id="subtitle" >Explorer le langage.</h2>
+            <h2 class="droop_five" id="subtitle" >{% trans "Build a new language" %}</h2>
             <div>
               <img class="mic" src="{% static 'ng/img/chat.png' %}" >
             </div>
+
             <div class="text_content_div" id="block1">
-              <p class="text_content_four"><span id="c1_1_prolific"> Your Prolific ID is:</span> <b>{{ userNG.user.first_name }}</b></p>
-              <p class="text_content_four" id="c1_2_prolific"> If this is not correct, please logout and re-login with your correct Prolific ID.</p>
+              <p class="text_content_four"><span id="c1_1_prolific"> {% trans "Your Prolific ID is:" %}</span> <b>{{ userNG.user.first_name }}</b></p>
+              <p class="text_content_four" id="c1_2_prolific"> {% trans "If this is not correct, please logout and re-login with your correct Prolific ID." %}</p>
 
             </div>
-            <a href="#" class="btn five_btm" id="button_basic" style="margin-bottom:42px;">TUTORIEL</a>
+
+            <!-- <div id="MESSAGE_EN" style="font-size : 50px; text-align:center; color:white"> </div> -->
+
+
+            <a href="#" class="btn five_btm" id="button_basic" style="margin-bottom:42px;">{% trans "TUTORIAL" %}</a>
             <br>
             {% if game_unlocked %}
-            <a href="#" class="btn" id="button_normal" style="margin-top: 0px;margin-bottom:42px;" ></a>
+            <a href="#" class="btn" id="button_normal" style="margin-top: 0px;margin-bottom:42px;" >{% trans "GAME" %}</a>
             {% else %}
-            <a href="#" class="btn second-btn disabled" id="game_locked">TERMINEZ LE TUTORIEL POUR DEBLOQUER</a>
+            <a href="#" class="btn second-btn disabled" id="game_locked">{% trans "FINISH TUTORIAL TO UNLOCK" %}</a>
             {% endif %}
             <br>
             {% if multi_unlocked %}
-            <a  href="#" class="btn" id="button_multi" style="margin-top: 0px;margin-bottom:42px;"></a>
+            <a  href="#" class="btn" id="button_multi" style="margin-top: 0px;margin-bottom:42px;">{% trans "BONUS" %}</a>
             {% else %}
-            <a  href="#" class="btn second-btn disabled" id="multi_locked">TERMINEZ LE JEU 3 FOIS POUR DEBLOQUER</a>
+            <a  href="#" class="btn second-btn disabled" id="multi_locked"><p id="multi_lockedp1" style="display:inline;">{% trans "WIN " %}</p> {{nbr_remaining_games}} <p id="multi_lockedp2" style="display:inline;"> {% trans "GAMES TO UNLOCK" %}</p></a>
             {% endif %}
           </div>
 
@@ -125,25 +131,25 @@
 
     //Tooltips
     $('#best_scores').tooltip({
-      title : '',
+      title : "{% trans "Best Scores" %}",
       placement : "top",
       trigger: "hover focus",
     });
 
     $('.mic').tooltip({
-      title : '',
+      title : "",
       placement : "left",
       trigger: "hover focus",
     });
 
     $('#lang').tooltip({
-      title : '',
+      title : "{% trans "Change language" %}",
       placement : "right",
       trigger: "hover focus",
     });
 
     $('#logoutbutton').tooltip({
-      title : '',
+      title : "{% trans "Logout" %}",
       placement : "right",
       trigger: "hover focus",
     });

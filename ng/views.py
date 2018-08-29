@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404, render
 from django.http import Http404
 
 # Create your views here.
-from django.template import loader
+from django.template import loader,RequestContext
 
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
@@ -26,6 +26,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import authenticate, login
+from django.utils.translation import ugettext
+
 from .forms import NameForm, QuestionForm
 
 import os
@@ -62,7 +64,7 @@ def login_view(request):
         })
 
 @csrf_protect
-@login_required(login_url='/ng/login')
+@login_required(login_url='/login')
 def home(request):
     user = request.user
     u = UserNG.get(user=user)
@@ -74,6 +76,7 @@ def home(request):
     return render(request, 'ng/index.html', {
     'game_unlocked' : game_unlocked,
     'multi_unlocked' : multi_unlocked,
+    'nbr_remaining_games' : 3-u.nbr_won,
     'user' : user,
     'userNG': u,
             'use_matomo': settings.MATOMO_USAGE,
@@ -87,6 +90,7 @@ def create_and_login(request,username=None,name='',cookie_id=None, lang='en', co
         login_user(request,username)
         u = UserNG.get(user=request.user)
         u.code = code
+        u.lang = lang
         u.save()
     else :
         login_user(request,username)
@@ -107,7 +111,7 @@ def get_name(request):
             lang = form.cleaned_data['lang']
             code = form.cleaned_data['code']
             create_and_login(request=request,name=name,cookie_id=cookie_id, lang=lang, code=code)
-            return HttpResponseRedirect('/ng/')
+            return HttpResponseRedirect('/')
 
     # if a GET (or any other method) we'll create a blank form
     else:
@@ -118,7 +122,7 @@ def get_name(request):
 
 #@login_required#(login_url='/accounts/login/')
 class IndexView(LoginRequiredMixin, generic.ListView):
-    login_url = '/ng/login/'
+    login_url = '/login/'
     redirect_field_name = 'redirect_to'
     template_name = 'ng/index.html'
     context_object_name = 'latest_experiment_list'
@@ -129,14 +133,14 @@ class IndexView(LoginRequiredMixin, generic.ListView):
 
 
 #Story view if user chooses tutorial
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def story(request) :
 	return render(request, 'ng/histoire.html', {'context':'story',
             'use_matomo': settings.MATOMO_USAGE, 'userNG': UserNG.get(user=request.user)})
 
 
 class DetailView(LoginRequiredMixin, generic.DetailView):
-    login_url = '/ng/login/'
+    login_url = '/login/'
     redirect_field_name = 'redirect_to'
     model = Experiment
     template_name = 'ng/detail.html'
@@ -145,7 +149,7 @@ class DetailView(LoginRequiredMixin, generic.DetailView):
 
 
 class ResultsView(LoginRequiredMixin, generic.DetailView):
-    login_url = '/ng/accounts/login/'
+    login_url = '/accounts/login/'
     redirect_field_name = 'redirect_to'
     model = Experiment
     template_name = 'ng/results.html'
@@ -153,7 +157,7 @@ class ResultsView(LoginRequiredMixin, generic.DetailView):
 
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     try:
@@ -174,7 +178,7 @@ def vote(request, question_id):
         return HttpResponseRedirect(reverse('ng:results', args=(question.id,)))
 
 
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def testdet(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     if request.user != experiment.user:
@@ -186,7 +190,7 @@ def testdet(request, xp_uuid):
         })
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def continue_xp(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     if request.user != experiment.user:
@@ -202,7 +206,7 @@ def continue_xp(request, xp_uuid):
         })
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def result_srtheo(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     if request.user != experiment.user:
@@ -219,7 +223,7 @@ def result_srtheo(request, xp_uuid):
 
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def result_hearer(request, xp_uuid, meaning):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     if request.user != experiment.user:
@@ -246,7 +250,7 @@ def result_hearer(request, xp_uuid, meaning):
         })
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def result_speaker(request, xp_uuid, meaning, word):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     if request.user != experiment.user:
@@ -272,12 +276,12 @@ def result_speaker(request, xp_uuid, meaning, word):
 
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def none(request):
     return None
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def result_inner(request, xp_uuid, bool_succ):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     if request.user != experiment.user:
@@ -297,7 +301,7 @@ def result_inner(request, xp_uuid, bool_succ):
 
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def result_hearer_json(request, xp_uuid, meaning):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     if request.user != experiment.user:
@@ -336,7 +340,7 @@ def result_hearer_json(request, xp_uuid, meaning):
         })
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def result_hearer_continue(request, xp_uuid, meaning):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     if request.user != experiment.user:
@@ -386,7 +390,7 @@ def result_hearer_continue(request, xp_uuid, meaning):
         })
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def result_speaker_json(request, xp_uuid, meaning, word):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     if request.user != experiment.user:
@@ -429,7 +433,7 @@ def result_speaker_json(request, xp_uuid, meaning, word):
         })
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def result_speaker_continue(request, xp_uuid, meaning, word):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     if request.user != experiment.user:
@@ -486,7 +490,7 @@ def result_speaker_continue(request, xp_uuid, meaning, word):
 
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def choose_experiment(request,xp_cfg_name='normal'):
     return render(request, 'ng/global.html', {
             'context':"choose_xp",
@@ -494,7 +498,7 @@ def choose_experiment(request,xp_cfg_name='normal'):
         })
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def new_experiment(request,xp_cfg_name='normal'):
     #Test if the user can access this type of game and send them to the home page if not
     user = request.user
@@ -508,7 +512,7 @@ def new_experiment(request,xp_cfg_name='normal'):
         return continue_userxp(request,experiment.xp_uuid)
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def test(request):
     experiment = Experiment.get_new_xp()
     experiment.save()
@@ -518,7 +522,7 @@ def test(request):
         })
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def continue_userxp(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     if request.user != experiment.user:
@@ -616,7 +620,7 @@ def continue_userxp(request, xp_uuid):
 
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def exp_resume(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     if request.user != experiment.user:
@@ -630,7 +634,7 @@ def exp_resume(request, xp_uuid):
 
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def score(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     if request.user != experiment.user:
@@ -667,7 +671,7 @@ def score(request, xp_uuid):
     for elt in m_list:
         if len(tab_results[elt].items()) == 0 :
             w_list1.append('?')
-            w_list2.append('?')
+            w_list2.append(' ')
         elif len(tab_results[elt].items()) == 1 :
             l = [c for c,v in tab_results[elt].items()]
             w_list1.append(l[0])
@@ -691,6 +695,7 @@ def score(request, xp_uuid):
             'w_list2': w_list2,
             'w_list':zip(w_list1,w_list2),
             'mww_list': zip(m_list,w_list1,w_list2),
+            'won': experiment.game_won,
             'use_matomo': settings.MATOMO_USAGE,
             'user':request.user,
             'userNG': UserNG.get(user=request.user),
@@ -699,7 +704,7 @@ def score(request, xp_uuid):
             })
 
 @csrf_protect
-@login_required(login_url='/ng/login/')
+@login_required(login_url='/login/')
 def info(request):
     u = UserNG.get(user=request.user)
     if u.nbr_won < 3 :
@@ -742,12 +747,20 @@ def info(request):
 
 @csrf_protect
 def error(request):
-    return render(request, 'ng/error_page.html',{
-            'use_matomo': settings.MATOMO_USAGE,})
+    experiment = None
+    ctxt_dict = {
+             'use_matomo': settings.MATOMO_USAGE,
+             "ongoing_experiment": experiment,
+             }
+    # return HttpResponseNotFound(render_to_string(request, 'ng/error_page.html',ctxt_dict))
+    response = render(request,'ng/error_page.html', ctxt_dict,)
+    response.status_code = 404
+    return response
+
 
 # ### # DEBUG:
 # @csrf_protect
-# @login_required(login_url='/ng/login/')
+# @login_required(login_url='/login/')
 # def test_score(request):
 #
 #     w_list1 = ["A", "B", "C", "D", "E", "F"]
@@ -767,38 +780,39 @@ def error(request):
 #             'user':request.user,
 #             'userNG': UserNG.get(user=request.user),
 #             })
-#
-# @csrf_protect
-# @login_required(login_url='/ng/login/')
-# def test_info(request):
-#
-#         # if this is a POST request we need to process the form data
-#         if request.method == 'POST':
-#             # create a form instance and populate it with data from the request:
-#             form = QuestionForm(request.POST)
-#             # check whether it's valid:
-#             if form.is_valid():
-#                 # process the data in form.cleaned_data as required
-#                 # ...
-#                 # redirect to a new URL:
-#                 u.q_filled = True
-#                 u.q1 = form.cleaned_data['q1']
-#                 u.q2 = form.cleaned_data['q2']
-#                 u.q3 = form.cleaned_data['q3']
-#                 u.q4 = form.cleaned_data['q4']
-#                 u.q5 = form.cleaned_data['q5']
-#                 u.q6 = form.cleaned_data['q6']
-#                 u.save()
-#                 return HttpResponseRedirect('/')
-#
-#         # if a GET (or any other method) we'll create a blank form
-#         else:
-#             form = QuestionForm()
-#
-#         return render(request, 'ng/infosv2.html', {
-#             'user':request.user,
-#             'userNG': u,
-#             'form' : form,
-#             'use_matomo': settings.MATOMO_USAGE,
-#             'q_filled' : u.q_filled,
-#     })
+
+@csrf_protect
+@login_required(login_url='/login/')
+def test_info(request):
+    u = UserNG.objects.get(user=request.user)
+        # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = QuestionForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            u.q_filled = True
+            u.q0 = form.cleaned_data['q0']
+            u.q1 = form.cleaned_data['q1']
+            u.q2 = form.cleaned_data['q2']
+            u.q3 = form.cleaned_data['q3']
+            u.q4 = form.cleaned_data['q4']
+            u.q5 = form.cleaned_data['q5']
+            u.q6 = form.cleaned_data['q6']
+            u.save()
+            return HttpResponseRedirect('/')
+
+        # if a GET (or any other method) we'll create a blank form
+    else:
+        form = QuestionForm()
+
+    return render(request, 'ng/infosv2.html', {
+            'user':request.user,
+            'userNG': u,
+            'form' : form,
+            'use_matomo': settings.MATOMO_USAGE,
+            'q_filled' : u.q_filled,
+    })

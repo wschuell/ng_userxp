@@ -1,4 +1,5 @@
  {% load static %}
+{% load i18n %}
 
  <div class="col_1 col">
           <div class="imag_center">
@@ -6,9 +7,9 @@
 
         </div>
         <div class="imag_center_two">
-          <img id='you_fr' src="{% static  'ng/img/chat-min.png' %}" style="display: none">
-          <img id='you_en' src="{% static  'ng/img/chat_you.png' %}" style="width:68px">
-
+<!--           <img id='you_fr' src="{% static  'ng/img/chat-min.png' %}" style="display: none">
+          <img id='you_en' src="{% static  'ng/img/chat_you.png' %}" style="width:68px"> -->
+<img id="you" src={% trans "/static/ng/img/chat_you.png" %} style="width:68px">
         </div>
         <div class="imag_center_twot_tru">
           {% if experiment.size == 3 %}

@@ -14,7 +14,6 @@ models_list = [
 	models.XpConfig,
 	models.Meaning,
 	models.Word,
-	models.CookieId,
 	models.Score,
 	models.Role,
 	models.PastInteraction,

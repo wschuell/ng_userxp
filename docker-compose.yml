@@ -6,7 +6,7 @@ services:
     volumes:
       - ./init_db:/docker-entrypoint-initdb.d
   nginx:
-    image: nginx:latest
+    image: nginx:stable
     container_name: nginx-ng
     ports:
       - "80:80"

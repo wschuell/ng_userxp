@@ -1,0 +1,582 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-08-30 01:19+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: forms.py:12
+msgid "Yes"
+msgstr "Oui"
+
+#: forms.py:12
+msgid "No"
+msgstr "Non"
+
+#: forms.py:17
+msgid "Frustrated"
+msgstr "Frustré"
+
+#: forms.py:17
+msgid "Neutral"
+msgstr "Neutre"
+
+#: forms.py:17
+msgid "I enjoyed it"
+msgstr "J'ai apprécié jouer"
+
+#: templates/ng/col1.html:12
+msgid "/static/ng/img/chat_you.png"
+msgstr "/static/ng/img/chat-min.png"
+
+#: templates/ng/conversation1.html:52
+msgid "INTERACTION"
+msgstr "CONVERSATION"
+
+#: templates/ng/conversation1.html:58
+msgid "interactions happened without you being a part of it."
+msgstr "conversations ont eu lieu en votre absence."
+
+#: templates/ng/conversation1.html:64 templates/ng/conversation2.html:195
+#: templates/ng/conversation2.html:202 templates/ng/conversation3.html:155
+#: templates/ng/conversation3.html:162 templates/ng/histoire.html:53
+msgid "CONTINUE"
+msgstr "CONTINUER"
+
+#: templates/ng/conversation2.html:76
+msgid "Well done, your partner understood !"
+msgstr "Bravo, votre interlocuteur vous a compris !"
+
+#: templates/ng/conversation2.html:79
+msgid ""
+"Your partner didn't know this word but they will remember it next time !"
+msgstr ""
+"Votre coéquipier ne connaissait pas ce mot mais il s'en souviendra pour la "
+"prochaine fois !"
+
+#: templates/ng/conversation2.html:81
+msgid ""
+"Oops, your partner thought you were talking about something else. They will "
+"remember it next time !"
+msgstr ""
+"Oups, votre interlocuteur pensait que vous parliez d'autre chose. Il s'en "
+"souviendra pour la prochaine fois !"
+
+#: templates/ng/conversation2.html:128 templates/ng/conversation2.html:129
+msgid "Your turn to speak."
+msgstr "C’est à vous de prendre la parole."
+
+#: templates/ng/conversation2.html:128
+msgid "Pick the object you will talk about."
+msgstr "Choisissez l’objet dont vous allez parler."
+
+#: templates/ng/conversation2.html:129
+msgid "Pick the word you will use to refer to this object."
+msgstr "Choisissez le mot que vous allez utiliser pour parler de cet objet."
+
+#: templates/ng/conversation2.html:272 templates/ng/conversation3.html:234
+msgid "You heard this word"
+msgstr "Vous entendez ce mot"
+
+#: templates/ng/conversation2.html:278 templates/ng/conversation3.html:240
+msgid "Click to see past interactions"
+msgstr "Afficher l'historique"
+
+#: templates/ng/conversation2.html:284 templates/ng/conversation3.html:253
+msgid "The word used in this conversation"
+msgstr "Le mot utilisé dans cette conversation"
+
+#: templates/ng/conversation2.html:290 templates/ng/conversation3.html:259
+msgid "What you were thinking"
+msgstr "Ce à quoi vous pensiez"
+
+#: templates/ng/conversation2.html:296 templates/ng/conversation3.html:265
+msgid "What your partner was referring to"
+msgstr "Ce à quoi votre coéquipier pensait"
+
+#: templates/ng/conversation2.html:302
+msgid "You spoke"
+msgstr "Vous parliez"
+
+#: templates/ng/conversation2.html:308
+msgid "Your partner listened"
+msgstr "Votre interlocuteur vous écoutait"
+
+#: templates/ng/conversation3.html:76
+msgid ""
+"Well done, you understood your partner ! You will remember it next time !"
+msgstr ""
+"Bravo, vous avez compris votre interlocuteur ! Vous vous en souviendrez pour "
+"la prochaine fois !"
+
+#: templates/ng/conversation3.html:79
+msgid "This is what your partner meant, you will remember it next time !"
+msgstr ""
+"Voilà ce que votre coéquipier voulait dire, vous vous en souviendrez pour la "
+"prochaine fois !"
+
+#: templates/ng/conversation3.html:81
+msgid ""
+"Oops, your partner meant something else. You will remember it next time !"
+msgstr ""
+"Oups, votre interlocuteur voulait parler d'autre chose. Vous vous en "
+"souviendrez pour la prochaine fois !"
+
+#: templates/ng/conversation3.html:85
+msgid ""
+"Click on the clock <img src='/static/ng/img/history.png' class='txt_img'> in "
+"the upper right corner to see what you learned from the other players in the "
+"previous interactions."
+msgstr ""
+"Cliquez sur l'horloge <img src='/static/ng/img/history.png' class='txt_img'> "
+"en haut à gauche pour consulter ce que vous avez appris de vos "
+"interlocuteurs lors des conversations précédentes."
+
+#: templates/ng/conversation3.html:130
+msgid "Someone is trying to communicate with you."
+msgstr "On essaye de communiquer avec vous."
+
+#: templates/ng/conversation3.html:130
+msgid "What are they talking about ?"
+msgstr "De quoi vous parle-t-on ?"
+
+#: templates/ng/conversation3.html:246
+msgid "I don't know"
+msgstr "Je ne sais pas"
+
+#: templates/ng/conversation3.html:271
+msgid "Your partner spoke"
+msgstr "Votre interlocuteur parlait"
+
+#: templates/ng/conversation3.html:277
+msgid "You listened"
+msgstr "Vous écoutiez"
+
+#: templates/ng/error_page.html:45
+msgid "Oops !"
+msgstr "Oups !"
+
+#: templates/ng/error_page.html:45
+msgid "It seems that an error occured."
+msgstr "Il semblerait qu'une erreur se soit produite."
+
+#: templates/ng/error_page.html:50 templates/ng/tooltips.js:6
+msgid "Home"
+msgstr "Page d'accueil"
+
+#: templates/ng/error_page.html:53
+msgid "Resume the game"
+msgstr "Reprendre la partie"
+
+#: templates/ng/histoire.html:36
+msgid "STORY"
+msgstr "HISTOIRE"
+
+#: templates/ng/histoire.html:38
+msgid "You have been kidnapped by aliens !"
+msgstr "Vous avez été enlevé(e) par des extraterrestres !"
+
+#: templates/ng/histoire.html:40
+msgid "You"
+msgstr "Vous"
+
+#: templates/ng/histoire.html:40
+msgid ""
+"are now locked alone in a room of their huge spaceship. In the neighboring "
+"rooms, there are three other individuals"
+msgstr ""
+"voilà seul(e) dans une geôle de leur vaisseau. Dans les pièces d'à côté se "
+"trouvent trois autres individus"
+
+#: templates/ng/histoire.html:40
+msgid "also kidnapped by your abductors from different parts of the galaxy."
+msgstr ""
+" que vos ravisseurs ont également enlevés à d'autres endroits de la galaxie."
+
+#: templates/ng/histoire.html:41
+msgid ""
+"None of you is from the same planet or speaks the same language but you all "
+"want the same thing : escape and go back home."
+msgstr ""
+"Aucun de vous ne parle la même langue mais vous voulez tous vous échapper "
+"pour pouvoir rentrer chez vous."
+
+#: templates/ng/histoire.html:45
+msgid ""
+"To do so, you may only talk by pairs thanks to a radio, without knowing wich "
+"one of your fellow prisoners is on the other side"
+msgstr ""
+"Pour ce faire, vous ne pourrez parler que deux par deux grâce à une radio, "
+"sans savoir lequel de vos camarades d'infortune est à l'autre bout."
+
+#: templates/ng/histoire.html:47
+msgid "One of you will say a word"
+msgstr "L'un de vous proposera un mot"
+
+#: templates/ng/histoire.html:47
+msgid "and the other will have to guess which object they are referring to"
+msgstr "et l'autre devra deviner l'objet auquel il fait référence"
+
+#: templates/ng/histoire.html:48
+msgid ""
+"Sometimes you will talk, sometimes you will listen and guess and sometimes "
+"you will keep listening to your radio"
+msgstr ""
+"Parfois vous proposerez un mot, parfois vous écouterez et devrez deviner "
+"l'objet et parfois encore vous écouterez patiemment votre radio"
+
+#: templates/ng/histoire.html:48
+msgid "waiting for a signal, while others are conversing."
+msgstr "dans l'attente d'un signal, pendant que d'autres joueurs communiquent."
+
+#: templates/ng/histoire.html:49
+msgid ""
+"Be careful, you only have a limited number of conversations to succeed !"
+msgstr ""
+"Mais attention, vous n'avez à vous tous qu'un nombre limité de conversations "
+"pour réussir !"
+
+#: templates/ng/histoire.html:50
+msgid ""
+"At any moment, you can have a look at what you learned from the other "
+"players by clicking on the clock"
+msgstr ""
+"À tout moment, vous pouvez consulter ce que vous avez appris des autres "
+"joueurs en cliquant sur l'horloge"
+
+#: templates/ng/index.html:58
+msgid "Build a new language"
+msgstr "Créez une nouvelle langue"
+
+#: templates/ng/index.html:64
+msgid "Your Prolific ID is:"
+msgstr "Votre Prolific ID est:"
+
+#: templates/ng/index.html:65
+msgid ""
+"If this is not correct, please logout and re-login with your correct "
+"Prolific ID."
+msgstr ""
+"Si votre Prolific ID est erroné, veuillez vous déconnecter et reconnecter "
+"avec votre Prolific ID."
+
+#: templates/ng/index.html:72
+msgid "TUTORIAL"
+msgstr "TUTORIEL"
+
+#: templates/ng/index.html:75
+msgid "GAME"
+msgstr "JEU"
+
+#: templates/ng/index.html:77
+msgid "FINISH TUTORIAL TO UNLOCK"
+msgstr "FINISSEZ LE TUTORIEL"
+
+#: templates/ng/index.html:81
+msgid "BONUS"
+msgstr "BONUS"
+
+#: templates/ng/index.html:83
+msgid "WIN "
+msgstr "GAGNEZ "
+
+#: templates/ng/index.html:83
+msgid "GAMES TO UNLOCK"
+msgstr "FOIS POUR DÉBLOQUER"
+
+#: templates/ng/index.html:134
+msgid "Best Scores"
+msgstr "Meilleurs Scores"
+
+#: templates/ng/index.html:146
+msgid "Change language"
+msgstr "Changer langue"
+
+#: templates/ng/index.html:152
+msgid "Logout"
+msgstr "Déconnexion"
+
+#: templates/ng/infosv2.html:37
+msgid "THANK YOU FOR PARTICIPATING"
+msgstr "MERCI DE VOTRE PARTICIPATION"
+
+#: templates/ng/infosv2.html:41
+msgid ""
+"This game was written by William Schueller and Sandy Manolios, to collect "
+"data as a scientific experiment on language evolution."
+msgstr ""
+"Ce jeu a été réalisé par William Schueller et Sandy Manolios, dans le cadre "
+"de recherches sur l'évolution du langage."
+
+#: templates/ng/infosv2.html:42
+msgid "Graphics and design are the work of Atlal Boudir."
+msgstr "Les graphismes et le design ont été réalisés par Atlal Boudir."
+
+#: templates/ng/infosv2.html:43
+msgid ""
+"If you want to go further, you can find below a set of links to various "
+"resources:"
+msgstr ""
+"Si vous voulez en savoir plus, vous pouvez trouver dans les liens ci-dessous "
+"différentes ressources:"
+
+#: templates/ng/infosv2.html:45
+msgid "The opensource code"
+msgstr "Le code opensource"
+
+#: templates/ng/infosv2.html:45
+msgid "used to generate the website"
+msgstr "ayant servi à générer le site "
+
+#: templates/ng/infosv2.html:46
+msgid "A set of links to"
+msgstr "Une liste de liens vers"
+
+#: templates/ng/infosv2.html:46
+msgid "articles and explanatory posters and notebooks"
+msgstr "articles, posters et notebooks"
+
+#: templates/ng/infosv2.html:46
+msgid "on the theoretical work behind the game"
+msgstr "sur le travail théorique associé au jeu"
+
+#: templates/ng/infosv2.html:47
+msgid "A link to"
+msgstr "Un lien pour"
+
+#: templates/ng/infosv2.html:47
+msgid "continue playing"
+msgstr "continuer à jouer"
+
+#: templates/ng/infosv2.html:47
+msgid "outside of the Prolific experiment."
+msgstr "en dehors du cadre de l'expérience sur la plateforme Prolific"
+
+#: templates/ng/infosv2.html:61
+msgid "PROLIFIC URL"
+msgstr "URL PROLIFIC"
+
+#: templates/ng/infosv2.html:64
+msgid "Before finishing the experiment, could you fill in this quick survey ?"
+msgstr ""
+"Afin de nous aider, pourriez-vous remplir ce bref questionnaire avant de "
+"finir l'expérience?"
+
+#: templates/ng/infosv2.html:67
+msgid "Quick survey :"
+msgstr "Questionnaire :"
+
+#: templates/ng/infosv2.html:78
+msgid "How did you feel while playing this game ?"
+msgstr "Quel a été votre ressenti du jeu?"
+
+#: templates/ng/infosv2.html:89
+msgid "Did you understand what was happening in the game ?"
+msgstr "Avez-vous compris ce qui se passait au cours du jeu ?"
+
+#: templates/ng/infosv2.html:100
+msgid "Did you think that you were interacting with only one individual ?"
+msgstr "Pensiez-vous n'interagir qu'avec un seul interlocuteur ?"
+
+#: templates/ng/infosv2.html:111
+msgid ""
+"Were you already familiar with communication games or similar experiments ? "
+msgstr ""
+"Aviez-vous déjà entendu parler des jeux de language ou d'autres expériences "
+"de communication similaires ?"
+
+#: templates/ng/infosv2.html:122
+msgid "Did you use a particular strategy (or several) during your games ?"
+msgstr ""
+"Avez-vous eu l'impression d'utiliser une stratégie particulière (ou "
+"plusieurs) lors de vos parties ?"
+
+#: templates/ng/infosv2.html:133
+msgid "If it is a 'Yes', could you describe it briefly ?"
+msgstr "Si oui, pourriez-vous la ou les décrire brièvement ?"
+
+#: templates/ng/infosv2.html:144
+msgid ""
+"You can leave here any remark or message that could be relevant or that you "
+"would just like to share with us :"
+msgstr ""
+"Vous pouvez laisser ici toute remarque ou message qui vous semblerait "
+"pertinent, ou dont vous voudriez simplement nous faire part :"
+
+#: templates/ng/loginv2.html:67
+msgid "If you were not provided a token, leave empty."
+msgstr "Si vous n'avez pas de code, laissez ce champ vide."
+
+#: templates/ng/loginv2.html:104
+msgid "The Naming Game"
+msgstr "Le Naming Game"
+
+#: templates/ng/loginv2.html:112
+msgid ""
+"You’re about to start a short game where you will have to collectively build "
+"a lexicon with other individuals. Your answers will be recorded but will not "
+"be identifiable to you personally. The game will take about 20 minutes."
+msgstr ""
+"Vous allez participer à une expérience sous la forme d'un jeu en ligne, où "
+"vous aurez à construire collectivement un langage avec d'autres individus. "
+"Vos réponses seront enregistrées mais resteront anonymes. Ce jeu durera "
+"environ 20 minutes."
+
+#: templates/ng/loginv2.html:114
+msgid "Before consenting to participate, please"
+msgstr "Avant d'accepter de participer à l'expérience, veuillez"
+
+#: templates/ng/loginv2.html:114
+msgid "consent_form.pdf"
+msgstr "consent_form_fr.pdf"
+
+#: templates/ng/loginv2.html:114
+msgid "click here"
+msgstr "cliquez ici"
+
+#: templates/ng/loginv2.html:114
+msgid "to read more detailed information about the study."
+msgstr "pour lire les informations détaillées concernant l'expérience."
+
+#: templates/ng/loginv2.html:118
+msgid "You have read and understood the detailed information about the study."
+msgstr ""
+"Vous avez lu et compris les informations détaillées de cette expérience."
+
+#: templates/ng/loginv2.html:119
+msgid ""
+"You agree that your anonymized data may be kept for up to 5 years in the "
+"archives of Inria and may be used by qualified researchers for teaching and "
+"research purposes"
+msgstr ""
+"Vous acceptez que vos données anonymisées d'utilisation du jeu soient "
+"gardées jusqu'à 5 ans dans les archives d'Inria et peuvent être utilisées "
+"par des chercheurs qualifiés à des fins d'enseignement ou de recherche."
+
+#: templates/ng/loginv2.html:120
+msgid ""
+"You agree that your anonymized data may be made publicly available for "
+"general use, e.g., put on the world wide web."
+msgstr ""
+"Vous acceptez que vos données anonymisées d'utilisation du jeu peuvent "
+"devenir publiquement accessibles pour des usages divers, par exemple "
+"diffusées sur internet."
+
+#: templates/ng/loginv2.html:121
+msgid "You consent to the use of cookies for this site."
+msgstr "Vous consentez à l'usage de cookies sur ce site."
+
+#: templates/ng/loginv2.html:124
+msgid ""
+"If you do not agree to all of these, simply close this window in your "
+"browser now."
+msgstr ""
+"Si vous ne consentez pas à l'ensemble de ces points, vous pouvez fermer la "
+"fenêtre de votre navigateur."
+
+#: templates/ng/loginv2.html:131
+msgid "Submit"
+msgstr "Valider"
+
+#: templates/ng/loginv2.html:199
+msgid "If you have been told to use a specific token, enter it here :"
+msgstr "Si on vous a indiqué un code spécifique, entrez le ici :"
+
+#: templates/ng/modal.html:10
+msgid "Are you sure ? "
+msgstr "Êtes-vous sûr(e) ?"
+
+#: templates/ng/modal.html:14
+msgid "If you leave this page, the game won’t be saved. Do you want to quit ?"
+msgstr "Si vous quittez la partie en cours, celle-ci ne sera pas sauvegardée."
+
+#: templates/ng/modal.html:17
+msgid "Yes, quit the game"
+msgstr "Quitter la partie"
+
+#: templates/ng/modal.html:18
+msgid "No, resume the game"
+msgstr "Continuer la partie"
+
+#: templates/ng/pastinteractions.html:8
+msgid "Objects"
+msgstr "Objets"
+
+#: templates/ng/pastinteractions.html:12
+msgid "Words"
+msgstr "Mots"
+
+#: templates/ng/resultats.html:32
+msgid "RESULTS"
+msgstr "RESULTATS"
+
+#: templates/ng/resultats.html:35
+msgid ""
+"Your prison guard gets bored by the many strange sounds that are coming from "
+"your cell, and decides to transfer you to another part of the ship, luckily "
+"with more neighbors and more objects."
+msgstr ""
+"Votre gardien est agacé des sons incompréhensibles qui proviennent de votre "
+"cellule, et décide de vous enfermer dans une autre partie du vaisseau, où "
+"par chance vous vous retrouvez avec plus d'objets et de voisins de cellule."
+
+#: templates/ng/resultats.html:37
+msgid ""
+"Once you manage to understand each other, you come up with a cunning plan to "
+"escape. Your abductors don’t even see it coming until it’s too late. You "
+"steal a ship from them and one of your companions drives you back home with "
+"it."
+msgstr ""
+"Après avoir réussi à vous comprendre, vous mettez au point un plan d'évasion "
+"spectaculaire. Vos ravisseurs ne voient rien venir avant qu'il ne soit trop "
+"tard. Vous leur volez un vaisseau qu'un de vos camarades pilote pour vous "
+"ramener tous paisiblement chez vous."
+
+#: templates/ng/resultats.html:39
+msgid ""
+"Sadly, your abductors realize that you and your neighbors are trying to "
+"communicate before you reach an acceptable level of understanding. They "
+"split all of you you between different parts of the prison ship, with new "
+"cell neighbors."
+msgstr ""
+"Malheureusement, vos gardiens se rendent compte de votre intention d'arriver "
+"à communiquer avant que vous ne réussissiez à vous comprendre. Ils vous "
+"séparent aux quatre coins du vaisseau-prison, et vous vous retrouvez avec de "
+"nouveaux voisins de cellule."
+
+#: templates/ng/resultats.html:43
+msgid "You and your fellow prisoners reached an understanding level of : "
+msgstr ""
+"Vous et vos voisins de cellule avez atteint un niveau de compréhension de : "
+
+#: templates/ng/resultats.html:72
+msgid "Congratulations, you won the game !"
+msgstr "Félicitations, vous avez gagné la partie !"
+
+#: templates/ng/resultats.html:74
+msgid "You'll do better next time !"
+msgstr "Dommage, vous ferez mieux la prochaine fois !"
+
+#: templates/ng/tooltips.js:12
+msgid "You are 3"
+msgstr "Vous êtes 3"
+
+#: templates/ng/tooltips.js:18
+msgid "You are 5"
+msgstr "Vous êtes 5"
+
+#~ msgid "Enter your name here :"
+#~ msgstr "Entrez votre nom ici :"

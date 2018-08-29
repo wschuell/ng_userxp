@@ -75,6 +75,7 @@ class UserNG(models.Model):
     q_filled = models.BooleanField(default=False)
 
     #Questions
+    q0 =  models.IntegerField(default=-2)
     q1 =  models.BooleanField(default=False)
     q2 =  models.BooleanField(default=False)
     q3 =  models.BooleanField(default=False)
@@ -206,6 +207,11 @@ class Experiment(models.Model):
     #         xp_obj = self.get_xp()
     #         self.size = xp_obj._poplist.get_last().get_size()
 
+    def delete(self):
+        xp = self.get_xp()
+        xp.clean_all()
+        models.Model.delete(self)
+
     def get_xp(self):
         if not hasattr(self,'xp'):
             db = ngal.ngdb.NamingGamesDB(db_type='psycopg2',conn_info="host='db' dbname='naminggames' user='naminggames' password='naminggames'")
@@ -214,34 +220,38 @@ class Experiment(models.Model):
 
     @classmethod
     def get_new_xp(cls,user,xp_cfg_name="normal"):
+        xp_cfg_temp = copy.deepcopy(xp_cfg)
         if xp_cfg_name == "basic":
             size = 3
-            xp_cfg["pop_cfg"]["nbagent"] = 3
-            xp_cfg["pop_cfg"]["env_cfg"]["M"] = 2
-            xp_cfg["pop_cfg"]["env_cfg"]["W"] = 6
+            xp_cfg_temp["pop_cfg"]["nbagent"] = 3
+            xp_cfg_temp["pop_cfg"]["env_cfg"]["M"] = 2
+            xp_cfg_temp["pop_cfg"]["env_cfg"]["W"] = 6
             max_inter = 10
         elif xp_cfg_name == "normal":
             size = 5
             M = 5
-            xp_cfg["pop_cfg"]["nbagent"] = size
-            xp_cfg["pop_cfg"]["env_cfg"]["M"] = M
-            xp_cfg["pop_cfg"]["env_cfg"]["m_list"] = Meaning.get_mlist(M=M,avoid_if_possible=[0,1])
-            xp_cfg["pop_cfg"]["env_cfg"]["W"] = 6
+            xp_cfg_temp["pop_cfg"]["nbagent"] = size
+            xp_cfg_temp["pop_cfg"]["env_cfg"]["M"] = M
+            xp_cfg_temp["pop_cfg"]["env_cfg"]["m_list"] = Meaning.get_mlist(M=M,avoid_if_possible=[0,1])
+            xp_cfg_temp["pop_cfg"]["env_cfg"]["W"] = 6
             max_inter = 50
         elif xp_cfg_name == "multiuser":
             size = 1
             M = 5
-            xp_cfg["pop_cfg"]["nbagent"] = size
-            xp_cfg["pop_cfg"]["env_cfg"]["M"] = M
-            xp_cfg["pop_cfg"]["env_cfg"]["m_list"] = Meaning.get_mlist(M=M,avoid_if_possible=[0,1])
-            xp_cfg["pop_cfg"]["env_cfg"]["W"] = 6
+            xp_cfg_temp["pop_cfg"]["nbagent"] = size
+            xp_cfg_temp["pop_cfg"]["env_cfg"]["M"] = M
+            xp_cfg_temp["pop_cfg"]["env_cfg"]["m_list"] = Meaning.get_mlist(M=M,avoid_if_possible=[0,1])
+            xp_cfg_temp["pop_cfg"]["env_cfg"]["W"] = 6
             max_inter = 50
-        xp_cfg_json = json.dumps(xp_cfg)
+        if UserNG.objects.get(user=user).code == 'locust_test':
+            xp_cfg_temp["pop_cfg"]["env_cfg"]["w_list"] = ['locust'+str(i) for i in range(xp_cfg_temp["pop_cfg"]["env_cfg"]["W"])]
+
+        xp_cfg_json = json.dumps(xp_cfg_temp)
         xpcfg_list = XpConfig.objects.filter(xp_config=xp_cfg_json)
         if xpcfg_list:
             xp_conf_model = xpcfg_list.first()
         else:
-            xp_conf_model = XpConfig(xp_config=xp_cfg_json,xp_cfg_name=xp_cfg_name,score_max=100*xp_cfg["pop_cfg"]["env_cfg"]["M"])
+            xp_conf_model = XpConfig(xp_config=xp_cfg_json,xp_cfg_name=xp_cfg_name,score_max=100*xp_cfg_temp["pop_cfg"]["env_cfg"]["M"])
             xp_conf_model.save()
         xp = Experiment(xp_config=xp_conf_model,user=user,max_interaction=max_inter,size=size)
         xp.init_xp()
@@ -460,11 +470,3 @@ class Score(models.Model):
     score = models.IntegerField()
     user = models.ForeignKey(User, on_delete=models.PROTECT)
 
-# A compléter
-class Results(models.Model):
-    pass
-
-
-class CookieId(models.Model):
-    value = models.CharField(max_length=50)
-    users = models.ManyToManyField(User,related_name='users')

@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!doctype html>
 <html lang={{userNG.lang}}>
 
@@ -48,18 +49,19 @@
        {% include "ng/col1.html" %}
         <div class="col_2 col" style="margin-right: 30px;">
           <div>
-            <h1 class="convers_font" id="conversations">CONVERSATION</h1>
+            <h1 class="convers_font" id="conversations">{% trans "INTERACTION"%}</h1>
             <h2 class="droop">{{ experiment.interaction_counter }} / {{ experiment.max_interaction }}</h2>
             <div>
               <img class="hearing" src="{% static  'ng/img/time.png' %}">
             </div>
             <div class="text_content_div">
-              <span class="text_content">{{nb_skipped}} <span id="anabs_text" nb_skipped="{{nb_skipped}}">conversations ont eu lieu sans vous.
-                <br>vous n'avez rien entendu de ce qu'il s'y est dit.</span>
+              <span class="text_content">{{nb_skipped}} <span id="anabs_text" nb_skipped="{{nb_skipped}}">{% trans "interactions happened without you being a part of it." %}
+                </span>
+              
               </span>
             </div>
           </div>
-          <a href="" class="btn btn-d" id="continue">CONTINUER<span class="block"></span></a>
+          <a href="" class="btn btn-d" id="continue">{% trans "CONTINUE" %}<span class="block"></span></a>
         </div>
         <div class="col_3 col" style="margin-top: 50px;margin-bottom: 100px;">
           <div class="control_ico" style="display:block;margin: auto;">
@@ -70,67 +72,10 @@
         </div>
     </div>
     <!--Historique-->
-    <div class="hide" id="hcontent">
-      <div id="popover-heading">
-        <div class='row' id='historyColNames'>
-          <div class='col-xs-4' >
-            <p style="font-size : 16px" id="history_objects">Objets</p>
-          </div>
+{% include 'ng/pastinteractions.html' %}
 
-          <div class='col-xs-4' >
-            <p style="font-size : 16px" id="history_words">Mots</p>
-          </div>
+{% include 'ng/modal.html' %}
 
-          <div class='col-xs-4' >
-            <p style="font-size : 16px" id="history_success"></p>
-          </div>
-        </div>
-      </div>
-
-      <div id="popover-body">
-
-        {% for past_int in experiment.pastinteraction_set.all|dictsortreversed:"time_id" %}
-        {% if past_int.role == "hearer"%}
-        <div "line_meaning">
-          <div class='row'>
-              <div class='col-xs-3' >
-                  <span ><img src="{% static 'ng/img/' %}kreyon_meaning{{ past_int.meaning }}.png" class="img-histo"></span>
-              </div>
-             <div class='col-xs-6' >
-               <span class="w-histo">{{ past_int.word }}</span>
-             </div>
-             <div class='col-xs-3' >
-             {% if past_int.bool_succ %}<span ><img class="img-responsive meaning img-histo" src="{% static 'ng/img/' %}feedback_success_temp.png"></span>{% endif %}
-            </div>
-        </div>
-        </div>
-        {% endif %}
-        {% endfor %}
-
-    </div>
-    </div>
-
-    <!-- Modal -->
-      <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-
-           <!-- Modal content-->
-              <div class="modal-content">
-                 <div class="modal-header">
-                    <h4 class="modal_title" style = "color:black; text-align:center; margin:auto; font-size:35px;" id="modal_title">Êtes-vous sûr.e ?</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <p style="font-size:20px;" id="modal_body">Si vous quittez la partie en cours, celle-ci ne sera pas sauvegardée et vos données ne pourront pas être utilisées. Voulez-vous toujours quitter ?</p>
-                </div>
-                <div class="modal-footer">
-            <a  href="/" type="button" class="btn btn-modal" id="btn_yes"><p>Oui, quitter la partie</p></a>
-                    <button type="button" class="btn btn-modal" id="btn_no" data-dismiss="modal"><p>Non, continuer la partie<p></button>
-                </div>
-              </div>
-
-        </div>
-      </div>
 
     <!-- Optional JavaScript -->
  {% include 'ng/sound.html' %}
@@ -191,24 +136,7 @@
    });
 
    //Tooltips
-
-   $('#home').tooltip({
-     title : current_lang.btn_home,
-     placement : "right auto",
-     trigger: "hover focus",
-   });
-
-   $('#groop_3').tooltip({
-     title : current_lang.groop_3,
-     placement : "right auto",
-     trigger: "hover focus",
-   });
-
-   $('#groop_5').tooltip({
-     title : current_lang.groop_5,
-     placement : "right auto",
-     trigger: "hover focus",
-   });
+ {% include 'ng/tooltips.js' %}
 
   });
   </script>

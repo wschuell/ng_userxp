@@ -15,7 +15,7 @@ dict_obj = {
     'consent_form':'''<p>Vous allez participer à une expérience sous la forme d'un jeu en ligne, où vous aurez à construire collectivement un langage avec d'autres individus. Vos réponses seront enregistrées mais resteront anonymes. Ce jeu durera environ 20 minutes.
 </p><p style = "margin-top:1.5em;margin-bottom:1.5em;"><b>Avant d'accepter de participer à l'expérience, veuillez <a href="/static/ng/pdf/consent_form_prolific_fr.pdf" target="_blank">cliquez ici</a> pour lire les informations détaillées concernant l'expérience.</b>
 <ul>
-                    <li>Vous avez lu et compris les informations détaillées sur cette recherche.</li>
+                    <li>Vous avez lu et compris les informations détaillées de cette expérience.</li>
                     <li>Vous acceptez que vos données anonymisées d'utilisation du jeu soient gardées jusqu'à 5 ans dans les archives d'Inria et peuvent être utilisées par des chercheurs qualifiés à des fins d'enseignement ou de recherche.</li>
                     <li>Vous acceptez que vos données anonymisées d'utilisation du jeu peuvent devenir publiquement accessibles pour des usages divers, par exemple diffusées sur internet.</li>
                     <li>Vous consentez à l'usage de cookies sur ce site.</li>
@@ -32,24 +32,28 @@ dict_obj = {
             'c1_1_prolific': 'Votre Prolific ID est: ',
             'c1_2_prolific': 'Si votre Prolific ID est erroné, veuillez vous déconnecter et reconnecter avec votre Prolific ID.',
 
-    'game_locked' : 'Gagnez le Tutoriel',
-    'multi_locked' : 'Gagnez le Jeu 3 fois',
+    'game_locked' : 'FINISSEZ LE TUTORIEL',
+    'multi_lockedp1' : 'GAGNEZ ',
+    'multi_lockedp2' : ' FOIS POUR DEBLOQUER',
 
     #Story End
     'story_pagetitle': 'HISTOIRE',
     'results': "RESULTATS",
-    'c1_1': ' Vous avez été enlevé par des Extraterrestres !',
-    'c1_2': 'Vous <img class="txt_img" src="/static/ng/img/chat.png"> voilà enfermé seul dans une pièce de leur vaisseau. Dans les pièces d\'à côté se trouvent <span class="important">3 autres individus</span> <img src="/static/ng/img/user_groop.png" class="txt_img" style="vertical-align:middle;"> que vos ravisseurs ont également enlevés aux quatre coins de la galaxie.',
+    'c1_1': ' Vous avez été enlevé(e) par des Extraterrestres !',
+    'c1_2': 'Vous <img class="txt_img" src="/static/ng/img/chat.png"> voilà seul(e) dans une geôle de leur vaisseau. Dans les pièces d\'à côté se trouvent<span class="important"> trois autres individus</span> <img src="/static/ng/img/user_groop.png" class="txt_img" style="vertical-align:middle;"> que vos ravisseurs ont également enlevés à d\'autres endroits de la galaxie.',
     'c2_1':"Pour ce faire, vous ne pourrez parler que <span class='important'>deux par deux</span> grâce à une <span class='important'>radio</span>, <span class='important'>sans savoir lequel de vos camarades d'infortune est à l'autre bout</span>.",
     'c2_2':'L\'un de vous proposera un mot <img src="/static/ng/img/mic-512.png" class="txt_img" > et l\'autre devra deviner l\'objet auquel il fait référence. <img class="txt_img" src="/static/ng/img/bitmap-1.png">',
     'c2_3':'Parfois vous proposerez un mot, parfois vous devinerez l\'objet et parfois encore vous écouterez patiemment votre radio <img src="/static/ng/img/time.png" class="txt_img" > dans l\'attente d\'un signal, pendant que d\'autres joueurs communiquent.',
     'text_end':"Après avoir réussi à vous comprendre, vous mettez au point un plan d'évasion spectaculaire. Vos ravisseurs ne voient rien venir avant qu'il ne soit trop tard. Vous leur volez un vaisseau qu'un de vos camarades pilote pour vous ramener tous paisiblement chez vous.",
     'text_end_lost':'Malheureusement, vos gardiens se rendent compte de votre intention d\'arriver à communiquer avant que vous ne réussissiez à vous comprendre. Ils vous séparent aux quatre coins du vaisseau-prison, et vous vous retrouvez avec de nouveaux voisins de cellule.',
     'text_end_tuto':'Votre gardien est agacé des sons incompréhensibles qui proviennent de votre cellule, et décide de vous enfermer dans une autre partie du vaisseau, où par chance vous vous retrouvez avec plus d\'objets et de voisins de cellule.',
-    'text_score':'Vous et vos voisins de cellule avez atteint un niveau de compréhension de : ',
+    'texte_score':'Vous et vos voisins de cellule avez atteint un niveau de compréhension de : ',
     'c1_3':'<span class="important">Aucun de vous ne parle la même langue</span> mais vous voulez tous vous échapper pour pouvoir rentrer chez vous.',
     'c2_4':"Mais attention, vous n'avez à vous tous qu'un <span class='important'>nombre limité de conversations</span> pour réussir !",
     'c2_5':'À tout moment, vous pouvez consulter ce que vous avez appris des autres joueurs en cliquant sur l\'horloge <img src="/static/ng/img/history.png" class="txt_img" >.',
+
+    'game_won' : "Félicitations, vous avez gagné la partie !",
+    'game_lost' : "Dommage, vous ferez mieux la prochaine fois !",
 
     'col_1':'Objets',
     'col_2':'Mots Préférés',
@@ -82,7 +86,7 @@ dict_obj = {
     'tuto_hearer': "Cliquez sur l'horloge <img src='/static/ng/img/history.png' class='txt_img'> en haut à gauche pour consulter ce que vous avez appris de vos interlocuteurs lors des conversations précédentes.",
 
     #Error Page
-    'error_text': "<span id='error_span'>Oups !</span> Il semblerait qu'une erreur se soit produite ! Vous pouvez tenter de continuer ou revenir à l'accueil pour commencer une nouvelle partie.",
+    'error_text': "<span id='error_span'>Oups !</span> Il semblerait qu'une erreur se soit produite !",
     'btn_home': "Revenir à l'Accueil",
     'btn_continue': 'Continuer',
 
@@ -92,7 +96,7 @@ dict_obj = {
     'label_q1':"Avez-vous compris ce qui se passait au cours du jeu ? ",
     'label_q2':"Pensiez-vous n'interagir qu'avec un seul interlocuteur ? ",
     'label_q3':"Aviez-vous déjà entendu parler des jeux de language ou d'autres expériences de communication similaires ? ",
-    'label_q4':"Avez-vous eu l'impression d'utiliser une certaine stratégie (ou plusieurs) lors de vos parties ?",
+    'label_q4':"Avez-vous eu l'impression d'utiliser une stratégie particulière (ou plusieurs) lors de vos parties ?",
     'label_q5':"Si oui, pourriez-vous la ou les décrire brièvement ?",
     'label_q6':"Vous pouvez laisser ici toute remarque ou message qui vous semblerait pertinent, ou dont vous voudriez simplement nous faire part :",
 
@@ -100,7 +104,7 @@ dict_obj = {
     'tooltip_example':"Si vous n'avez pas de code, laissez ce champ vide.",
     'results_1' : "Objets",
     'results_2' : "Mots les plus utilisés",
-    'hearer_w' : "Vous entendez ce mot :",
+    'hearer_w' : "Vous entendez ce mot",
     'menu_h': "Afficher l'historique",
     'word_inter': "Le mot utilisé dans cette conversation",
     'last_m_you' : "Ce à quoi vous pensiez",
@@ -120,11 +124,11 @@ dict_obj = {
 
     'infos_txt':'''
     <p class="text_content_four" style="text-align:left;font-size:18px;">
-    <p class="text_content_four" style="text-align:left;font-size:18px;">Ce jeu a été réalisé par William Schueller et Sandy Manolios, dans le cadre de recherches autour de l'évolution du langage.</p>
+    <p class="text_content_four" style="text-align:left;font-size:18px;">Ce jeu a été réalisé par William Schueller et Sandy Manolios, dans le cadre de recherches sur l'évolution du langage.</p>
     <p class="text_content_four" style="text-align:left;font-size:18px;">Les graphismes et le design ont été réalisés par Atlal Boudir.</p>
     <p class="text_content_four" style="text-align:left;font-size:18px;">Si vous voulez en savoir plus, vous pouvez trouver dans les liens ci-dessous différentes ressources:
 <ul style="text-align:left;margin-bottom:4em;">
-<li> <a href="http://github.com/wschuell/ng_userxp">Le code opensource</a> servant à générer le site </li>
+<li> <a href="http://github.com/wschuell/ng_userxp">Le code opensource</a> ayant servi à générer le site </li>
 <li> Une liste de liens vers <a href="http://github.com/wschuell/notebooks_cogsci2018">articles et posters</a> sur le travail théorique associé au jeu </li>
 <li> Un lien pour <a href="http://naming-game.space">continuer à jouer</a> en dehors du cadre de l'expérience sur la plateforme Prolific</li>
 </ul>
@@ -194,27 +198,33 @@ dict_obj = {
     'button_basic': 'TUTORIAL',
     'button_multi': 'BONUS',
     'button_normal': 'GAME',
-    'game_locked' : 'WIN TUTORIAL TO UNLOCK',
+
     'multi_locked' : 'WIN 3 GAMES TO UNLOCK',
             'c1_1_prolific': 'Votre Prolific ID est: ',
             'c1_2_prolific': 'Si votre Prolific ID est erroné, veuillez vous déconnecter et reconnecter avec votre Prolific ID.',
 
+    'game_locked' : 'FINISH TUTORIAL TO UNLOCK',
+    'multi_lockedp1' : 'WIN ',
+    'multi_lockedp2' : ' GAMES TO UNLOCK',
 
     #Story End
     'story_pagetitle': 'Story',
     'results': 'RESULTS',
-    'c1_1': ' You have been kidnapped by Aliens !',
-    'c1_2': 'You <img class="txt_img" src="/static/ng/img/chat.png"> are now locked alone in a room of their huge spaceship. In the neighboring rooms, there are <span class="important">3 other individuals</span> <img src="/static/ng/img/user_groop.png" class="txt_img" style="vertical-align:middle;"> also kidnapped by your abductors at the four corners of the galaxy.',
+    'c1_1': ' You have been kidnapped by aliens !',
+    'c1_2': 'You <img class="txt_img" src="/static/ng/img/chat.png"> are now locked alone in a room of their huge spaceship. In the neighboring rooms, there are<span class="important"> three other individuals</span> <img src="/static/ng/img/user_groop.png" class="txt_img" style="vertical-align:middle;"> also kidnapped by your abductors from different parts of the galaxy.',
     'c2_1':'To do so, you may only talk <span class="important">by pairs</span> thanks to a <span class="important">radio</span>, <span class="important">without knowing wich one of your fellow prisoners is on the other side</span>.',
     'c2_2':'One of you will say a word  <img src="/static/ng/img/mic-512.png" class="txt_img" > and the other will have to guess which object they are referring to. <img class="txt_img" src="/static/ng/img/bitmap-1.png">',
     'c2_3':'Sometimes you will talk, sometimes you will listen and guess and sometimes you will keep listening to your radio <img src="/static/ng/img/time.png" class="txt_img" > waiting for a signal, while others are conversing. ',
     'text_end':'Once you manage to understand each other, you come up with a cunning plan to escape. Your abductors don’t even see it coming until it’s too late. You steal a ship from them and one of your companions drives you back home with it.',
     'text_end_lost':'Sadly, your abductors realize that you and your neighbors are trying to communicate before you reach an acceptable level of understanding. They split all of you you between different parts of the prison ship, with new cell neighbors.',
     'text_end_tuto':'Your prison guard gets bored by the many strange sounds that are coming from your cell, and decides to transfer you to another part of the ship, luckily with more neighbors and more objects.',
-    'text_score':'You and your fellow prisoners reached an understanding level of : ',
+    'texte_score':'You and your fellow prisoners reached an understanding level of : ',
     'c1_3':'<span class="important">None of you is from the same planet or speaks the same language</span> but you all want the same thing : escape and go back home.',
     'c2_4':'Be careful, you only have a <span class="important">limited number of conversations</span> to succeed !',
     'c2_5':'At any moment, you can have a look at what you learned from the other players by clicking on the clock <img src="/static/ng/img/history.png" class="txt_img" >.',
+
+    'game_won' : "Congratulations, you won the game !",
+    'game_lost' : "Too bad, You'll do better next time !",
 
     'col_1':'Objects',
     'col_2':'Favorite Words',
@@ -248,7 +258,7 @@ dict_obj = {
 
 
         #Error Page
-    'error_text': "<span id='error_span'>Oops!</span> It seems that an error occured. You can try to resume your game or go back to home page.",
+    'error_text': "<span id='error_span'>Oops!</span> It seems that an error occured.",
     'btn_home': "Home",
     'btn_continue': 'Resume the game',
 
@@ -258,7 +268,7 @@ dict_obj = {
     'label_q1':"Did you understand what was happening in the game ?",
     'label_q2':"Did you think that you were interacting with only one individual ?",
     'label_q3':"Were you already familiar with communication games or similar experiments ? ",
-    'label_q4':"Did you use a certain strategy (or several) during your games ?",
+    'label_q4':"Did you use a particular strategy (or several) during your games ?",
     'label_q5':"If it is a 'Yes', could you describe it briefly ?",
     'label_q6':"You can leave here any remark or message that could be relevant or that you would just like to share with us :",
 

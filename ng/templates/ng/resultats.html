@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang={{userNG.lang}}>
   <head>
@@ -28,18 +29,18 @@
     <div class="container">
        {% include "ng/col1.html" %}
         <div class="col_2 col">
-          <h1 class="convers_font" id="results">RESULTATS</h1>
+          <h1 class="convers_font" id="results">{% trans "RESULTS" %}</h1>
           <div class="text_content_div" >
             {% if experiment.xp_config.xp_cfg_name == "basic" %}
-            <p class="text_content_four" id="text_end_tuto" style="max-width:1000px;"></p>
+            <p class="text_content_four" id="text_end_tuto" style="max-width:1000px;">{% trans "Your prison guard gets bored by the many strange sounds that are coming from your cell, and decides to transfer you to another part of the ship, luckily with more neighbors and more objects." %}</p>
             {% elif experiment.game_won %}
-            <p class="text_content_four" id="text_end" style="max-width:1000px;"></p>
+            <p class="text_content_four" id="text_end" style="max-width:1000px;">{% trans "Once you manage to understand each other, you come up with a cunning plan to escape. Your abductors don’t even see it coming until it’s too late. You steal a ship from them and one of your companions drives you back home with it." %}</p>
             {% else %}
-            <p class="text_content_four" id="text_end_lost" style="max-width:1000px;"></p>
+            <p class="text_content_four" id="text_end_lost" style="max-width:1000px;">{% trans "Sadly, your abductors realize that you and your neighbors are trying to communicate before you reach an acceptable level of understanding. They split all of you you between different parts of the prison ship, with new cell neighbors." %}</p>
             {% endif %}
 
           </div>
-          <h2 class="droop"><span id="texte_score">Score :</span> {{score_pct}} % </h2>
+          <h2 class="droop"><span id="texte_score">{% trans "You and your fellow prisoners reached an understanding level of : " %}</span> {{score_pct}} % </h2>
 
           <form>
 
@@ -63,7 +64,17 @@
               </div>
 
                 {% endfor %}
-                </div>
+            </div>
+
+            {% if experiment.max_interaction != 10 %}
+            <div class="row">
+              {% if won %}
+                <span id="game_won" class="won_lose_text">{% trans "Congratulations, you won the game !" %}</span>
+              {% else %}
+              <span id="game_lost" class="won_lose_text">{% trans "You'll do better next time !" %}</span>
+              {% endif %}
+            </div>
+              {% endif %}
           <!--    <div id="div1">
             {% for m in m_list %}
               <div class="result_img">
@@ -185,39 +196,20 @@
 
     var lang = $('html').attr('lang');
 
-      $('.div1').tooltip({
-        title : current_lang.results_1,
-        placement : "left auto",
-        container:"#r1",
-        trigger: "hover focus",
-      });
-
-      $('.div2').tooltip({
-        title : current_lang.results_2,
-        placement : "left auto",
-        html : true,
-        container:"#r2",
-        trigger: "hover focus",
-      });
-
-      $('#home').tooltip({
-        title : current_lang.btn_home,
-        placement : "right auto",
-        trigger: "hover focus",
-      });
-
-      $('#groop_3').tooltip({
-        title : current_lang.groop_3,
-        placement : "right auto",
-        trigger: "hover focus",
-      });
-
-      $('#groop_5').tooltip({
-        title : current_lang.groop_5,
-        placement : "right auto",
-        trigger: "hover focus",
-      });
-
+      // $('.div1').tooltip({
+      //   title : current_lang.results_1,
+      //   placement : "left auto",
+      //   container:"#r1",
+      //   trigger: "hover focus",
+      // });
+      //
+      // $('.div2').tooltip({
+      //   title : current_lang.results_2,
+      //   placement : "left auto",
+      //   html : true,
+      //   container:"#r2",
+      //   trigger: "hover focus",
+ {% include 'ng/tooltips.js' %}
     //$('.div1').tooltip('show');
     //$('.div2').tooltip('show');
 
