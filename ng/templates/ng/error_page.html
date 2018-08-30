@@ -45,14 +45,15 @@
   					<span id="error_span">{% trans "Oops !" %}</span> {% trans "It seems that an error occured." %}
   				</div>
   			</div>
-  			<div class="row">
-  				<!-- <div class="col-xs-6"> -->
-  					<button class="btn" id="btn_home" style=''>{% trans "Home" %}</button>
-  				<!-- </div> -->
-<!--   				<div class="col-xs-6">
-  					<button class="btn" id="btn_continue" {% if not experiment %}disabled{% endif %}>{% trans "Resume the game" %}</button>
-  				</div> -->
-  			</div>
+
+        <div class="row">
+          <!-- <div class="col-xs-6"> -->
+            <button class="btn" id="btn_home" style=''>{% trans "Home" %}</button>
+          <!-- </div> -->
+         <div class="col-xs-6">
+            <button class="btn" id="btn_continue" {% if ongoing_experiment == "" %}disabled{% endif %}>{% trans "Resume the game" %}</button>
+          </div>
+        </div>
   		</div>
   		<div class="col_1 col"></div>
 <!--       <img src="{% static 'ng/img/bitmap.png' %}"  id="sound-on" style="width: 24px;height: 21px;">
@@ -60,8 +61,8 @@
  -->
   </div>
 	<script text="text/javascript">
-	{% if experiment %}
-	var url_continue = "{% url 'ng:continue' experiment.xp_uuid %}";
+	{% if ongoing_experiment != "" %}
+	var url_continue = "{% url 'ng:continue' ongoing_experiment %}";
 	{% endif %}
 
 

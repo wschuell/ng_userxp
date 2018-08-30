@@ -747,10 +747,14 @@ def info(request):
 
 @csrf_protect
 def error(request):
-    experiment = None
+    xp_uuid = UserNG.objects.get(user=request.user).last_xp
+    # if xp_uuid:
+    #     experiment = Experiment.objects.get(xp_uuid=xp_uuid)
+    # else:
+    #     experiment = None
     ctxt_dict = {
              'use_matomo': settings.MATOMO_USAGE,
-             "ongoing_experiment": experiment,
+             "ongoing_experiment": xp_uuid,
              }
     # return HttpResponseNotFound(render_to_string(request, 'ng/error_page.html',ctxt_dict))
     response = render(request,'ng/error_page.html', ctxt_dict,)
