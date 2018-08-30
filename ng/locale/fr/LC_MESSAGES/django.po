@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-30 01:19+0200\n"
+"POT-Creation-Date: 2018-08-30 16:42+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -261,11 +261,11 @@ msgstr ""
 msgid "Build a new language"
 msgstr "Créez une nouvelle langue"
 
-#: templates/ng/index.html:64
+#: templates/ng/index.html:67
 msgid "Your Prolific ID is:"
 msgstr "Votre Prolific ID est:"
 
-#: templates/ng/index.html:65
+#: templates/ng/index.html:68
 msgid ""
 "If this is not correct, please logout and re-login with your correct "
 "Prolific ID."
@@ -273,39 +273,39 @@ msgstr ""
 "Si votre Prolific ID est erroné, veuillez vous déconnecter et reconnecter "
 "avec votre Prolific ID."
 
-#: templates/ng/index.html:72
+#: templates/ng/index.html:75
 msgid "TUTORIAL"
 msgstr "TUTORIEL"
 
-#: templates/ng/index.html:75
+#: templates/ng/index.html:78
 msgid "GAME"
 msgstr "JEU"
 
-#: templates/ng/index.html:77
+#: templates/ng/index.html:80
 msgid "FINISH TUTORIAL TO UNLOCK"
 msgstr "FINISSEZ LE TUTORIEL"
 
-#: templates/ng/index.html:81
+#: templates/ng/index.html:84
 msgid "BONUS"
 msgstr "BONUS"
 
-#: templates/ng/index.html:83
+#: templates/ng/index.html:86
 msgid "WIN "
 msgstr "GAGNEZ "
 
-#: templates/ng/index.html:83
+#: templates/ng/index.html:86
 msgid "GAMES TO UNLOCK"
 msgstr "FOIS POUR DÉBLOQUER"
 
-#: templates/ng/index.html:134
+#: templates/ng/index.html:137
 msgid "Best Scores"
 msgstr "Meilleurs Scores"
 
-#: templates/ng/index.html:146
+#: templates/ng/index.html:149
 msgid "Change language"
 msgstr "Changer langue"
 
-#: templates/ng/index.html:152
+#: templates/ng/index.html:155
 msgid "Logout"
 msgstr "Déconnexion"
 
@@ -476,15 +476,10 @@ msgstr ""
 "diffusées sur internet."
 
 #: templates/ng/loginv2.html:121
-msgid "You voluntarily agree to participate and can stop at any time."
-msgstr ""
-"Vous participez volontairement et pouvez quitter l'expérience à tout moment."
-
-#: templates/ng/loginv2.html:123
 msgid "You consent to the use of cookies for this site."
 msgstr "Vous consentez à l'usage de cookies sur ce site."
 
-#: templates/ng/loginv2.html:126
+#: templates/ng/loginv2.html:124
 msgid ""
 "If you do not agree to all of these, simply close this window in your "
 "browser now."
@@ -492,16 +487,11 @@ msgstr ""
 "Si vous ne consentez pas à l'ensemble de ces points, vous pouvez fermer la "
 "fenêtre de votre navigateur."
 
-#: templates/ng/loginv2.html:133
+#: templates/ng/loginv2.html:131
 msgid "Submit"
 msgstr "Valider"
 
-#: templates/ng/loginv2.html:154
-msgid "Enter your name here :"
-msgstr "Entrez votre nom ici :"
-
-#: templates/ng/loginv2.html:200
->>>>>>> develop
+#: templates/ng/loginv2.html:199
 msgid "If you have been told to use a specific token, enter it here :"
 msgstr "Si on vous a indiqué un code spécifique, entrez le ici :"
 
@@ -587,6 +577,11 @@ msgstr "Vous êtes 3"
 #: templates/ng/tooltips.js:18
 msgid "You are 5"
 msgstr "Vous êtes 5"
+
+#~ msgid "You voluntarily agree to participate and can stop at any time."
+#~ msgstr ""
+#~ "Vous participez volontairement et pouvez quitter l'expérience à tout "
+#~ "moment."
 
 #~ msgid "Enter your name here :"
 #~ msgstr "Entrez votre nom ici :"
