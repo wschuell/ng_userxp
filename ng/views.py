@@ -714,7 +714,7 @@ def info(request):
         return response
     else:
         u.q_seen = True
-        u.q_seen_at = now()
+        u.q_seen_at = timezone.now()
         u.save()
         # if this is a POST request we need to process the form data
         if request.method == 'POST':
@@ -731,6 +731,7 @@ def info(request):
                 u.q3 = form.cleaned_data['q3']
                 u.q4 = form.cleaned_data['q4']
                 u.q5 = form.cleaned_data['q5']
+                u.q6 = form.cleaned_data['q6']
                 u.save()
                 return HttpResponseRedirect('/')
 
