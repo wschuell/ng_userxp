@@ -728,6 +728,7 @@ def info(request):
                 u.q3 = form.cleaned_data['q3']
                 u.q4 = form.cleaned_data['q4']
                 u.q5 = form.cleaned_data['q5']
+                u.q6 = form.cleaned_data['q6']
                 u.save()
                 return HttpResponseRedirect('/')
 
