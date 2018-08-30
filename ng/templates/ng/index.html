@@ -13,8 +13,9 @@
 
     <link href="{% static 'ng/stylev2.css' %}" rel="stylesheet" type="text/css">
 
+       <script src="{% static 'ng/js.cookie.js' %}"></script>
     <script src="{% static 'ng/jquery-3.3.1.min.js' %}"></script>
-  	<script src="{% static 'ng/bootstrap.min.js' %}"></script>
+    <script src="{% static 'ng/bootstrap.min.js' %}"></script>
     <script src="{% static 'ng/popper.min.js' %}"></script>
  {% include "ng/sound.html" %}
 
@@ -23,7 +24,6 @@
     <script type="text/javascript">
            var url_logout = "{% url 'ng:logout' %}";
    </script>
-       <script src="{% static 'ng/js.cookie.js' %}"></script>
 
        <!--<script src="{% static 'ng/script.js' %}"></script>-->
 
@@ -45,8 +45,11 @@
           <div class="row">
             <div class="col" style="margin-right : 20px; margin-left : 20px;"><img src="{% static 'ng/img/logo.png' %}" id="btn_home" class= "icon" style="margin-bottom: 60px"></div>
             <div class="w-100 d-none d-md-block"></div>
-
+{% if request.LANGUAGE_CODE|slice:":2" == "fr" %}
             <div class="col" style="margin-right : 20px; margin-left : 20px;"><span class="icon"><img src="{% static 'ng/img/french-flag.png' %}" id="lang" value="fr" class="icon"></span></div>
+{% else %}
+            <div class="col" style="margin-right : 20px; margin-left : 20px;"><span class="icon"><img src="{% static 'ng/img/english-flag.png' %}" id="lang" value="en" class="icon"></span></div>
+{% endif %}
             <div class="w-100 d-none d-md-block"></div>
 
             <div class="col" style="margin-right : 20px; margin-left : 20px;"><span class="glyphicon glyphicon-off icon" id= "logoutbutton" style="margin-left: 8px;"></span></div>

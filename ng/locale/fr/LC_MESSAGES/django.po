@@ -173,11 +173,11 @@ msgstr "Oups !"
 msgid "It seems that an error occured."
 msgstr "Il semblerait qu'une erreur se soit produite."
 
-#: templates/ng/error_page.html:50 templates/ng/tooltips.js:6
+#: templates/ng/error_page.html:51 templates/ng/tooltips.js:6
 msgid "Home"
 msgstr "Page d'accueil"
 
-#: templates/ng/error_page.html:53
+#: templates/ng/error_page.html:54
 msgid "Resume the game"
 msgstr "Reprendre la partie"
 
@@ -257,7 +257,7 @@ msgstr ""
 "À tout moment, vous pouvez consulter ce que vous avez appris des autres "
 "joueurs en cliquant sur l'horloge"
 
-#: templates/ng/index.html:58
+#: templates/ng/index.html:61
 msgid "Build a new language"
 msgstr "Créez une nouvelle langue"
 
@@ -476,10 +476,15 @@ msgstr ""
 "diffusées sur internet."
 
 #: templates/ng/loginv2.html:121
+msgid "You voluntarily agree to participate and can stop at any time."
+msgstr ""
+"Vous participez volontairement et pouvez quitter l'expérience à tout moment."
+
+#: templates/ng/loginv2.html:123
 msgid "You consent to the use of cookies for this site."
 msgstr "Vous consentez à l'usage de cookies sur ce site."
 
-#: templates/ng/loginv2.html:124
+#: templates/ng/loginv2.html:126
 msgid ""
 "If you do not agree to all of these, simply close this window in your "
 "browser now."
@@ -487,11 +492,16 @@ msgstr ""
 "Si vous ne consentez pas à l'ensemble de ces points, vous pouvez fermer la "
 "fenêtre de votre navigateur."
 
-#: templates/ng/loginv2.html:131
+#: templates/ng/loginv2.html:133
 msgid "Submit"
 msgstr "Valider"
 
-#: templates/ng/loginv2.html:199
+#: templates/ng/loginv2.html:154
+msgid "Enter your name here :"
+msgstr "Entrez votre nom ici :"
+
+#: templates/ng/loginv2.html:200
+>>>>>>> develop
 msgid "If you have been told to use a specific token, enter it here :"
 msgstr "Si on vous a indiqué un code spécifique, entrez le ici :"
 

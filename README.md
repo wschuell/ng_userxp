@@ -6,7 +6,9 @@
 
 ### Requirements
 
-Install docker and docker-compose
+Install [docker](https://docs.docker.com/install/) and [docker-compose](https://docs.docker.com/compose/install/)
+
+For example on Linux:
 ```
 wget -qO- https://get.docker.com/ | sh
 sudo pip install docker-compose
@@ -29,5 +31,5 @@ docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
 ```
 
 ### Play the game:
-go to http://127.0.0.1/ng
+Go to http://127.0.0.1/
 

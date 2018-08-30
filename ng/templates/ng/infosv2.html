@@ -67,7 +67,7 @@
           <h1 class="convers_font" style="margin-right:50%; margin-top:70px; font-size:30px; margin-bottom:10px;" id="question_title">{% trans "Quick survey :" %}</h1>
         </div>
         <form id="form" method="post">
-        <div class="row form-group">
+        <div class="row form-group" style="text-align: left;">
           {% csrf_token %}
 
             {{form.non_field_errors}}
@@ -108,7 +108,7 @@
             <div class="fieldWrapper row">
               {{ form.q3.errors }}
               <div class="row">
-              <label id="label_q3" class="text_login" style="float:left; display:block">{% trans "Were you already familiar with communication games or similar experiments ? " %}</label>
+              <label id="label_q3" class="text_login" style="float:left; display:block;">{% trans "Were you already familiar with communication games or similar experiments ? " %}</label>
             </div>
             <div class="w-100"></div>
             <div class="row">
@@ -130,7 +130,7 @@
             <div class="fieldWrapper row">
               {{ form.q5.errors }}
               <div class="row">
-              <label id="label_q5" class="text_login" style="float:left; display:block">{% trans "If it is a 'Yes', could you describe it briefly ?" %}</label>
+              <label id="label_q5" class="text_login" style="float:left; display:block; ">{% trans "If it is a 'Yes', could you describe it briefly ?" %}</label>
             </div>
             <div class="w-100"></div>
             <div class="row">

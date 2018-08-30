@@ -188,6 +188,7 @@ dict_obj = {
                     <li>You agree that your anonymized data may be kept for up to 5 years in the archives of Inria and may be used by qualified researchers for teaching and research purposes</li>
                     <li>You agree that your anonymized data may be made publicly available for general use, e.g., put on the world wide web.</li>
                     <li>You consent to the use of cookies for this site.</li>
+
                 </ul>
 </p>
 <p>If you do not agree to all of these, simply close this window in your browser now.</p>
