@@ -58,6 +58,7 @@ class UserNG(models.Model):
     lang = models.CharField(max_length=3, default="en")
     #ID for certain types of Users
     code = models.CharField(max_length=100, null=True, blank= True, default='')
+    last_xp = models.CharField(max_length=100, null=True, blank= True, default='')
     #Number of games played, used as condition for unlocking game modes
     tuto_played = models.BooleanField(default=False)
     nbr_played = models.IntegerField(default=0)
@@ -194,6 +195,10 @@ class Experiment(models.Model):
         self.xp._poplist.compress()
         self.xp.commit_to_db()
         self.save()
+
+        u_ng = UserNG.objects.get(user=self.user)
+        u_ng.last_xp = self.xp_uuid
+        u_ng.save()
 
     def save(self,*args,**kwargs):
         # self.update_size()
