@@ -709,7 +709,9 @@ def score(request, xp_uuid):
 def info(request):
     u = UserNG.get(user=request.user)
     if u.nbr_won < 3 :
-        return HttpResponseRedirect('/')
+        response = HttpResponseRedirect('/')
+        response.status_code = 404
+        return response
     else:
         u.q_seen = True
         u.q_seen_at = now()

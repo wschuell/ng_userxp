@@ -52,7 +52,7 @@ class UserBehavior(TaskSet):
         if self.tuto_played:
             for i in range(7):
                 self.xp(xp_type="normal")
-        return self.client.get('/infos/')
+            return self.client.get('/infos/')
 
     def xp(self,xp_type):
         response = self.client.get("/new_experiment/"+xp_type)
