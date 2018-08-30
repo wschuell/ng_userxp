@@ -27,6 +27,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import authenticate, login
 from django.utils.translation import ugettext
+from django.utils.timezone import now
 
 from .forms import NameForm, QuestionForm
 
