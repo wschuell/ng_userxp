@@ -20,13 +20,13 @@ from .models import UserNG,Experiment,XpConfig,PastInteraction,Score
 import json
 import uuid
 
-from django.utils import timezone
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import authenticate, login
 from django.utils.translation import ugettext
+from django.utils.timezone import now
 
 from .forms import NameForm, QuestionForm
 
@@ -56,6 +56,7 @@ def login_user(request,username=''):
         #request.session["user"] = user
         login(request, user)
 
+#OBS ?
 def login_view(request):
     username = 'oug'
     return render(request, 'ng/login.html', {
@@ -120,6 +121,7 @@ def get_name(request):
     return render(request, 'ng/loginv2.html', {'form': form,
             'use_matomo': settings.MATOMO_USAGE,})
 
+#OBS ?
 #@login_required#(login_url='/accounts/login/')
 class IndexView(LoginRequiredMixin, generic.ListView):
     login_url = '/login/'
@@ -138,7 +140,7 @@ def story(request) :
 	return render(request, 'ng/histoire.html', {'context':'story',
             'use_matomo': settings.MATOMO_USAGE, 'userNG': UserNG.get(user=request.user)})
 
-
+#OBS ?
 class DetailView(LoginRequiredMixin, generic.DetailView):
     login_url = '/login/'
     redirect_field_name = 'redirect_to'
@@ -147,7 +149,7 @@ class DetailView(LoginRequiredMixin, generic.DetailView):
     def get_queryset(self):
         return Experiment.objects.filter()
 
-
+#OBS ?
 class ResultsView(LoginRequiredMixin, generic.DetailView):
     login_url = '/accounts/login/'
     redirect_field_name = 'redirect_to'
@@ -157,7 +159,7 @@ class ResultsView(LoginRequiredMixin, generic.DetailView):
 
 
 
-
+#OBS ?
 @login_required(login_url='/login/')
 def testdet(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
@@ -185,6 +187,7 @@ def continue_xp(request, xp_uuid):
             'error_message': "You didn't select a choice.",
         })
 
+#OBS ?
 @csrf_protect
 @login_required(login_url='/login/')
 def result_srtheo(request, xp_uuid):
@@ -254,7 +257,7 @@ def result_speaker(request, xp_uuid, meaning, word):
 
         })
 
-
+#OBS ?
 @csrf_protect
 @login_required(login_url='/login/')
 def none(request):
@@ -468,7 +471,7 @@ def result_speaker_continue(request, xp_uuid, meaning, word):
         })
 
 
-
+#OBS ?
 @csrf_protect
 @login_required(login_url='/login/')
 def choose_experiment(request,xp_cfg_name='normal'):
@@ -491,6 +494,7 @@ def new_experiment(request,xp_cfg_name='normal'):
         experiment.save()
         return continue_userxp(request,experiment.xp_uuid)
 
+#OBS ?
 @csrf_protect
 @login_required(login_url='/login/')
 def test(request):
@@ -599,6 +603,7 @@ def continue_userxp(request, xp_uuid):
             raise
 
 
+#OBS ?
 @csrf_protect
 @login_required(login_url='/login/')
 def exp_resume(request, xp_uuid):
@@ -688,10 +693,12 @@ def score(request, xp_uuid):
 def info(request):
     u = UserNG.get(user=request.user)
     if u.nbr_won < 3 :
-        return HttpResponseRedirect('/')
+        response = HttpResponseRedirect('/')
+        response.status_code = 404
+        return response
     else:
         u.q_seen = True
-        u.q_seen_at = timezone.now()
+        u.q_seen_at = now()
         u.save()
         # if this is a POST request we need to process the form data
         if request.method == 'POST':
