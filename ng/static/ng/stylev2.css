@@ -436,7 +436,7 @@ html{
 	display : block;
 }
 
-#id_code, #id_your_name, #id_q5 {
+#id_code, #id_your_name, #id_q5, #id_q6 {
 	color : grey;
 }
 
