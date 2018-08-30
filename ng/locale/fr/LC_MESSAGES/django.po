@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-29 11:54+0200\n"
+"POT-Creation-Date: 2018-08-30 16:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,8 +50,8 @@ msgstr "CONVERSATION"
 msgid "interactions happened without you being a part of it."
 msgstr "conversations ont eu lieu en votre absence."
 
-#: templates/ng/conversation1.html:64 templates/ng/conversation2.html:177
-#: templates/ng/conversation2.html:184 templates/ng/conversation3.html:155
+#: templates/ng/conversation1.html:64 templates/ng/conversation2.html:195
+#: templates/ng/conversation2.html:202 templates/ng/conversation3.html:155
 #: templates/ng/conversation3.html:162 templates/ng/histoire.html:53
 #: templates/ng/infosv2.html:61
 msgid "CONTINUE"
@@ -88,31 +88,31 @@ msgstr "Choisissez l’objet dont vous allez parler."
 msgid "Pick the word you will use to refer to this object."
 msgstr "Choisissez le mot que vous allez utiliser pour parler de cet objet."
 
-#: templates/ng/conversation2.html:254 templates/ng/conversation3.html:234
+#: templates/ng/conversation2.html:272 templates/ng/conversation3.html:234
 msgid "You heard this word"
 msgstr "Vous entendez ce mot"
 
-#: templates/ng/conversation2.html:260 templates/ng/conversation3.html:240
+#: templates/ng/conversation2.html:278 templates/ng/conversation3.html:240
 msgid "Click to see past interactions"
 msgstr "Afficher l'historique"
 
-#: templates/ng/conversation2.html:266 templates/ng/conversation3.html:253
+#: templates/ng/conversation2.html:284 templates/ng/conversation3.html:253
 msgid "The word used in this conversation"
 msgstr "Le mot utilisé dans cette conversation"
 
-#: templates/ng/conversation2.html:272 templates/ng/conversation3.html:259
+#: templates/ng/conversation2.html:290 templates/ng/conversation3.html:259
 msgid "What you were thinking"
 msgstr "Ce à quoi vous pensiez"
 
-#: templates/ng/conversation2.html:278 templates/ng/conversation3.html:265
+#: templates/ng/conversation2.html:296 templates/ng/conversation3.html:265
 msgid "What your partner was referring to"
 msgstr "Ce à quoi votre coéquipier pensait"
 
-#: templates/ng/conversation2.html:284
+#: templates/ng/conversation2.html:302
 msgid "You spoke"
 msgstr "Vous parliez"
 
-#: templates/ng/conversation2.html:290
+#: templates/ng/conversation2.html:308
 msgid "Your partner listened"
 msgstr "Votre interlocuteur vous écoutait"
 
@@ -174,11 +174,11 @@ msgstr "Oups !"
 msgid "It seems that an error occured."
 msgstr "Il semblerait qu'une erreur se soit produite."
 
-#: templates/ng/error_page.html:50 templates/ng/tooltips.js:6
+#: templates/ng/error_page.html:51 templates/ng/tooltips.js:6
 msgid "Home"
 msgstr "Page d'accueil"
 
-#: templates/ng/error_page.html:53
+#: templates/ng/error_page.html:54
 msgid "Resume the game"
 msgstr "Reprendre la partie"
 
@@ -258,43 +258,43 @@ msgstr ""
 "À tout moment, vous pouvez consulter ce que vous avez appris des autres "
 "joueurs en cliquant sur l'horloge"
 
-#: templates/ng/index.html:58
+#: templates/ng/index.html:61
 msgid "Build a new language"
 msgstr "Créez une nouvelle langue"
 
-#: templates/ng/index.html:65
+#: templates/ng/index.html:68
 msgid "TUTORIAL"
 msgstr "TUTORIEL"
 
-#: templates/ng/index.html:68
+#: templates/ng/index.html:71
 msgid "GAME"
 msgstr "JEU"
 
-#: templates/ng/index.html:70
+#: templates/ng/index.html:73
 msgid "FINISH TUTORIAL TO UNLOCK"
 msgstr "FINISSEZ LE TUTORIEL"
 
-#: templates/ng/index.html:74
+#: templates/ng/index.html:77
 msgid "BONUS"
 msgstr "BONUS"
 
-#: templates/ng/index.html:76
+#: templates/ng/index.html:79
 msgid "WIN "
 msgstr "GAGNEZ "
 
-#: templates/ng/index.html:76
+#: templates/ng/index.html:79
 msgid "GAMES TO UNLOCK"
 msgstr "FOIS POUR DÉBLOQUER"
 
-#: templates/ng/index.html:127
+#: templates/ng/index.html:130
 msgid "Best Scores"
 msgstr "Meilleurs Scores"
 
-#: templates/ng/index.html:139
+#: templates/ng/index.html:142
 msgid "Change language"
 msgstr "Changer langue"
 
-#: templates/ng/index.html:145
+#: templates/ng/index.html:148
 msgid "Logout"
 msgstr "Déconnexion"
 
@@ -409,15 +409,7 @@ msgstr "Si vous n'avez pas de code, laissez ce champ vide."
 msgid "The Naming Game"
 msgstr "Le Naming Game"
 
-#: templates/ng/loginv2.html:128
-msgid "Enter your name here :"
-msgstr "Entrez votre nom ici :"
-
-#: templates/ng/loginv2.html:173
-msgid "If you have been told to use a specific token, enter it here :"
-msgstr "Si on vous a indiqué un code spécifique, entrez le ici :"
-
-#: templates/ng/loginv2.html:180
+#: templates/ng/loginv2.html:112
 msgid ""
 "You’re about to start a short game where you will have to collectively build "
 "a lexicon with other individuals. Your answers will be recorded but will not "
@@ -428,28 +420,28 @@ msgstr ""
 "Vos réponses seront enregistrées mais resteront anonymes. Ce jeu durera "
 "environ 20 minutes."
 
-#: templates/ng/loginv2.html:182
+#: templates/ng/loginv2.html:114
 msgid "Before consenting to participate, please"
 msgstr "Avant d'accepter de participer à l'expérience, veuillez"
 
-#: templates/ng/loginv2.html:182
+#: templates/ng/loginv2.html:114
 msgid "consent_form.pdf"
 msgstr "consent_form_fr.pdf"
 
-#: templates/ng/loginv2.html:182
+#: templates/ng/loginv2.html:114
 msgid "click here"
 msgstr "cliquez ici"
 
-#: templates/ng/loginv2.html:182
+#: templates/ng/loginv2.html:114
 msgid "to read more detailed information about the study."
 msgstr "pour lire les informations détaillées concernant l'expérience."
 
-#: templates/ng/loginv2.html:186
+#: templates/ng/loginv2.html:118
 msgid "You have read and understood the detailed information about the study."
 msgstr ""
 "Vous avez lu et compris les informations détaillées de cette expérience."
 
-#: templates/ng/loginv2.html:187
+#: templates/ng/loginv2.html:119
 msgid ""
 "You agree that your anonymized data may be kept for up to 5 years in the "
 "archives of Inria and may be used by qualified researchers for teaching and "
@@ -459,7 +451,7 @@ msgstr ""
 "gardées jusqu'à 5 ans dans les archives d'Inria et peuvent être utilisées "
 "par des chercheurs qualifiés à des fins d'enseignement ou de recherche."
 
-#: templates/ng/loginv2.html:188
+#: templates/ng/loginv2.html:120
 msgid ""
 "You agree that your anonymized data may be made publicly available for "
 "general use, e.g., put on the world wide web."
@@ -468,11 +460,16 @@ msgstr ""
 "devenir publiquement accessibles pour des usages divers, par exemple "
 "diffusées sur internet."
 
-#: templates/ng/loginv2.html:189
+#: templates/ng/loginv2.html:121
+msgid "You voluntarily agree to participate and can stop at any time."
+msgstr ""
+"Vous participez volontairement et pouvez quitter l'expérience à tout moment."
+
+#: templates/ng/loginv2.html:123
 msgid "You consent to the use of cookies for this site."
 msgstr "Vous consentez à l'usage de cookies sur ce site."
 
-#: templates/ng/loginv2.html:192
+#: templates/ng/loginv2.html:126
 msgid ""
 "If you do not agree to all of these, simply close this window in your "
 "browser now."
@@ -480,9 +477,17 @@ msgstr ""
 "Si vous ne consentez pas à l'ensemble de ces points, vous pouvez fermer la "
 "fenêtre de votre navigateur."
 
-#: templates/ng/loginv2.html:199
+#: templates/ng/loginv2.html:133
 msgid "Submit"
 msgstr "Valider"
+
+#: templates/ng/loginv2.html:154
+msgid "Enter your name here :"
+msgstr "Entrez votre nom ici :"
+
+#: templates/ng/loginv2.html:200
+msgid "If you have been told to use a specific token, enter it here :"
+msgstr "Si on vous a indiqué un code spécifique, entrez le ici :"
 
 #: templates/ng/modal.html:10
 msgid "Are you sure ? "

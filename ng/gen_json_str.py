@@ -18,6 +18,7 @@ dict_obj = {
                     <li>Vous avez lu et compris les informations détaillées de cette expérience.</li>
                     <li>Vous acceptez que vos données anonymisées d'utilisation du jeu soient gardées jusqu'à 5 ans dans les archives d'Inria et peuvent être utilisées par des chercheurs qualifiés à des fins d'enseignement ou de recherche.</li>
                     <li>Vous acceptez que vos données anonymisées d'utilisation du jeu peuvent devenir publiquement accessibles pour des usages divers, par exemple diffusées sur internet.</li>
+                    <li>Vous participez volontairement et pouvez quitter l'expérience à tout moment.</li>
                     <li>Vous consentez à l'usage de cookies sur ce site.</li>
                 </ul>
 <p>Si vous ne consentez pas à l'ensemble de ces points, vous pouvez fermer la fenêtre de votre navigateur.</p>
@@ -184,7 +185,9 @@ dict_obj = {
                     <li>You have read and understood the detailed information about the study.</li>
                     <li>You agree that your anonymized data may be kept for up to 5 years in the archives of Inria and may be used by qualified researchers for teaching and research purposes</li>
                     <li>You agree that your anonymized data may be made publicly available for general use, e.g., put on the world wide web.</li>
+                    <li>You voluntarily agree to participate and can stop at any time.</li>
                     <li>You consent to the use of cookies for this site.</li>
+
                 </ul>
 </p>
 <p>If you do not agree to all of these, simply close this window in your browser now.</p>
