@@ -20,7 +20,6 @@ from .models import UserNG,Experiment,XpConfig,PastInteraction,Score
 import json
 import uuid
 
-from django.utils import timezone
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -714,7 +713,7 @@ def info(request):
         return response
     else:
         u.q_seen = True
-        u.q_seen_at = timezone.now()
+        u.q_seen_at = now()
         u.save()
         # if this is a POST request we need to process the form data
         if request.method == 'POST':
