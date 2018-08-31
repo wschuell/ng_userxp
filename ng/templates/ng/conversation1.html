@@ -24,7 +24,6 @@
     <script type="text/javascript">
         {% if experiment %}
         var url_continue = "{% url 'ng:continue' experiment.xp_uuid %}";
-        var url_results_inner_base = "{% url 'ng:results_inner_base' experiment.xp_uuid %}";
         var url_results_hearer_base = "{% url 'ng:results_hearer_base' experiment.xp_uuid %}";
         var url_results_speaker_base = "{% url 'ng:results_speaker_base' experiment.xp_uuid %}";
         {% endif %}
