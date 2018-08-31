@@ -734,7 +734,10 @@ def info(request):
 
 @csrf_protect
 def error(request):
-    xp_uuid = UserNG.objects.get(user=request.user).last_xp
+    if request.user.is_authenticated:
+        xp_uuid = UserNG.objects.get(user=request.user).last_xp
+    else:
+        xp_uuid = None
     # if xp_uuid:
     #     experiment = Experiment.objects.get(xp_uuid=xp_uuid)
     # else:
