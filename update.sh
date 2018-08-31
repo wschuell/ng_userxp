@@ -3,6 +3,7 @@
 if [ "$1" != "nogit" ]
 then
 	git pull || exit 1
+	bash update_ngal.sh || exit 1
 fi;
 
 (cd ng && python gen_json_str.py) || exit 1

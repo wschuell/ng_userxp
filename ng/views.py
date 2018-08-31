@@ -56,6 +56,7 @@ def login_user(request,username=''):
         #request.session["user"] = user
         login(request, user)
 
+#OBS ?
 def login_view(request):
     username = 'oug'
     return render(request, 'ng/login.html', {
@@ -120,6 +121,7 @@ def get_name(request):
     return render(request, 'ng/loginv2.html', {'form': form,
             'use_matomo': settings.MATOMO_USAGE,})
 
+#OBS ?
 #@login_required#(login_url='/accounts/login/')
 class IndexView(LoginRequiredMixin, generic.ListView):
     login_url = '/login/'
@@ -138,7 +140,7 @@ def story(request) :
 	return render(request, 'ng/histoire.html', {'context':'story',
             'use_matomo': settings.MATOMO_USAGE, 'userNG': UserNG.get(user=request.user)})
 
-
+#OBS ?
 class DetailView(LoginRequiredMixin, generic.DetailView):
     login_url = '/login/'
     redirect_field_name = 'redirect_to'
@@ -147,7 +149,7 @@ class DetailView(LoginRequiredMixin, generic.DetailView):
     def get_queryset(self):
         return Experiment.objects.filter()
 
-
+#OBS ?
 class ResultsView(LoginRequiredMixin, generic.DetailView):
     login_url = '/accounts/login/'
     redirect_field_name = 'redirect_to'
@@ -156,28 +158,8 @@ class ResultsView(LoginRequiredMixin, generic.DetailView):
 
 
 
-@csrf_protect
-@login_required(login_url='/login/')
-def vote(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
-    try:
-        selected_choice = question.choice_set.get(pk=request.POST['choice'])
-    except (KeyError, Choice.DoesNotExist):
-        # Redisplay the question voting form.
-        return render(request, 'ng/detail.html', {
-            'question': question,
-            'use_matomo': settings.MATOMO_USAGE,
-            'error_message': "You didn't select a choice.",
-        })
-    else:
-        selected_choice.votes += 1
-        selected_choice.save()
-        # Always return an HttpResponseRedirect after successfully dealing
-        # with POST data. This prevents data from being posted twice if a
-        # user hits the Back button.
-        return HttpResponseRedirect(reverse('ng:results', args=(question.id,)))
 
-
+#OBS ?
 @login_required(login_url='/login/')
 def testdet(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
@@ -205,6 +187,7 @@ def continue_xp(request, xp_uuid):
             'error_message': "You didn't select a choice.",
         })
 
+#OBS ?
 @csrf_protect
 @login_required(login_url='/login/')
 def result_srtheo(request, xp_uuid):
@@ -274,7 +257,7 @@ def result_speaker(request, xp_uuid, meaning, word):
 
         })
 
-
+#OBS ?
 @csrf_protect
 @login_required(login_url='/login/')
 def none(request):
@@ -488,7 +471,7 @@ def result_speaker_continue(request, xp_uuid, meaning, word):
         })
 
 
-
+#OBS ?
 @csrf_protect
 @login_required(login_url='/login/')
 def choose_experiment(request,xp_cfg_name='normal'):
@@ -511,6 +494,7 @@ def new_experiment(request,xp_cfg_name='normal'):
         experiment.save()
         return continue_userxp(request,experiment.xp_uuid)
 
+#OBS ?
 @csrf_protect
 @login_required(login_url='/login/')
 def test(request):
@@ -619,6 +603,7 @@ def continue_userxp(request, xp_uuid):
             raise
 
 
+#OBS ?
 @csrf_protect
 @login_required(login_url='/login/')
 def exp_resume(request, xp_uuid):
@@ -750,7 +735,10 @@ def info(request):
 
 @csrf_protect
 def error(request):
-    xp_uuid = UserNG.objects.get(user=request.user).last_xp
+    if request.user.is_authenticated:
+        xp_uuid = UserNG.objects.get(user=request.user).last_xp
+    else:
+        xp_uuid = None
     # if xp_uuid:
     #     experiment = Experiment.objects.get(xp_uuid=xp_uuid)
     # else:

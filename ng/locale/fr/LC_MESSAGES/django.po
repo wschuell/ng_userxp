@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-30 16:42+0200\n"
+"POT-Creation-Date: 2018-08-31 16:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -196,15 +196,19 @@ msgstr "Vous"
 #: templates/ng/histoire.html:40
 msgid ""
 "are now locked alone in a room of their huge spaceship. In the neighboring "
-"rooms, there are three other individuals"
+"rooms, there are two other individuals"
 msgstr ""
 "voilà seul(e) dans une geôle de leur vaisseau. Dans les pièces d'à côté se "
-"trouvent trois autres individus"
+"trouvent deux autres individus"
 
 #: templates/ng/histoire.html:40
 msgid "also kidnapped by your abductors from different parts of the galaxy."
 msgstr ""
 " que vos ravisseurs ont également enlevés à d'autres endroits de la galaxie."
+
+#: templates/ng/histoire.html:40
+msgid "Counting you, that's a total of three: "
+msgstr "En vous comptant, cela fait trois personnes: "
 
 #: templates/ng/histoire.html:41
 msgid ""
@@ -215,11 +219,15 @@ msgstr ""
 "pour pouvoir rentrer chez vous."
 
 #: templates/ng/histoire.html:45
+msgid "To do so, you may only talk"
+msgstr "Pour ce faire, vous ne pourrez parler"
+
+#: templates/ng/histoire.html:45
 msgid ""
-"To do so, you may only talk by pairs thanks to a radio, without knowing wich "
-"one of your fellow prisoners is on the other side"
+"by pairs thanks to a radio, without knowing wich one of your fellow "
+"prisoners is on the other side."
 msgstr ""
-"Pour ce faire, vous ne pourrez parler que deux par deux grâce à une radio, "
+"que deux par deux grâce à une radio, "
 "sans savoir lequel de vos camarades d'infortune est à l'autre bout."
 
 #: templates/ng/histoire.html:47
