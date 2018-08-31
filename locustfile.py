@@ -69,11 +69,11 @@ class UserBehavior(TaskSet):
                 m = str(response.content).split("meaning_name=\"")[1].split('"')[0]
             time.sleep(0.1)
             if page == 'speaker':
-                self.client.get(url_sp+m+'-locust0/results/')
+                self.client.get(url_sp+m+'-locust0/results_continue/')
                 time.sleep(0.1)
                 response = self.client.get(url_continue)
             elif page == 'hearer':
-                self.client.get(url_hr+m+'/results/')
+                self.client.get(url_hr+m+'/results_continue/')
                 time.sleep(0.1)
                 response = self.client.get(url_continue)
             elif page == 'skipped':
