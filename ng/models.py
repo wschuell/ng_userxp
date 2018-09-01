@@ -179,6 +179,12 @@ class Experiment(models.Model):
     def __str__(self):
         return str(self.xp_uuid) + ' ' + str(self.xp_config.xp_config)
 
+    def score(self):
+        try:
+            return Score.objects.get(experiment=self).score
+        except:
+            return None
+
     def init_xp(self):
         db = ngal.ngdb.NamingGamesDB(db_type='psycopg2',conn_info="host='db' dbname='naminggames' user='naminggames' password='naminggames'")
         self.xp = db.get_experiment(force_new=True,db_type='postgres',conn_info="host='db' dbname='naminggames' user='naminggames' password='naminggames'",**json.loads(self.xp_config.xp_config))
