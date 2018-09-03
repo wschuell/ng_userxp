@@ -70,14 +70,16 @@ def home(request):
     user = request.user
     u = UserNG.get(user=user)
     game_unlocked = u.tuto_played
-    if (u.nbr_won < 3):
+    nbr_required = 1
+    nbr_remaining = max(nbr_required-u.nbr_won,0)
+    if nbr_remaining > 0:
         multi_unlocked = False
     else :
         multi_unlocked = True
     return render(request, 'ng/index.html', {
     'game_unlocked' : game_unlocked,
     'multi_unlocked' : multi_unlocked,
-    'nbr_remaining_games' : 3-u.nbr_won,
+    'nbr_remaining_games' : nbr_remaining,
     'user' : user,
     'userNG': u,
             'use_matomo': settings.MATOMO_USAGE,
