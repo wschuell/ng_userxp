@@ -35,6 +35,7 @@ dict_obj = {
     'game_locked' : 'FINISSEZ LE TUTORIEL',
     'multi_lockedp1' : 'GAGNEZ ',
     'multi_lockedp2' : ' FOIS POUR DEBLOQUER',
+    'multi_locked': 'GAGNEZ LE JEU POUR DEBLOQUER',
 
     #Story End
     'story_pagetitle': 'HISTOIRE',
@@ -207,6 +208,7 @@ dict_obj = {
     'game_locked' : 'FINISH TUTORIAL TO UNLOCK',
     'multi_lockedp1' : 'WIN ',
     'multi_lockedp2' : ' GAMES TO UNLOCK',
+    'multi_locked': 'WIN THE GAME TO UNLOCK',
 
     #Story End
     'story_pagetitle': 'Story',

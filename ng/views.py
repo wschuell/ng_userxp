@@ -15,7 +15,7 @@ from django.conf import settings
 
 from django.contrib.auth.models import User
 
-from .models import UserNG,Experiment,XpConfig,PastInteraction,Score
+from .models import UserNG,Experiment,XpConfig,PastInteraction,Score,Meaning,SubScore
 # ...
 import json
 import uuid
@@ -70,14 +70,16 @@ def home(request):
     user = request.user
     u = UserNG.get(user=user)
     game_unlocked = u.tuto_played
-    if (u.nbr_won < 3):
+    nbr_required = 1
+    nbr_remaining = max(nbr_required-u.nbr_won,0)
+    if nbr_remaining > 0:
         multi_unlocked = False
     else :
         multi_unlocked = True
     return render(request, 'ng/index.html', {
     'game_unlocked' : game_unlocked,
     'multi_unlocked' : multi_unlocked,
-    'nbr_remaining_games' : 3-u.nbr_won,
+    'nbr_remaining_games' : nbr_remaining,
     'user' : user,
     'userNG': u,
             'use_matomo': settings.MATOMO_USAGE,
@@ -626,20 +628,12 @@ def score(request, xp_uuid):
         raise ValueError("wrong user")
     request.user.last_name = "test"
     request.user.save()
-    try:
-        score = Score.objects.get(experiment=experiment)
-        score_val = score.score
-    except:
-        experiment.get_xp()
-        srtheo = experiment.xp.graph(method="srtheo")._Y[0][-1]
-        score_val = int(srtheo * experiment.meanings.count() * 100)#.all().count()?
-        score = Score(experiment=experiment,score=score_val,user=request.user)
-        if srtheo > 0.65 :
-            experiment.game_won = True
-        score.save()
 
     u = UserNG.get(user=request.user)
     experiment.update_complete()
+    experiment.set_scores()
+    score = Score.objects.get(experiment=experiment)
+    score_val = score.score
     if experiment.xp_config.xp_cfg_name == "normal" :
         u.update_nbr_played()
         u.save()
@@ -653,6 +647,7 @@ def score(request, xp_uuid):
     m_list = [elt for elt in tab_results.keys()]
     w_list1 = []
     w_list2 = []
+    score_list = []
     for elt in m_list:
         if len(tab_results[elt].items()) == 0 :
             w_list1.append('?')
@@ -666,6 +661,9 @@ def score(request, xp_uuid):
             sorted_tab.reverse()
             w_list1.append(sorted_tab[0][0])
             w_list2.append(sorted_tab[1][0])
+        m = Meaning.objects.get(meaning=elt)
+        subscore = SubScore.objects.get(meaning=m,score=score)
+        score_list.append(subscore.subscore)
     #Test if score exists
     #if not, compute and store object
     #get value
@@ -679,7 +677,7 @@ def score(request, xp_uuid):
             'w_list1': w_list1,
             'w_list2': w_list2,
             'w_list':zip(w_list1,w_list2),
-            'mww_list': zip(m_list,w_list1,w_list2),
+            'mww_list': zip(m_list,w_list1,w_list2,score_list),
             'won': experiment.game_won,
             'use_matomo': settings.MATOMO_USAGE,
             'user':request.user,

@@ -423,6 +423,21 @@ class Experiment(models.Model):
         self.is_complete = (self.interaction_counter >= self.max_interaction)
         self.save()
 
+    def set_scores(self):
+        if self.is_complete and len(Score.objects.filter(experiment=self).all()) == 0:
+            self.get_xp()
+            srtheo = ngal.ngmeth.srtheo(pop=self.xp._poplist.get_last(),n_iter=500)
+            score_val = int(srtheo * self.meanings.count() * 100)#.all().count()?
+            score = Score(experiment=self,score=score_val,user=self.user)
+            score.save()
+            if srtheo > 0.65 :
+                self.game_won = True
+            for m in self.meanings.all():
+                subscore_val = int(ngal.ngmeth.srtheo(pop=self.xp._poplist.get_last(),m=int(m.meaning),n_iter=500)*100)
+                subscore = SubScore(subscore=subscore_val,score=score,meaning=m)
+                subscore.save()
+            self.save()
+
 class Agent(models.Model):
     xp = models.ForeignKey(Experiment, on_delete=models.CASCADE, blank=True, null=True)
     ngagent = models.BinaryField()
@@ -481,3 +496,7 @@ class Score(models.Model):
     score = models.IntegerField()
     user = models.ForeignKey(User, on_delete=models.PROTECT)
 
+class SubScore(models.Model):
+    subscore = models.IntegerField(null=True)
+    score = models.ForeignKey(Score,on_delete=models.CASCADE)
+    meaning = models.ForeignKey(Meaning, on_delete=models.PROTECT)
