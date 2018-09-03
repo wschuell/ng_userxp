@@ -75,8 +75,10 @@
             <br>
             {% if multi_unlocked %}
             <a  href="#" class="btn" id="button_multi" style="margin-top: 0px;margin-bottom:42px;">{% trans "BONUS" %}</a>
-            {% else %}
+            {% elif nbr_remaining_games > 1 %}
             <a  href="#" class="btn second-btn disabled" id="multi_locked"><p id="multi_lockedp1" style="display:inline;">{% trans "WIN " %}</p> {{nbr_remaining_games}} <p id="multi_lockedp2" style="display:inline;"> {% trans "GAMES TO UNLOCK" %}</p></a>
+            {% else %}
+            <a  href="#" class="btn second-btn disabled" id="multi_locked"><p id="multi_locked" style="display:inline;">{% trans "WIN THE GAME TO UNLOCK" %}</p></a>
             {% endif %}
           </div>
 
