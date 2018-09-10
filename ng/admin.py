@@ -79,7 +79,8 @@ class ExperimentAdmin(admin.ModelAdmin):
 	'last_mh',
 	'size',
 	)
-	list_display = ('user', 'created_at', 'xp_uuid', 'before_info', 'is_complete', 'max_interaction','game_won','score')
+	list_display = ('user', 'created_at', 'xp_uuid', 'before_info', 'is_complete',
+	'interaction_counter', 'max_interaction','game_won','score')
 	list_filter = ('user', 'max_interaction')
 
 class NewUserAdmin(admin.ModelAdmin):

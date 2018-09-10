@@ -690,7 +690,7 @@ def score(request, xp_uuid):
 @login_required(login_url='/login/')
 def info(request):
     u = UserNG.get(user=request.user)
-    if u.nbr_won < 3 :
+    if u.nbr_won < 1 :
         response = HttpResponseRedirect('/')
         response.status_code = 404
         return response
