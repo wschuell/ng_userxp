@@ -12,7 +12,7 @@ dict_obj = {
     'enter_player_name': 'Entrez votre nom ici :',
     'label_lang': '',#'Choisissez votre langue:',
     'label_code': 'Si on vous a indiqué un code spécifique, entrez le ici :',
-        'consent_form':'''<p>Vous allez participer à une expérience sous la forme d'un jeu en ligne, où vous aurez à construire collectivement un langage avec d'autres individus. Vos réponses seront enregistrées mais resteront anonymes. Ce jeu durera environ 20 minutes.
+        'consent_form':'''<p>Vous allez participer à une expérience sous la forme d'un jeu en ligne, où vous aurez à construire collectivement un langage avec d'autres individus. Vos réponses seront enregistrées mais resteront anonymes. Ce jeu durera environ 10 minutes.
 </p><p style = "margin-top:1.5em;margin-bottom:1.5em;"><b>Avant d'accepter de participer à l'expérience, veuillez <a href="/static/ng/pdf/consent_form_fr.pdf" target="_blank">cliquez ici</a> pour lire les informations détaillées concernant l'expérience.</b>
 <ul>
                     <li>Vous avez lu et compris les informations détaillées de cette expérience.</li>
@@ -177,7 +177,7 @@ dict_obj = {
     'label_lang': '',#'Choose your language :',
     'label_code': 'If you have been told to use a specific token, enter it here :',
     'submit' : "Submit",
-        'consent_form':'''<p>You’re about to start a short game where you will have to collectively build a lexicon with other individuals. Your answers will be recorded but will not be identifiable to you personally. The game will take about 20 minutes.
+        'consent_form':'''<p>You’re about to start a short game where you will have to collectively build a lexicon with other individuals. Your answers will be recorded but will not be identifiable to you personally. The game will take about 10 minutes.
 </p>
 <p style = "margin-top:1.5em;margin-bottom:1.5em;"><b>Before consenting to participate, please <a href="/static/ng/pdf/consent_form.pdf" target="_blank">click here</a> to read more detailed information about the study.</b>
 </p>

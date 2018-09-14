@@ -7,7 +7,7 @@
     var music = document.createElement('audio');
 
     if (typeof Cookies.get('NamingGameSound') === 'undefined'){
-        Cookies.set('NamingGameSound', true);
+        Cookies.set('NamingGameSound', true, { expires: 366 });
       sound_click.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
       music.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
         // sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
@@ -33,7 +33,7 @@
 
     //Sound
     $('#sound-off').click(function(){
-      Cookies.set('NamingGameSound', true);
+      Cookies.set('NamingGameSound', true, { expires: 366 });
       sound_click.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
       music.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
       // sound_click.setAttribute('src', "{% static 'ng/sounds/60945__erh__click.wav' %}");
@@ -42,7 +42,7 @@
      $('#sound-on').css('display','inline');
     });
     $('#sound-on').click(function(){
-      Cookies.set('NamingGameSound', false);
+      Cookies.set('NamingGameSound', false, { expires: 366 });
       sound_click.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
       music.setAttribute('src', "{% static 'ng/sounds/silence.wav' %}");
       // sound_click.play();

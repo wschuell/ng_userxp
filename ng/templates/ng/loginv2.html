@@ -39,7 +39,7 @@
             var user_str = uuid();
             $("#username").html(user_str);
             Cookies.set('NamingGameUser',
-                user_str
+                user_str, { expires: 366 }
                 );
             };
 
@@ -108,7 +108,7 @@
                            <div class="row">
                 <!--Code si pertinent-->
                   <div class="fieldWrapper" style="margin : auto;">
-                      <label class="text_login" id="consent_form", style="text-align:left;"><p>{% trans "You’re about to start a short game where you will have to collectively build a lexicon with other individuals. Your answers will be recorded but will not be identifiable to you personally. The game will take about 20 minutes." %}
+                      <label class="text_login" id="consent_form", style="text-align:left;"><p>{% trans "You’re about to start a short game where you will have to collectively build a lexicon with other individuals. Your answers will be recorded but will not be identifiable to you personally. The game will take about 10 minutes." %}
 </p>
 <p style = "margin-top:1.5em;margin-bottom:1.5em;"><b>{% trans "Before consenting to participate, please" %} <a href="/static/ng/pdf/{% trans "consent_form.pdf" %}" target="_blank">{% trans "click here" %}</a> {% trans "to read more detailed information about the study." %}</b>
 </p>
