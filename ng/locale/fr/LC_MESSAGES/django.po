@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-03 16:09+0200\n"
+"POT-Creation-Date: 2018-09-14 17:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -573,8 +573,10 @@ msgid "Congratulations, you won the game !"
 msgstr "Félicitations, vous avez gagné la partie !"
 
 #: templates/ng/resultats.html:79
-msgid "You'll do better next time !"
-msgstr "Dommage, vous ferez mieux la prochaine fois !"
+msgid "You'll do better next time ! To win, you need to reach"
+msgstr ""
+"Dommage, vous ferez mieux la prochaine fois ! Pour gagner, vous devez "
+"atteindre"
 
 #: templates/ng/tooltips.js:12
 msgid "You are 3"
