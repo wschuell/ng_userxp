@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-14 17:25+0200\n"
+"POT-Creation-Date: 2018-09-15 20:01+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,23 +58,23 @@ msgid "CONTINUE"
 msgstr "CONTINUER"
 
 #: templates/ng/conversation2.html:75
-msgid "Well done, your partner understood !"
-msgstr "Bravo, votre interlocuteur vous a compris !"
+msgid "Well done, your partner understood!"
+msgstr "Bravo, votre interlocuteur vous a compris!"
 
 #: templates/ng/conversation2.html:78
 msgid ""
-"Your partner didn't know this word but they will remember it next time !"
+"Your partner didn't know this word but they will remember it next time!"
 msgstr ""
 "Votre coéquipier ne connaissait pas ce mot mais il s'en souviendra pour la "
-"prochaine fois !"
+"prochaine fois!"
 
 #: templates/ng/conversation2.html:80
 msgid ""
 "Oops, your partner thought you were talking about something else. They will "
-"remember it next time !"
+"remember it next time!"
 msgstr ""
 "Oups, votre interlocuteur pensait que vous parliez d'autre chose. Il s'en "
-"souviendra pour la prochaine fois !"
+"souviendra pour la prochaine fois!"
 
 #: templates/ng/conversation2.html:127 templates/ng/conversation2.html:128
 msgid "Your turn to speak."
@@ -118,23 +118,23 @@ msgstr "Votre interlocuteur vous écoutait"
 
 #: templates/ng/conversation3.html:75
 msgid ""
-"Well done, you understood your partner ! You will remember it next time !"
+"Well done, you understood your partner! You will remember it next time!"
 msgstr ""
-"Bravo, vous avez compris votre interlocuteur ! Vous vous en souviendrez pour "
-"la prochaine fois !"
+"Bravo, vous avez compris votre interlocuteur! Vous vous en souviendrez pour "
+"la prochaine fois!"
 
 #: templates/ng/conversation3.html:78
-msgid "This is what your partner meant, you will remember it next time !"
+msgid "This is what your partner meant, you will remember it next time!"
 msgstr ""
 "Voilà ce que votre coéquipier voulait dire, vous vous en souviendrez pour la "
-"prochaine fois !"
+"prochaine fois!"
 
 #: templates/ng/conversation3.html:80
 msgid ""
-"Oops, your partner meant something else. You will remember it next time !"
+"Oops, your partner meant something else. You will remember it next time!"
 msgstr ""
 "Oups, votre interlocuteur voulait parler d'autre chose. Vous vous en "
-"souviendrez pour la prochaine fois !"
+"souviendrez pour la prochaine fois!"
 
 #: templates/ng/conversation3.html:84
 msgid ""
@@ -167,8 +167,8 @@ msgid "You listened"
 msgstr "Vous écoutiez"
 
 #: templates/ng/error_page.html:45
-msgid "Oops !"
-msgstr "Oups !"
+msgid "Oops!"
+msgstr "Oups!"
 
 #: templates/ng/error_page.html:45
 msgid "It seems that an error occured."
@@ -187,8 +187,8 @@ msgid "STORY"
 msgstr "HISTOIRE"
 
 #: templates/ng/histoire.html:38
-msgid "You have been kidnapped by aliens !"
-msgstr "Vous avez été enlevé(e) par des extraterrestres !"
+msgid "You have been kidnapped by aliens!"
+msgstr "Vous avez été enlevé(e) par des extraterrestres!"
 
 #: templates/ng/histoire.html:40
 msgid "You"
@@ -253,10 +253,10 @@ msgstr "dans l'attente d'un signal, pendant que d'autres joueurs communiquent."
 
 #: templates/ng/histoire.html:49
 msgid ""
-"Be careful, you only have a limited number of conversations to succeed !"
+"Be careful, you only have a limited number of conversations to succeed!"
 msgstr ""
 "Mais attention, vous n'avez à vous tous qu'un nombre limité de conversations "
-"pour réussir !"
+"pour réussir!"
 
 #: templates/ng/histoire.html:50
 msgid ""
@@ -569,13 +569,25 @@ msgstr ""
 "Vous et vos voisins de cellule avez atteint un niveau de compréhension de : "
 
 #: templates/ng/resultats.html:77
-msgid "Congratulations, you won the game !"
-msgstr "Félicitations, vous avez gagné la partie !"
+msgid "Congratulations, you won the game!"
+msgstr "Félicitations, vous avez gagné la partie!"
 
 #: templates/ng/resultats.html:79
-msgid "You'll do better next time ! To win, you need to reach"
+msgid "You'll do better next time! To win, you need to reach"
 msgstr ""
-"Dommage, vous ferez mieux la prochaine fois ! Pour gagner, vous devez "
+"Dommage, vous ferez mieux la prochaine fois! Pour gagner, vous devez "
+"atteindre"
+
+#: templates/ng/resultats.html:85
+msgid ""
+"Congratulations, you won the tutorial! To win also in the main game, you "
+"need to reach"
+msgstr "Félicitations, vous vez terminé le tutoriel! Pour gagner aussi dans le jeu principal, vous devez atteindre"
+
+#: templates/ng/resultats.html:87
+msgid "You'll do better in the main game! To win, you need to reach"
+msgstr ""
+"Vous avez complété le tutoriel! Pour gagner dans le jeu principal, vous devez "
 "atteindre"
 
 #: templates/ng/tooltips.js:12
