@@ -74,21 +74,21 @@
             {% if experiment.max_interaction != 10 %}
             <div class="row">
               {% if won %}
-                <span id="game_won" class="won_lose_text">{% trans "Congratulations, you won the game !" %}</span>
+                <span id="game_won" class="won_lose_text">{% trans "Congratulations, you won the game!" %}</span>
               {% else %}
-              <span id="game_lost" class="won_lose_text">{% trans "You'll do better next time ! To win, you need to reach" %} 66 %.</span>
+              <span id="game_lost" class="won_lose_text">{% trans "You'll do better next time! To win, you need to reach" %} 66 %.</span>
               {% endif %}
             </div>
               {% else %}
             <div class="row">
               {% if won %}
-                <span id="tuto_won" class="won_lose_text">{% trans "Congratulations, you won the tutorial ! To win also in the main game, you need to reach" %} 66 %.</span>
+                <span id="tuto_won" class="won_lose_text">{% trans "Congratulations, you won the tutorial! To win also in the main game, you need to reach" %} 66 %.</span>
               {% else %}
-              <span id="tuto_lost" class="won_lose_text">{% trans "You'll do better in the main game ! To win, you need to reach" %} 66 %.</span>
+              <span id="tuto_lost" class="won_lose_text">{% trans "You'll do better in the main game! To win, you need to reach" %} 66 %.</span>
               {% endif %}
             </div>
               {% endif %}
-              
+
           <!--    <div id="div1">
             {% for m in m_list %}
               <div class="result_img">

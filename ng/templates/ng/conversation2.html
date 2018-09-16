@@ -72,12 +72,12 @@
             {% if context == "result" %}
             <div class="text_content_div">
               {% if bool_succ %}
-              <span class="text_content" id='speaker_success'>{% trans "Well done, your partner understood !" %}</span>
+              <span class="text_content" id='speaker_success'>{% trans "Well done, your partner understood!" %}</span>
               {% else %}
                  {% if learn  %}
-                 <span class="text_content" id='speaker_learn'>{% trans "Your partner didn't know this word but they will remember it next time !" %}</span>
+                 <span class="text_content" id='speaker_learn'>{% trans "Your partner didn't know this word but they will remember it next time!" %}</span>
                  {% else %}
-                 <span class="text_content" id='speaker_failure'>{% trans "Oops, your partner thought you were talking about something else. They will remember it next time !" %}</span>
+                 <span class="text_content" id='speaker_failure'>{% trans "Oops, your partner thought you were talking about something else. They will remember it next time!" %}</span>
               {% endif %}
               {% endif %}
                  </div>

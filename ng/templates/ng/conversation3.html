@@ -72,12 +72,12 @@
           {% if context == "result" %}
              <div class="text_content_div">
                {% if bool_succ %}
-               <span class="text_content" id='hearer_success'>{% trans "Well done, you understood your partner ! You will remember it next time !" %}</span>
+               <span class="text_content" id='hearer_success'>{% trans "Well done, you understood your partner! You will remember it next time!" %}</span>
                {% else %}
                   {% if learn  %}
-                  <span class="text_content" id='hearer_learn'>{% trans "This is what your partner meant, you will remember it next time !" %}</span>
+                  <span class="text_content" id='hearer_learn'>{% trans "This is what your partner meant, you will remember it next time!" %}</span>
                   {% else %}
-                  <span class="text_content" id='hearer_failure'>{% trans "Oops, your partner meant something else. You will remember it next time !" %}</span>
+                  <span class="text_content" id='hearer_failure'>{% trans "Oops, your partner meant something else. You will remember it next time!" %}</span>
                {% endif %}
                {% endif %}
                {% if experiment.max_interaction == 10 %}
